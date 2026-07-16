@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scorecard Rankings in Portfolio Analyst — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+<script src="search-data.js"></script>
+<script src="help-search.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Chat Interface &amp; Prompt Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="prompt-templates.html">Prompt Templates</a></li>
+          <li><a href="prompt-studio.html">Prompt Studio</a></li>
+          <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
+          <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
+          <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
+          <li><a href="typescript-migration.html">TypeScript Migration</a></li>
+          <li><a href="pdf-export-copy-formats.html">PDF Export & Copy Formats</a></li>
+          <li><a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling</a></li>
+          <li><a href="shareable-chat-links.html">Shareable Chat Links</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Screening &amp; Filtering</a>
+        <ul class="dropdown-menu">
+          <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
+          <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
+          <li><a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
+          <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
+          <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
+          <li><a href="export-service-layer.html">Export Service Layer & Error Handling</a></li>
+          <li><a href="save-screener-results.html">Save Screener Results from Chat</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Financial Data Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
+          <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
+          <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
+          <li><a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles</a></li>
+          <li><a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch</a></li>
+          <li><a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity</a></li>
+          <li><a href="company-financials-batch.html">Company Financials Batch Retrieval</a></li>
+          <li><a href="roe-formatter-fix.html">ROE Formatter Bug Fix</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="active">Scorecards &amp; Research</a>
+        <ul class="dropdown-menu">
+          <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
+          <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
+          <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
+          <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
+          <li><a href="scorecard-rankings-portfolio-analyst.html" class="active">Scorecard Rankings in Portfolio Analyst</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Response Quality &amp; Reliability</a>
+        <ul class="dropdown-menu">
+          <li><a href="citation-management.html">Citation Management in SAM</a></li>
+          <li><a href="citation-system-launch.html">Citation System Launch</a></li>
+          <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
+          <li><a href="anthropic-content.html">Improving Anthropic Content and Complexity</a></li>
+          <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
+          <li><a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Platform &amp; Infrastructure</a>
+        <ul class="dropdown-menu">
+          <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
+          <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
+          <li><a href="context-management.html">Context Management Enhancements</a></li>
+          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
+          <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
+          <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
+          <li><a href="image-upload-vision.html">Image Upload & Vision Processing</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="help-bar">
+  <div class="help-bar-inner">
+    <label for="help-search-input" class="help-bar-label">Need something specific?</label>
+    <div class="help-search-wrap">
+      <input type="text" id="help-search-input" placeholder="Search features — e.g. citations, screener, streaming..." autocomplete="off">
+      <div id="help-search-results" class="help-results"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">New in SAM · Technical Reference</div>
+    <h1>Scorecard Rankings in Portfolio Analyst</h1>
+    <p class="lede">The engineering behind the scorecard_rankings query type covered on the Scorecard Rankings feature page — batch scorecard retrieval jumped from 3 to 50 companies per query, and factor-based rankings became a single tool call instead of one call per company.</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>What Changed</h2>
+  <ul>
+    <li><strong>New query type:</strong> <code>scorecard_rankings</code> ranks portfolio or watchlist companies by internal, external, or ESG scorecard factors in one request.</li>
+    <li><strong>Batch processing:</strong> up to 50 companies per query, replacing N separate tool calls with a single one — with smart input handling for single queries, multiple queries, or direct company IDs.</li>
+    <li><strong>PostgreSQL fix:</strong> resolved <code>DISTINCT ON</code> clause issues by moving to proper subqueries, eliminating a class of N+1 query problems.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Architecture</h2>
+  <p>The previously monolithic portfolio analyst was broken into organized modules following a repository pattern, with a query builder abstraction for maintainable, extensible query construction. See <a href="scorecard-rankings.html">Scorecard Rankings</a> for the user-facing view of this feature.</p>
+</section>
+
+<section>
+  <h2>Reliability</h2>
+  <div class="callout ok">
+    <p><strong>100+ test cases across 14 test modules,</strong> including integration tests for complete workflows, edge cases for batch operations, and performance validation for the N+1 query fixes. Full backward compatibility maintained.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Data Handling Still Applies</h2>
+  <p>Batch scorecard retrieval doesn't change what tier the data carries — portfolio and scorecard data stays Tier 3 per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> regardless of how many companies are in a single query.</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-team-averages-spider-charts.html">← Scorecard Team Averages & Spider Charts</a>
+  <a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

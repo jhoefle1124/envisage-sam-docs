@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Improving Anthropic Content and Complexity — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+<script src="search-data.js"></script>
+<script src="help-search.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Chat Interface &amp; Prompt Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="prompt-templates.html">Prompt Templates</a></li>
+          <li><a href="prompt-studio.html">Prompt Studio</a></li>
+          <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
+          <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
+          <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
+          <li><a href="typescript-migration.html">TypeScript Migration</a></li>
+          <li><a href="pdf-export-copy-formats.html">PDF Export & Copy Formats</a></li>
+          <li><a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling</a></li>
+          <li><a href="shareable-chat-links.html">Shareable Chat Links</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Screening &amp; Filtering</a>
+        <ul class="dropdown-menu">
+          <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
+          <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
+          <li><a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
+          <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
+          <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
+          <li><a href="export-service-layer.html">Export Service Layer & Error Handling</a></li>
+          <li><a href="save-screener-results.html">Save Screener Results from Chat</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Financial Data Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
+          <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
+          <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
+          <li><a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles</a></li>
+          <li><a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch</a></li>
+          <li><a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity</a></li>
+          <li><a href="company-financials-batch.html">Company Financials Batch Retrieval</a></li>
+          <li><a href="roe-formatter-fix.html">ROE Formatter Bug Fix</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Scorecards &amp; Research</a>
+        <ul class="dropdown-menu">
+          <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
+          <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
+          <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
+          <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
+          <li><a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="active">Response Quality &amp; Reliability</a>
+        <ul class="dropdown-menu">
+          <li><a href="citation-management.html">Citation Management in SAM</a></li>
+          <li><a href="citation-system-launch.html">Citation System Launch</a></li>
+          <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
+          <li><a href="anthropic-content.html" class="active">Improving Anthropic Content and Complexity</a></li>
+          <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
+          <li><a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Platform &amp; Infrastructure</a>
+        <ul class="dropdown-menu">
+          <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
+          <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
+          <li><a href="context-management.html">Context Management Enhancements</a></li>
+          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
+          <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
+          <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
+          <li><a href="image-upload-vision.html">Image Upload & Vision Processing</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="help-bar">
+  <div class="help-bar-inner">
+    <label for="help-search-input" class="help-bar-label">Need something specific?</label>
+    <div class="help-search-wrap">
+      <input type="text" id="help-search-input" placeholder="Search features — e.g. citations, screener, streaming..." autocomplete="off">
+      <div id="help-search-results" class="help-results"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">New in SAM · Feature Guide</div>
+    <h1>Improving Anthropic Content and Complexity</h1>
+    <p class="lede">SAM now extracts Claude's streaming responses more robustly — fewer stray fragments in chat, cleaner handling of "thinking" content, and a single, well-tested code path instead of scattered logic. You shouldn't have to think about any of this; that's the point.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>What's New</h2>
+  <ul>
+    <li><strong>Robust content extraction:</strong> new shared utility functions handle every shape Claude's streaming API can return — plain text, delta updates, lists of content blocks, and more.</li>
+    <li><strong>Tool block detection:</strong> tool-related content (tool_use, tool_result, input_json_delta, etc.) is now properly identified and filtered out of what you see, instead of occasionally leaking through.</li>
+    <li><strong>Cleaner "thinking" tag removal:</strong> an optimized pattern strips both raw and HTML-encoded thinking tags in a single pass.</li>
+    <li><strong>Simplified streaming code:</strong> the event-processing logic that turns Claude's response stream into chat messages was refactored to use one centralized extraction path.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why It Matters</h2>
+  <p>This is a behind-the-scenes reliability change — you won't see a new button or setting. What you should notice is fewer rendering glitches in chat: no stray tool-call fragments or leftover "thinking" markup showing up where they shouldn't, and more consistent behavior regardless of how Claude structures a given streamed response.</p>
+</section>
+
+<section>
+  <h2>What Changed Under the Hood</h2>
+  <table>
+    <tr><th>Component</th><th>What It Does Now</th></tr>
+    <tr><td><code>extract_message_content()</code></td><td>Single orchestrating function that handles all content extraction strategies</td></tr>
+    <tr><td>Delta &amp; list handling</td><td>Dedicated helpers extract text from delta updates and from lists of mixed content blocks</td></tr>
+    <tr><td>Tool block filtering</td><td>Tool-related blocks are identified and excluded from the visible message content</td></tr>
+    <tr><td>Streaming event processing</td><td>Refactored to call the shared extraction function instead of duplicating logic in multiple places</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Reliability</h2>
+  <div class="callout ok">
+    <p><strong>No breaking changes.</strong> This is a refactor with added robustness, not a behavior change you need to adjust to. It ships with 46 new tests (27 covering the LLM factory, 19 covering streaming event processing) alongside the full existing test suite, which continues to pass.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Data Handling Still Applies</h2>
+  <p>This change is about how SAM renders Claude's responses more reliably — it doesn't change what data flows where. The same <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> rules on what you type into SAM chat still apply exactly as before.</p>
+</section>
+
+<div class="pager">
+  <a href="context-management.html">← Context Management Enhancements</a>
+  <a href="citation-management.html">Citation Management in SAM →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

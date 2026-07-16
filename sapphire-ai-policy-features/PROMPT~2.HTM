@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Studio — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+<script src="search-data.js"></script>
+<script src="help-search.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#" class="active">Chat Interface &amp; Prompt Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="prompt-templates.html">Prompt Templates</a></li>
+          <li><a href="prompt-studio.html" class="active">Prompt Studio</a></li>
+          <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
+          <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
+          <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
+          <li><a href="typescript-migration.html">TypeScript Migration</a></li>
+          <li><a href="pdf-export-copy-formats.html">PDF Export & Copy Formats</a></li>
+          <li><a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling</a></li>
+          <li><a href="shareable-chat-links.html">Shareable Chat Links</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Screening &amp; Filtering</a>
+        <ul class="dropdown-menu">
+          <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
+          <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
+          <li><a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
+          <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
+          <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
+          <li><a href="export-service-layer.html">Export Service Layer & Error Handling</a></li>
+          <li><a href="save-screener-results.html">Save Screener Results from Chat</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Financial Data Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
+          <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
+          <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
+          <li><a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles</a></li>
+          <li><a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch</a></li>
+          <li><a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity</a></li>
+          <li><a href="company-financials-batch.html">Company Financials Batch Retrieval</a></li>
+          <li><a href="roe-formatter-fix.html">ROE Formatter Bug Fix</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Scorecards &amp; Research</a>
+        <ul class="dropdown-menu">
+          <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
+          <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
+          <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
+          <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
+          <li><a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Response Quality &amp; Reliability</a>
+        <ul class="dropdown-menu">
+          <li><a href="citation-management.html">Citation Management in SAM</a></li>
+          <li><a href="citation-system-launch.html">Citation System Launch</a></li>
+          <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
+          <li><a href="anthropic-content.html">Improving Anthropic Content and Complexity</a></li>
+          <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
+          <li><a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Platform &amp; Infrastructure</a>
+        <ul class="dropdown-menu">
+          <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
+          <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
+          <li><a href="context-management.html">Context Management Enhancements</a></li>
+          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
+          <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
+          <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
+          <li><a href="image-upload-vision.html">Image Upload & Vision Processing</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="help-bar">
+  <div class="help-bar-inner">
+    <label for="help-search-input" class="help-bar-label">Need something specific?</label>
+    <div class="help-search-wrap">
+      <input type="text" id="help-search-input" placeholder="Search features — e.g. citations, screener, streaming..." autocomplete="off">
+      <div id="help-search-results" class="help-results"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">New in SAM · Feature Guide</div>
+    <h1>Prompt Studio</h1>
+    <p class="lede">Prompt Studio is the custom admin interface behind the <a href="prompt-templates.html">Prompt Template Library</a> — where site admins build and organize the templates users pick from in SAM. Hierarchical categories, a proper markdown editor, and drag-and-drop ordering replace what used to be manual template management.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>What's New</h2>
+  <ul>
+    <li><strong>Hierarchical categories:</strong> categories can now nest under parent categories, not just sit in a flat list.</li>
+    <li><strong>Rich markdown editing:</strong> template content is written in EasyMDE, a proper markdown editor with syntax highlighting and live preview.</li>
+    <li><strong>Unified ordering interface:</strong> a single view lets you drag and drop both categories and templates into order, with nested categories collapsible for easier navigation.</li>
+    <li><strong>Sortable, filterable lists:</strong> Tabulator-based list views for categories and templates support sorting and filtering instead of a plain table.</li>
+    <li><strong>Template variable validation:</strong> the placeholder syntax used in templates (<code>{{Company}}</code> and similar — see <a href="prompt-templates.html">Prompt Templates</a>) is validated at save time.</li>
+    <li><strong>Public/private visibility:</strong> a template can be kept private while still being drafted, or made public once it's ready for all users.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How It Relates to Prompt Templates</h2>
+  <p>Prompt Studio is the authoring side; the <a href="prompt-templates.html">Prompt Template Library</a> page describes the user-facing result. If you're a site admin building or organizing templates, this page is for you. If you're looking for how to use a template that's already published, or how the <code>{{Company}}</code>-style placeholders work, see Prompt Templates instead.</p>
+</section>
+
+<section>
+  <h2>Managing Categories</h2>
+  <p>Categories now support parent-child relationships, so related templates can be grouped under a shared parent (for example, an "Investment Research" parent with sub-categories underneath). The ordering interface shows nested categories as collapsible groups, and both categories and the templates inside them can be reordered by drag and drop.</p>
+</section>
+
+<section>
+  <h2>Managing Templates</h2>
+  <p>Template content is written in EasyMDE rather than a plain text box — syntax highlighting and a live preview make it easier to check formatting before publishing. Two things worth knowing:</p>
+  <div class="grid cols-2">
+    <div class="card"><h4>Variable validation</h4><p>Placeholder syntax is checked at save time, so a malformed <code>{{...}}</code> tag gets caught before the template reaches users.</p></div>
+    <div class="card"><h4>Public/private toggle</h4><p>Draft a template privately while you refine it, then flip it public once it's ready for the whole team to see in SAM.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Reliability</h2>
+  <div class="callout ok">
+    <p><strong>Thoroughly tested.</strong> The update ships with a comprehensive test suite covering models, forms, and views, including permission checks, validation, and edge cases — 100% coverage for the new functionality across roughly 30 changed files.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Data Handling Still Applies</h2>
+  <p>Templates authored in Prompt Studio are published broadly — once public, any user can select them in SAM. Keep that audience in mind while drafting.</p>
+  <div class="callout warn">
+    <p><strong>Don't hardcode client specifics into a shared template.</strong> A template's structure and placeholders (Tier 1) are meant to be reused across engagements. Naming a real client, engagement, or case detail directly in the template text turns it into something every user with template access can see — draft with placeholders, not real names, exactly as described on <a href="prompt-templates.html">Prompt Templates</a> and <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="citation-management.html">← Citation Management in SAM</a>
+  <a href="admin-prompt-management.html">Administrative Management of Prompt Writing →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

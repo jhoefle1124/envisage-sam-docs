@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM Feature Documentation — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+<script src="search-data.js"></script>
+<script src="help-search.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Chat Interface &amp; Prompt Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="prompt-templates.html">Prompt Templates</a></li>
+          <li><a href="prompt-studio.html">Prompt Studio</a></li>
+          <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
+          <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
+          <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
+          <li><a href="typescript-migration.html">TypeScript Migration</a></li>
+          <li><a href="pdf-export-copy-formats.html">PDF Export & Copy Formats</a></li>
+          <li><a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling</a></li>
+          <li><a href="shareable-chat-links.html">Shareable Chat Links</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Screening &amp; Filtering</a>
+        <ul class="dropdown-menu">
+          <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
+          <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
+          <li><a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
+          <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
+          <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
+          <li><a href="export-service-layer.html">Export Service Layer & Error Handling</a></li>
+          <li><a href="save-screener-results.html">Save Screener Results from Chat</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Financial Data Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
+          <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
+          <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
+          <li><a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles</a></li>
+          <li><a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch</a></li>
+          <li><a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity</a></li>
+          <li><a href="company-financials-batch.html">Company Financials Batch Retrieval</a></li>
+          <li><a href="roe-formatter-fix.html">ROE Formatter Bug Fix</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Scorecards &amp; Research</a>
+        <ul class="dropdown-menu">
+          <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
+          <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
+          <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
+          <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
+          <li><a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Response Quality &amp; Reliability</a>
+        <ul class="dropdown-menu">
+          <li><a href="citation-management.html">Citation Management in SAM</a></li>
+          <li><a href="citation-system-launch.html">Citation System Launch</a></li>
+          <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
+          <li><a href="anthropic-content.html">Improving Anthropic Content and Complexity</a></li>
+          <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
+          <li><a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Platform &amp; Infrastructure</a>
+        <ul class="dropdown-menu">
+          <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
+          <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
+          <li><a href="context-management.html">Context Management Enhancements</a></li>
+          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
+          <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
+          <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
+          <li><a href="image-upload-vision.html">Image Upload & Vision Processing</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="help-bar">
+  <div class="help-bar-inner">
+    <label for="help-search-input" class="help-bar-label">Need something specific?</label>
+    <div class="help-search-wrap">
+      <input type="text" id="help-search-input" placeholder="Search features — e.g. citations, screener, streaming..." autocomplete="off">
+      <div id="help-search-results" class="help-results"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM Feature Reference</div>
+    <h1>SAM Feature Documentation</h1>
+    <p class="lede">A standalone directory of every feature shipped to the SAM chatbot, grouped into six categories instead of one long list. Browse by category below, or use the menu above.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Chat Interface &amp; Prompt Tools</h2>
+  <p class="sub">Everything shaping how users write prompts and interact with the SAM chatbot itself — templates, the Prompt Studio, and the chat UI.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="prompt-templates.html"><h4>Prompt Templates</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="prompt-studio.html"><h4>Prompt Studio</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="admin-prompt-management.html"><h4>Administrative Management of Prompt Writing</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="personal-prompt-templates.html"><h4>Personal Prompt Templates</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="prompt-studio-modal-autocomplete.html"><h4>Prompt Studio Modal & Company Autocomplete</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="modern-chat-ui-redesign.html"><h4>Modern Chat UI Redesign</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="typescript-migration.html"><h4>TypeScript Migration</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="pdf-export-copy-formats.html"><h4>PDF Export & Copy Formats</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="streaming-recovery-session-handling.html"><h4>Streaming Recovery & Session Handling</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="shareable-chat-links.html"><h4>Shareable Chat Links</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Screening &amp; Filtering</h2>
+  <p class="sub">Tools for narrowing, excluding, and exporting company lists inside the stock screener.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="filtering-tools.html"><h4>System-wide Filtering Tools</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="exclusion-list.html"><h4>Exclusion List Capabilities</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="additional-fields.html"><h4>Adding up to Sixty Additional Fields on Screens</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="export-functionality.html"><h4>Enhanced Export Functionality</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="regional-filtering-company-lists.html"><h4>Regional Filtering & Company Lists</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="partial-match-exclusions.html"><h4>Partial Match Exclusions</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="export-service-layer.html"><h4>Export Service Layer & Error Handling</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="save-screener-results.html"><h4>Save Screener Results from Chat</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Financial Data Tools</h2>
+  <p class="sub">Price, valuation, and portfolio data the chatbot can pull into an answer.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="daily-price-metrics.html"><h4>Daily Price Metrics Tool</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="daily-price-metrics-launch.html"><h4>Daily Price Metrics Tool Launch</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="historical-financial-data.html"><h4>Historical Financial Data</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="price-equity-tool.html"><h4>PriceEquity OHLCV Tool</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="chart-generation-tool.html"><h4>Chart Generation Tool</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="chart-rendering-groq-profiles.html"><h4>Chart Rendering, Groq & Parameter Profiles</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-launch.html"><h4>Portfolio Analyst Tool Launch</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-field-parity.html"><h4>Portfolio Analyst Field Parity</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="company-financials-batch.html"><h4>Company Financials Batch Retrieval</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="roe-formatter-fix.html"><h4>ROE Formatter Bug Fix</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Scorecards &amp; Research</h2>
+  <p class="sub">Scorecard rankings, team scoring, and broker research integrated into chat and Portfolio Analyst.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="scorecard-rankings.html"><h4>Scorecard Rankings</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="scorecard-chatbot-integration.html"><h4>Integrate Scorecards into SAMAI Chatbot</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="scorecard-tool-launch.html"><h4>Scorecard Tool Launch</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="scorecard-team-averages-spider-charts.html"><h4>Scorecard Team Averages & Spider Charts</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="scorecard-rankings-portfolio-analyst.html"><h4>Scorecard Rankings in Portfolio Analyst</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="broker-notes-mcp.html"><h4>Broker Notes MCP Integration</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="broker-notes-date-filtering.html"><h4>Broker Notes Date Filtering & Opus 4.5</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Response Quality &amp; Reliability</h2>
+  <p class="sub">Citations, streaming, and error handling that keep chatbot answers accurate and trustworthy.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="citation-management.html"><h4>Citation Management in SAM</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="citation-system-launch.html"><h4>Citation System Launch</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="citation-ui-screener-improvements.html"><h4>Citation, UI & Screener Improvements</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="citation-source-id-fix.html"><h4>Citation Source ID Bug Fix</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="citation-deduplication-tooltips.html"><h4>Citation Deduplication & Tooltips</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="anthropic-content.html"><h4>Improving Anthropic Content and Complexity</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="streaming-content-extraction.html"><h4>Streaming Content Extraction</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="cancellation-streaming-reliability.html"><h4>Cancellation & Streaming Reliability</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Platform &amp; Infrastructure</h2>
+  <p class="sub">The underlying architecture, context management, and model routing the chatbot runs on.</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="chatbot-architecture-refactor.html"><h4>Chatbot Architecture Refactor</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="langgraph-tool-loop-fix.html"><h4>LangGraph Tool Loop Fix</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="context-management.html"><h4>Context Management Enhancements</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="context-budget-model-updates.html"><h4>Context Budget & Model Updates</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="langgraph-v1-mic-ticker.html"><h4>LangGraph v1 & MIC Ticker Matching</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="model-fallback-chains.html"><h4>Model Fallback Chains</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="ai-core-runtime-extraction.html"><h4>AI Core Runtime Extraction</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="excel-processing-enhancements.html"><h4>Excel Processing Enhancements</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="firecrawl-web-extraction.html"><h4>Firecrawl Web Extraction Tool</h4><span class="arrow">Read →</span></a>
+        <a class="card pagecard" href="image-upload-vision.html"><h4>Image Upload & Vision Processing</h4><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ข้อมูลอ้างอิงฟีเจอร์ SAM</div>
+    <h1>เอกสารฟีเจอร์ SAM</h1>
+    <p class="lede">ไดเรกทอรีแบบสแตนด์อโลนของทุกฟีเจอร์ที่เปิดตัวสำหรับแชทบอท SAM จัดกลุ่มเป็นหกหมวดหมู่แทนที่จะเป็นรายการยาวรายการเดียว เรียกดูตามหมวดหมู่ด้านล่าง หรือใช้เมนูด้านบน</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>อินเทอร์เฟซแชทและเครื่องมือพรอมต์</h2>
+  <p class="sub">ทุกสิ่งที่กำหนดวิธีที่ผู้ใช้เขียนพรอมต์และโต้ตอบกับแชทบอท SAM เอง — เทมเพลต, Prompt Studio และ UI แชท</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="prompt-templates.html"><h4>เทมเพลตพรอมต์</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="prompt-studio.html"><h4>สตูดิโอพรอมต์</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="admin-prompt-management.html"><h4>การบริหารจัดการการเขียนพรอมต์</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="personal-prompt-templates.html"><h4>เทมเพลตพรอมต์ส่วนตัว</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="prompt-studio-modal-autocomplete.html"><h4>หน้าต่าง Prompt Studio และการเติมชื่อบริษัทอัตโนมัติ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="modern-chat-ui-redesign.html"><h4>การออกแบบ UI แชทใหม่ที่ทันสมัย</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="typescript-migration.html"><h4>การย้ายไปใช้ TypeScript</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="pdf-export-copy-formats.html"><h4>การส่งออก PDF และรูปแบบการคัดลอก</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="streaming-recovery-session-handling.html"><h4>การกู้คืนสตรีมมิงและการจัดการเซสชัน</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="shareable-chat-links.html"><h4>ลิงก์แชทที่แชร์ได้</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>การคัดกรองและการกรองข้อมูล</h2>
+  <p class="sub">เครื่องมือสำหรับจำกัด ยกเว้น และส่งออกรายชื่อบริษัทภายในตัวคัดกรองหุ้น</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="filtering-tools.html"><h4>เครื่องมือกรองข้อมูลทั่วระบบ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="exclusion-list.html"><h4>ความสามารถรายการยกเว้น</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="additional-fields.html"><h4>การเพิ่มฟิลด์เสริมสูงสุด 60 รายการ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="export-functionality.html"><h4>ฟังก์ชันการส่งออกที่ปรับปรุงแล้ว</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="regional-filtering-company-lists.html"><h4>การกรองตามภูมิภาคและรายชื่อบริษัท</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="partial-match-exclusions.html"><h4>การยกเว้นแบบจับคู่บางส่วน</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="export-service-layer.html"><h4>เลเยอร์บริการส่งออกและการจัดการข้อผิดพลาด</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="save-screener-results.html"><h4>บันทึกผลตัวคัดกรองจากแชท</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>เครื่องมือข้อมูลการเงิน</h2>
+  <p class="sub">ข้อมูลราคา มูลค่า และพอร์ตโฟลิโอที่แชทบอทสามารถดึงมาใช้ในคำตอบ</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="daily-price-metrics.html"><h4>เครื่องมือข้อมูลราคารายวัน</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="daily-price-metrics-launch.html"><h4>เปิดตัวเครื่องมือข้อมูลราคารายวัน</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="historical-financial-data.html"><h4>ข้อมูลการเงินย้อนหลัง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="price-equity-tool.html"><h4>เครื่องมือ PriceEquity OHLCV</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="chart-generation-tool.html"><h4>เครื่องมือสร้างกราฟ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="chart-rendering-groq-profiles.html"><h4>การแสดงผลกราฟ Groq และโปรไฟล์พารามิเตอร์</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-launch.html"><h4>เปิดตัวเครื่องมือนักวิเคราะห์พอร์ตโฟลิโอ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-field-parity.html"><h4>ความเท่าเทียมของฟิลด์ในนักวิเคราะห์พอร์ตโฟลิโอ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="company-financials-batch.html"><h4>การดึงข้อมูลการเงินบริษัทแบบกลุ่ม</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="roe-formatter-fix.html"><h4>แก้ไขข้อผิดพลาดตัวจัดรูปแบบ ROE</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>สกอร์การ์ดและการวิจัย</h2>
+  <p class="sub">การจัดอันดับสกอร์การ์ด การให้คะแนนทีม และงานวิจัยโบรกเกอร์ที่รวมเข้ากับแชทและ Portfolio Analyst</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="scorecard-rankings.html"><h4>การจัดอันดับสกอร์การ์ด</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="scorecard-chatbot-integration.html"><h4>รวมสกอร์การ์ดเข้ากับแชทบอท SAMAI</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="scorecard-tool-launch.html"><h4>เปิดตัวเครื่องมือสกอร์การ์ด</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="scorecard-team-averages-spider-charts.html"><h4>ค่าเฉลี่ยทีมสกอร์การ์ดและกราฟใยแมงมุม</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="scorecard-rankings-portfolio-analyst.html"><h4>การจัดอันดับสกอร์การ์ดในนักวิเคราะห์พอร์ตโฟลิโอ</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="broker-notes-mcp.html"><h4>การรวม Broker Notes MCP</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="broker-notes-date-filtering.html"><h4>การกรองวันที่ Broker Notes และ Opus 4.5</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>คุณภาพการตอบสนองและความน่าเชื่อถือ</h2>
+  <p class="sub">การอ้างอิง การสตรีมมิง และการจัดการข้อผิดพลาดที่ทำให้คำตอบของแชทบอทแม่นยำและน่าเชื่อถือ</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="citation-management.html"><h4>การจัดการการอ้างอิงใน SAM</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="citation-system-launch.html"><h4>เปิดตัวระบบการอ้างอิง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="citation-ui-screener-improvements.html"><h4>การปรับปรุงการอ้างอิง UI และตัวคัดกรอง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="citation-source-id-fix.html"><h4>แก้ไขข้อผิดพลาด Source ID ของการอ้างอิง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="citation-deduplication-tooltips.html"><h4>การลบการอ้างอิงซ้ำและทูลทิป</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="anthropic-content.html"><h4>การปรับปรุงเนื้อหาและความซับซ้อนของ Anthropic</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="streaming-content-extraction.html"><h4>การดึงเนื้อหาแบบสตรีมมิง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="cancellation-streaming-reliability.html"><h4>การยกเลิกและความน่าเชื่อถือของสตรีมมิง</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>แพลตฟอร์มและโครงสร้างพื้นฐาน</h2>
+  <p class="sub">สถาปัตยกรรมพื้นฐาน การจัดการบริบท และการกำหนดเส้นทางโมเดลที่แชทบอททำงานอยู่</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="chatbot-architecture-refactor.html"><h4>การปรับโครงสร้างสถาปัตยกรรมแชทบอท</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="langgraph-tool-loop-fix.html"><h4>แก้ไขปัญหาลูปเครื่องมือ LangGraph</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="context-management.html"><h4>การปรับปรุงการจัดการบริบท</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="context-budget-model-updates.html"><h4>งบประมาณบริบทและการอัปเดตโมเดล</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="langgraph-v1-mic-ticker.html"><h4>LangGraph v1 และการจับคู่ MIC Ticker</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="model-fallback-chains.html"><h4>ห่วงโซ่โมเดลสำรอง</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="ai-core-runtime-extraction.html"><h4>การแยกรันไทม์ AI Core</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="excel-processing-enhancements.html"><h4>การปรับปรุงการประมวลผล Excel</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="firecrawl-web-extraction.html"><h4>เครื่องมือดึงข้อมูลเว็บ Firecrawl</h4><span class="arrow">อ่าน →</span></a>
+        <a class="card pagecard" href="image-upload-vision.html"><h4>การอัปโหลดรูปภาพและการประมวลผลภาพ</h4><span class="arrow">อ่าน →</span></a>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM Feature Reference</div>
+    <h1>SAM Feature မှတ်တမ်း</h1>
+    <p class="lede">SAM Chatbot အတွက် ထုတ်ပြန်ခဲ့သော feature အားလုံး၏ သီးခြားလမ်းညွှန်တစ်ခုဖြစ်ပြီး စာရင်းရှည်တစ်ခုအစား အမျိုးအစားခြောက်မျိုးအဖြစ် အုပ်စုဖွဲ့ထားသည်။ အောက်ပါအမျိုးအစားအလိုက် ရှာဖွေပါ သို့မဟုတ် အထက်ပါ Menu ကို အသုံးပြုပါ။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Chat အင်တာဖေ့စ်နှင့် Prompt ကိရိယာများ</h2>
+  <p class="sub">SAM Chatbot ကို အသုံးပြုသူများ prompt ရေးသားပုံနှင့် ဆက်သွယ်ပုံကို ပုံဖော်ပေးသော အရာအားလုံး — တမ်းပလိတ်များ၊ Prompt Studio နှင့် Chat UI</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="prompt-templates.html"><h4>Prompt တမ်းပလိတ်များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="prompt-studio.html"><h4>Prompt Studio</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="admin-prompt-management.html"><h4>Prompt ရေးသားခြင်း စီမံခန့်ခွဲမှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="personal-prompt-templates.html"><h4>ကိုယ်ပိုင် Prompt တမ်းပလိတ်များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="prompt-studio-modal-autocomplete.html"><h4>Prompt Studio Modal နှင့် ကုမ္ပဏီ Autocomplete</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="modern-chat-ui-redesign.html"><h4>ခေတ်မီ Chat UI ပြန်လည်ဒီဇိုင်းဆွဲခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="typescript-migration.html"><h4>TypeScript ပြောင်းရွှေ့ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="pdf-export-copy-formats.html"><h4>PDF Export နှင့် Copy Format များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="streaming-recovery-session-handling.html"><h4>Streaming ပြန်လည်ရယူခြင်းနှင့် Session ကိုင်တွယ်မှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="shareable-chat-links.html"><h4>မျှဝေနိုင်သော Chat လင့်များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>စစ်ထုတ်ခြင်းနှင့် စစ်ထုတ်ရေးလုပ်ငန်း</h2>
+  <p class="sub">Stock Screener အတွင်း ကုမ္ပဏီစာရင်းများကို ကျဉ်းမြောင်းစေခြင်း၊ ဖယ်ထုတ်ခြင်းနှင့် Export ပြုလုပ်ရန် ကိရိယာများ</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="filtering-tools.html"><h4>စနစ်တစ်ခုလုံး စစ်ထုတ်ရေးကိရိယာများ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="exclusion-list.html"><h4>ဖယ်ထုတ်စာရင်း စွမ်းရည်များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="additional-fields.html"><h4>စခရင်များတွင် Field ခြောက်ဆယ်အထိ ထပ်တိုးခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="export-functionality.html"><h4>တိုးမြှင့်ထားသော Export လုပ်ဆောင်ချက်</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="regional-filtering-company-lists.html"><h4>ဒေသအလိုက် စစ်ထုတ်ခြင်းနှင့် ကုမ္ပဏီစာရင်းများ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="partial-match-exclusions.html"><h4>တစိတ်တပိုင်း ကိုက်ညီမှု ဖယ်ထုတ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="export-service-layer.html"><h4>Export Service Layer နှင့် အမှားကိုင်တွယ်မှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="save-screener-results.html"><h4>စကားပြောမှတ်တမ်းမှ Screener ရလဒ် သိမ်းဆည်းခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>ငွေရေးကြေးရေး ဒေတာ ကိရိယာများ</h2>
+  <p class="sub">Chatbot က အဖြေတစ်ခုထဲသို့ ထည့်သွင်းနိုင်သော ဈေးနှုန်း၊ တန်ဖိုးသတ်မှတ်ခြင်းနှင့် Portfolio ဒေတာ</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="daily-price-metrics.html"><h4>ငွေရေးနေ့စဉ်ဈေးနှုန်း ကိရိယာ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="daily-price-metrics-launch.html"><h4>နေ့စဉ်ဈေးနှုန်း ကိရိယာ စတင်မိတ်ဆက်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="historical-financial-data.html"><h4>ငွေရေးကြေးရေး သမိုင်းဒေတာ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="price-equity-tool.html"><h4>PriceEquity OHLCV ကိရိယာ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="chart-generation-tool.html"><h4>ဇယားကွက် ဖန်တီးရေး ကိရိယာ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="chart-rendering-groq-profiles.html"><h4>ဇယားကွက်ပြသမှု၊ Groq နှင့် Parameter Profiles</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-launch.html"><h4>Portfolio Analyst ကိရိယာ စတင်မိတ်ဆက်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="portfolio-analyst-field-parity.html"><h4>Portfolio Analyst Field ညီမျှမှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="company-financials-batch.html"><h4>ကုမ္ပဏီ ငွေရေးကြေးရေး အုပ်စုလိုက် ရယူခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="roe-formatter-fix.html"><h4>ROE Formatter အမှား ပြင်ဆင်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Scorecard နှင့် သုတေသန</h2>
+  <p class="sub">Chat နှင့် Portfolio Analyst ထဲသို့ ပေါင်းစပ်ထားသော Scorecard အဆင့်သတ်မှတ်ခြင်း၊ အသင်းအဆင့်သတ်မှတ်ခြင်းနှင့် Broker သုတေသန</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="scorecard-rankings.html"><h4>Scorecard အဆင့်သတ်မှတ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="scorecard-chatbot-integration.html"><h4>SAMAI Chatbot ထဲသို့ Scorecard ပေါင်းစပ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="scorecard-tool-launch.html"><h4>Scorecard ကိရိယာ စတင်မိတ်ဆက်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="scorecard-team-averages-spider-charts.html"><h4>Scorecard အသင်းပျမ်းမျှနှင့် Spider Chart</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="scorecard-rankings-portfolio-analyst.html"><h4>Portfolio Analyst ထဲရှိ Scorecard အဆင့်သတ်မှတ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="broker-notes-mcp.html"><h4>Broker Notes MCP ပေါင်းစပ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="broker-notes-date-filtering.html"><h4>Broker Notes ရက်စွဲစစ်ထုတ်ခြင်းနှင့် Opus 4.5</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>အဖြေ အရည်အသွေးနှင့် ယုံကြည်စိတ်ချရမှု</h2>
+  <p class="sub">Chatbot ၏ အဖြေများကို တိကျမှန်ကန်ပြီး ယုံကြည်စိတ်ချရအောင် ထားရှိပေးသော ကိုးကားချက်၊ Streaming နှင့် အမှားကိုင်တွယ်မှု</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="citation-management.html"><h4>SAM တွင် ကိုးကားချက် စီမံခန့်ခွဲမှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="citation-system-launch.html"><h4>ကိုးကားချက် စနစ် စတင်မိတ်ဆက်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="citation-ui-screener-improvements.html"><h4>ကိုးကား၊ UI နှင့် Screener တိုးတက်မှုများ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="citation-source-id-fix.html"><h4>ကိုးကားချက် Source ID အမှား ပြင်ဆင်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="citation-deduplication-tooltips.html"><h4>ကိုးကားချက် ထပ်နေမှု ဖယ်ရှားခြင်းနှင့် Tooltip</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="anthropic-content.html"><h4>Anthropic အကြောင်းအရာနှင့် ရှုပ်ထွေးမှု တိုးတက်မှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="streaming-content-extraction.html"><h4>Streaming အကြောင်းအရာ ထုတ်ယူခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="cancellation-streaming-reliability.html"><h4>ပယ်ဖျက်ခြင်းနှင့် Streaming ယုံကြည်စိတ်ချရမှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>Platform နှင့် အခြေခံအဆောက်အအုံ</h2>
+  <p class="sub">Chatbot လည်ပတ်နေသော အခြေခံ ဗိသုကာ၊ Context စီမံခန့်ခွဲမှုနှင့် Model လမ်းကြောင်းသတ်မှတ်ခြင်း</p>
+  <div class="grid cols-3">
+        <a class="card pagecard" href="chatbot-architecture-refactor.html"><h4>Chatbot ဗိသုကာ ပြန်လည်ဆောက်လုပ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="langgraph-tool-loop-fix.html"><h4>LangGraph Tool Loop ပြင်ဆင်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="context-management.html"><h4>Context စီမံခန့်ခွဲမှု တိုးတက်မှုများ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="context-budget-model-updates.html"><h4>Context Budget နှင့် Model အပ်ဒိတ်များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="langgraph-v1-mic-ticker.html"><h4>LangGraph v1 နှင့် MIC Ticker ကိုက်ညီမှု</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="model-fallback-chains.html"><h4>Model Fallback Chain များ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="ai-core-runtime-extraction.html"><h4>AI Core Runtime ခွဲထုတ်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="excel-processing-enhancements.html"><h4>Excel လုပ်ဆောင်ချက် တိုးတက်မှုများ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="firecrawl-web-extraction.html"><h4>Firecrawl ဝဘ် ထုတ်ယူရေး ကိရိယာ</h4><span class="arrow">ဖတ်ရန် →</span></a>
+        <a class="card pagecard" href="image-upload-vision.html"><h4>ပုံတင်ခြင်းနှင့် Vision လုပ်ဆောင်ခြင်း</h4><span class="arrow">ဖတ်ရန် →</span></a>
+  </div>
+</section>
+
+</main>
+</div>
+
+</body>
+</html>
