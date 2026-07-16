@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Usage Policy — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Internal Policy &middot; All Staff</div>
+    <h1>AI Best Practices for ENVISAGE Research Teams</h1>
+    <p class="lede">How we use Claude, Claude Cowork, and other AI tools across Sapphire and SAM research projects — getting maximum value from every token while protecting the people and clients our work depends on.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Why This Policy Exists</h2>
+  <p>ENVISAGE handles some of the most sensitive research in the regions we serve: person-of-interest and network mapping, supply chain and forced-labor investigations, work for UN agencies and development partners, and fund management data through SAM. AI tools make our pipeline dramatically faster — but they also create two risks this policy manages:</p>
+  <ul>
+    <li><strong>Data exposure.</strong> Anything pasted into an AI tool leaves our control. For our work, a leaked name or source can endanger a person, a partner, or an engagement.</li>
+    <li><strong>Token waste.</strong> Paid AI usage is metered. Sloppy habits — re-pasting documents, endless regeneration, using premium tools for trivial tasks — multiply costs across the team.</li>
+  </ul>
+  <p>The same discipline solves both: <strong>send the right content, to the right tool, once.</strong></p>
+</section>
+
+<section>
+  <h2>The Data Sensitivity Tiers</h2>
+  <p class="sub">Every AI decision starts here. Classify what you're about to share before choosing a tool.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <span class="badge green">Tier 1 — Public</span>
+      <p>Information already in the public domain or with no ENVISAGE fingerprint.</p>
+      <ul>
+        <li>Published news articles and reports</li>
+        <li>Public-domain harvested data</li>
+        <li>Generic code, SQL, and formatting questions</li>
+        <li>General research methods questions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge amber">Tier 2 — Internal</span>
+      <p>Our work product, with no names, clients, or identifying detail.</p>
+      <ul>
+        <li>Anonymized draft analysis</li>
+        <li>Internal methodology and process docs</li>
+        <li>Database schemas (structure only, no rows)</li>
+        <li>Website and marketing copy</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge red">Tier 3 — Restricted</span>
+      <p>Never enters any external AI tool except Claude under the rules on the <a href="data-security.html">Data Security</a> page.</p>
+      <ul>
+        <li>Client deliverables (UNOPS, LIFT, OCHA, SoCha and all others)</li>
+        <li>Person-of-interest and network mapping data</li>
+        <li>Field staff, source, and partner identities</li>
+        <li>SAM client fund data and decision records</li>
+        <li>Anything from conflict-affected regions naming people or organizations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Which Tool for Which Job</h2>
+  <table>
+    <tr><th>Tool</th><th>Approved Use</th><th>Max Tier</th><th>Never</th></tr>
+    <tr>
+      <td><strong>Claude Chat</strong></td>
+      <td>Analysis, drafting, summarizing, translation review, research reasoning</td>
+      <td>Tier 3 — anonymized where possible, under Data Security rules</td>
+      <td>Connected to email; raw client deliverable files without need</td>
+    </tr>
+    <tr>
+      <td><strong>Claude Cowork</strong></td>
+      <td>File work: building reports, processing data files, multi-step research tasks</td>
+      <td>Tier 3 — within approved project folders only</td>
+      <td>Broad Google Drive access; folders containing client deliverables</td>
+    </tr>
+    <tr>
+      <td><strong>Gemini / ChatGPT</strong></td>
+      <td>Cross-verification of facts, figures, translations, and code (see <a href="verification.html">Verification</a>)</td>
+      <td>Tier 2, sanitized excerpts only</td>
+      <td>Tier 3 content in any form; full documents</td>
+    </tr>
+    <tr>
+      <td><strong>DeepSeek / Kimi (free)</strong></td>
+      <td>Generic drafting, public-source summarizing, brainstorming, code snippets</td>
+      <td>Tier 1 only</td>
+      <td>Anything internal or client-related — these are hosted outside our control</td>
+    </tr>
+    <tr>
+      <td><strong>Coding agents (NL-to-SQL etc.)</strong></td>
+      <td>Generating SQL/Python from plain language against schema descriptions</td>
+      <td>Tier 2 — schema structure only</td>
+      <td>Real data rows; production credentials</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>The Five Golden Rules</h2>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Classify before you paste</h4><p>Tier 1, 2, or 3? If you can't decide in five seconds, treat it as Tier 3 and ask your project lead.</p></div>
+    <div class="card"><span class="num">2</span><h4>Never connect email</h4><p>No AI tool — including Claude — gets connected to ENVISAGE email accounts. Email contains client correspondence, source contacts, and contract details. No exceptions.</p></div>
+    <div class="card"><span class="num">3</span><h4>Minimum necessary access</h4><p>Cowork gets one project folder, not your Drive. Prompts get the relevant excerpt, not the whole document. Verification tools get the claim, not the report.</p></div>
+    <div class="card"><span class="num">4</span><h4>Client deliverables stay home</h4><p>Confidential documents and worksheets we create for clients are never uploaded to, shared with, or stored in any external AI service beyond the approved Claude workflow.</p></div>
+    <div class="card"><span class="num">5</span><h4>Route work to the cheapest safe tool</h4><p>Save Claude tokens for high-value contextual work. Generic Tier 1 tasks go to free tools. See <a href="token-efficiency.html">Token Efficiency</a>.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Policy Sections</h2>
+  <div class="grid cols-2">
+    <a class="card pagecard" href="claude.html"><h4>Claude &amp; Cowork Best Practices</h4><p>When to use Chat vs Cowork, setting up Projects per research stream, and connector rules.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="token-efficiency.html"><h4>Token Efficiency</h4><p>Practical habits that cut token spend: excerpts not documents, one task per chat, no regeneration loops.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="data-security.html"><h4>Data Security &amp; Safety</h4><p>The hard rules: email, Google Drive, client deliverables, and protecting people in our data.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="verification.html"><h4>Cross-Verification</h4><p>When and how to check an AI-drafted fact, figure, or translation against a second model or source.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="ai-toolkit.html"><h4>AI Toolkit &amp; Tool Routing</h4><p>Which tool for which job — Claude, Cowork, free models, and NL-to-SQL coding agents.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="ai-tools-directory.html"><h4>AI Tools Directory</h4><p>The full catalog of approved AI tools, what they're for, and their tier limits.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="por-case-study.html"><h4>Case Study</h4><p>A worked example applying this policy to a real person-of-interest research task.</p><span class="arrow">Read →</span></a>
+    <a class="card pagecard" href="osint-usage.html"><h4>Usage of OSINT</h4><p>How the tier rules apply specifically to open-source research and OSINT workflows.</p><span class="arrow">Read →</span></a>
+  </div>
+</section>
+
+</main>
+</div>
+
+</body>
+</html>

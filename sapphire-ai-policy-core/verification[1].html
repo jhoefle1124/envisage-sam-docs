@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Verification — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html" class="active">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Section 4</div>
+    <h1>Cross-Verifying with Gemini &amp; ChatGPT</h1>
+    <p class="lede">Every model has blind spots, and our deliverables carry our name to UN agencies, funds, and corporate clients. A second model is a cheap independent check — when used on the right things, the right way.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>The Principle</h2>
+  <p>Cross-verification means taking a <strong>specific claim or output</strong> produced with one model and independently checking it with another (Gemini or ChatGPT). It is not re-doing the whole task twice. Two rules govern every verification:</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Verify the claim, not the conversation</h4><p>Paste only the sentence, figure, or code block being checked — never the source document, the chat history, or surrounding analysis. This protects confidentiality and costs a fraction of the tokens.</p></div>
+    <div class="card"><span class="num">2</span><h4>Tier 2 maximum, sanitized</h4><p>Verification tools never receive Tier 3 content. Anonymize first (see <a href="data-security.html">Data Security</a>). If a claim can't be checked without revealing restricted detail, verify it against primary sources by hand instead.</p></div>
+  </div>
+  <div class="callout warn">
+    <p><strong>Agreement is not truth.</strong> Two models can share the same wrong answer, especially on recent events or thin-data regions like those we cover. Model agreement raises confidence; only a primary source settles a fact destined for a client deliverable.</p>
+  </div>
+</section>
+
+<section>
+  <h2>When to Verify — and With What</h2>
+  <table>
+    <tr><th>Situation</th><th>Verify?</th><th>How</th></tr>
+    <tr><td>Statistic or factual claim going into a client deliverable</td><td><span class="badge red">Always</span></td><td>Ask Gemini or ChatGPT to confirm/refute with sources; then check the primary source yourself.</td></tr>
+    <tr><td>Translation of source material (Burmese, Thai, Shan, etc.) affecting a finding</td><td><span class="badge red">Always</span></td><td>Second model translates the same sanitized passage blind; compare meanings. Disagreement → human translator.</td></tr>
+    <tr><td>Legal, regulatory, or sanctions-related statements</td><td><span class="badge red">Always</span></td><td>Cross-check, then confirm against the official text. Never deliver on model output alone.</td></tr>
+    <tr><td>SQL or Python destined for the Sapphire pipeline</td><td><span class="badge amber">Usually</span></td><td>Paste the code (schema names only, no data) into a second model: "Find bugs and edge cases." Then test on dev data.</td></tr>
+    <tr><td>Summary of a public document</td><td><span class="badge amber">Spot-check</span></td><td>Verify the 2–3 claims you'd be most embarrassed to get wrong.</td></tr>
+    <tr><td>Internal brainstorm, draft wording, formatting</td><td><span class="badge green">No</span></td><td>Editing judgment, not facts. Verification here is token waste.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Worked Examples</h2>
+
+  <h3>Example 1 — Statistic in a deliverable</h3>
+  <div class="example">
+    <div class="label">Scenario</div>
+    <p>Claude drafts: "The top ten industrialized nations spend a combined ~$200 billion annually on development and foreign aid." This is headed for a client report.</p>
+    <p><strong>To Gemini:</strong> "What is the most recent combined ODA spending of the top ten donor nations? Cite the source." If Gemini's figure differs materially, pull the OECD data directly and use the primary number with a citation. Cost: ~100 tokens. Value: our credibility.</p>
+  </div>
+
+  <h3>Example 2 — Translation check</h3>
+  <div class="example">
+    <div class="label">Scenario</div>
+    <p>A harvested Burmese-language article appears to say a company "acquired" a concession; the finding hinges on whether it means acquired or applied for.</p>
+    <p><strong>To ChatGPT (sanitized passage, names replaced):</strong> "Translate this passage precisely. Does the verb indicate completed acquisition or a pending application?" If the models disagree, the passage goes to a human translator on the team before the finding is written.</p>
+  </div>
+
+  <h3>Example 3 — SQL for the pipeline</h3>
+  <div class="example">
+    <div class="label">Scenario</div>
+    <p>Claude wrote a Snowflake query joining three tables to flag entities appearing across datasets.</p>
+    <p><strong>To Gemini:</strong> paste the query plus a one-line schema description: "Review for logic errors, join fan-out, and NULL handling." Models are excellent at catching each other's off-by-one logic. Then run on dev data before production.</p>
+  </div>
+
+  <h3>Example 4 — When NOT to verify</h3>
+  <div class="example">
+    <div class="label">Scenario</div>
+    <p>Claude restructured your interview notes into themes. There is no external fact to check — review it yourself. Sending it to a second model adds token cost and a second exposure point for zero gain.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Verification Etiquette (Token-Efficient)</h2>
+  <ul>
+    <li><strong>Blind the second model.</strong> Don't say "Claude said X — is that right?" Ask the question fresh. Models anchor on suggested answers.</li>
+    <li><strong>Batch your checks.</strong> Collect the deliverable's 5 key claims and verify them in one message.</li>
+    <li><strong>Use free tiers for verification.</strong> Verification prompts are short and contextless — Gemini or ChatGPT's free tier is almost always sufficient; save Claude capacity for work that needs our context.</li>
+    <li><strong>Stop at disagreement, not at agreement.</strong> If the second model confirms Claude's answer, move on. If it disagrees, that's the signal to check the primary source yourself.</li>
+  </ul>
+</section>
+
+<div class="pager">
+  <a href="data-security.html">← Data Security</a>
+  <a href="ai-toolkit.html">AI Toolkit →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

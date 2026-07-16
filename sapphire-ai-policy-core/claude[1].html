@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude &amp; Cowork Best Practices — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html" class="active">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Section 1</div>
+    <h1>Claude &amp; Claude Cowork Best Practices</h1>
+    <p class="lede">Claude is our primary AI workhorse. Use Chat for thinking and Cowork for doing — and set up each research stream once so you never pay to re-explain context.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Chat vs Cowork: Pick the Right Mode</h2>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="badge blue">Claude Chat</span>
+      <h4>For thinking, drafting, and analysis</h4>
+      <ul>
+        <li>Reasoning through a research question or analytical framework</li>
+        <li>Drafting and editing report sections, summaries, briefings</li>
+        <li>Reviewing translations from Burmese, Thai, Shan, and other languages</li>
+        <li>Interpreting patterns in data you describe or paste as excerpts</li>
+        <li>Structuring interview notes or field observations (anonymized)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge blue">Claude Cowork</span>
+      <h4>For working directly on files</h4>
+      <ul>
+        <li>Building deliverables: Word reports, Excel workbooks, slide decks</li>
+        <li>Cleaning, restructuring, and converting data files</li>
+        <li>Multi-step tasks: "process these 12 CSVs and produce a summary table"</li>
+        <li>Repetitive document work across many files in a project folder</li>
+        <li>Writing and testing scripts (Python, SQL) against sample files</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">
+    <p><strong>Rule of thumb:</strong> if the answer belongs in a file, start in Cowork. If the answer belongs in your head, start in Chat. Pasting file contents into Chat wastes tokens twice — once to paste, once when Claude repeats it back.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Set Up One Project per Research Stream</h2>
+  <p class="sub">Claude Projects hold persistent context so you stop paying to re-explain it in every conversation.</p>
+  <p>Create a Project for each long-running engagement or workstream — for example: a monitoring-and-analysis engagement, a supply-chain risk study, SAM product development, or a mapping project. In each Project's knowledge/instructions, store the stable context once:</p>
+  <ul>
+    <li>The engagement's purpose, scope, and client-approved terminology (anonymized to the level the tier rules allow)</li>
+    <li>Our methodology notes — e.g., how we verify sources, our scoring rubric, our visualization standards</li>
+    <li>Output templates: report structure, citation style, standard caveats</li>
+    <li>Schema descriptions for relevant datasets (structure only, no data rows)</li>
+  </ul>
+  <div class="example good">
+    <div class="label">Good — context lives in the Project</div>
+    <p>Project instructions contain the report template and methodology. Each new chat: <em>"Draft the Q2 trend section using the attached excerpt."</em> ~200 tokens of prompt.</p>
+  </div>
+  <div class="example bad">
+    <div class="label">Wasteful — context re-pasted every time</div>
+    <p>Every chat opens with 3,000 words of background, the full template, and last quarter's report pasted in before the actual request.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Cowork Folder Discipline</h2>
+  <p>Cowork works on folders you explicitly connect. Treat that connection like handing over a filing cabinet:</p>
+  <ul>
+    <li><strong>One task folder per engagement.</strong> Create a dedicated working folder containing only the files the task needs. Connect that — never a parent folder, your Desktop, or your whole Drive sync folder.</li>
+    <li><strong>No client deliverable folders.</strong> Final confidential deliverables live in their own protected location that is never connected to Cowork. Work on drafts in the task folder; move finals out when done.</li>
+    <li><strong>Strip before you connect.</strong> Before connecting a folder, scan it: any file naming sources, field staff, or persons of interest that the task doesn't require gets moved out first.</li>
+    <li><strong>Review what Cowork produced</strong> before moving files onward. You are the quality gate, exactly as with a junior analyst's work.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Connector Rules</h2>
+  <table>
+    <tr><th>Connector</th><th>Status</th><th>Why</th></tr>
+    <tr><td>Email (Gmail / Outlook)</td><td><span class="badge red">Prohibited</span></td><td>Email holds client correspondence, contracts, and source contacts. No AI tool connects to ENVISAGE email, ever.</td></tr>
+    <tr><td>Google Drive</td><td><span class="badge amber">Restricted</span></td><td>Only specific, pre-approved working folders — never root access. Client deliverable and HR/finance folders are always excluded. Approval from your project lead required.</td></tr>
+    <tr><td>Document / spreadsheet sharing</td><td><span class="badge red">Prohibited</span></td><td>Do not share live links to internal Docs/Sheets with any AI tool, and do not paste full confidential documents. Use sanitized excerpts or Cowork task folders.</td></tr>
+    <tr><td>Local task folders (Cowork)</td><td><span class="badge green">Approved</span></td><td>Purpose-built folders with only task-relevant files, per the discipline above.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Prompting Patterns for Research Work</h2>
+  <h3>Give the role, the source, the output shape — once</h3>
+  <pre><code>You are assisting an ENVISAGE analyst on a supply-chain study.
+Source: the excerpt below (public news reporting, translated).
+Task: extract company names, locations, and alleged practice
+into a 3-column table. Flag low-confidence extractions.</code></pre>
+  <h3>Make Claude ask before generating long output</h3>
+  <p>For big deliverables, add: <em>"Before drafting, list your assumptions and an outline in under 150 words, and wait for my go-ahead."</em> A wrong assumption caught at the outline stage costs 150 tokens to fix; the same mistake caught after a full draft costs the whole draft.</p>
+</section>
+
+<div class="pager">
+  <a href="index.html">← Back to Home</a>
+  <a href="token-efficiency.html">Token Efficiency →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

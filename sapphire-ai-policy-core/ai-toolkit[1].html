@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wider AI Toolkit — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html" class="active">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Section 5</div>
+    <h1>The Wider AI Toolkit</h1>
+    <p class="lede">Free public LLMs and specialized coding agents let us reserve paid Claude capacity for the work that needs it. The trade-off is control: the cheaper the tool, the less sensitive the content it may touch.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Free Public LLMs: DeepSeek &amp; Kimi</h2>
+  <p>DeepSeek (DeepSeek AI) and Kimi (Moonshot AI) are capable free models — strong at coding, long-document handling, and general drafting, often rivaling paid models on generic tasks. They are excellent token-savers for Tier 1 work.</p>
+  <div class="callout danger">
+    <p><strong>Hard limit: Tier 1 only.</strong> These services are hosted outside our control, with data-handling terms we cannot enforce — and given where ENVISAGE operates and what we research, our subject matter is uniquely sensitive in that context. Nothing internal, nothing client-related, no names from our research — ever. Assume everything sent is retained and readable.</p>
+  </div>
+  <h3>Good uses (Tier 1)</h3>
+  <ul>
+    <li>Summarizing published news articles and public reports during open-source harvesting triage</li>
+    <li>First-pass generic drafting: boilerplate descriptions, meeting agendas, generic outreach templates</li>
+    <li>Explaining a public concept, statistical method, or library before you spend Claude tokens applying it to our context</li>
+    <li>Generic code snippets and debugging help (no schema names, no internal code)</li>
+    <li>Brainstorming structures and checklists with no ENVISAGE specifics</li>
+  </ul>
+  <div class="example good">
+    <div class="label">Good routing</div>
+    <p>An analyst triaging 30 public articles asks Kimi for two-sentence summaries of each, picks the 6 relevant ones, then brings only those into Claude for contextual analysis against the engagement. Free tool does the bulk reading; Claude does the judgment.</p>
+  </div>
+  <div class="example bad">
+    <div class="label">Never</div>
+    <p>Pasting a draft client assessment into DeepSeek "just to tighten the wording." The wording is attached to Tier 3 content — that draft now lives on infrastructure we don't control.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Coding Agents: Plain Language to SQL and Beyond</h2>
+  <p>Natural-language-to-SQL agents (Pi-style NL2SQL tools, SQL Agent CLI, and similar) and coding assistants turn plain-English requests into working queries and scripts. For a team whose stack runs on Python, PostgreSQL, Elasticsearch, and Snowflake, they let analysts who don't write SQL get answers without queuing for a developer.</p>
+
+  <h3>The safe pattern: schema in, query out</h3>
+  <p>A coding agent never needs your data to write your query — it needs the <em>shape</em> of your data. Describe tables and columns; run the generated query yourself inside our environment.</p>
+  <pre><code>Our PostgreSQL database has:
+  entities(entity_id, name_hash, type, country, first_seen)
+  relationships(rel_id, entity_a, entity_b, rel_type, confidence)
+  mentions(mention_id, entity_id, source_id, published_date)
+
+Write a query returning entities mentioned in 3+ sources
+in the last 90 days that have at least one 'ownership'
+relationship, ordered by mention count.</code></pre>
+  <p>Note what the prompt contains: column names and intent — no rows, no real names, no credentials. The agent returns SQL; you review it, <a href="verification.html">cross-check it</a> if it's pipeline-bound, and execute it inside Sapphire.</p>
+
+  <h3>Rules for coding agents</h3>
+  <ul>
+    <li><strong>Schema structure only.</strong> Table and column names are Tier 2 — fine for approved tools. Data rows are whatever tier the data is, and usually Tier 3.</li>
+    <li><strong>Never paste credentials</strong> or connection strings, and never let an external agent connect directly to production databases. Generated queries run through our own access controls.</li>
+    <li><strong>Test on dev data first.</strong> AI-generated SQL is confident and frequently subtly wrong (join fan-out, NULL handling, timezone logic).</li>
+    <li><strong>Use Cowork for code that touches our files.</strong> When the script must read actual project data, write and run it in Claude Cowork against the task folder — not in an external coding tool.</li>
+  </ul>
+
+  <h3>Token economics</h3>
+  <p>Routing query generation to a free or low-cost coding agent saves Claude capacity twice: the generation itself, and the iteration loop (most queries take 2–3 refinements). Reserve Claude for queries that need engagement context — "flag the pattern we discussed for this client" — which an external agent has no business seeing anyway.</p>
+</section>
+
+<section>
+  <h2>The Routing Cheat Sheet</h2>
+  <table>
+    <tr><th>Task</th><th>First Choice</th><th>Why</th></tr>
+    <tr><td>Summarize public articles in bulk</td><td>DeepSeek / Kimi</td><td>Tier 1, high volume — free tools absorb the token load</td></tr>
+    <tr><td>Analysis using engagement context</td><td>Claude (Project)</td><td>Needs our methodology and confidentiality</td></tr>
+    <tr><td>Build or edit deliverable files</td><td>Claude Cowork</td><td>Direct file work in a controlled task folder</td></tr>
+    <tr><td>Plain-language → SQL for the pipeline</td><td>NL2SQL coding agent</td><td>Schema-only prompt; cheap iteration</td></tr>
+    <tr><td>Check a fact, figure, or translation</td><td>Gemini / ChatGPT (free tier)</td><td>Short, contextless verification prompts</td></tr>
+    <tr><td>Generic code explanation/debugging</td><td>DeepSeek / Kimi</td><td>Strong coding ability, zero cost, Tier 1 content</td></tr>
+    <tr><td>Anything naming people, clients, or sources</td><td>Claude only — anonymized</td><td>Tier 3 never leaves approved tools, and ideally not even those without anonymization</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Data Handling Still Applies</h2>
+  <p>This routing table is a starting point, not a substitute for the tier classification on <a href="data-security.html">Data Security</a>. When a task's tier is unclear, treat it as the more restrictive tier and ask your project lead rather than guessing toward the cheaper tool.</p>
+</section>
+
+<div class="pager">
+  <a href="verification.html">← Verification</a>
+  <a href="ai-tools-directory.html">AI Directory →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

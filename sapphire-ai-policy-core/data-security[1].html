@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Security &amp; Safety — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html" class="active">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Section 3</div>
+    <h1>Data Security &amp; Safety</h1>
+    <p class="lede">Our research touches conflict-affected regions, vulnerable people, and confidential client decisions. These rules are not bureaucracy — in our line of work, a data leak can put a person at physical risk and end a client relationship in the same hour.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>The Hard Rules</h2>
+  <p class="sub">These are non-negotiable across every AI tool, including Claude.</p>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="badge red">Prohibited</span>
+      <h4>Email connection or sharing</h4>
+      <p>No AI tool is ever connected to an ENVISAGE email account, and email contents are never pasted into AI tools. Email carries client correspondence, contract terms, source contacts, and staff personal data — all Tier 3 by default.</p>
+    </div>
+    <div class="card">
+      <span class="badge red">Prohibited</span>
+      <h4>Sharing client deliverables</h4>
+      <p>Confidential documents and worksheets we create for clients — assessments, maps, dashboard exports, SAM reports — are never uploaded to, linked into, or pasted into any external AI service. Draft inside the approved Claude workflow; finals move to protected storage and stay there.</p>
+    </div>
+    <div class="card">
+      <span class="badge red">Prohibited</span>
+      <h4>Sharing live documents and worksheets</h4>
+      <p>No sharing of Google Docs/Sheets links, Office 365 links, or live collaborative documents with AI tools. A live link exposes the full document, its history, and sometimes the whole folder.</p>
+    </div>
+    <div class="card">
+      <span class="badge amber">Restricted</span>
+      <h4>Google Drive access</h4>
+      <p>Drive connections are limited to specific, pre-approved working folders, approved by your project lead. Never root or broad access. Client deliverable folders, HR, and finance folders are permanently excluded.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Protecting People in Our Data</h2>
+  <p>Much of our value comes from person-relationship mapping and in-country networks. That is exactly the data that must be handled with the most care:</p>
+  <ul>
+    <li><strong>Persons of interest:</strong> network-mapping subjects, their relationships, and position data stay inside Sapphire and approved Claude workflows only — never in verification tools or free LLMs.</li>
+    <li><strong>Field staff and sources:</strong> names, locations, photos, travel patterns, and anything that could identify in-country researchers or community sources never enter any AI tool. Refer to them by role codes ("Researcher CR-2") if a prompt must mention them at all.</li>
+    <li><strong>Partners in sensitive regions:</strong> orphanage, education, and legal-advocacy project details from Myanmar, Thailand, and elsewhere are Tier 3 when they name people, sites, or routes.</li>
+    <li><strong>SAM clients:</strong> fund holdings, analyst scores, and decision records are client property. They are processed only inside SAM and approved Claude workflows under the engagement's terms.</li>
+  </ul>
+  <div class="callout danger">
+    <p><strong>The test:</strong> before sending a prompt, ask — "If this exact text appeared on a public website tomorrow, could it harm a person, a partner, or an engagement?" If yes, it does not leave our approved tools, and ideally it gets anonymized even there.</p>
+  </div>
+</section>
+
+<section>
+  <h2>How to Anonymize a Prompt</h2>
+  <div class="example bad">
+    <div class="label">Never send this</div>
+    <p>"[Real name], a procurement officer in [real ministry], approved licenses for [real company] owned by his brother-in-law [real name]. Summarize the conflict-of-interest pattern."</p>
+  </div>
+  <div class="example good">
+    <div class="label">Send this instead</div>
+    <p>"A procurement official approved licenses for a company owned by a close relative. Draft a paragraph describing this conflict-of-interest pattern for an assessment report."</p>
+  </div>
+  <ul>
+    <li>Replace names with consistent placeholders (Person A, Company X, Ministry M) so relationships stay analyzable.</li>
+    <li>Generalize locations to the least specific level the task allows (province, not village).</li>
+    <li>Strip dates, amounts, and identifiers unless the analysis depends on them.</li>
+    <li>Re-insert real details only in our own systems, after the AI step.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Account &amp; Settings Hygiene</h2>
+  <ul>
+    <li><strong>Work accounts only.</strong> All AI tools are used under ENVISAGE-managed accounts — never personal accounts — so access can be controlled and revoked.</li>
+    <li><strong>Check training settings.</strong> On every tool, locate the data/privacy settings and disable use of our inputs for model training where the option exists. On tools without such controls (most free LLMs), Tier 1 only.</li>
+    <li><strong>Don't store conversation links.</strong> Public "share chat" links are publication. Never create them for anything above Tier 1.</li>
+    <li><strong>Report mistakes immediately.</strong> If Tier 3 content reaches the wrong tool, tell your project lead the same day. Fast disclosure lets us notify clients if needed; concealment turns an accident into a breach of trust.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Output Is Also a Risk</h2>
+  <p>AI-generated content can leak inward too. Before any AI-assisted text reaches a client deliverable:</p>
+  <ul>
+    <li>Verify every factual claim against our own sources — see <a href="verification.html">Cross-Verification</a> for how.</li>
+    <li>Check names, dates, and figures against the source document before they reach a client's hands.</li>
+    <li>Treat AI-drafted analysis as a first pass from a capable but unaccountable junior — your review is what makes it ours.</li>
+  </ul>
+</section>
+
+<div class="pager">
+  <a href="token-efficiency.html">← Token Efficiency</a>
+  <a href="verification.html">Verification →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

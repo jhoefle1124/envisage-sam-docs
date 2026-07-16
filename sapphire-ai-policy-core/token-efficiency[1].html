@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Efficiency — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+      <div class="lang-switch">
+        <button data-setlang="en">EN</button>
+        <button data-setlang="th">ไทย</button>
+        <button data-setlang="my">မြန်မာ</button>
+      </div>
+      <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html" class="active">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html">Case Study</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Section 2</div>
+    <h1>Minimizing Token Waste</h1>
+    <p class="lede">Tokens are the metered unit of everything we send to and receive from AI tools. Most waste comes from a handful of habits — fix these and team-wide spend drops sharply with no loss of quality.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Where Tokens Actually Go</h2>
+  <p>Every conversation re-sends its entire history with each new message. That means a long chat with three pasted documents re-transmits all of it every single turn. The three biggest sources of waste in research work:</p>
+  <div class="grid cols-3">
+    <div class="card"><span class="num">1</span><h4>Oversized input</h4><p>Pasting whole documents when one section is relevant; re-uploading files already provided; long conversations that drag history behind every message.</p></div>
+    <div class="card"><span class="num">2</span><h4>Regeneration loops</h4><p>Vague prompts that need 5 attempts; "try again" instead of a precise correction; regenerating full documents to fix one paragraph.</p></div>
+    <div class="card"><span class="num">3</span><h4>Premium tools on trivial work</h4><p>Using Claude tokens for tasks a free tool handles identically — generic formatting, simple lookups, boilerplate text.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>The Efficiency Habits</h2>
+
+  <h3>1. One task, one chat</h3>
+  <p>Start a fresh conversation for each distinct task. When a chat exceeds roughly a dozen exchanges, ask Claude to summarize the state of work in a short paragraph, copy it, and continue in a new chat with that summary. You carry forward 150 tokens instead of 15,000.</p>
+
+  <h3>2. Excerpts, not documents</h3>
+  <div class="example bad"><div class="label">Wasteful</div><p>Pasting a 40-page assessment and asking, "What does this say about labor conditions in the northern provinces?"</p></div>
+  <div class="example good"><div class="label">Efficient</div><p>Finding the two relevant sections yourself (Ctrl+F) and pasting only those: ~600 tokens instead of ~30,000 — and a more focused answer.</p></div>
+
+  <h3>3. Let Cowork read files locally</h3>
+  <p>In Cowork, Claude reads files from the task folder directly and reads only what it needs. For any file-based work, connecting a folder beats pasting contents into Chat.</p>
+
+  <h3>4. Put stable context in Projects, not prompts</h3>
+  <p>Templates, methodology, terminology — written once into Project knowledge — stop costing you tokens in every conversation. See <a href="claude.html">Claude &amp; Cowork</a>.</p>
+
+  <h3>5. Specify the output before generating</h3>
+  <p>State length, format, and audience in the first prompt: <em>"500 words, three sections, for a donor audience, no jargon."</em> The most expensive output is a long, beautiful draft in the wrong shape.</p>
+
+  <h3>6. Correct precisely, never "try again"</h3>
+  <p>"Try again" regenerates everything and usually repeats the misunderstanding. Instead: <em>"Keep the structure and tone. Fix only: (1) the date range should be 2023–2025, (2) shorten the intro to two sentences."</em></p>
+
+  <h3>7. Batch related questions</h3>
+  <p>Five small questions in one message cost less than five separate exchanges, because each separate exchange re-sends the conversation history.</p>
+
+  <h3>8. Route Tier 1 work to free tools</h3>
+  <p>Generic public-domain tasks — summarizing a news article, drafting boilerplate, explaining a Python error — go to DeepSeek, Kimi, or other free tools. Save Claude capacity for work that needs our context, judgment, and confidentiality. See the <a href="ai-toolkit.html">AI Toolkit</a>.</p>
+
+  <h3>9. Don't use AI for what software does better</h3>
+  <p>Sorting a spreadsheet, counting rows, exact find-and-replace — Excel and your editor do these instantly and for free. Use AI to decide <em>what</em> to do, not as a calculator.</p>
+</section>
+
+<section>
+  <h2>Quick Reference: Cost of Common Habits</h2>
+  <table>
+    <tr><th>Habit</th><th>Approximate Token Effect</th></tr>
+    <tr><td>Pasting a full 40-page report vs the 2 relevant pages</td><td>~30,000 vs ~1,500 input tokens — then re-sent with every following message in that chat</td></tr>
+    <tr><td>Continuing a 30-turn chat vs starting fresh with a summary</td><td>Each new message carries the full history; a fresh chat with a 150-token summary cuts per-message cost by 90%+</td></tr>
+    <tr><td>"Try again" ×4 on a 2,000-token draft</td><td>~8,000 wasted output tokens vs ~400 for one precise correction</td></tr>
+    <tr><td>Outline-first on long deliverables</td><td>~150 tokens to approve an outline versus the full cost of a wrong-shaped draft redone from scratch</td></tr>
+  </table>
+</section>
+
+<div class="pager">
+  <a href="claude.html">← Claude &amp; Cowork</a>
+  <a href="data-security.html">Data Security →</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>
