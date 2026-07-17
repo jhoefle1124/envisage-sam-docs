@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Citation Source ID Bug Fix — ENVISAGE WORLDWIDE</title>
+<title>Daily Price Metrics Tool Launch — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -46,10 +46,10 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#">Financial Data Tools</a>
+        <a href="#" class="active">Financial Data Tools</a>
         <ul class="dropdown-menu">
           <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
-          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="daily-price-metrics-launch.html" class="active">Daily Price Metrics Tool Launch</a></li>
           <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
           <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
           <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
@@ -73,12 +73,12 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="active">Response Quality &amp; Reliability</a>
+        <a href="#">Response Quality &amp; Reliability</a>
         <ul class="dropdown-menu">
           <li><a href="citation-management.html">Citation Management in SAM</a></li>
           <li><a href="citation-system-launch.html">Citation System Launch</a></li>
           <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
-          <li><a href="citation-source-id-fix.html" class="active">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
           <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
           <li><a href="anthropic-content.html">Improving Anthropic Content and Complexity</a></li>
           <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -119,9 +124,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">New in SAM · Technical Reference</div>
-    <h1>Citation Source ID Bug Fix</h1>
-    <p class="lede">A follow-up fix for citations loaded from saved chat sessions, where deserialized dictionaries — not citation objects — caused a crash when the code tried to read a source ID.</p>
+    <div class="eyebrow">New in SAM · Feature Guide</div>
+    <h1>Daily Price Metrics Tool Launch</h1>
+    <p class="lede">The original launch of the daily price metrics tool — querying historical time-series financial data across 40+ metrics in 8 categories, with smart aggregation and flexible input handling built in from day one.</p>
   </div>
 </div>
 
@@ -129,35 +134,40 @@
 
 
 <section>
-  <h2>The Problem</h2>
-  <p>When a chat session is reloaded from the database or a checkpoint, citations come back as plain dictionaries rather than citation objects. Code that assumed <code>source.source_id</code> was always an attribute failed on those dictionaries with a <code>'dict' object has no attribute 'source_id'</code> error.</p>
+  <h2>Metric Categories</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>PE Ratios</h4><p>Historical P/E metrics and EPS data.</p></div>
+    <div class="card"><h4>Price to Book</h4><p>P/B ratios and book value metrics.</p></div>
+    <div class="card"><h4>EV Multiples</h4><p>EV/EBITDA and EV/Sales ratios.</p></div>
+    <div class="card"><h4>Market Data</h4><p>Prices, market cap, shares outstanding, dividends.</p></div>
+    <div class="card"><h4>Debt Metrics</h4><p>Debt levels and cash positions.</p></div>
+    <div class="card"><h4>Financial Fundamentals</h4><p>Revenue, EBITDA, profits.</p></div>
+    <div class="card"><h4>Equity Metrics</h4><p>ROE, payout ratios, equity values.</p></div>
+    <div class="card"><h4>Fiscal Data</h4><p>Reporting dates and quarters.</p></div>
+  </div>
 </section>
 
 <section>
-  <h2>The Fix</h2>
-  <ul>
-    <li>Citation validation now handles both citation objects and dictionaries when extracting source IDs.</li>
-    <li>Error state now clears at session initialization, so a past error can't persist across sessions.</li>
-    <li>The citation processing logic was extracted into a dedicated helper, cutting the enclosing function's complexity from 53 statements / 13 branches down to roughly 25 statements / 8 branches — resolving the linter's complexity warnings in the process.</li>
-  </ul>
+  <h2>Smart Input Handling</h2>
+  <p>Query by company name, ticker, or ID, over any date range, with individual field selection so a request for "just the close price" doesn't pull an entire metric category. Parameter validation tolerates the various formats an LLM might generate — stringified lists, single strings — and aggregation suggestions adjust automatically based on the requested date range. Results are cached for 24 hours.</p>
 </section>
 
 <section>
   <h2>Reliability</h2>
   <div class="callout ok">
-    <p>New tests cover citation objects, dictionary citations (the fix case), mixed collections of both, pre-processed citations, and error handling. All existing tests continue to pass, and linting is clean.</p>
+    <p><strong>32 comprehensive tests</strong> covering input validation, formatting, caching, and edge cases — plus a dedicated test-prompts document written for LLM testing.</p>
   </div>
 </section>
 
 <section>
   <h2>Data Handling Still Applies</h2>
-  <p>A backend deserialization fix — no change to what citations may reference or how tiered data flows through the system. See <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> for the underlying rules.</p>
+  <p>Standalone public price and fundamentals data is generally Tier 1. Once a query is tied to a specific portfolio or engagement, treat it as Tier 2/3 per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p>
 </section>
 
 
 <div class="pager">
-  <a href="citation-ui-screener-improvements.html">← Citation, UI & Screener Improvements</a>
-  <a href="historical-financial-data.html">Historical Financial Data →</a>
+  <a href="historical-financial-data.html">← Historical Financial Data</a>
+  <a href="chart-generation-tool.html">Chart Generation Tool →</a>
 </div>
 
 </main>

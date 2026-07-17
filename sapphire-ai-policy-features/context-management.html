@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Price Metrics Tool Launch — ENVISAGE WORLDWIDE</title>
+<title>Context Budget & Model Updates — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -46,10 +46,10 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="active">Financial Data Tools</a>
+        <a href="#">Financial Data Tools</a>
         <ul class="dropdown-menu">
           <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
-          <li><a href="daily-price-metrics-launch.html" class="active">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
           <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
           <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
           <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
@@ -86,12 +86,12 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#">Platform &amp; Infrastructure</a>
+        <a href="#" class="active">Platform &amp; Infrastructure</a>
         <ul class="dropdown-menu">
           <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
           <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
           <li><a href="context-management.html">Context Management Enhancements</a></li>
-          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="context-budget-model-updates.html" class="active">Context Budget & Model Updates</a></li>
           <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
           <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
           <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -119,9 +124,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">New in SAM · Feature Guide</div>
-    <h1>Daily Price Metrics Tool Launch</h1>
-    <p class="lede">The original launch of the daily price metrics tool — querying historical time-series financial data across 40+ metrics in 8 categories, with smart aggregation and flexible input handling built in from day one.</p>
+    <div class="eyebrow">New in SAM · Technical Reference</div>
+    <h1>Context Budget & Model Updates</h1>
+    <p class="lede">The engineering behind SAM's context window management — a 769-line budget tracker, batched history summarization, model upgrades to GLM-4.6 and DeepSeek v3.1, and a breaking change to the company financials batch limit.</p>
   </div>
 </div>
 
@@ -129,40 +134,43 @@
 
 
 <section>
-  <h2>Metric Categories</h2>
-  <div class="grid cols-2">
-    <div class="card"><h4>PE Ratios</h4><p>Historical P/E metrics and EPS data.</p></div>
-    <div class="card"><h4>Price to Book</h4><p>P/B ratios and book value metrics.</p></div>
-    <div class="card"><h4>EV Multiples</h4><p>EV/EBITDA and EV/Sales ratios.</p></div>
-    <div class="card"><h4>Market Data</h4><p>Prices, market cap, shares outstanding, dividends.</p></div>
-    <div class="card"><h4>Debt Metrics</h4><p>Debt levels and cash positions.</p></div>
-    <div class="card"><h4>Financial Fundamentals</h4><p>Revenue, EBITDA, profits.</p></div>
-    <div class="card"><h4>Equity Metrics</h4><p>ROE, payout ratios, equity values.</p></div>
-    <div class="card"><h4>Fiscal Data</h4><p>Reporting dates and quarters.</p></div>
-  </div>
+  <h2>Context Window Management</h2>
+  <ul>
+    <li><strong>Context budget tracking:</strong> monitors conversation size in real time and manages it before limits are hit, with provider-aware token estimation using tiktoken.</li>
+    <li><strong>History summarization:</strong> long conversations are summarized in batches rather than cut off, with sanitized messages persisted so summaries don't get reinjected on the next turn.</li>
+    <li><strong>Graceful overflow handling:</strong> a clear, actionable message instead of a silent or confusing failure when a conversation still exceeds the limit. See <a href="context-management.html">Context Management Enhancements</a> for the full user-facing writeup.</li>
+  </ul>
 </section>
 
 <section>
-  <h2>Smart Input Handling</h2>
-  <p>Query by company name, ticker, or ID, over any date range, with individual field selection so a request for "just the close price" doesn't pull an entire metric category. Parameter validation tolerates the various formats an LLM might generate — stringified lists, single strings — and aggregation suggestions adjust automatically based on the requested date range. Results are cached for 24 hours.</p>
+  <h2>Model &amp; Configuration Updates</h2>
+  <table>
+    <tr><th>Change</th><th>Detail</th></tr>
+    <tr><td>Default chat model</td><td>GLM-4.5 → GLM-4.6</td></tr>
+    <tr><td>DeepSeek</td><td>Upgraded to v3.1 terminus</td></tr>
+    <tr><td>Reasoning effort</td><td>New configurable parameter for chat provider settings</td></tr>
+  </table>
+  <div class="callout danger">
+    <p><strong>Breaking change:</strong> company financials batch limit reduced from 5 to 3 companies per request. Workflows assuming a 5-company batch need to request in smaller groups.</p>
+  </div>
 </section>
 
 <section>
   <h2>Reliability</h2>
   <div class="callout ok">
-    <p><strong>32 comprehensive tests</strong> covering input validation, formatting, caching, and edge cases — plus a dedicated test-prompts document written for LLM testing.</p>
+    <p><strong>1,482 lines</strong> of context budget tests, <strong>358 lines</strong> of error-handling tests, and <strong>219 lines</strong> of summarizer tests. Migration <code>0013_add_context_budget_to_session.py</code> included; no manual data migration required.</p>
   </div>
 </section>
 
 <section>
   <h2>Data Handling Still Applies</h2>
-  <p>Standalone public price and fundamentals data is generally Tier 1. Once a query is tied to a specific portfolio or engagement, treat it as Tier 2/3 per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p>
+  <p>Summarization manages conversation size, not sensitivity — a summarized conversation can still carry Tier 2/3 content if the original did. See <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p>
 </section>
 
 
 <div class="pager">
-  <a href="historical-financial-data.html">← Historical Financial Data</a>
-  <a href="chart-generation-tool.html">Chart Generation Tool →</a>
+  <a href="export-service-layer.html">← Export Service Layer & Error Handling</a>
+  <a href="streaming-content-extraction.html">Streaming Content Extraction →</a>
 </div>
 
 </main>

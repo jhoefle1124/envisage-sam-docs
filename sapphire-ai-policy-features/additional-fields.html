@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Prompt Templates — ENVISAGE WORLDWIDE</title>
+<title>Adding up to Sixty Additional Fields on Screens — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -18,12 +18,12 @@
     <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
     <ul class="nav-links">
       <li class="dropdown">
-        <a href="#" class="active">Chat Interface &amp; Prompt Tools</a>
+        <a href="#">Chat Interface &amp; Prompt Tools</a>
         <ul class="dropdown-menu">
           <li><a href="prompt-templates.html">Prompt Templates</a></li>
           <li><a href="prompt-studio.html">Prompt Studio</a></li>
           <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
-          <li><a href="personal-prompt-templates.html" class="active">Personal Prompt Templates</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
           <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
           <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
           <li><a href="typescript-migration.html">TypeScript Migration</a></li>
@@ -33,11 +33,11 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#">Screening &amp; Filtering</a>
+        <a href="#" class="active">Screening &amp; Filtering</a>
         <ul class="dropdown-menu">
           <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
           <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
-          <li><a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="additional-fields.html" class="active">Adding up to Sixty Additional Fields on Screens</a></li>
           <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
           <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
           <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -120,46 +125,73 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="eyebrow">New in SAM · Feature Guide</div>
-    <h1>Personal Prompt Templates</h1>
-    <p class="lede">Alongside the admin-managed template library, users can now build and organize their own personal prompt templates — with categories, drag-and-drop ordering, and a one-click \"Save as Template\" straight from the chat editor.</p>
+    <h1>Adding up to Sixty Additional Fields on Screens</h1>
+    <p class="lede">Portfolio analyst now returns 60+ additional financial and company fields, bringing it to full parity with our database schema — and a new <code>include_fields</code> option lets you request only the fields you actually need.</p>
   </div>
 </div>
 
 <main>
 
-
 <section>
   <h2>What's New</h2>
   <ul>
-    <li><strong>User prompt templates and categories:</strong> personal templates with title, content, and category assignment, plus custom categories with icons.</li>
-    <li><strong>Drag-and-drop ordering:</strong> sortable categories and templates within categories, managed through a dedicated interface.</li>
-    <li><strong>Save as Template:</strong> a button in the chat editor saves the current prompt directly as a personal template.</li>
-    <li><strong>Variable insertion:</strong> a toolbar button inserts template variables like <code>{{company_name}}</code> without hand-typing the braces.</li>
-    <li>Navigation update: the SAM AI section became a collapsible dropdown menu in both the main and admin sidenavs.</li>
+    <li><strong>60+ new fields</strong> across financial metrics, valuation metrics, company fundamentals, and performance indicators — closing the gap between the portfolio analyst tool and the underlying database schema.</li>
+    <li><strong>Selective field inclusion</strong> via a new <code>include_fields</code> parameter, so a query can request a specific subset of data instead of everything.</li>
+    <li><strong>Backward compatible:</strong> if <code>include_fields</code> isn't specified, the tool still returns the full field set as before.</li>
   </ul>
 </section>
 
 <section>
-  <h2>How It Relates to Prompt Studio</h2>
-  <p>Personal templates are user-owned and separate from the admin-managed library covered on <a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a>. Global templates can also be saved into a user's personal collection with a "Save to My Templates" button.</p>
+  <h2>Field Categories</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Financial Metrics</h4><p>ROA, ROE, Revenue Growth Rate, and related profitability and growth measures.</p></div>
+    <div class="card"><h4>Valuation Metrics</h4><p>EV/EBITDA, Price-to-Sales, FCF Yield, and other valuation multiples.</p></div>
+    <div class="card"><h4>Company Fundamentals</h4><p>Market Cap, Industry, Country, and other core company identifiers.</p></div>
+    <div class="card"><h4>Performance Indicators</h4><p>Quarterly revenue growth, quarterly earnings growth, and related period-over-period measures.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Selective Field Inclusion</h2>
+  <p>The new <code>include_fields</code> parameter lets a query ask for exactly the data it needs rather than the full field set every time. This reduces response size and improves performance, which matters most on large portfolios or batch queries.</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Omitted</h4><p>Not specifying <code>include_fields</code> returns the full field set, exactly as the tool behaved before this change.</p></div>
+    <div class="card"><span class="num">2</span><h4>Specified</h4><p>Naming specific fields returns only those — smaller, faster responses when you don't need everything.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>What You Can Ask</h2>
+  <div class="example good">
+    <div class="label">Example</div>
+    <p>"Show me ROE and FCF yield for my portfolio companies."</p>
+  </div>
+  <div class="example good">
+    <div class="label">Example</div>
+    <p>"Just give me market cap and industry for these tickers — I don't need the full profile."</p>
+  </div>
+  <p>Behind the scenes, SAM maps a request like this to the relevant fields via <code>include_fields</code>, so you get a focused answer instead of a full data dump you then have to sift through.</p>
 </section>
 
 <section>
   <h2>Reliability</h2>
   <div class="callout ok">
-    <p><strong>1,454 lines of new tests</strong> covering views, forms, URLs, permissions, and edge cases. The models and views packages were split for maintainability while preserving backward compatibility through their existing import paths.</p>
+    <p><strong>Backward compatible.</strong> Existing queries that don't use <code>include_fields</code> are unaffected. Testing covered correct data return for all new fields, various <code>include_fields</code> combinations, and formatting for percentages, currency, and dates. Field names follow existing database schema conventions.</p>
   </div>
 </section>
 
 <section>
   <h2>Data Handling Still Applies</h2>
-  <p>Personal templates follow the same rule as the shared library: structure and placeholders are Tier 1 boilerplate, but don't hardcode a real client name or engagement detail into the stored template text — see <a href="prompt-templates.html">Prompt Templates</a> and <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p>
+  <p>Public financial metrics and company fundamentals on their own are generally <strong>Tier 1</strong>. As with scorecards and screening, the tier shifts once results are tied to a specific ENVISAGE portfolio or client context.</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">Usually fine</span><h4>Public metrics, standalone</h4><p>Pulling ROE, EV/EBITDA, or market cap for a publicly listed company on its own stays close to Tier 1.</p></div>
+    <div class="card"><span class="badge amber">Check first</span><h4>Tied to a portfolio or watchlist</h4><p>Returning these fields for a specific client's portfolio or watchlist ties the data to that engagement — treat it as Tier 2/3 and keep it inside SAM and approved workflows, per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p></div>
+  </div>
 </section>
 
-
 <div class="pager">
-  <a href="broker-notes-date-filtering.html">← Broker Notes Date Filtering & Opus 4.5</a>
-  <a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign →</a>
+  <a href="exclusion-list.html">← Exclusion List Capabilities</a>
+  <a href="export-functionality.html">Enhanced Export Functionality →</a>
 </div>
 
 </main>

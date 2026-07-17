@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Model Fallback Chains — ENVISAGE WORLDWIDE</title>
+<title>Daily Price Metrics Tool — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -46,9 +46,9 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#">Financial Data Tools</a>
+        <a href="#" class="active">Financial Data Tools</a>
         <ul class="dropdown-menu">
-          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics.html" class="active">Daily Price Metrics Tool</a></li>
           <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
           <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
           <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
@@ -86,14 +86,14 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="active">Platform &amp; Infrastructure</a>
+        <a href="#">Platform &amp; Infrastructure</a>
         <ul class="dropdown-menu">
           <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
           <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
           <li><a href="context-management.html">Context Management Enhancements</a></li>
           <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
           <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
-          <li><a href="model-fallback-chains.html" class="active">Model Fallback Chains</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
           <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
           <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
           <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -119,54 +124,73 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">New in SAM · Technical Reference</div>
-    <h1>Model Fallback Chains</h1>
-    <p class="lede">If your chosen model becomes unavailable mid-conversation, SAM now falls back automatically through a multi-level chain instead of failing outright — part of a broader update that also migrated the embedding model and hardened document processing.</p>
+    <div class="eyebrow">New in SAM · Feature Guide</div>
+    <h1>Daily Price Metrics Tool</h1>
+    <p class="lede">Ask SAM for a company's price trend, valuation ratios, or financial fundamentals over any date range, and the tool picks a sensible aggregation, formats the numbers professionally, and caches repeat queries — instead of you pulling and formatting raw daily rows yourself.</p>
   </div>
 </div>
 
 <main>
 
-
 <section>
-  <h2>Model Fallback System</h2>
+  <h2>What's New</h2>
   <ul>
-    <li><strong>Multi-level fallback chain:</strong> automatic runtime fallback when a saved session model is stale or rejected, with a toast notification telling you the model was auto-switched.</li>
-    <li><strong>Context rebudgeting:</strong> when falling back to a model with a different token limit, the context budget is recalculated rather than assumed.</li>
-    <li>Original model state is restored if the fallback itself fails, and silent failures were replaced with explicit errors throughout model resolution.</li>
+    <li><strong>Price trend queries:</strong> daily closing prices and price movement over any date range.</li>
+    <li><strong>Valuation metrics:</strong> PE ratio, price-to-book, EV/EBITDA, and similar ratios tracked over time.</li>
+    <li><strong>Market data:</strong> market capitalization, dividend yield, shares outstanding.</li>
+    <li><strong>Financial fundamentals:</strong> revenue, EBITDA, core net profit, and related figures.</li>
+    <li><strong>Smart aggregation:</strong> the tool suggests weekly or monthly aggregation for longer date ranges instead of dumping raw daily rows.</li>
+    <li><strong>Professional formatting and caching:</strong> financial values are formatted consistently, and repeated identical queries are faster thanks to a 24-hour cache.</li>
   </ul>
 </section>
 
 <section>
-  <h2>Model &amp; Infrastructure Updates</h2>
-  <ul>
-    <li>Title generation switched to gpt-oss-120b, with tool-announcement messages filtered out of what it summarizes.</li>
-    <li>Embedding model migrated to Qwen3-Embedding-8B at 1024 dimensions — existing embeddings are re-processed via a data migration.</li>
-    <li>Distributed document processing locks with staleness recovery, preventing two processes from working the same document at once.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>UI Improvements</h2>
-  <p>Message creation date and time now display under chat bubbles (date visible, full timestamp on hover), document chips are clickable to open the file directly, and stalled uploads show an amber warning icon instead of spinning indefinitely.</p>
-</section>
-
-<section>
-  <h2>Reliability</h2>
-  <div class="callout ok">
-    <p><strong>5,680+ lines of new tests</strong> across document locks, fallback chains, context rebudgeting, the embedding service, and the migration itself, spanning 52 files.</p>
+  <h2>What You Can Ask</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Price trends</h4><ul><li>"Show me Apple's stock price trend for last month."</li><li>"Track Microsoft's closing prices over the last quarter."</li></ul></div>
+    <div class="card"><h4>Valuation metrics</h4><ul><li>"How has Amazon's PE ratio changed over the last few months?"</li><li>"Show me Google's PE ratios and price-to-book values for the last 30 days."</li></ul></div>
+    <div class="card"><h4>Market data</h4><ul><li>"Show me how Apple's market capitalization changed last quarter."</li><li>"What were Microsoft's dividend yields over the last two quarters?"</li></ul></div>
+    <div class="card"><h4>Financial fundamentals</h4><ul><li>"Show me Amazon's revenue trend for the last 60 days."</li><li>"How has Google's EBITDA performed over the last few months?"</li></ul></div>
   </div>
+  <p>Company identification is flexible — a ticker ("AAPL"), a full name ("Apple Inc."), or mixed case all resolve the same way. Vague requests like "what's been happening with Apple's stock lately?" default to a sensible recent window rather than failing.</p>
+</section>
+
+<section>
+  <h2>Smart Aggregation</h2>
+  <table>
+    <tr><th>Query Span</th><th>Behavior</th></tr>
+    <tr><td>Up to ~60 days</td><td>Daily data returned as-is</td></tr>
+    <tr><td>More than ~60 days</td><td>Weekly aggregation suggested</td></tr>
+    <tr><td>More than ~180 days</td><td>Monthly aggregation suggested</td></tr>
+  </table>
+  <p>Asking for a single field — just the closing price, for example — is more efficient than pulling a full category of metrics when that's all you need. See <a href="../sapphire-ai-policy-core/token-efficiency.html">Token Efficiency</a> for why narrower requests are generally the better habit.</p>
+</section>
+
+<section>
+  <h2>Formatting &amp; Performance</h2>
+  <ul>
+    <li><strong>Professional formatting:</strong> large figures use T/B/M suffixes, percentages are formatted as percentages, and prices display cleanly (e.g. $150, not $150.00, for values at or above 100).</li>
+    <li><strong>Caching:</strong> identical queries are cached for 24 hours, so a repeated question comes back faster the second time.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Handling Edge Cases</h2>
+  <p>The tool is built to degrade gracefully rather than error out unhelpfully: a company that doesn't exist, a date range with no data (too far in the past or in the future), or an unusually broad request all return a clear, sensible response instead of a raw failure.</p>
 </section>
 
 <section>
   <h2>Data Handling Still Applies</h2>
-  <p>Switching models automatically doesn't change what tier of content may be sent to it — the fallback chain still respects the same <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> tool and model rules as a manually selected model.</p>
+  <p>Price, valuation, and fundamentals data for a publicly listed company is generally <strong>Tier 1</strong> on its own. As with other tools on this site, the tier shifts once results are tied to ENVISAGE or client-specific context.</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">Usually fine</span><h4>Standalone public metrics</h4><p>Pulling price trends or valuation ratios for a publicly listed company, with no client framing, stays close to Tier 1.</p></div>
+    <div class="card"><span class="badge amber">Check first</span><h4>Tied to a portfolio or engagement</h4><p>If the query or its framing ties these metrics to a specific client portfolio or engagement, treat it as Tier 2/3 and keep it inside SAM and approved workflows, per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p></div>
+  </div>
 </section>
 
-
 <div class="pager">
-  <a href="cancellation-streaming-reliability.html">← Cancellation & Streaming Reliability</a>
-  <a href="shareable-chat-links.html">Shareable Chat Links →</a>
+  <a href="admin-prompt-management.html">← Administrative Management of Prompt Writing</a>
+  <a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot →</a>
 </div>
 
 </main>

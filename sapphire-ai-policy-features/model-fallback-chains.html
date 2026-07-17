@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Broker Notes MCP Integration — ENVISAGE WORLDWIDE</title>
+<title>Model Fallback Chains — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -61,14 +61,14 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="active">Scorecards &amp; Research</a>
+        <a href="#">Scorecards &amp; Research</a>
         <ul class="dropdown-menu">
           <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
           <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
           <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
           <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
           <li><a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst</a></li>
-          <li><a href="broker-notes-mcp.html" class="active">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
           <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
         </ul>
       </li>
@@ -86,14 +86,14 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#">Platform &amp; Infrastructure</a>
+        <a href="#" class="active">Platform &amp; Infrastructure</a>
         <ul class="dropdown-menu">
           <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
           <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
           <li><a href="context-management.html">Context Management Enhancements</a></li>
           <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
           <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
-          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="model-fallback-chains.html" class="active">Model Fallback Chains</a></li>
           <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
           <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
           <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -119,9 +124,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">New in SAM · Feature Guide</div>
-    <h1>Broker Notes MCP Integration</h1>
-    <p class="lede">SAM can now search and fetch NTAsset broker research notes through a Pinecone-backed MCP server — gated by team-based access control so only approved teams see the guidance or the tools at all.</p>
+    <div class="eyebrow">New in SAM · Technical Reference</div>
+    <h1>Model Fallback Chains</h1>
+    <p class="lede">If your chosen model becomes unavailable mid-conversation, SAM now falls back automatically through a multi-level chain instead of failing outright — part of a broader update that also migrated the embedding model and hardened document processing.</p>
   </div>
 </div>
 
@@ -129,31 +134,44 @@
 
 
 <section>
-  <h2>What's New</h2>
+  <h2>Model Fallback System</h2>
   <ul>
-    <li><strong>Two new tools:</strong> <code>broker_notes_search</code> for semantic search and <code>broker_notes_fetch</code> to retrieve full note content, communicating over SSE with the Pinecone MCP server.</li>
-    <li><strong>Content truncation:</strong> responses capped at 15,000 characters to prevent context window overflow, with citation formatting including domain extraction.</li>
-    <li><strong>Team-based access control:</strong> tool access is configurable per team via settings, filtered at LLM-call time so it stays compatible with LangGraph's compiled tool node architecture.</li>
-    <li><strong>Dynamic system prompting:</strong> broker notes guidance only appears to teams that actually have access, with proactive instructions to check broker notes before falling back to web search.</li>
+    <li><strong>Multi-level fallback chain:</strong> automatic runtime fallback when a saved session model is stale or rejected, with a toast notification telling you the model was auto-switched.</li>
+    <li><strong>Context rebudgeting:</strong> when falling back to a model with a different token limit, the context budget is recalculated rather than assumed.</li>
+    <li>Original model state is restored if the fallback itself fails, and silent failures were replaced with explicit errors throughout model resolution.</li>
   </ul>
+</section>
+
+<section>
+  <h2>Model &amp; Infrastructure Updates</h2>
+  <ul>
+    <li>Title generation switched to gpt-oss-120b, with tool-announcement messages filtered out of what it summarizes.</li>
+    <li>Embedding model migrated to Qwen3-Embedding-8B at 1024 dimensions — existing embeddings are re-processed via a data migration.</li>
+    <li>Distributed document processing locks with staleness recovery, preventing two processes from working the same document at once.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>UI Improvements</h2>
+  <p>Message creation date and time now display under chat bubbles (date visible, full timestamp on hover), document chips are clickable to open the file directly, and stalled uploads show an amber warning icon instead of spinning indefinitely.</p>
 </section>
 
 <section>
   <h2>Reliability</h2>
   <div class="callout ok">
-    <p><strong>41 test cases</strong> across team permissions, MCP tool functionality, and system message awareness — all passing with proper isolation and mocking.</p>
+    <p><strong>5,680+ lines of new tests</strong> across document locks, fallback chains, context rebudgeting, the embedding service, and the migration itself, spanning 52 files.</p>
   </div>
 </section>
 
 <section>
   <h2>Data Handling Still Applies</h2>
-  <p>Broker research notes are third-party content accessed through an approved integration — team access control determines who can query them, but the same <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> rules apply to anything drawn from them into a deliverable.</p>
+  <p>Switching models automatically doesn't change what tier of content may be sent to it — the fallback chain still respects the same <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> tool and model rules as a manually selected model.</p>
 </section>
 
 
 <div class="pager">
-  <a href="langgraph-v1-mic-ticker.html">← LangGraph v1 & MIC Ticker Matching</a>
-  <a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5 →</a>
+  <a href="cancellation-streaming-reliability.html">← Cancellation & Streaming Reliability</a>
+  <a href="shareable-chat-links.html">Shareable Chat Links →</a>
 </div>
 
 </main>

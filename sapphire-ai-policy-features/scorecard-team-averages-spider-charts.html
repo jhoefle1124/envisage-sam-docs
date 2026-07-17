@@ -101,6 +101,11 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
   </div>
 </nav>
 <div class="help-bar">
@@ -156,6 +161,100 @@
 <div class="pager">
   <a href="portfolio-analyst-launch.html">← Portfolio Analyst Tool Launch</a>
   <a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเปิดตัวเครื่องมือ Scorecard</h1>
+    <p class="lede">การเปิดตัวเครื่องมือ scorecard ครั้งแรกสำหรับการวิเคราะห์การลงทุนในขอบเขตของทีม สร้างขึ้นบนรูปแบบ service/repository ที่สะอาด พร้อมระบบ caching เพื่อให้การวิเคราะห์ที่ช่วยด้วย AI สามารถอ้างอิงเกณฑ์การประเมินของทีมเองได้</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สถาปัตยกรรม (Architecture)</h2>
+  <table>
+    <tr><th>โมดูล</th><th>หน้าที่</th></tr>
+    <tr><td>repository.py</td><td>ชั้นการเข้าถึงข้อมูลสำหรับ query ของ scorecard</td></tr>
+    <tr><td>service.py</td><td>ตรรกะทางธุรกิจและการประมวลผล scorecard</td></tr>
+    <tr><td>cache.py</td><td>Caching เพื่อเพิ่มประสิทธิภาพการทำงาน</td></tr>
+    <tr><td>tool.py</td><td>การ implement เครื่องมือ LangChain</td></tr>
+  </table>
+  <p>Caching ใช้ TTL 5 นาที โดย query ได้รับการปรับให้เหมาะสมด้วย <code>select_related</code>/<code>prefetch_related</code> และการประมวลผลแบบ batch สำหรับการค้นหาหลายบริษัทพร้อมกัน</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ (Reliability)</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบครอบคลุมกว่า 400 บรรทัด</strong> รวมถึง unit และ integration tests โดยมีการตรวจสอบการแยกข้อมูลระหว่างทีม (team isolation) โดยเฉพาะ และครอบคลุม edge case เช่น scorecard ที่ว่างเปล่า</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>การประเมิน scorecard เป็นข้อมูลลูกค้าของ SAM ที่จำกัดขอบเขตในระดับทีม — ถือเป็น Tier 3 เช่นเดียวกับข้อมูลการถือครองกองทุนหรือบันทึกการตัดสินใจอื่น ๆ การจำกัดขอบเขตตามทีมเป็นเพียงการควบคุมการเข้าถึงภายใน SAM ไม่ใช่การลดระดับชั้นความลับ ดูเพิ่มเติมที่ <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="portfolio-analyst-launch.html">← การเปิดตัวเครื่องมือ Portfolio Analyst</a>
+  <a href="scorecard-team-averages-spider-charts.html">ค่าเฉลี่ยทีมและแผนภูมิเรดาร์ของ Scorecard →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် ဝန်ဆောင်မှုအသစ် · ဝန်ဆောင်မှု လမ်းညွှန်</div>
+    <h1>Scorecard ကိရိယာ စတင်မိတ်ဆက်ခြင်း</h1>
+    <p class="lede">အသင်းအဖွဲ့ (team) အဆင့်ဆုံးဖြတ်မှု ရင်းနှီးမြှုပ်နှံမှု ခွဲခြမ်းစိတ်ဖြာမှုအတွက် scorecard ကိရိယာကို ပထမဆုံးအကြိမ် စတင်မိတ်ဆက်ခြင်းဖြစ်ပြီး၊ caching ပါဝင်သော သန့်ရှင်းသည့် service/repository ပုံစံအပေါ် တည်ဆောက်ထားသဖြင့် AI ကူညီပေးသော ခွဲခြမ်းစိတ်ဖြာမှုသည် အသင်းအဖွဲ့၏ ကိုယ်ပိုင် အကဲဖြတ်စံနှုန်းများကို အသုံးချနိုင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ဗိသုကာဆိုင်ရာ (Architecture)</h2>
+  <table>
+    <tr><th>မော်ဂျူး</th><th>တာဝန်</th></tr>
+    <tr><td>repository.py</td><td>scorecard query များအတွက် ဒေတာဝင်ရောက်ခွင့် အလွှာ</td></tr>
+    <tr><td>service.py</td><td>စီးပွားရေးလုပ်ငန်း logic နှင့် scorecard ပြုပြင်ဆောင်ရွက်မှု</td></tr>
+    <tr><td>cache.py</td><td>စွမ်းဆောင်ရည် မြှင့်တင်ရေးအတွက် Caching</td></tr>
+    <tr><td>tool.py</td><td>LangChain tool အကောင်အထည်ဖော်မှု</td></tr>
+  </table>
+  <p>Caching သည် ၅ မိနစ် TTL ကို အသုံးပြုပြီး၊ query များကို <code>select_related</code>/<code>prefetch_related</code> ဖြင့် ပိုမိုကောင်းမွန်အောင်ပြုလုပ်ထားပြီး ကုမ္ပဏီများစွာကို တစ်ပြိုင်နက် ရှာဖွေရန် batch processing ကို အသုံးပြုသည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု (Reliability)</h2>
+  <div class="callout ok">
+    <p><strong>test coverage လိုင်း ၄၀၀ ကျော်</strong> ပါဝင်ပြီး unit နှင့် integration test များ ပါဝင်သည်၊ team isolation ကို အထူးစစ်ဆေးအတည်ပြုထားပြီး scorecard ဗလာကဲ့သို့သော edge case များ ပါဝင်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်ကျင့်သုံးမည်</h2>
+  <p>Scorecard အကဲဖြတ်ချက်များသည် team အဆင့် သတ်မှတ်ထားသော SAM client data ဖြစ်ပြီး — အခြား fund holding သို့မဟုတ် ဆုံးဖြတ်ချက် မှတ်တမ်းများကဲ့သို့ပင် Tier 3 ဖြစ်သည်။ Team scoping သည် SAM အတွင်း access control တစ်ခုမျှသာဖြစ်ပြီး classification လျှော့ချခြင်း မဟုတ်ပါ။ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="portfolio-analyst-launch.html">← Portfolio Analyst ကိရိယာ စတင်မိတ်ဆက်ခြင်း</a>
+  <a href="scorecard-team-averages-spider-charts.html">Scorecard အသင်းအဖွဲ့ ပျမ်းမျှနှင့် Spider Chart များ →</a>
 </div>
 
 </main>
