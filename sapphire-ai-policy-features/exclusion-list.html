@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -194,6 +200,178 @@
 
 <div class="pager">
   <a href="filtering-tools.html">← System-wide Filtering Tools</a>
+  <a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>ความสามารถของ Exclusion List</h1>
+    <p class="lede">ตอนนี้ตรรกะการยกเว้น (exclusion) ของ stock screener จะจับคู่แบบบางส่วนได้ ไม่ใช่แค่การจับคู่แบบตรงทั้งหมดเหมือนก่อน — ดังนั้น "exclude Pineapple" จะตัดบริษัททุกแห่งที่มีคำว่า Pineapple อยู่ในชื่อออกอย่างถูกต้อง และ "exclude AAPL" จะตัดออกไม่ว่าจะมีคำนำหน้าตลาดหลักทรัพย์ใดก็ตาม ทำให้การเขียน exclusion ในคำสั่งภาษาธรรมชาติทำงานได้ตามที่คาดหวัง</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การจับคู่ชื่อแบบบางส่วน:</strong> การยกเว้นตามชื่อตอนนี้ใช้ <code>NOT LIKE</code> แทนการจับคู่แบบตรงทั้งหมด ทำให้คำยกเว้นเพียงคำเดียวครอบคลุมทุกรูปแบบของชื่อนั้น</li>
+    <li><strong>การจับคู่ ticker แบบบางส่วน:</strong> การยกเว้นตาม ticker ก็จับคู่แบบบางส่วนได้เช่นกัน ทำให้การยกเว้นทำงานได้ไม่ว่าจะมีคำนำหน้าตลาดหลักทรัพย์ใดก็ตาม</li>
+    <li><strong>การจัดการ query แบบผสมที่ดีขึ้น:</strong> ปรับปรุงตรรกะสำหรับ query ที่รวมทั้งการรวมและการยกเว้นไว้ในคำขอเดียวกัน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>วิธีการทำงาน</h2>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="badge blue">การยกเว้นตามชื่อ</span>
+      <h4>การยกเว้น "Pineapple"</h4>
+      <p>ตอนนี้จะยกเว้น "Pineapple Resources Berhad," "Pineapple Financial," และบริษัทอื่น ๆ ที่มีคำว่า "Pineapple" อยู่ในชื่อด้วย ไม่ใช่แค่บริษัทที่ชื่อ "Pineapple" ตรงตัวเท่านั้น</p>
+    </div>
+    <div class="card">
+      <span class="badge blue">การยกเว้นตาม Ticker</span>
+      <h4>การยกเว้น "AAPL"</h4>
+      <p>ตอนนี้จะยกเว้นรูปแบบที่มีคำนำหน้าตลาดหลักทรัพย์ด้วย เช่น "XNGS:AAPL," ดังนั้นการยกเว้นจะยังคงมีผลไม่ว่าผลลัพธ์จะใช้คำนำหน้าตลาดหลักทรัพย์ใดก็ตาม</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p><strong>ปลอดภัยจากค่า NULL</strong> ตรรกะ <code>NOT LIKE</code> ที่อยู่เบื้องหลังจะจัดการกับข้อมูลที่ขาดหายไปอย่างชัดเจน ดังนั้นบริษัทที่มีฟิลด์ชื่อหรือ ticker ว่างเปล่าจะไม่ถูกตัดออกโดยไม่ได้ตั้งใจจากตัวกรอง exclusion</p>
+  </div>
+</section>
+
+<section>
+  <h2>สิ่งที่คุณสามารถถามได้</h2>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"แสดงหุ้น Apple แต่ไม่เอาอะไรที่เกี่ยวกับ Pineapple"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"บริษัทเทคโนโลยี ยกเว้น MSFT"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"ธนาคารทั้งหมด ยกเว้นบริษัทที่มีคำว่า 'Community' อยู่ในชื่อ"</p>
+  </div>
+</section>
+
+<section>
+  <h2>ตรรกะการรวมเทียบกับการยกเว้น</h2>
+  <p>ตัวกรองแบบรวม (inclusion) และตัวกรองแบบยกเว้น (exclusion) ถูกรวมกันด้วยวิธีที่ต่างกันในเบื้องหลัง เกณฑ์การรวมจะเชื่อมด้วยตรรกะ <strong>OR</strong> (ตรงกับข้อใดข้อหนึ่งก็ได้) ในขณะที่เกณฑ์การยกเว้นจะเชื่อมด้วยตรรกะ <strong>AND</strong> (ต้องไม่ตรงกับข้อใดเลย) ความแตกต่างนี้เองที่ทำให้ query เดียวสามารถผสม "แสดง X" กับ "แต่ไม่เอา Y" ได้อย่างถูกต้อง</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>Backward compatible</strong> พฤติกรรมการจับคู่แบบตรงทั้งหมดของตัวกรองประเภทอื่นไม่ได้รับผลกระทบ การทดสอบครอบคลุมการยกเว้นชื่อและ ticker แบบบางส่วน การจัดการคำนำหน้าตลาดหลักทรัพย์ การยกเว้นตามอุตสาหกรรม และ query ที่ผสมทั้งการรวมและการยกเว้น</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>เกณฑ์การยกเว้นที่อ้างอิงจากชื่อบริษัทหรือ ticker ที่เป็นข้อมูลสาธารณะโดยทั่วไปจัดเป็น <strong>Tier 1</strong> เช่นเดียวกับการ screen ตลาดเปิดทั่วไปอื่น ๆ</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">โดยทั่วไปไม่มีปัญหา</span><h4>Exclusion จากการ screen ข้อมูลสาธารณะ</h4><p>"ยกเว้นบริษัทที่มี X อยู่ในชื่อ" เพียงลำพัง โดยไม่มีบริบทของลูกค้า ยังคงใกล้เคียง Tier 1</p></div>
+    <div class="card"><span class="badge amber">ตรวจสอบก่อน</span><h4>Exclusion ที่ผูกกับ mandate</h4><p>หาก exclusion list สะท้อนข้อจำกัดการลงทุนหรือนโยบายการยกเว้นเฉพาะของลูกค้า ให้ถือว่าบริบทนั้นเป็น Tier 2/3 และเก็บไว้ภายใน SAM และ workflow ที่ได้รับอนุมัติเท่านั้น ตาม <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="filtering-tools.html">← เครื่องมือกรองข้อมูลทั่วระบบ</a>
+  <a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Exclusion List စွမ်းရည်များ</h1>
+    <p class="lede">Stock screener ၏ exclusion (ချန်လှပ်ခြင်း) logic သည် ယခုအခါ တိကျစွာသာမက တစ်စိတ်တစ်ပိုင်း တိုက်ဆိုင်မှုကိုပါ ရှာဖွေနိုင်ပါပြီ — ထို့ကြောင့် "exclude Pineapple" ဆိုလျှင် အမည်တွင် Pineapple ပါဝင်သော ကုမ္ပဏီအားလုံးကို မှန်ကန်စွာ ဖယ်ထုတ်ပေးပြီး "exclude AAPL" ဆိုလျှင် stock exchange ရှေ့ဆက်မည်သို့ပင်ရှိစေ ဖယ်ထုတ်ပေးသည်။ ဤသည်က natural-language query များတွင် exclusion အသုံးအနှုန်းများ မျှော်လင့်ထားသည့်အတိုင်း အလုပ်လုပ်စေသည်။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>အသစ်ပါဝင်လာသည့်အချက်များ</h2>
+  <ul>
+    <li><strong>အမည် တစ်စိတ်တစ်ပိုင်း တိုက်ဆိုင်မှု</strong> — အမည်ဖြင့် ဖယ်ထုတ်ခြင်းများသည် ယခုအခါ တိကျစွာ တိုက်ဆိုင်မှုအစား <code>NOT LIKE</code> ကို အသုံးပြုသဖြင့် exclusion စကားလုံးတစ်ခုတည်းဖြင့် ထိုအမည်၏ ကွဲပြားမှုအားလုံးကို ဖမ်းယူနိုင်သည်</li>
+    <li><strong>Ticker တစ်စိတ်တစ်ပိုင်း တိုက်ဆိုင်မှု</strong> — Ticker ဖြင့် ဖယ်ထုတ်ခြင်းများသည်လည်း တစ်စိတ်တစ်ပိုင်း တိုက်ဆိုင်နိုင်သဖြင့် exchange ရှေ့ဆက် မည်သို့ပင်ရှိစေ exclusion သည် အလုပ်လုပ်သည်</li>
+    <li><strong>ရောနှောထားသော query များကို ပိုမိုကောင်းမွန်စွာ ကိုင်တွယ်ခြင်း</strong> — inclusion နှင့် exclusion ကို တောင်းဆိုမှုတစ်ခုတည်းတွင် ပေါင်းစပ်ထားသော query များအတွက် logic ကို ပိုမိုကောင်းမွန်အောင် ပြုလုပ်ထားသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>အလုပ်လုပ်ပုံ</h2>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="badge blue">အမည်ဖြင့် ဖယ်ထုတ်ခြင်း</span>
+      <h4>"Pineapple" ကို ဖယ်ထုတ်ခြင်း</h4>
+      <p>ယခုအခါ "Pineapple Resources Berhad,"၊ "Pineapple Financial," နှင့် အမည်တွင် "Pineapple" ပါဝင်သည့် အခြားကုမ္ပဏီများကိုပါ ဖယ်ထုတ်ပေးသည် — "Pineapple" ဟု အတိအကျ အမည်ရှိသော ကုမ္ပဏီတစ်ခုတည်းကိုသာ မဟုတ်တော့ပါ</p>
+    </div>
+    <div class="card">
+      <span class="badge blue">Ticker ဖြင့် ဖယ်ထုတ်ခြင်း</span>
+      <h4>"AAPL" ကို ဖယ်ထုတ်ခြင်း</h4>
+      <p>ယခုအခါ "XNGS:AAPL" ကဲ့သို့ exchange ရှေ့ဆက်ပါသော ပုံစံများကိုပါ ဖယ်ထုတ်ပေးသဖြင့် ရလဒ်တွင် မည်သည့် exchange ရှေ့ဆက်ကို အသုံးပြုသည်ဖြစ်စေ exclusion သည် ဆက်လက်သက်ရောက်နေမည်</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p><strong>NULL တန်ဖိုးအတွက် ဘေးကင်းသည်</strong> အခြေခံ <code>NOT LIKE</code> logic သည် ပျောက်ဆုံးနေသော ဒေတာကို ရှင်းလင်းစွာ ကိုင်တွယ်သောကြောင့် အမည် သို့မဟုတ် ticker field အလွတ်ရှိသော ကုမ္ပဏီများသည် exclusion filter တစ်ခုကြောင့် မတော်တဆ ကျန်ရစ်ခြင်း မရှိတော့ပါ</p>
+  </div>
+</section>
+
+<section>
+  <h2>မေးမြန်းနိုင်သည့် ဥပမာများ</h2>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"Apple ရှယ်ယာများကို ပြပါ၊ သို့သော် Pineapple နှင့်ဆိုင်သော မည်သည့်အရာကိုမျှ မထည့်ပါနှင့်။"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"MSFT ကို မထည့်ဘဲ နည်းပညာကုမ္ပဏီများ"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"အမည်တွင် 'Community' ပါသော ဘဏ်များမှလွဲ၍ ဘဏ်အားလုံး"</p>
+  </div>
+</section>
+
+<section>
+  <h2>Inclusion နှင့် Exclusion Logic</h2>
+  <p>Inclusion filter နှင့် exclusion filter များကို နောက်ကွယ်တွင် မတူညီသောနည်းလမ်းဖြင့် ပေါင်းစပ်ထားသည် — inclusion criteria များကို <strong>OR</strong> logic ဖြင့် ချိတ်ဆက်ထားပြီး (တစ်ခုခုနှင့် တိုက်ဆိုင်ရန်) exclusion criteria များကို <strong>AND</strong> logic ဖြင့် ချိတ်ဆက်ထားသည် (မည်သည့်တစ်ခုနှင့်မျှ မတိုက်ဆိုင်ရ)။ ဤကွာခြားမှုကြောင့်ပင် query တစ်ခုတည်းတွင် "X ကို ပြပါ" နှင့် "သို့သော် Y မဟုတ်ပါ" ကို မှန်ကန်စွာ ပေါင်းစပ်နိုင်ခြင်း ဖြစ်သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချမှု</h2>
+  <div class="callout ok">
+    <p><strong>Backward compatible ဖြစ်သည်</strong> အခြား filter အမျိုးအစားများ၏ ရှိပြီးသား တိကျသော တိုက်ဆိုင်မှု အပြုအမူသည် ထိခိုက်မှု မရှိပါ။ စမ်းသပ်မှုသည် အမည်နှင့် ticker တစ်စိတ်တစ်ပိုင်း ဖယ်ထုတ်ခြင်း၊ exchange ရှေ့ဆက် ကိုင်တွယ်မှု၊ လုပ်ငန်းအလိုက် ဖယ်ထုတ်ခြင်း နှင့် inclusion/exclusion ပေါင်းစပ် query များကို လွှမ်းခြုံသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်သည်</h2>
+  <p>အများပြည်သူ ကုမ္ပဏီအမည် သို့မဟုတ် ticker အပေါ် အခြေခံသည့် exclusion criteria များသည် ယေဘုယျအားဖြင့် <strong>Tier 1</strong> ဖြစ်ပြီး အခြား open-market screen များနှင့် အတူတူပင်ဖြစ်သည်</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">များသောအားဖြင့် ကိစ္စမရှိပါ</span><h4>အများပြည်သူ screening exclusion</h4><p>ဖောက်သည် framing တစ်စုံတစ်ရာ မပါဘဲ "အမည်တွင် X ပါသော ကုမ္ပဏီများကို ဖယ်ထုတ်ပါ" ဆိုသည့် ညွှန်ကြားချက်တစ်ခုတည်းသည် Tier 1 နှင့် နီးကပ်စွာ ကျန်ရှိသည်</p></div>
+    <div class="card"><span class="badge amber">အရင်ဆုံး စစ်ဆေးပါ</span><h4>Mandate နှင့်ချိတ်ဆက်ထားသော Exclusion</h4><p>Exclusion list သည် ဖောက်သည်၏ သီးခြား ရင်းနှီးမြှုပ်နှံမှု ကန့်သတ်ချက် သို့မဟုတ် exclusion မူဝါဒကို ထင်ဟပ်နေပါက ထို framing ကို Tier 2/3 အဖြစ် သတ်မှတ်ပြီး <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ SAM နှင့် ခွင့်ပြုထားသော workflow များအတွင်းတွင်သာ ထားရှိပါ</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="filtering-tools.html">← စနစ်တစ်ခုလုံး စစ်ထုတ်ရေးကိရိယာများ</a>
   <a href="additional-fields.html">Adding up to Sixty Additional Fields on Screens →</a>
 </div>
 

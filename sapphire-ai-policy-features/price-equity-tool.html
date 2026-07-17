@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -154,6 +160,96 @@
 <div class="pager">
   <a href="chart-generation-tool.html">← Chart Generation Tool</a>
   <a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>เครื่องมือ PriceEquity OHLCV</h1>
+    <p class="lede">เครื่องมือเฉพาะสำหรับข้อมูลหุ้นดิบแบบ open/high/low/close/volume — เลือกฟิลด์ได้อย่างยืดหยุ่น รองรับหลายสกุลเงิน และการแปลผลวันที่ที่เข้าใจทั้งสำนวนเชิงสัมพัทธ์อย่าง "เดือนที่แล้ว" และช่วงวันที่ที่ระบุชัดเจน</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ฟีเจอร์หลัก</h2>
+  <ul>
+    <li><strong>เลือกฟิลด์ได้อย่างยืดหยุ่น:</strong> ขอเฉพาะ open, high, low, close, volume หรือจะรวมกันแบบใดก็ได้ — ไม่จำเป็นต้องขอทั้งแถว</li>
+    <li><strong>รองรับหลายสกุลเงิน:</strong> รองรับ USD, EUR และ GBP พร้อมการจัดรูปแบบสัญลักษณ์สกุลเงินที่ถูกต้อง</li>
+    <li><strong>การแปลผลวันที่อย่างชาญฉลาด:</strong> รองรับทั้งวันที่ระบุชัดเจนและสำนวนเชิงสัมพัทธ์ พร้อมจัดการวันหยุดสุดสัปดาห์และวันหยุดนักขัตฤกษ์ที่ตลาดปิดทำการได้อย่างราบรื่น</li>
+    <li><strong>การจัดการข้อผิดพลาดที่มั่นคง:</strong> ข้อความแจ้งเตือนที่ชัดเจนและเป็นมิตรกับผู้ใช้สำหรับสัญลักษณ์ที่ไม่ถูกต้องหรือช่วงวันที่ที่ไม่มีข้อมูล</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ทดสอบ 965 บรรทัด</strong> — ครอบคลุมกว่า 92% — รวมถึงสถานการณ์วันหยุดสุดสัปดาห์ วันหยุดนักขัตฤกษ์ สัญลักษณ์ที่ไม่ถูกต้อง การจัดรูปแบบสกุลเงิน และการเลือกฟิลด์</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงมีผล</h2>
+  <p>ข้อมูลราคาและปริมาณการซื้อขายดิบของบริษัทมหาชนถือเป็น Tier 1 เมื่อใช้ตามลำพัง แต่จะกลายเป็น Tier 2/3 ทันทีที่ถูกผูกโยงกับการถือครองหรืองานของลูกค้ารายใดรายหนึ่งโดยเฉพาะ — ดู <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="chart-generation-tool.html">← เครื่องมือสร้างกราฟ</a>
+  <a href="chart-rendering-groq-profiles.html">การแสดงผลกราฟ, Groq และโปรไฟล์พารามิเตอร์ →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>PriceEquity OHLCV ကိရိယာ</h1>
+    <p class="lede">open/high/low/close/volume ရင်းမြစ်ဒေတာအတွက် အထူးကိရိယာတစ်ခု — ပြောင်းလွယ်ပြင်လွယ် field ရွေးချယ်မှု၊ ငွေကြေးမျိုးစုံ ပံ့ပိုးမှု နှင့် "ပြီးခဲ့သောလ" ကဲ့သို့ relative expression များနှင့် တိကျသော ရက်စွဲအပိုင်းအခြားများကို နားလည်သော ရက်စွဲ parsing ပါဝင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အဓိက ဝန်ဆောင်မှုများ</h2>
+  <ul>
+    <li><strong>ပြောင်းလွယ်ပြင်လွယ် field ရွေးချယ်မှု:</strong> open, high, low, close, volume သို့မဟုတ် မည်သည့် ပေါင်းစပ်မှုကိုမဆို တောင်းဆိုနိုင်သည် — row တစ်ခုလုံးကို မလိုအပ်ပါ။</li>
+    <li><strong>ငွေကြေးမျိုးစုံ ပံ့ပိုးမှု:</strong> USD, EUR နှင့် GBP ကို မှန်ကန်သော ငွေကြေးသင်္ကေတ ပုံစံဖြင့် ကိုင်တွယ်သည်။</li>
+    <li><strong>စမတ် ရက်စွဲ parsing:</strong> တိကျသော ရက်စွဲများနှင့် relative expression များကို ပံ့ပိုးပြီး၊ ဈေးကွက်ပိတ်ရသည့် စနေ-တနင်္ဂနွေနှင့် အားလပ်ရက်များကို ချောမွေ့စွာ ကိုင်တွယ်သည်။</li>
+    <li><strong>ခိုင်မာသော error handling:</strong> မမှန်ကန်သော symbol များ သို့မဟုတ် မရရှိနိုင်သော ရက်စွဲအပိုင်းအခြားများအတွက် ရှင်းလင်းပြီး အသုံးပြုသူ နားလည်လွယ်သော message များ။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test line 965 လိုင်း</strong> — coverage 92% ကျော် — စနေ-တနင်္ဂနွေ၊ အားလပ်ရက်၊ မမှန်ကန်သော symbol၊ ငွေကြေး ပုံစံချမှု နှင့် field ရွေးချယ်မှု အခြေအနေများ ပါဝင်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>အများပြည်သူကုမ္ပဏီတစ်ခု၏ ကုန်ကြမ်း ဈေးနှုန်းနှင့် volume ဒေတာသည် တစ်ကိုယ်တည်းသုံးလျှင် Tier 1 ဖြစ်သည်။ ၎င်းကို သီးခြားဖောက်သည်၏ holding သို့မဟုတ် engagement နှင့် ချိတ်ဆက်လိုက်သည်နှင့် Tier 2/3 ချက်ချင်း ဖြစ်သွားသည် — <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="chart-generation-tool.html">← Chart ဖန်တီးရေး ကိရိယာ</a>
+  <a href="chart-rendering-groq-profiles.html">Chart ဖော်ပြခြင်း၊ Groq နှင့် Parameter Profile များ →</a>
 </div>
 
 </main>

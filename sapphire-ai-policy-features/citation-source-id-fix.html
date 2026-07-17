@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -171,6 +177,132 @@
 
 <div class="pager">
   <a href="firecrawl-web-extraction.html">← Firecrawl Web Extraction Tool</a>
+  <a href="citation-source-id-fix.html">Citation Source ID Bug Fix →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การปรับปรุงการอ้างอิง UI และ Screener</h1>
+    <p class="lede">การปรับปรุงครอบคลุมสามด้าน ได้แก่ ความแม่นยำของการอ้างอิง (citation) และการระบุแหล่งที่มาตามแต่ละเครื่องมือ ประสบการณ์การ streaming และ auto-scroll ที่ลื่นไหลขึ้น และ stock screener ที่ปรับปรุงใหม่พร้อมการป้องกัน query ที่ซับซ้อนเกินไป</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>การปรับปรุงระบบการอ้างอิง</h2>
+  <ul>
+    <li><strong>การระบุแหล่งที่มาตามเครื่องมือ:</strong> การอ้างอิงตอนนี้มีคำนำหน้า เช่น "SAM Database:" หรือ "Stock Screener:" เพื่อความชัดเจน</li>
+    <li><strong>การอ้างอิงฐานข้อมูล SAM แบบทั่วไป:</strong> ทำให้เป็นมาตรฐานเพื่อป้องกันการซ้ำซ้อนภายในคำตอบเดียว</li>
+    <li><strong>การจัดลำดับความสำคัญอัจฉริยะ:</strong> การอ้างอิงจากฐานข้อมูลจะได้หมายเลขต่ำกว่า ซึ่งช่วยป้องกันไม่ให้ LLM สร้างรายการแหล่งที่มาซ้ำของตัวเอง</li>
+    <li><strong>การจัดการ dict ที่ปลอดภัยขึ้น:</strong> การอ้างอิงที่มาในรูปแบบ dictionary ธรรมดาจะไม่ก่อให้เกิด <code>AttributeError</code> อีกต่อไป</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ประสิทธิภาพและประสบการณ์ผู้ใช้</h2>
+  <p>ลบความหน่วงเทียมระหว่างการ streaming ออกแล้ว การ auto-scroll ลื่นไหลขึ้นระหว่าง token streaming และเพิ่มขีดจำกัด recursion ของ LangGraph จาก 50 เป็น 75 พร้อมการจัดการอย่างนุ่มนวล — รวมถึงการสร้างชื่อหัวข้ออัตโนมัติและการบันทึกคำตอบเมื่อถึงขีดจำกัด เพื่อไม่ให้บทสนทนายาว ๆ สูญเสียคำตอบไปเงียบ ๆ</p>
+</section>
+
+<section>
+  <h2>การปรับปรุง Stock Screener ให้ทันสมัย</h2>
+  <table>
+    <tr><th>การเปลี่ยนแปลง</th><th>รายละเอียด</th></tr>
+    <tr><td>สถาปัตยกรรมแบบโมดูล</td><td>จัดระเบียบใหม่เป็นโมดูลเฉพาะ พร้อม field configuration registry และแยกคลาส SQL builder ออกมาต่างหาก</td></tr>
+    <tr><td>ขีดจำกัดความซับซ้อนของ query</td><td>เพิ่มการป้องกันฐานข้อมูลด้วยการให้คะแนนความซับซ้อนของ query</td></tr>
+    <tr><td>ขีดจำกัดผลลัพธ์</td><td>เพิ่มจำนวนผลลัพธ์สูงสุดจาก 50 เป็น 100</td></tr>
+    <tr><td>ตัวกรองด่วน (Quick filters)</td><td>ถูกนำออก — เป็นฟีเจอร์ที่ใช้งานน้อยและเพิ่มความซับซ้อนโดยไม่จำเป็น</td></tr>
+  </table>
+  <p>คลาสใหม่ <code>FinancialFormatter</code> ทำให้การจัดรูปแบบข้อมูลการเงินเป็นมาตรฐานเดียวกันทั่วทั้งแอป และ <code>company_financials</code> ถูกย้ายจาก raw SQL มาเป็น Django ORM</p>
+</section>
+
+<section>
+  <h2>การแก้ไขบั๊กสำคัญ</h2>
+  <div class="callout danger">
+    <p><strong>Dividend yield แสดงผลสูงเกินจริงถึง 100 เท่า</strong> (41.69% แทนที่จะเป็น 0.42%) เนื่องจากฐานข้อมูลเก็บค่า yield เป็นเปอร์เซ็นต์อยู่แล้ว แต่เครื่องมือกลับปฏิบัติกับค่านั้นเสมือนเป็นทศนิยม แก้ไขแล้วพร้อมเอกสารประกอบที่ถูกต้องและฟังก์ชันจัดรูปแบบเฉพาะแต่ละฟิลด์</p>
+  </div>
+  <p>นอกจากนี้ยังแก้ไข: <code>AttributeError</code> ของการอ้างอิงที่ทำให้บทสนทนาหลายรอบล่มเมื่อการอ้างอิงมาในรูปแบบ dictionary แทนที่จะเป็น object</p>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>การอ้างอิงที่ดีขึ้นและ screener ที่ทันสมัยขึ้นไม่ได้เปลี่ยนแปลงระดับความอ่อนไหวของข้อมูล ผลลัพธ์จาก screener ที่สร้างจากข้อมูลพื้นฐานสาธารณะของบริษัทยังคงใกล้เคียง Tier 1 ส่วนผลลัพธ์ที่ผูกกับพอร์ตโฟลิโอหรือ watchlist ของลูกค้าจะยังคงอยู่ภายใต้กฎ Tier 2/3 เช่นเดียวกับที่อื่น ๆ ตามหน้า <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="firecrawl-web-extraction.html">← เครื่องมือดึงข้อมูลเว็บ Firecrawl</a>
+  <a href="citation-source-id-fix.html">Citation Source ID Bug Fix →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Citation၊ UI နှင့် Screener တိုးတက်မှုများ</h1>
+    <p class="lede">နယ်ပယ်သုံးခုအတွက် ကျယ်ပြန့်စွာ ပြင်ဆင်မှု — citation တိကျမှု နှင့် ကိရိယာအလိုက် source ဖော်ပြမှု၊ streaming နှင့် auto-scroll အတွေ့အကြုံ ပိုမိုချောမွေ့လာမှု၊ query ရှုပ်ထွေးမှုကို ကာကွယ်ပေးသော stock screener ခေတ်မီပြင်ဆင်မှု တို့ ပါဝင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Citation စနစ် တိုးတက်မှုများ</h2>
+  <ul>
+    <li><strong>ကိရိယာအလိုက် source ဖော်ပြမှု</strong> — citation များတွင် ယခုအခါ "SAM Database:" သို့မဟုတ် "Stock Screener:" ကဲ့သို့ ရှေ့ဆက်စာလုံးများ ရှင်းလင်းစွာ ပါရှိသည်</li>
+    <li><strong>ယေဘုယျ SAM database citation</strong> — အဖြေတစ်ခုတည်းတွင် ထပ်နေမှု မဖြစ်စေရန် စံသတ်မှတ်ထားသည်</li>
+    <li><strong>ထက်မြက်သော ဦးစားပေးစီစဉ်မှု</strong> — database citation များသည် နံပါတ်နည်းသည့်အနေအထားရရှိပြီး LLM မှ မိမိကိုယ်ပိုင် source list ထပ်ဖန်တီးခြင်းကို ကာကွယ်ပေးသည်</li>
+    <li><strong>ပို၍ဘေးကင်းသော dict ကိုင်တွယ်မှု</strong> — citation များသည် dictionary အနေဖြင့် ရောက်ရှိလာသောအခါ <code>AttributeError</code> ထပ်မံဖြစ်ပေါ်တော့မည် မဟုတ်ပါ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>စွမ်းဆောင်ရည် နှင့် အသုံးပြုသူအတွေ့အကြုံ</h2>
+  <p>Streaming အတွင်း ဖန်တီးထားသော ကြန့်ကြာချိန်များကို ဖယ်ရှားလိုက်ပြီး token streaming အတွင်း auto-scroll ပိုမိုချောမွေ့လာသည်။ LangGraph ၏ recursion ကန့်သတ်ချက်ကို ၅၀ မှ ၇၅ သို့ တိုးမြှင့်ပြီး ချောမွေ့စွာ ကိုင်တွယ်ပေးသည် — ကန့်သတ်ချက်သို့ ရောက်သောအခါ ခေါင်းစဉ် အလိုအလျောက်ဖန်တီးခြင်းနှင့် အဖြေထိန်းသိမ်းခြင်းလည်း ပါဝင်သဖြင့် စကားဝိုင်း ရှည်ကြာမှုများသည် အဖြေကို တိတ်တဆိတ် ဆုံးရှုံးမည် မဟုတ်ပါ။</p>
+</section>
+
+<section>
+  <h2>Stock Screener ခေတ်မီအောင် ပြုပြင်ခြင်း</h2>
+  <table>
+    <tr><th>ပြောင်းလဲမှု</th><th>အသေးစိတ်</th></tr>
+    <tr><td>Module ဗိသုကာပုံစံ</td><td>Field configuration registry နှင့် သီးခြား SQL builder class ဖြင့် သီးသန့် module အဖြစ် ပြန်လည်စုစည်းထားသည်</td></tr>
+    <tr><td>Query ရှုပ်ထွေးမှု ကန့်သတ်ချက်</td><td>Query ရှုပ်ထွေးမှုကို အမှတ်ပေးစနစ်ဖြင့် database ကာကွယ်မှု ထပ်တိုးထည့်ထားသည်</td></tr>
+    <tr><td>ရလဒ်ကန့်သတ်ချက်</td><td>အများဆုံးရလဒ်ကို ၅၀ မှ ၁၀၀ သို့ တိုးမြှင့်ထားသည်</td></tr>
+    <tr><td>Quick filter များ</td><td>ဖယ်ရှားလိုက်သည် — အသုံးပြုမှုနည်းပြီး ရှုပ်ထွေးမှုသာ ထပ်တိုးစေသော ဝန်ဆောင်မှု ဖြစ်သည်</td></tr>
+  </table>
+  <p>Class အသစ် <code>FinancialFormatter</code> က app တစ်ခုလုံးတွင် ဘဏ္ဍာရေးဒေတာ ပုံစံချမှုကို စံသတ်မှတ်ပေးပြီး <code>company_financials</code> ကို raw SQL မှ Django ORM သို့ ပြောင်းရွှေ့ထားသည်</p>
+</section>
+
+<section>
+  <h2>အရေးကြီးသော bug ပြင်ဆင်မှုများ</h2>
+  <div class="callout danger">
+    <p><strong>Dividend yield ကို ၁၀၀ ဆ မှားယွင်းကာ မြင့်စွာ ပြသနေခဲ့သည်</strong> (0.42% အစား 41.69% ဖြစ်နေသည်) — database တွင် yield တန်ဖိုးများကို ရာခိုင်နှုန်းအနေဖြင့် သိမ်းဆည်းထားသော်လည်း ကိရိယာက ယင်းကို ဒဿမကိန်းအဖြစ် ကိုင်တွယ်နေသောကြောင့် ဖြစ်သည်။ မှန်ကန်သော documentation နှင့် field တစ်ခုစီအလိုက် ပုံစံချသော function များဖြင့် ပြင်ဆင်ပြီးပါပြီ။</p>
+  </div>
+  <p>ထို့အပြင် ပြင်ဆင်ခဲ့သည့်အချက် — citation များသည် object အစား dictionary အနေဖြင့် ရောက်ရှိလာသောအခါ စကားဝိုင်းများကို ပြိုကျစေခဲ့သော citation <code>AttributeError</code></p>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်သည်</h2>
+  <p>Citation ပိုမိုကောင်းမွန်လာခြင်းနှင့် screener ခေတ်မီလာခြင်းသည် ဒေတာ၏ အထွေထွေအရေးကြီးမှု အဆင့်ကို ပြောင်းလဲစေခြင်း မရှိပါ။ အများပြည်သူ ကုမ္ပဏီ အခြေခံဒေတာမှ ဖန်တီးထားသော screener ရလဒ်များသည် Tier 1 နှင့် နီးကပ်စွာ ကျန်ရှိနေသည်။ ဖောက်သည်၏ ပေါ်တဖိုလီယို သို့မဟုတ် watchlist နှင့် ချိတ်ဆက်ထားသော ရလဒ်များမူ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စာမျက်နှာရှိ အခြားနေရာများနည်းတူ Tier 2/3 စည်းမျဉ်းများကို လိုက်နာရမည်</p>
+</section>
+
+
+<div class="pager">
+  <a href="firecrawl-web-extraction.html">← Firecrawl ဝဘ် ထုတ်ယူရေး ကိရိယာ</a>
   <a href="citation-source-id-fix.html">Citation Source ID Bug Fix →</a>
 </div>
 

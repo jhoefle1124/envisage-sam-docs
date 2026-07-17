@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -168,6 +174,124 @@
 <div class="pager">
   <a href="context-management.html">← Context Management Enhancements</a>
   <a href="citation-management.html">Citation Management in SAM →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การปรับปรุงเนื้อหาและความซับซ้อนของ Anthropic</h1>
+    <p class="lede">ขณะนี้ SAM ดึงเนื้อหาจาก streaming response ของ Claude ได้แม่นยำและเสถียรขึ้น — เศษข้อความที่หลุดเข้ามาในแชทน้อยลง จัดการเนื้อหา "thinking" ได้สะอาดขึ้น และใช้ code path เดียวที่ผ่านการทดสอบอย่างละเอียด แทนที่ logic ที่กระจัดกระจายหลายจุด คุณไม่จำเป็นต้องสนใจรายละเอียดเหล่านี้เลย — นั่นคือเป้าหมายของการเปลี่ยนแปลงนี้</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>ดึงเนื้อหาได้แม่นยำขึ้น:</strong> ฟังก์ชัน utility ที่ใช้ร่วมกันตัวใหม่รองรับทุกรูปแบบที่ streaming API ของ Claude ส่งกลับมาได้ — ข้อความธรรมดา, delta update, รายการ content block และอื่น ๆ</li>
+    <li><strong>ตรวจจับ tool block:</strong> เนื้อหาที่เกี่ยวข้องกับ tool (tool_use, tool_result, input_json_delta ฯลฯ) ถูกระบุและกรองออกจากสิ่งที่คุณเห็นอย่างถูกต้องแล้ว แทนที่จะหลุดเข้ามาเป็นครั้งคราวเหมือนก่อน</li>
+    <li><strong>ลบแท็ก "thinking" ได้สะอาดขึ้น:</strong> รูปแบบที่ปรับให้เหมาะสมแล้วสามารถลบแท็ก thinking ทั้งแบบดิบและแบบเข้ารหัส HTML ได้ในรอบเดียว</li>
+    <li><strong>โค้ด streaming ที่เรียบง่ายขึ้น:</strong> logic การประมวลผล event ที่แปลง response stream ของ Claude ให้เป็นข้อความแชท ถูก refactor ให้ใช้ extraction path ศูนย์กลางเพียงจุดเดียว</li>
+  </ul>
+</section>
+
+<section>
+  <h2>เหตุใดจึงสำคัญ</h2>
+  <p>นี่คือการเปลี่ยนแปลงด้านความน่าเชื่อถือเบื้องหลัง — คุณจะไม่เห็นปุ่มหรือการตั้งค่าใหม่ สิ่งที่ควรสังเกตได้คือความผิดพลาดในการแสดงผลแชทลดลง ไม่มีเศษ tool-call หรือ markup "thinking" ที่หลงเหลือปรากฏในที่ที่ไม่ควรอยู่อีกต่อไป และพฤติกรรมของระบบสม่ำเสมอมากขึ้น ไม่ว่า Claude จะจัดโครงสร้าง streamed response นั้นอย่างไร</p>
+</section>
+
+<section>
+  <h2>สิ่งที่เปลี่ยนแปลงเบื้องหลัง</h2>
+  <table>
+    <tr><th>องค์ประกอบ</th><th>การทำงานในปัจจุบัน</th></tr>
+    <tr><td><code>extract_message_content()</code></td><td>ฟังก์ชันหลักเพียงจุดเดียวที่จัดการกลยุทธ์การดึงเนื้อหาทั้งหมด</td></tr>
+    <tr><td>การจัดการ Delta และรายการ</td><td>helper เฉพาะทางดึงข้อความจาก delta update และจากรายการ content block แบบผสม</td></tr>
+    <tr><td>การกรอง Tool Block</td><td>บล็อกที่เกี่ยวข้องกับ tool ถูกระบุและตัดออกจากเนื้อหาข้อความที่มองเห็นได้</td></tr>
+    <tr><td>การประมวลผล Streaming Event</td><td>ปรับให้เรียกใช้ฟังก์ชัน extraction ที่ใช้ร่วมกัน แทนการทำ logic ซ้ำซ้อนในหลายจุด</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ไม่มีการเปลี่ยนแปลงที่กระทบการทำงานเดิม</strong> นี่คือการ refactor ที่เพิ่มความแข็งแรงให้ระบบ ไม่ใช่การเปลี่ยนพฤติกรรมที่คุณต้องปรับตัวตาม มาพร้อมกับชุดทดสอบใหม่ 46 รายการ (27 รายการครอบคลุม LLM factory และ 19 รายการครอบคลุมการประมวลผล streaming event) ควบคู่กับชุดทดสอบเดิมทั้งหมดที่ยังคงผ่านตามปกติ</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>การเปลี่ยนแปลงนี้เกี่ยวข้องกับวิธีที่ SAM แสดงผล response ของ Claude ให้น่าเชื่อถือขึ้นเท่านั้น — ไม่ได้เปลี่ยนแปลงว่าข้อมูลไหลไปที่ใด กฎ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> เดิมเกี่ยวกับสิ่งที่คุณพิมพ์ลงในแชทของ SAM ยังคงบังคับใช้เหมือนเดิมทุกประการ</p>
+</section>
+
+<div class="pager">
+  <a href="context-management.html">← การปรับปรุงการจัดการ Context</a>
+  <a href="citation-management.html">การจัดการ Citation ใน SAM →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Anthropic ၏ အကြောင်းအရာနှင့် ရှုပ်ထွေးမှုကို မြှင့်တင်ခြင်း</h1>
+    <p class="lede">SAM သည် ယခုအခါ Claude ၏ streaming response များမှ အကြောင်းအရာကို ပိုမိုခိုင်မာစွာ ထုတ်ယူနိုင်ပြီ — chat တွင် ကျန်ကျန်နေသော အပိုင်းအစများ လျော့နည်းလာသည်၊ "thinking" content ကို ပိုမိုသန့်ရှင်းစွာ ကိုင်တွယ်နိုင်သည်၊ ပြီးတော့ ပျံ့နှံ့နေသော logic များအစား စမ်းသပ်မှုကောင်းစွာ ပြီးစီးထားသော code path တစ်ခုတည်းသာ ရှိတော့သည်။ ဤအသေးစိတ်များကို သင် စဉ်းစားနေစရာ မလိုပါ — ဒါက ရည်ရွယ်ချက်ပါ။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အရာများ</h2>
+  <ul>
+    <li><strong>ခိုင်မာသော content extraction:</strong> shared utility function အသစ်များသည် Claude ၏ streaming API ပြန်ပို့နိုင်သည့် ပုံစံအားလုံးကို ကိုင်တွယ်နိုင်သည် — plain text, delta update, content block စာရင်းများနှင့် အခြားများ</li>
+    <li><strong>Tool block ရှာဖွေခြင်း:</strong> tool နှင့်ဆက်စပ်သော content (tool_use, tool_result, input_json_delta စသည်) ကို ယခုအခါ မှန်ကန်စွာ ခွဲခြားသတ်မှတ်ပြီး သင့်မြင်ရမည့်အရာမှ ဖယ်ထုတ်ပေးနေပြီ — ယခင်က တခါတရံ ပေါက်ကြားဝင်ရောက်လာသကဲ့သို့ မဟုတ်တော့ပါ</li>
+    <li><strong>သန့်ရှင်းစွာ "thinking" tag ဖယ်ရှားခြင်း:</strong> အကောင်းဆုံးပြင်ဆင်ထားသော pattern သည် raw နှင့် HTML-encoded thinking tag နှစ်မျိုးလုံးကို တစ်ကြိမ်တည်းဖြင့် ဖယ်ရှားနိုင်သည်</li>
+    <li><strong>ရိုးရှင်းသွားသော streaming code:</strong> Claude ၏ response stream ကို chat message များအဖြစ် ပြောင်းလဲပေးသည့် event-processing logic ကို ဗဟိုချုပ်ကိုင်သော extraction path တစ်ခုတည်းသုံးရန် ပြန်လည်ဖွဲ့စည်းလိုက်သည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဘာကြောင့် အရေးကြီးသလဲ</h2>
+  <p>ဤသည်မှာ နောက်ကွယ်မှ ယုံကြည်စိတ်ချရမှု ပြောင်းလဲမှုတစ်ခုဖြစ်သည် — ခလုတ် သို့မဟုတ် setting အသစ်တစ်ခုကို သင်တွေ့မြင်ရမည် မဟုတ်ပါ။ သတိထားမိသင့်သည်မှာ chat တွင် rendering ချို့ယွင်းချက်များ လျော့နည်းလာခြင်းဖြစ်သည် — မှားယွင်းနေရာတွင် tool-call အပိုင်းအစများ သို့မဟုတ် ကျန်ရစ်နေသော "thinking" markup များ ပေါ်လာတော့မည် မဟုတ်ဘဲ Claude သည် streamed response ကို မည်သို့ပင် ဖွဲ့စည်းစေကာမူ ပိုမို တသမတ်တည်း ရှိသော အပြုအမူကို ရရှိမည်ဖြစ်သည်</p>
+</section>
+
+<section>
+  <h2>နောက်ကွယ်တွင် ပြောင်းလဲသွားသည့်အရာများ</h2>
+  <table>
+    <tr><th>အစိတ်အပိုင်း</th><th>ယခုလုပ်ဆောင်ချက်</th></tr>
+    <tr><td><code>extract_message_content()</code></td><td>content extraction ဗျူဟာအားလုံးကို ကိုင်တွယ်သည့် ဗဟိုစီမံသော function တစ်ခုတည်း</td></tr>
+    <tr><td>Delta နှင့် list ကိုင်တွယ်မှု</td><td>ကျယ်ကျယ်ပြန့်ပြန့် helper များသည် delta update များနှင့် ရောနှောထားသော content block စာရင်းများမှ စာသားကို ထုတ်ယူသည်</td></tr>
+    <tr><td>Tool Block စစ်ထုတ်ခြင်း</td><td>tool နှင့်ဆက်စပ်သော block များကို ခွဲခြားသတ်မှတ်ပြီး မြင်ရသော message content မှ ထုတ်ပယ်သည်</td></tr>
+    <tr><td>Streaming Event ကိုင်တွယ်ခြင်း</td><td>နေရာများစွာတွင် logic ထပ်ခါထပ်ခါ ရေးမည့်အစား shared extraction function ကို ခေါ်သုံးရန် ပြန်လည်ဖွဲ့စည်းထားသည်</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ပျက်စီးစေမည့် ပြောင်းလဲမှု မရှိပါ။</strong> ဤသည်မှာ ခိုင်မာမှုတိုးမြှင့်ထားသော refactor တစ်ခုဖြစ်ပြီး၊ သင်လိုက်လျောညီထွေဖြစ်ရန် လိုအပ်သော အပြုအမူပြောင်းလဲမှု မဟုတ်ပါ။ Test အသစ် ၄၆ ခု (LLM factory အတွက် ၂၇ ခု၊ streaming event processing အတွက် ၁၉ ခု) ပါဝင်ပြီး ရှိပြီးသား test suite အားလုံးနှင့်အတူ ဆက်လက်အောင်မြင်နေဆဲဖြစ်သည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>ဤပြောင်းလဲမှုသည် SAM မှ Claude ၏ response များကို ပိုမိုယုံကြည်စိတ်ချရအောင် ပြသနည်းနှင့် သက်ဆိုင်ပြီး — ဒေတာ မည်သည့်နေရာသို့ စီးဆင်းသည်ကို ပြောင်းလဲခြင်း မရှိပါ။ SAM chat တွင် သင်ရိုက်ထည့်သည့်အရာများအတွက် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စည်းမျဉ်းများအတိုင်း ယခင်အတိုင်းပင် ဆက်လက်သက်ရောက်နေဆဲဖြစ်သည်</p>
+</section>
+
+<div class="pager">
+  <a href="context-management.html">← Context Management ချဲ့ထွင်မှုများ</a>
+  <a href="citation-management.html">SAM တွင် Citation စီမံခန့်ခွဲမှု →</a>
 </div>
 
 </main>

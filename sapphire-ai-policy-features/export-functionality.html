@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -175,6 +181,130 @@
 
 </main>
 </div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การปรับปรุงฟังก์ชันการส่งออกข้อมูล</h1>
+    <p class="lede">การส่งออกผลลัพธ์จากตัวคัดกรอง (screener) มีความเสถียรมากขึ้น: ข้อความแจ้งข้อผิดพลาดที่ชัดเจนขึ้น มี export service ที่ใช้ร่วมกันเบื้องหลังทั้ง AI screener และ manual screener และขีดจำกัดการส่งออกที่สะท้อนค่าสูงสุดที่ตั้งค่าไว้จริง แทนที่จะเป็นตัวเลขที่ hardcode ไว้ตายตัว</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การจัดการข้อผิดพลาดที่ดีขึ้น:</strong> เมื่อการส่งออกล้มเหลว ระบบจะแสดงข้อความที่เป็นมิตรกับผู้ใช้และสามารถนำไปปฏิบัติได้ แทนที่จะเป็นข้อความ error ทั่วไป</li>
+    <li><strong>Service layer ที่ใช้ร่วมกัน:</strong> การส่งออกของทั้ง AI screener และ manual screener ทำงานผ่าน service ที่รวมเป็นหนึ่งเดียวแล้ว แทนที่จะใช้ logic ที่แยกกันและซ้ำซ้อน</li>
+    <li><strong>ขีดจำกัดการส่งออกแบบไดนามิก:</strong> ข้อความขีดจำกัดการส่งออกสะท้อนค่าสูงสุดที่ตั้งค่าไว้จริง ไม่ใช่ตัวเลขที่ hardcode ไว้</li>
+    <li><strong>การตรวจสอบชื่อ screener:</strong> ชื่อที่ยาวเกิน 60 ตัวอักษร จะได้รับข้อความแจ้งข้อผิดพลาดที่ชัดเจน แทนที่จะล้มเหลวแบบเงียบ ๆ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>เหตุใดจึงสำคัญ</h2>
+  <p>ก่อนการเปลี่ยนแปลงนี้ AI screener และ manual screener ต่างก็มี export logic ของตัวเอง ซึ่งหมายความว่าการแก้ไขและปรับปรุงต้องทำซ้ำสองครั้ง — และบางครั้งก็ถูกนำไปใช้แค่ใน path เดียวเท่านั้น การรวมทั้งสองเข้าเป็น service เดียวทำให้ประสบการณ์การใช้งานสอดคล้องกันมากขึ้นไม่ว่าจะส่งออกจาก screener ใด และมีจุดเดียวสำหรับดูแลรักษาต่อไปในอนาคต</p>
+</section>
+
+<section>
+  <h2>การปรับปรุงการจัดการข้อผิดพลาด</h2>
+  <table>
+    <tr><th>สถานการณ์</th><th>สิ่งที่เกิดขึ้นในตอนนี้</th></tr>
+    <tr><td>ชื่อ screener ยาวเกิน 60 ตัวอักษร</td><td>ข้อความแจ้งข้อผิดพลาดที่ชัดเจนและเจาะจง แทนที่จะเป็นการส่งออกที่ล้มเหลวหรือเงียบหาย</td></tr>
+    <tr><td>ถึงขีดจำกัดการส่งออกแล้ว</td><td>ข้อความระบุขีดจำกัดที่ตั้งค่าไว้จริง โดยอ่านค่าจากตัวแปรสภาพแวดล้อม <code>SCREENER_EXPORT_LIMIT</code></td></tr>
+    <tr><td>ความล้มเหลวในการส่งออกอื่น ๆ</td><td>ข้อความแจ้งข้อผิดพลาดที่เป็นมิตรกับผู้ใช้และสามารถนำไปปฏิบัติได้ แทนที่จะเป็นความล้มเหลวทั่วไป</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ผ่านการทดสอบอย่างละเอียดถี่ถ้วน ไม่มีการเปลี่ยนแปลงที่ทำให้ระบบเดิมพัง</strong> การอัปเดตนี้มาพร้อมกับ test ใหม่ 345 บรรทัดสำหรับฟังก์ชัน export helper และ test 539 บรรทัดสำหรับการทดสอบ integration ของฟอร์ม AI screener รวมถึงการแก้ไข test ที่เคย flaky มาก่อน ฟังก์ชันการส่งออกเดิมทั้งหมดยังคงทำงานตามปกติ</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงมีผลบังคับใช้</h2>
+  <p>การส่งออกผลลัพธ์ที่สร้างจากเกณฑ์การคัดกรองสาธารณะโดยทั่วไปจัดเป็น <strong>Tier 1</strong> ระดับชั้นจะเปลี่ยนไปเมื่อการส่งออกนั้นมีบริบทที่เจาะจงถึงลูกค้า</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">โดยทั่วไปไม่มีปัญหา</span><h4>การส่งออก screen สาธารณะ</h4><p>การส่งออก screen ทั่วไปที่สร้างจากเกณฑ์สาธารณะ โดยไม่มีชื่อลูกค้าหรือบริบทของงานที่เกี่ยวข้องแนบมาด้วย ยังคงใกล้เคียงกับ Tier 1</p></div>
+    <div class="card"><span class="badge amber">ตรวจสอบก่อน</span><h4>การส่งออกที่ระบุชื่อหรือผูกกับลูกค้า</h4><p>หากชื่อ screener ที่บันทึกไว้ หมายเหตุ หรือปลายทางการส่งออก อ้างอิงถึงลูกค้าหรืองานที่เจาะจง ให้ถือว่าการส่งออกนั้นเป็น Tier 2/3 และดำเนินการผ่าน workflow ที่ได้รับอนุมัติ ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="additional-fields.html">← การเพิ่มฟิลด์เสริมสูงสุดหกสิบฟิลด์บนหน้าจอคัดกรอง</a>
+  <a href="context-management.html">การปรับปรุงการจัดการบริบท →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · Feature လမ်းညွှန်</div>
+    <h1>Export လုပ်ဆောင်ချက် တိုးတက်မှု</h1>
+    <p class="lede">Screener ရလဒ်များ export လုပ်ခြင်းသည် ယခုအခါ ပိုမိုခိုင်မာလာသည် — ပိုရှင်းလင်းသော error message များ၊ AI screener နှင့် manual screener နှစ်ခုစလုံးအနောက်တွင် တူညီသော export service တစ်ခုတည်း၊ နှင့် hardcode ထားသည့် ကိန်းဂဏန်းအစား တကယ် config လုပ်ထားသည့် အများဆုံးကန့်သတ်ချက်ကို ထင်ဟပ်သော export limit များ ပါဝင်လာသည်</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အချက်များ</h2>
+  <ul>
+    <li><strong>Error handling ပိုမိုကောင်းမွန်လာခြင်း:</strong> export မအောင်မြင်သောအခါ ယခုအခါ generic error များအစား သုံးစွဲသူအတွက် နားလည်လွယ်ပြီး လုပ်ဆောင်နိုင်သော message များ ပြသသည်</li>
+    <li><strong>Service layer တစ်ခုတည်း အသုံးပြုခြင်း:</strong> AI screener နှင့် manual screener export များသည် ယခုအခါ သီးခြားနှင့် ထပ်နေသော logic များအစား တစ်ခုတည်းသော ပေါင်းစည်းထားသည့် service မှတစ်ဆင့် လုပ်ဆောင်သည်</li>
+    <li><strong>Export limit ကို dynamically ပြသခြင်း:</strong> export limit message သည် hardcode ထားသည့် ကိန်းဂဏန်းအစား တကယ် config လုပ်ထားသည့် အများဆုံးကန့်သတ်ချက်ကို ထင်ဟပ်သည်</li>
+    <li><strong>Screener နာမည် validation:</strong> ၆၀ လုံးထက်ကျော်သော နာမည်များသည် ယခုအခါ ဆိတ်ဆိတ်ချောက်ချားမှုအစား ရှင်းလင်းသော error message ရရှိသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>အရေးကြီးရသည့်အကြောင်းရင်း</h2>
+  <p>ဤပြောင်းလဲမှုမတိုင်မီ AI screener နှင့် manual screener တစ်ခုစီတွင် သီးခြား export logic ရှိခဲ့သည် — ဆိုလိုသည်မှာ ပြင်ဆင်မှုနှင့် တိုးတက်မှုများကို နှစ်ကြိမ် ပြုလုပ်ရပြီး တစ်ခါတစ်ရံ path တစ်ခုတည်းတွင်သာ ရောက်ရှိသည့်အခါလည်း ရှိသည်။ နှစ်ခုစလုံးကို service တစ်ခုတည်းအဖြစ် ပေါင်းစည်းလိုက်ခြင်းဖြင့် မည်သည့် screener မှ export လုပ်သည်ဖြစ်စေ ပိုမိုတသမတ်တည်းရှိသော အတွေ့အကြုံရရှိပြီး နောင်တွင် ထိန်းသိမ်းရန် နေရာတစ်ခုတည်းရှိလာသည်</p>
+</section>
+
+<section>
+  <h2>Error Handling တိုးတက်မှုများ</h2>
+  <table>
+    <tr><th>အခြေအနေ</th><th>ယခုဖြစ်ပေါ်သည့်အရာ</th></tr>
+    <tr><td>Screener နာမည် ၆၀ လုံးထက်ကျော်ခြင်း</td><td>Export မအောင်မြင်ခြင်း သို့မဟုတ် ဆိတ်ဆိတ်ဖြစ်ခြင်းအစား ရှင်းလင်းပြီး တိကျသော error message</td></tr>
+    <tr><td>Export limit သို့ ရောက်ရှိခြင်း</td><td><code>SCREENER_EXPORT_LIMIT</code> environment variable မှ ဖတ်ယူထားသော တကယ့် config limit ကို message က ဖော်ပြသည်</td></tr>
+    <tr><td>အခြား export မအောင်မြင်မှုများ</td><td>Generic failure များအစား သုံးစွဲသူအတွက် နားလည်လွယ်ပြီး လုပ်ဆောင်နိုင်သော error message များ</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>အသေးစိတ် စစ်ဆေးပြီး ရှိပြီးသား functionality မပျက်စီးပါ။</strong> ဤ update သည် export helper function များအတွက် test line ၃၄၅ လိုင်းနှင့် AI screener form များ integration testing အတွက် line ၅၃၉ လိုင်း အသစ်များနှင့်အတူ ရောက်ရှိလာပြီး previously flaky ဖြစ်ခဲ့သော test များကို ပြင်ဆင်ပေးထားသည်။ ရှိပြီးသား export functionality အားလုံး ဆက်လက်ရပ်တည်နေသည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>အများပြည်သူ screening criteria မှ တည်ဆောက်ထားသော ရလဒ်များကို export လုပ်ခြင်းသည် ယေဘုယျအားဖြင့် <strong>Tier 1</strong> ဖြစ်သည်။ Export တွင် client-specific framing ပါဝင်လာသည်နှင့် tier ပြောင်းလဲသွားသည်</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">များသောအားဖြင့် ပြဿနာမရှိပါ</span><h4>အများပြည်သူ Screen Export များ</h4><p>Client နာမည် သို့မဟုတ် engagement context တစ်စုံတစ်ခု မပါဘဲ အများပြည်သူ criteria ပေါ်တွင် တည်ဆောက်ထားသော generic screen ကို export လုပ်ခြင်းသည် Tier 1 နှင့် နီးစပ်နေဆဲဖြစ်သည်</p></div>
+    <div class="card"><span class="badge amber">ဦးစွာ စစ်ဆေးပါ</span><h4>အမည်ဖော်ထားသော သို့မဟုတ် Client နှင့်ဆက်စပ်သော Export များ</h4><p>သိမ်းဆည်းထားသော screener ၏ နာမည်၊ မှတ်ချက် သို့မဟုတ် export ပန်းတိုင်သည် တိကျသော client သို့မဟုတ် engagement ကို ရည်ညွှန်းပါက ထို export ကို Tier 2/3 အဖြစ် သတ်မှတ်ပြီး <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ ခွင့်ပြုထားသော workflow မှတစ်ဆင့် လုပ်ဆောင်ပါ</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="additional-fields.html">← Screen များပေါ်တွင် ဖွင့်ချ ခြောက်ဆယ်အထိ Field ထပ်ထည့်ခြင်း</a>
+  <a href="context-management.html">Context Management တိုးတက်မှုများ →</a>
+</div>
+
+</main>
+</div><!-- /my -->
 
 </body>
 </html>

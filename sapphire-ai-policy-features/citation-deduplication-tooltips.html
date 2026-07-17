@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -164,6 +170,116 @@
 <div class="pager">
   <a href="streaming-content-extraction.html">← Streaming Content Extraction</a>
   <a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · ข้อมูลอ้างอิงเชิงเทคนิค</div>
+    <h1>การลบ Citation ซ้ำและ Tooltip</h1>
+    <p class="lede">เบื้องหลังทางวิศวกรรมของพฤติกรรม citation ปัจจุบันใน SAM — การลบข้อมูลซ้ำด้วย fingerprint การเรียงลำดับเลขใหม่ต่อข้อความ ลิงก์แบบ real-time ระหว่าง streaming และ tooltip แสดงแหล่งที่มา พร้อมทั้งแก้ปัญหา memory leak ในการเรนเดอร์กราฟไปในตัว</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Backend</h2>
+  <ul>
+    <li><strong>การลบข้อมูลซ้ำด้วย fingerprint:</strong> แหล่งข้อมูลเดียวกันจะไม่ปรากฏซ้ำสองครั้งอีกต่อไป แม้ในกรณีที่หลายเครื่องมือส่ง source ID ที่ชนกันมา</li>
+    <li><strong>การจับคู่ citation ต่อข้อความ:</strong> การเรียงเลขจะเริ่มนับใหม่จาก 1 ในแต่ละคำตอบ แทนที่จะไล่เพิ่มขึ้นเรื่อย ๆ ไม่มีที่สิ้นสุด</li>
+    <li><strong>การดึงข้อมูลแบบ recursive:</strong> รองรับโครงสร้าง tool-response ที่ซ้อนกันหลายชั้น เพื่อให้พบ citation ได้ไม่ว่าจะซ่อนอยู่ลึกแค่ไหน</li>
+    <li><strong>ตัวชี้วัดแบบมีโครงสร้าง:</strong> ติดตามค่า <code>available_total</code>, <code>used_total</code>, <code>used_unique</code> และ <code>invalid_count</code> เพื่อการตรวจสอบระบบ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Frontend</h2>
+  <ul>
+    <li>ตัวเลข superscript ของ citation สามารถคลิกได้ทันทีขณะที่คำตอบกำลัง stream เข้ามา ไม่ต้องรอให้จบก่อน</li>
+    <li>เมื่อวางเมาส์บนเลข citation จะแสดงชื่อแหล่งที่มาและโดเมนผ่าน tooltip ก่อนที่คุณจะคลิกเข้าไปดู</li>
+    <li>การเรนเดอร์กราฟถูกรวมเข้าเป็น utility ที่ใช้ร่วมกัน ซึ่งแก้ปัญหา memory leak ที่เกิดจาก chart instance ไม่ถูกทำลายก่อนการ re-render</li>
+  </ul>
+  <p>ดู <a href="citation-management.html">การจัดการ Citation ใน SAM</a> สำหรับสรุปพฤติกรรมนี้ในมุมมองผู้ใช้งาน</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>มีการทดสอบอย่างละเอียดเพื่อยืนยันการลบข้อมูลซ้ำด้วย fingerprint การเรียงเลขใหม่ การสร้าง metadata การประมวลผลลิงก์แบบ real-time และความเสถียรของการเรนเดอร์กราฟ ใช้งานร่วมกับฟังก์ชันแชทเดิมได้อย่างสมบูรณ์ (backward compatible)</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>การแสดงผล citation ที่ดีขึ้นเป็นเพียงชั้นความสะดวกสบาย ไม่ใช่การเปลี่ยนแปลงระดับความอ่อนไหวของข้อมูล — ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> สำหรับสิ่งที่ยังต้องตรวจสอบก่อนนำไปใช้ใน deliverable</p>
+</section>
+
+
+<div class="pager">
+  <a href="streaming-content-extraction.html">← การดึงเนื้อหาแบบสตรีมมิง</a>
+  <a href="prompt-studio-modal-autocomplete.html">หน้าต่าง Prompt Studio และการเติมชื่อบริษัทอัตโนมัติ →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာဆိုင်ရာ ကိုးကားချက်</div>
+    <h1>Citation ထပ်နေမှု ဖယ်ရှားခြင်းနှင့် Tooltip</h1>
+    <p class="lede">SAM ၏ လက်ရှိ citation အပြုအမူနောက်ကွယ်ရှိ အင်ဂျင်နီယာအလုပ် — fingerprint အခြေခံ ထပ်နေမှုဖယ်ရှားခြင်း၊ message တစ်ခုချင်းစီအလိုက် နံပါတ်ပြန်သတ်မှတ်ခြင်း၊ real-time streaming link များ၊ source tooltip များ ထည့်သွင်းခြင်းအပြင် chart-rendering memory leak ပြဿနာကိုပါ ဖြေရှင်းပေးထားသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Backend</h2>
+  <ul>
+    <li><strong>Fingerprint အခြေခံ ထပ်နေမှုဖယ်ရှားခြင်း:</strong> tool များစွာမှ ပဋိပက္ခဖြစ်နေသော source ID များ ပြန်ပို့လာသည့်တိုင် တူညီသော source တစ်ခုသည် နှစ်ကြိမ် ထပ်ကာ ပေါ်တော့မည် မဟုတ်ပါ</li>
+    <li><strong>Message တစ်ခုချင်းစီအလိုက် citation mapping:</strong> နံပါတ်စဉ်သည် response တစ်ခုစီတွင် ၁ မှ ပြန်စတင်သည် — အဆုံးမရှိ တိုးများလာခြင်း မရှိတော့ပါ</li>
+    <li><strong>Recursive payload ထုတ်ယူခြင်း:</strong> tool-response ဖွဲ့စည်းပုံ အထပ်ထပ်ကို ကိုင်တွယ်နိုင်သဖြင့် citation များကို မည်သည့်အနက်ရှိနေစေကာမူ ရှာတွေ့နိုင်သည်</li>
+    <li><strong>ဖွဲ့စည်းထားသော metric များ:</strong> <code>available_total</code>, <code>used_total</code>, <code>used_unique</code> နှင့် <code>invalid_count</code> ကို စောင့်ကြည့်ခြင်းရည်ရွယ်ချက်ဖြင့် ခြေရာခံသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Frontend</h2>
+  <ul>
+    <li>Citation superscript နံပါတ်များကို response stream ဝင်နေချိန်တွင်ပင် နှိပ်နိုင်တော့သည် — ပြီးဆုံးမှ စောင့်ရန် မလိုတော့ပါ</li>
+    <li>Citation နံပါတ်ပေါ်တွင် mouse ကို ထားလိုက်ပါက နှိပ်မကြည့်မီ tooltip မှတစ်ဆင့် source ခေါင်းစဉ်နှင့် domain ကို ပြသသည်</li>
+    <li>Chart rendering ကို shared utility များအဖြစ် စုစည်းလိုက်သဖြင့် re-render မလုပ်မီ chart instance များ မဖျက်ဘဲ ကျန်နေခြင်းကြောင့် ဖြစ်ပေါ်သော memory leak ပြဿနာများကို ဖြေရှင်းပြီးဖြစ်သည်</li>
+  </ul>
+  <p>ဤအပြုအမူ၏ အသုံးပြုသူဘက်မှ အကျဉ်းချုပ်ကို <a href="citation-management.html">SAM တွင် Citation စီမံခန့်ခွဲမှု</a> တွင် ကြည့်ပါ</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>Fingerprint ထပ်နေမှုဖယ်ရှားခြင်း၊ နံပါတ်ပြန်သတ်မှတ်ခြင်း၊ metadata ထုတ်လုပ်ခြင်း၊ real-time link ကိုင်တွယ်ခြင်းနှင့် chart rendering တည်ငြိမ်မှုကို စစ်ဆေးရန် ကျယ်ကျယ်ပြန့်ပြန့် test များ ပြုလုပ်ထားသည်။ လက်ရှိ chat လုပ်ဆောင်ချက်များနှင့် အပြည့်အဝ backward compatible ဖြစ်သည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>Citation ကို ပိုမိုကောင်းမွန်စွာ ပြသခြင်းသည် အဆင်ပြေမှုအလွှာတစ်ခုသာဖြစ်ပြီး၊ ဒေတာ၏ အရေးကြီးမှုအဆင့်ကို ပြောင်းလဲခြင်း မဟုတ်ပါ — deliverable တစ်ခုသို့ မရောက်မီ မည်သည်ကို ဆက်လက်စစ်ဆေးရမည်ကို <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> တွင် ကြည့်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="streaming-content-extraction.html">← Streaming အကြောင်းအရာ ထုတ်ယူခြင်း</a>
+  <a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal နှင့် ကုမ္ပဏီ Autocomplete →</a>
 </div>
 
 </main>

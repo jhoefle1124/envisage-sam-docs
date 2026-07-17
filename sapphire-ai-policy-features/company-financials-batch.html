@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -158,6 +164,104 @@
 <div class="pager">
   <a href="regional-filtering-company-lists.html">← Regional Filtering & Company Lists</a>
   <a href="partial-match-exclusions.html">Partial Match Exclusions →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การดึงข้อมูลการเงินบริษัทแบบ Batch</h1>
+    <p class="lede">ขณะนี้สามารถดึงข้อมูลการเงินของบริษัทได้พร้อมกันหลายบริษัทในคำขอเดียว โดยมีค่าเริ่มต้นของ batch ที่ฉลาดขึ้น — เป็นส่วนหนึ่งของการรวมโค้ดครั้งใหญ่ที่ย้ายโมดูล portfolio analyst แบบแยกเดี่ยวเข้าไปรวมกับ company_financials.py</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>Batch retrieval:</strong> ดึงข้อมูลการเงินของหลายบริษัทได้ในการเรียกครั้งเดียว โดยมีขีดจำกัดแบบไดนามิกขึ้นอยู่กับฟิลด์ที่ร้องขอ</li>
+    <li><strong>ตัวเลือกควบคุมคำอธิบาย (Optional description control):</strong> พารามิเตอร์สำหรับไม่รวมข้อความอธิบายในผลลัพธ์ ช่วยลดการใช้ token เมื่อต้องการเฉพาะตัวเลข</li>
+    <li><strong>คำแนะนำที่เข้มงวดขึ้นสำหรับ stock screener:</strong> เอกสารประกอบเครื่องมือระบุห้ามใช้ <code>company_list</code> ร่วมกับตัวกรองอื่น เพื่อป้องกันการใช้งานผิดประเภท</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การล้างโค้ด</h2>
+  <p>โค้ดของไฟล์ portfolio-analyst ที่ไม่ใช้งานแล้วประมาณ 2,800 บรรทัด (error handler, exceptions, repository, service, types, validator) ถูกลบออก หลังจากฟังก์ชันการทำงานทั้งหมดถูกย้ายเข้าไปรวมกับ <code>company_financials.py</code> เรียบร้อยแล้ว ช่วยให้โค้ดเบสเรียบง่ายขึ้นโดยไม่เปลี่ยนพฤติกรรมการทำงาน</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>มีการทดสอบครอบคลุมฟังก์ชัน batch ใหม่และ helper method ต่าง ๆ อย่างครบถ้วน พร้อมยืนยันความเข้ากันได้แบบย้อนหลัง (backward compatibility) สำหรับคำขอแบบบริษัทเดียว ไม่มีการเปลี่ยนแปลงที่กระทบระบบเดิม (breaking changes) — พารามิเตอร์ใหม่เป็นแบบทางเลือกทั้งหมด</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>การรวมหลายบริษัทไว้ในคำขอเดียวไม่ได้เปลี่ยนแปลง tier ของข้อมูลการเงินที่อยู่เบื้องหลัง — ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> สำหรับกฎมาตรฐาน</p>
+</section>
+
+
+<div class="pager">
+  <a href="regional-filtering-company-lists.html">← การกรองตามภูมิภาคและรายชื่อบริษัท</a>
+  <a href="partial-match-exclusions.html">การยกเว้นแบบจับคู่บางส่วน →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာရည်ညွှန်း</div>
+    <h1>ကုမ္ပဏီ ဘဏ္ဍာရေးအချက်အလက် Batch ရယူခြင်း</h1>
+    <p class="lede">ကုမ္ပဏီ ဘဏ္ဍာရေးအချက်အလက်များကို တောင်းဆိုမှုတစ်ခုတည်းဖြင့် ကုမ္ပဏီများစွာအတွက် တစ်ပြိုင်နက် ရယူနိုင်ပြီဖြစ်သည်၊ ဉာဏ်ရည်ရှိသော batch default များနှင့်အတူ — ၎င်းသည် portfolio analyst module သီးခြားကို company_financials.py ထဲသို့ ပေါင်းစည်းလိုက်သည့် ကျယ်ပြန့်သော ပေါင်းစည်းမှု၏ တစ်စိတ်တစ်ပိုင်း ဖြစ်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အချက်များ</h2>
+  <ul>
+    <li><strong>Batch retrieval:</strong> တောင်းဆိုသည့် field အပေါ်မူတည်၍ dynamic limit များဖြင့် ကုမ္ပဏီများစွာ၏ ဘဏ္ဍာရေးအချက်အလက်ကို ခေါ်ဆိုမှုတစ်ခုတည်းဖြင့် ရယူနိုင်သည်။</li>
+    <li><strong>ရွေးချယ်နိုင်သော description ထိန်းချုပ်မှု:</strong> ဂဏန်းအချက်အလက်သာ လိုအပ်သောအခါ token အသုံးပြုမှုလျှော့ချရန် response များမှ ဖော်ပြချက်စာသားကို ဖယ်ထုတ်ပေးသော parameter။</li>
+    <li><strong>stock screener အတွက် ပိုမိုတင်းကျပ်သော လမ်းညွှန်ချက်:</strong> tool documentation တွင် <code>company_list</code> ကို filter အခြားများနှင့် ပေါင်းသုံးခြင်းကို ယခုအခါ တားမြစ်ထားသဖြင့် အလွဲသုံးမှုအမျိုးအစားတစ်ခုကို ကာကွယ်ပေးသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ရှင်းလင်းမှု</h2>
+  <p>အသုံးမကျတော့သည့် portfolio-analyst ဖိုင်များ (error handler, exceptions, repository, service, types, validator) ၏ လိုင်းအရေအတွက် ~2,800 ကို ၎င်းတို့၏ function များ <code>company_financials.py</code> ထဲသို့ အပြည့်အဝ ပြောင်းရွှေ့ပြီးနောက် ဖယ်ရှားခဲ့သည်၊ ဤသည်က behavior ကို မပြောင်းလဲဘဲ codebase ကို ရိုးရှင်းအောင် ပြုလုပ်ပေးသည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>batch function အသစ်နှင့် helper method များအတွက် စမ်းသပ်မှု coverage အပြည့်အဝရှိပြီး၊ ကုမ္ပဏီတစ်ခုတည်း တောင်းဆိုမှုများအတွက် backward compatibility ကို အတည်ပြုထားသည်။ breaking changes မရှိပါ — parameter အသစ်များသည် ရွေးချယ်ခွင့်ရှိသည့် (optional) parameter များသာ ဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်ဆဲ</h2>
+  <p>ကုမ္ပဏီများစွာကို ခေါ်ဆိုမှုတစ်ခုတည်းထဲ batch ပြုလုပ်ခြင်းသည် အခြေခံဘဏ္ဍာရေးအချက်အလက်၏ tier ကို ပြောင်းလဲမပေးပါ — စံနှုန်းစည်းမျဉ်းများအတွက် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="regional-filtering-company-lists.html">← ဒေသအလိုက် စစ်ထုတ်ခြင်းနှင့် ကုမ္ပဏီစာရင်းများ</a>
+  <a href="partial-match-exclusions.html">တစ်စိတ်တစ်ပိုင်း ကိုက်ညီမှု ဖယ်ထုတ်ခြင်း →</a>
 </div>
 
 </main>

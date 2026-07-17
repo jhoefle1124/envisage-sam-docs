@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -154,6 +160,96 @@
 <div class="pager">
   <a href="save-screener-results.html">← Save Screener Results from Chat</a>
   <a href="scorecard-tool-launch.html">Scorecard Tool Launch →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเปิดตัวเครื่องมือ Portfolio Analyst</h1>
+    <p class="lede">การเปิดตัวครั้งแรกของเครื่องมือ Portfolio Analyst: การเข้าถึงข้อมูลพอร์ตโฟลิโอและ watchlist ที่จำกัดเฉพาะทีม การกรองข้อมูลทางการเงินขั้นสูง และข้อมูลการดูแลของนักวิเคราะห์ ทั้งหมดถูกบังคับใช้ด้วยการแยกทีมอย่างเข้มงวด</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ฟีเจอร์หลัก</h2>
+  <ul>
+    <li><strong>คำสั่ง query ที่จำกัดเฉพาะทีม:</strong> <code>team_id</code> ที่จำเป็นต้องระบุ ช่วยให้แน่ใจว่าทุก query ถูกจำกัดอยู่ในข้อมูลของทีมที่ร้องขอเท่านั้น</li>
+    <li><strong>การกรองขั้นสูง:</strong> การกรองตัวชี้วัดทางการเงินตามอัตราส่วน P/E มูลค่าตลาด (market cap) การเติบโตของรายได้ และตัวชี้วัดสำคัญอื่น ๆ โดยใช้ตัวดำเนินการ (&gt;, &lt;, =, &gt;=, &lt;=)</li>
+    <li><strong>ข้อมูลนักวิเคราะห์:</strong> การมอบหมายนักวิเคราะห์และข้อมูลการดูแล (coverage) ถูกรวมเข้ากับผลลัพธ์พอร์ตโฟลิโอโดยตรง</li>
+    <li><strong>การจัดการข้อผิดพลาดที่มั่นคง:</strong> การจัดการข้อผิดพลาดจากการตอบกลับที่ว่างเปล่าของผู้ให้บริการ LLM ต้นทางอย่างราบรื่น</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>โค้ดทดสอบมากกว่า 1,280 บรรทัด</strong> ครอบคลุมทุกประเภทของ query (portfolio, watchlist และแบบผสมผสาน) การบังคับใช้ความปลอดภัยระดับทีม ตรรกะการกรองข้อมูลทางการเงิน และสถานการณ์การจัดการข้อผิดพลาด</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงมีผล</h2>
+  <p>องค์ประกอบของพอร์ตโฟลิโอและ watchlist ถือเป็นข้อมูลลูกค้าของ SAM — เป็น Tier 3 โดยค่าเริ่มต้น ประมวลผลได้เฉพาะภายใน SAM และ workflow ของ Claude ที่ได้รับอนุมัติ ภายใต้เงื่อนไขของงานที่ได้รับมอบหมายเท่านั้น ดู <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="save-screener-results.html">← บันทึกผลลัพธ์ Screener จากแชท</a>
+  <a href="scorecard-tool-launch.html">การเปิดตัวเครื่องมือ Scorecard →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Portfolio Analyst ကိရိယာ စတင်မိတ်ဆက်ခြင်း</h1>
+    <p class="lede">Portfolio analyst ကိရိယာ၏ မူလ စတင်မိတ်ဆက်မှု — portfolio နှင့် watchlist ဒေတာသို့ team အလိုက် ကန့်သတ်ဝင်ရောက်ခွင့်၊ အဆင့်မြင့် ဘဏ္ဍာရေး filtering နှင့် analyst coverage အချက်အလက်တို့ကို team isolation တင်းကျပ်စွာ ကျင့်သုံးထားသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အဓိက ဝန်ဆောင်မှုများ</h2>
+  <ul>
+    <li><strong>Team အလိုက် ကန့်သတ် query များ:</strong> လိုအပ်သော <code>team_id</code> က query တိုင်း တောင်းဆိုသည့် team ၏ ဒေတာသာ ဝင်ရောက်နိုင်ကြောင်း သေချာစေသည်။</li>
+    <li><strong>အဆင့်မြင့် filtering:</strong> P/E ratio၊ market cap၊ revenue growth နှင့် အခြားအဓိက ညွှန်းကိန်းများဖြင့် ဘဏ္ဍာရေးညွှန်းကိန်း filtering ကို operator (&gt;, &lt;, =, &gt;=, &lt;=) များသုံး၍ ပြုလုပ်သည်။</li>
+    <li><strong>Analyst အချက်အလက်:</strong> analyst တာဝန်ပေးအပ်မှုနှင့် coverage ဒေတာကို portfolio ရလဒ်များထဲသို့ တိုက်ရိုက် ပေါင်းစပ်ထားသည်။</li>
+    <li><strong>ခိုင်မာသော error handling:</strong> အခြေခံ LLM provider မှ empty-response error များကို ချောမွေ့စွာ ကိုင်တွယ်သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test code line 1,280+ လိုင်း</strong> — query အမျိုးအစားအားလုံး (portfolio၊ watchlist နှင့် ပေါင်းစပ်)၊ team security ကျင့်သုံးမှု၊ ဘဏ္ဍာရေး filtering logic နှင့် error handling အခြေအနေများကို ကာမိသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>Portfolio နှင့် watchlist ဖွဲ့စည်းပုံသည် SAM ဖောက်သည်ဒေတာဖြစ်သည် — ပုံမှန်အားဖြင့် Tier 3 ဖြစ်ပြီး SAM နှင့် ခွင့်ပြုထားသော Claude workflow များအတွင်းတွင်သာ engagement စည်းကမ်းချက်များအရ ပြုလုပ်ရမည်။ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="save-screener-results.html">← Chat မှ Screener ရလဒ်များ သိမ်းဆည်းခြင်း</a>
+  <a href="scorecard-tool-launch.html">Scorecard ကိရိယာ စတင်မိတ်ဆက်ခြင်း →</a>
 </div>
 
 </main>

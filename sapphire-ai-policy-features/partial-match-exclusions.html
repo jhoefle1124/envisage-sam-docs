@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -157,6 +163,104 @@
 
 <div class="pager">
   <a href="company-financials-batch.html">← Company Financials Batch Retrieval</a>
+  <a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การยกเว้นด้วยการจับคู่บางส่วน</h1>
+    <p class="lede">การยกเว้นบริษัทออกจากการสกรีนตอนนี้จับคู่กับชื่อบริษัทและ ticker แบบบางส่วนแล้ว แทนที่จะต้องจับคู่แบบตรงทั้งหมด — ทำให้ "exclude Pineapple" สามารถยกเว้นทุกบริษัทที่มีคำว่า Pineapple อยู่ในชื่อได้อย่างถูกต้อง</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรเปลี่ยนแปลงบ้าง</h2>
+  <ul>
+    <li>การยกเว้นตามชื่อตอนนี้ใช้การจับคู่บางส่วน (<code>NOT LIKE</code>) แทนการจับคู่แบบตรงทั้งหมด</li>
+    <li>การยกเว้นตาม ticker ก็รองรับการจับคู่บางส่วนเช่นกัน — การยกเว้น <code>AAPL</code> จะยกเว้น <code>XNGS:AAPL</code> ด้วย</li>
+    <li>ปรับปรุงการจัดการคำสั่งค้นหาที่ซับซ้อนซึ่งรวมทั้งการรวมและการยกเว้นไว้ในคำขอเดียวกัน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>สิ่งที่คุณสามารถถามได้</h2>
+  <div class="example good"><div class="label">ตัวอย่าง</div><p>"แสดงหุ้น Apple ให้ฉันดู แต่ยกเว้นอะไรก็ตามที่มีคำว่า Pineapple"</p></div>
+  <div class="example good"><div class="label">ตัวอย่าง</div><p>"บริษัทเทคโนโลยี ยกเว้น MSFT"</p></div>
+  <div class="example good"><div class="label">ตัวอย่าง</div><p>"ธนาคารทั้งหมด ยกเว้นที่มีคำว่า 'Community' อยู่ในชื่อ"</p></div>
+</section>
+
+<section>
+  <h2>เบื้องหลังการทำงาน</h2>
+  <p>ตัวกรองการรวมใช้ตรรกะ <strong>OR</strong> (จับคู่กับรายการใดรายการหนึ่ง); ตัวกรองการยกเว้นใช้ตรรกะ <strong>AND</strong> (ต้องไม่จับคู่กับรายการใดเลย) — การแยกกันนี้ทำให้คำสั่งค้นหาเดียวสามารถผสม "แสดง X" กับ "แต่ไม่รวม Y" ได้อย่างถูกต้อง ตัวดำเนินการ <code>NOT LIKE</code> มีการจัดการค่า NULL ด้วย เพื่อไม่ให้บริษัทที่ไม่มีข้อมูลชื่อหรือ ticker ถูกตัดออกไปโดยไม่ตั้งใจ</p>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>เกณฑ์การยกเว้นที่อิงตามชื่อหรือ ticker สาธารณะโดยทั่วไปจัดเป็น Tier 1 หากรายชื่อยกเว้นสะท้อนถึงข้อกำหนด (mandate) เฉพาะของลูกค้ารายใดรายหนึ่ง ให้ถือว่า framing นั้นเป็น Tier 2/3 ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> — เป็นกฎเดียวกับที่กล่าวถึงใน <a href="exclusion-list.html">Exclusion List Capabilities</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="company-financials-batch.html">← การดึงข้อมูลการเงินบริษัทแบบ Batch</a>
+  <a href="portfolio-analyst-field-parity.html">ความเท่าเทียมของฟิลด์ Portfolio Analyst →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ်ထွက်ရှိ · ဖီချာလမ်းညွှန်</div>
+    <h1>တစ်စိတ်တစ်ပိုင်း ကိုက်ညီမှုဖြင့် ချန်လှပ်ခြင်း</h1>
+    <p class="lede">Screen တစ်ခုမှ ကုမ္ပဏီများကို ချန်လှပ်ခြင်းသည် ယခုအခါ အတိအကျ ကိုက်ညီမှု လိုအပ်မည့်အစား ကုမ္ပဏီအမည်နှင့် ticker များကို တစ်စိတ်တစ်ပိုင်းသာ ကိုက်ညီစေခြင်းဖြင့် လုပ်ဆောင်နိုင်ပါပြီ — ထို့ကြောင့် "exclude Pineapple" ဆိုလျှင် Pineapple ဟူသော စကားလုံးပါသော ကုမ္ပဏီအားလုံးကို မှန်ကန်စွာ ချန်လှပ်ပေးနိုင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ပြောင်းလဲသွားသည်များ</h2>
+  <ul>
+    <li>အမည်ဖြင့် ချန်လှပ်ခြင်းသည် ယခုအခါ အတိအကျ ကိုက်ညီမှုအစား တစ်စိတ်တစ်ပိုင်း ကိုက်ညီမှု (<code>NOT LIKE</code>) ကို အသုံးပြုသည်</li>
+    <li>Ticker ဖြင့် ချန်လှပ်ခြင်းသည်လည်း တစ်စိတ်တစ်ပိုင်း ကိုက်ညီမှုကို ပံ့ပိုးသည် — <code>AAPL</code> ကို ချန်လှပ်လိုက်လျှင် <code>XNGS:AAPL</code> ကိုပါ ချန်လှပ်ပေးသည်</li>
+    <li>ထည့်သွင်းမှုနှင့် ချန်လှပ်မှုကို တောင်းဆိုမှုတစ်ခုတည်းတွင် ပေါင်းစပ်ထားသော ရှုပ်ထွေးသည့် query များအတွက် ကိုင်တွယ်မှုကို တိုးတက်စေခဲ့သည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>သင်မေးနိုင်သည့်ဥပမာများ</h2>
+  <div class="example good"><div class="label">ဥပမာ</div><p>"Apple ရှယ်ယာများကို ပြပါ၊ ဒါပေမယ့် Pineapple ပါတဲ့ ဘာမဆို ချန်လှပ်ပါ။"</p></div>
+  <div class="example good"><div class="label">ဥပမာ</div><p>"MSFT ကို ချန်လှပ်ထားသော နည်းပညာကုမ္ပဏီများ။"</p></div>
+  <div class="example good"><div class="label">ဥပမာ</div><p>"အမည်တွင် 'Community' ပါသော ဘဏ်များမှလွဲ၍ ဘဏ်အားလုံး။"</p></div>
+</section>
+
+<section>
+  <h2>နောက်ကွယ်တွင် အလုပ်လုပ်ပုံ</h2>
+  <p>ထည့်သွင်းမှု filter များသည် <strong>OR</strong> logic (ဤစာရင်းများထဲမှ တစ်ခုခုနှင့် ကိုက်ညီရုံဖြင့် ရ) ကို အသုံးပြုပြီး ချန်လှပ်မှု filter များသည် <strong>AND</strong> logic (ဤစာရင်းများထဲမှ မည်သည့်တစ်ခုနှင့်မျှ မကိုက်ညီရ) ကို အသုံးပြုသည် — ဤသို့ ခွဲခြားထားခြင်းက query တစ်ခုတည်းအတွင်း "X ကို ပြပါ" နှင့် "Y မပါစေရ" ကို မှန်ကန်စွာ ရောနှောနိုင်စေသည်။ <code>NOT LIKE</code> operator တွင် NULL ကိုင်တွယ်မှု ပါဝင်သဖြင့် အမည် သို့မဟုတ် ticker အချက်အလက် မပြည့်စုံသော ကုမ္ပဏီများကို မတော်တဆ ချန်လှပ်မိခြင်း မဖြစ်စေပါ။</p>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်</h2>
+  <p>အများပြည်သူ အမည် သို့မဟုတ် ticker များအပေါ် အခြေခံသော ချန်လှပ်ရေး criteria များသည် ယေဘုယျအားဖြင့် Tier 1 ဖြစ်သည်။ ချန်လှပ်ရန် စာရင်းသည် ဖောက်သည်တစ်ဦး၏ တိကျသော mandate ကို ထင်ဟပ်ပါက ထို framing ကို <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ Tier 2/3 အဖြစ် သတ်မှတ်ပါ — <a href="exclusion-list.html">Exclusion List Capabilities</a> တွင် ဖော်ပြထားသည့် စည်းမျဉ်းတူညီစွာပင်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="company-financials-batch.html">← Company Financials Batch ရယူခြင်း</a>
   <a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity →</a>
 </div>
 

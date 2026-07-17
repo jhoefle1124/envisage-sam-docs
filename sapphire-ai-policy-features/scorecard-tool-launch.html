@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -153,6 +159,94 @@
 <div class="pager">
   <a href="scorecard-tool-launch.html">← Scorecard Tool Launch</a>
   <a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>ค่าเฉลี่ยทีมสกอร์การ์ดและกราฟใยแมงมุม</h1>
+    <p class="lede">การเปรียบเทียบสกอร์การ์ดในขณะนี้สามารถแสดงค่าเฉลี่ยของทีมเพื่อเป็นบริบทเพิ่มเติมได้ กราฟใยแมงมุม/กราฟเรดาร์ (spider/polar charts) ได้รับการปรับสเกลอย่างชาญฉลาดเพื่อการเปรียบเทียบภาพที่ชัดเจนขึ้น และตัวคัดกรองหุ้นที่ขับเคลื่อนด้วย AI สามารถแปลความหมายตัวเลขแบบย่อ เช่น "1B" หรือ "500M" ในตัวกรองมูลค่าตลาดได้แล้ว</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>ค่าเฉลี่ยทีมในสกอร์การ์ด:</strong> พารามิเตอร์เสริม <code>include_team_average</code> เพิ่มการคำนวณค่าเฉลี่ยของทีมควบคู่ไปกับการเปรียบเทียบสกอร์การ์ดรายบุคคล</li>
+    <li><strong>กราฟใยแมงมุม/เรดาร์ขั้นสูง:</strong> การปรับสเกลแกน y อย่างชาญฉลาดและการปรับสเกลอัตโนมัติตามการกระจายตัวของข้อมูล เพื่อการเปรียบเทียบเชิงภาพแบบปัจจัยต่อปัจจัยที่ชัดเจนยิ่งขึ้น</li>
+    <li><strong>การแปลความหมายของตัวคัดกรอง AI:</strong> การจัดการที่ดีขึ้นสำหรับสัญกรณ์ตัวเลขจำนวนมาก (B/M/K) ในตัวกรองมูลค่าตลาด รวมถึงการแก้ไขการแมปฟิลด์อัตราส่วนหนี้สินต่อทุน (debt-to-equity) และตรรกะการกรองหุ้นกลุ่มเทคโนโลยี</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>การคำนวณค่าเฉลี่ยของทีมได้รับการทดสอบในชุดทดสอบเครื่องมือสกอร์การ์ด การแสดงผลกราฟได้รับการตรวจสอบในหลากหลายรูปแบบการกระจายตัวของข้อมูล และการแปลความหมายของตัวคัดกรอง AI ได้รับการทดสอบด้วยข้อมูลรูปแบบ 1B, 500M และ 100K การเปลี่ยนแปลงทั้งหมดเข้ากันได้กับ API contract ที่มีอยู่เดิม</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>ค่าเฉลี่ยของทีมยังคงถูกสร้างจากข้อมูลสกอร์การ์ดในขอบเขตของทีม — Tier 3 เช่นเดียวกับคะแนนรายบุคคลที่นำมาคำนวณ ดู <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-tool-launch.html">← เปิดตัวเครื่องมือสกอร์การ์ด</a>
+  <a href="scorecard-rankings-portfolio-analyst.html">การจัดอันดับสกอร์การ์ดในนักวิเคราะห์พอร์ตโฟลิโอ →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · Feature Guide</div>
+    <h1>Scorecard အသင်းပျမ်းမျှနှင့် Spider Chart</h1>
+    <p class="lede">Scorecard နှိုင်းယှဉ်မှုများသည် ယခုအခါ context အတွက် အသင်း (team) ပျမ်းမျှတန်ဖိုးကို ထည့်သွင်းနိုင်ပြီ၊ spider/polar chart များသည် ပိုမိုရှင်းလင်းသော ဒေတာနှိုင်းယှဉ်မှုအတွက် ဉာဏ်ရည်ရှိသော scaling ရရှိလာပြီ၊ ထို့အပြင် AI screener သည် market cap filter များတွင် "1B" သို့မဟုတ် "500M" ကဲ့သို့ အတိုကောက်ဂဏန်းများကို ဖတ်တတ်လာပြီဖြစ်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ဘာတွေရှိလဲ</h2>
+  <ul>
+    <li><strong>Scorecard အသင်းပျမ်းမျှ:</strong> ရွေးချယ်နိုင်သော <code>include_team_average</code> parameter သည် တစ်ဦးချင်း scorecard နှိုင်းယှဉ်မှုများနှင့်အတူ အသင်းပျမ်းမျှတန်ဖိုး တွက်ချက်မှုကို ထပ်ထည့်ပေးသည်။</li>
+    <li><strong>အဆင့်မြင့် Spider/Polar Chart များ:</strong> ဒေတာ ဖြန့်ကျဲမှုအပေါ် အခြေခံ၍ ဉာဏ်ရည်ရှိသော y-axis scaling နှင့် အလိုအလျောက် scale ချိန်ညှိမှု — factor တစ်ခုချင်းစီအလိုက် ပိုမိုရှင်းလင်းသော ရုပ်ပုံနှိုင်းယှဉ်မှုအတွက်။</li>
+    <li><strong>AI Screener ဖတ်ခြင်း:</strong> market cap filter များအတွက် ဂဏန်းအကြီးစား သင်္ကေတ (B/M/K) ကိုင်တွယ်မှု ပိုမိုကောင်းမွန်လာပြီး debt-to-equity field mapping အမှားပြင်ဆင်မှုနှင့် technology stock filtering logic ကိုပါ ပြင်ဆင်ထားသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>အသင်းပျမ်းမျှတန်ဖိုး တွက်ချက်မှုကို scorecard tool test များတွင် စစ်ဆေးထားပြီး၊ chart visualization ကို ဒေတာဖြန့်ကျဲမှု အမျိုးမျိုးတွင် အတည်ပြုထားကာ၊ AI screener ဖတ်ခြင်းကို 1B, 500M နှင့် 100K ပုံစံ input များဖြင့် စစ်ဆေးထားသည်။ ပြောင်းလဲမှုအားလုံးသည် လက်ရှိ API contract များနှင့် backward compatible ဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်း ဆက်လက်သက်ရောက်</h2>
+  <p>အသင်းပျမ်းမျှတန်ဖိုးသည် အသင်းအလိုက် scorecard ဒေတာမှသာ ဆက်လက် တည်ဆောက်ထားခြင်းဖြစ်သည် — ၎င်းကို ရယူသည့် တစ်ဦးချင်း score များကဲ့သို့ပင် Tier 3 ဖြစ်သည်။ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-tool-launch.html">← Scorecard ကိရိယာ စတင်မိတ်ဆက်ခြင်း</a>
+  <a href="scorecard-rankings-portfolio-analyst.html">Portfolio Analyst ထဲရှိ Scorecard အဆင့်သတ်မှတ်ခြင်း →</a>
 </div>
 
 </main>

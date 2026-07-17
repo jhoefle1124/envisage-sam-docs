@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -161,6 +167,112 @@
 
 <div class="pager">
   <a href="broker-notes-mcp.html">← Broker Notes MCP Integration</a>
+  <a href="personal-prompt-templates.html">Personal Prompt Templates →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การกรองวันที่ของ Broker Notes และ Opus 4.5</h1>
+    <p class="lede">ระบบค้นหา broker notes ได้เพิ่มการกรองตามช่วงวันที่และการกำหนดจำนวนผลลัพธ์สูงสุดที่ปรับได้ พร้อมทั้งแก้ไขปัญหา cache key และอัปเกรดโมเดล Claude Opus ที่ขับเคลื่อนแชทบอทเป็นเวอร์ชัน 4.5</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การกรองตามวันที่:</strong> พารามิเตอร์ <code>start_date</code> และ <code>end_date</code> (รูปแบบ YYYY-MM-DD) ใช้จำกัดผลลัพธ์ให้อยู่ในช่วงวันที่ที่กำหนด โดยค่าเริ่มต้นจะใช้ช่วง 12 เดือนล่าสุดหากไม่ได้ระบุไว้</li>
+    <li><strong>การจำกัดจำนวนผลลัพธ์:</strong> พารามิเตอร์ใหม่ <code>max_results</code> (1–50 ค่าเริ่มต้น 10) ใช้ควบคุมจำนวนผลลัพธ์ที่ส่งกลับมา</li>
+    <li><strong>การตรวจสอบความถูกต้อง:</strong> การตรวจสอบช่วงวันที่ช่วยให้แน่ใจว่าวันที่เริ่มต้นต้องมาก่อนหรือเท่ากับวันที่สิ้นสุด โดยรองรับความคลาดเคลื่อนที่เกิดจาก LLM เช่น ข้อความที่มีเครื่องหมายคำพูดติดมาหรือช่องว่างเกิน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การปรับปรุงความน่าเชื่อถือ</h2>
+  <ul>
+    <li>ค่า null ในการตอบกลับจาก API (title, text, url) ขณะนี้จะ fallback ได้อย่างถูกต้องแทนที่จะแสดงข้อผิดพลาด</li>
+    <li>Cache key ขณะนี้จะ hash ข้อมูล JSON ทั้งหมด (query จำนวนผลลัพธ์ และวันที่) แทนที่จะใช้แค่ query string เพียงอย่างเดียว ซึ่งช่วยป้องกันการชนกันของ cache</li>
+  </ul>
+  <p>Claude Opus ได้รับการอัปเกรดจากเวอร์ชัน 4.1 เป็น 4.5 ซึ่งช่วยเพิ่มความสามารถด้านการให้เหตุผลและประสิทธิภาพให้กับแชทบอท</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>Unit test ใหม่กว่า 20 รายการ</strong> ครอบคลุมการตรวจสอบวันที่ การตรวจสอบช่วงวันที่ ขอบเขตการจำกัดผลลัพธ์ การจัดการค่า null และการสร้าง cache key ยังคง backward compatible — การเรียกใช้งานเดิมที่ไม่มีพารามิเตอร์วันที่หรือจำนวนผลลัพธ์ยังคงทำงานได้ตามค่าเริ่มต้นที่เหมาะสม</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>การกรองตามวันที่ไม่ได้เปลี่ยนแปลงว่าอะไรปลอดภัยที่จะทำกับผลลัพธ์เหล่านี้ — ดู <a href="broker-notes-mcp.html">Broker Notes MCP Integration</a> และ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="broker-notes-mcp.html">← การรวม Broker Notes MCP</a>
+  <a href="personal-prompt-templates.html">Personal Prompt Templates →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Broker Notes ရက်စွဲစစ်ထုတ်မှု နှင့် Opus 4.5</h1>
+    <p class="lede">Broker notes ရှာဖွေမှုတွင် ရက်စွဲအပိုင်းအခြားအလိုက် စစ်ထုတ်ခြင်းနှင့် သတ်မှတ်နိုင်သော ရလဒ်အကန့်အသတ်များ ထပ်တိုးလာပြီး cache key ချို့ယွင်းချက် ပြင်ဆင်မှု နှင့် chatbot ကို ကွန်ပျူတာလုပ်ဆောင်ပေးနေသော Claude Opus မော်ဒယ်ကို ဗားရှင်း 4.5 သို့ အဆင့်မြှင့်တင်မှု ပါဝင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်လာသည့်အချက်များ</h2>
+  <ul>
+    <li><strong>ရက်စွဲစစ်ထုတ်ခြင်း</strong> — <code>start_date</code> နှင့် <code>end_date</code> parameter များ (YYYY-MM-DD ပုံစံ) ဖြင့် ရလဒ်များကို ရက်စွဲအပိုင်းအခြားအတွင်း ကျဉ်းစေသည်။ မသတ်မှတ်ပါက ပုံသေအနေဖြင့် လွန်ခဲ့သော ၁၂ လအတွင်းကို အသုံးပြုသည်။</li>
+    <li><strong>ရလဒ်အကန့်အသတ်</strong> — parameter အသစ် <code>max_results</code> (၁–၅၀၊ ပုံသေတန်ဖိုး ၁၀) က ပြန်ရသော ရလဒ်အရေအတွက်ကို ထိန်းချုပ်သည်။</li>
+    <li><strong>အတည်ပြုစစ်ဆေးမှု</strong> — ရက်စွဲအပိုင်းအခြား အတည်ပြုမှုက စတင်ရက်စွဲသည် ပြီးဆုံးရက်စွဲနှင့် တူညီသော် (သို့) ယင်းထက် စောသော ရက်စွဲဖြစ်ကြောင်း သေချာစေသည်။ LLM မှ ထွက်ပေါ်လာတတ်သော quote character သို့မဟုတ် space အပို ကဲ့သို့ artifact များကိုလည်း ခွင့်ပြုသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချမှု တိုးတက်မှုများ</h2>
+  <ul>
+    <li>API response များ (title, text, url) ရှိ null တန်ဖိုးများသည် ယခုအခါ error မပြသဘဲ မှန်ကန်စွာ fallback ပြုလုပ်နိုင်ပြီ</li>
+    <li>Cache key များသည် ယခုအခါ query string တစ်ခုတည်းအစား JSON payload တစ်ခုလုံး (query၊ ရလဒ်အရေအတွက်၊ ရက်စွဲများ) ကို hash ပြုလုပ်ပြီး cache ပဋိပက္ခများကို ကာကွယ်သည်</li>
+  </ul>
+  <p>Claude Opus ကို 4.1 မှ 4.5 သို့ အဆင့်မြှင့်လိုက်ပြီး chatbot အတွက် ပိုမိုကောင်းမွန်သော ကျိုးကြောင်းဆင်ခြင်မှုနှင့် စွမ်းဆောင်ရည်ကို ယူဆောင်လာသည်</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချမှု</h2>
+  <div class="callout ok">
+    <p><strong>Unit test အသစ် ၂၀ ကျော်</strong> — ရက်စွဲအတည်ပြုမှု၊ အပိုင်းအခြားအတည်ပြုမှု၊ ရလဒ်အကန့်အသတ်နယ်နိမိတ်၊ null ကိုင်တွယ်မှု နှင့် cache key ဖန်တီးမှုတို့ကို လွှမ်းခြုံသည်။ Backward compatible ဖြစ်သည် — ရက်စွဲ (သို့) limit parameter မပါသော ရှိပြီးသား ခေါ်ဆိုမှုများသည် ကောင်းမွန်သင့်တော်သော ပုံသေတန်ဖိုးများနှင့် ဆက်လက်အလုပ်လုပ်နေဆဲ ဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်သည်</h2>
+  <p>ရက်စွဲအလိုက် စစ်ထုတ်ခြင်းသည် ရလဒ်များနှင့် ဘာလုပ်လျှင် ဘေးကင်းသည်ဆိုသည်ကို ပြောင်းလဲမှု မရှိပါ — <a href="broker-notes-mcp.html">Broker Notes MCP Integration</a> နှင့် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="broker-notes-mcp.html">← Broker Notes MCP ပေါင်းစပ်ခြင်း</a>
   <a href="personal-prompt-templates.html">Personal Prompt Templates →</a>
 </div>
 

@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -158,6 +164,104 @@
 <div class="pager">
   <a href="typescript-migration.html">← TypeScript Migration</a>
   <a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การส่งออก PDF และรูปแบบการคัดลอก</h1>
+    <p class="lede">ขณะนี้สามารถส่งออกเซสชันแชททั้งหมดเป็นไฟล์ PDF ที่จัดรูปแบบอย่างมืออาชีพได้แล้ว พร้อมกราฟหุ้นที่แสดงผลเป็นภาพฝังอยู่ในเอกสาร นอกจากนี้ยังมีเมนูคัดลอกแบบใหม่สำหรับข้อความธรรมดา ข้อความมีรูปแบบ (rich text) หรือ HTML</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>การส่งออก PDF</h2>
+  <ul>
+    <li>ส่งออก PDF ของทั้งเซสชัน พร้อมสไตล์ที่รองรับทั้งโหมดมืดและโหมดสว่าง และการแสดงผล markdown/code-block ที่ถูกต้อง</li>
+    <li>กราฟหุ้นจาก Highcharts จะถูกแปลงเป็นภาพ PNG (ผ่าน Playwright) และฝังลงในไฟล์ PDF โดยตรง</li>
+    <li>ระบบจัดการการขึ้นหน้าใหม่อย่างชาญฉลาด ป้องกันไม่ให้ข้อความถูกตัดขาดระหว่างหน้าอย่างไม่เหมาะสม</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ตัวเลือกรูปแบบการคัดลอก</h2>
+  <p>เมนูแบบใหม่ช่วยให้คุณคัดลอกคำตอบเป็นข้อความธรรมดา ข้อความมีรูปแบบ หรือ HTML ได้ — มีประโยชน์ขึ้นอยู่กับว่าคุณกำลังจะวางลงในอีเมล เอกสาร Word หรือหน้าเว็บ</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>แก้ไข 25 ไฟล์ เพิ่มโค้ด 2,582 บรรทัด</strong> ชุดทดสอบความยาว 557 บรรทัดครอบคลุมการสร้าง PDF สำหรับเนื้อหาแชทหลากหลายรูปแบบ และฟีเจอร์นี้จัดการแชทที่ไม่มีกราฟเลยได้อย่างราบรื่น</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงมีผล</h2>
+  <p>PDF ที่ส่งออกจะมีระดับชั้นเดียวกับบทสนทนาที่สร้างมันขึ้นมา PDF ที่สร้างจากบทสนทนา Tier 3 ก็ถือเป็น Tier 3 เช่นกัน — จัดเก็บและดูแลรักษาเช่นเดียวกับแชทต้นฉบับ ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="typescript-migration.html">← การย้ายระบบสู่ TypeScript</a>
+  <a href="streaming-recovery-session-handling.html">การกู้คืนสตรีมมิงและการจัดการเซสชัน →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>PDF Export နှင့် Copy ပုံစံများ</h1>
+    <p class="lede">ယခုအခါ chat session အပြည့်အစုံကို stock chart များအား ပုံရိပ်အဖြစ် ထည့်သွင်းထားသော PDF အဖြစ် ပရော်ဖက်ရှင်နယ်ပုံစံဖြင့် export လုပ်နိုင်ပြီဖြစ်သည်၊ ထို့အပြင် plain text၊ rich text သို့မဟုတ် HTML အဖြစ် copy လုပ်ရန် dropdown အသစ်တစ်ခုလည်း ပါဝင်လာသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>PDF Export</h2>
+  <ul>
+    <li>Session အပြည့်အစုံ PDF export — dark/light mode ကို သိရှိသော styling နှင့် markdown/code-block များကို မှန်ကန်စွာ ဖော်ပြခြင်းပါဝင်သည်။</li>
+    <li>Highcharts stock chart များကို PNG ပုံများအဖြစ် (Playwright မှတစ်ဆင့်) ပြောင်းလဲပြီး PDF ထဲသို့ တိုက်ရိုက် ထည့်သွင်းသည်။</li>
+    <li>စမတ် page-break စီမံခန့်ခွဲမှုက စာမျက်နှာများကြား message များ မလိုလားအပ်ဘဲ ဖြတ်တောက်မသွားစေရန် ကာကွယ်ပေးသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Copy ပုံစံ ရွေးချယ်စရာများ</h2>
+  <p>dropdown အသစ်တစ်ခုက အဖြေတစ်ခုကို plain text၊ rich text သို့မဟုတ် HTML အဖြစ် copy လုပ်ခွင့်ပြုသည် — email၊ Word document သို့မဟုတ် web page တစ်ခုထဲသို့ paste လုပ်မည်ဆိုသည်ပေါ်မူတည်၍ အသုံးဝင်သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ဖိုင် 25 ဖိုင် ပြောင်းလဲထားပြီး 2,582 လိုင်း ထပ်ပေါင်းထားသည်။</strong> line 557 လိုင်းပါ test suite သည် chat content အမျိုးမျိုးအတွက် PDF ဖန်တီးမှုကို ကာမိပြီး၊ ဤဝန်ဆောင်မှုသည် chart လုံးဝမပါသော chat များကိုလည်း ချောမွေ့စွာ ကိုင်တွယ်နိုင်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>Export လုပ်ထားသော PDF သည် ၎င်းကို ဖန်တီးထားသည့် စကားဝိုင်းနှင့် တူညီသော tier ကို ဆောင်ရသည်။ Tier 3 စကားဝိုင်းမှ ဖန်တီးထားသော PDF သည် ကိုယ်တိုင် Tier 3 ဖြစ်သည် — မူရင်း chat ကို ကိုင်တွယ်သကဲ့သို့ တိကျစွာ ကိုင်တွယ်ပြီး သိမ်းဆည်းပါ၊ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> အရ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="typescript-migration.html">← TypeScript သို့ ပြောင်းရွှေ့ခြင်း</a>
+  <a href="streaming-recovery-session-handling.html">Streaming ပြန်လည်ရယူခြင်းနှင့် Session စီမံခန့်ခွဲခြင်း →</a>
 </div>
 
 </main>

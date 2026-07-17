@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -164,6 +170,116 @@
 <div class="pager">
   <a href="langgraph-tool-loop-fix.html">← LangGraph Tool Loop Fix</a>
   <a href="excel-processing-enhancements.html">Excel Processing Enhancements →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเปิดตัวระบบ Citation</h1>
+    <p class="lede">ขณะนี้คำตอบของ SAM มาพร้อมการอ้างอิงแหล่งที่มาที่โปร่งใส — citation ที่คลิกได้สำหรับเอกสารที่อัปโหลด, citation เชิงพรรณนาเพียงรายการเดียวสำหรับการ query ฐานข้อมูล และ citation ที่ระบุวันที่เผยแพร่สำหรับข่าว เพื่อให้คุณตรวจสอบข้อความอ้างสิทธิ์ได้โดยไม่ต้องไล่หาว่าข้อมูลนั้นมาจากไหน</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การอ้างอิงเอกสาร:</strong> ตัวเลขตัวยกที่คลิกได้ (เช่น <code>[1]</code>, <code>[2]</code>) ซึ่งพาไปยังเอกสารต้นฉบับโดยตรง เอกสารแต่ละฉบับจะได้รับหมายเลขเฉพาะของตนเองในแต่ละบทสนทนา</li>
+    <li><strong>การอ้างอิงฐานข้อมูล:</strong> citation เชิงพรรณนาเพียงรายการเดียวต่อหนึ่ง query (เช่น "Data from SAM database: stock_data tables") แทนที่จะแสดงผลรกเกะกะเหมือนก่อน</li>
+    <li><strong>การอ้างอิงข่าว:</strong> ปรับปรุงให้แสดงวันที่เผยแพร่จริงของแหล่งข่าว เพื่อให้คุณประเมินได้ว่าข้อมูลนั้นทันสมัยเพียงใด</li>
+  </ul>
+</section>
+
+<section>
+  <h2>วิธีการทำงาน</h2>
+  <p><code>custom_tool_wrapper</code> ที่ใช้ร่วมกันจะแนบ citation เข้ากับการตอบกลับของ tool โดยอิงตามตัวนับ citation ส่วนกลาง (global citation counter) ทำให้หมายเลขไม่ซ้ำกันแม้จะมีการเรียก tool หลายครั้งในคำตอบเดียวกัน ตัวประมวลผลรองรับทั้ง citation object ที่มีโครงสร้างและ dictionary ธรรมดาเพื่อความเข้ากันได้ ก่อนจะแสดงผลออกมาในรูปแบบที่ใช้งานง่ายบน chat UI</p>
+  <table>
+    <tr><th>ตัวชี้วัด</th><th>ผลลัพธ์</th></tr>
+    <tr><td>ภาระการประมวลผล citation</td><td>น้อยกว่า 5ms ต่อการตอบกลับหนึ่งครั้ง</td></tr>
+    <tr><td>การใช้หน่วยความจำ</td><td>ประมาณ 1KB ต่อ citation หนึ่งรายการ</td></tr>
+    <tr><td>ความครอบคลุมของการทดสอบ</td><td>78% → 85%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>เปิดใช้งานแบบไม่มี downtime ผ่านระบบ feature flag</strong> ไม่ต้อง migrate ฐานข้อมูล เข้ากันได้ (backward compatible) กับ chat session เดิมทั้งหมด และสามารถเปิด/ปิดได้ผ่านการตั้งค่า <code>ENABLE_CITATIONS</code> หากเกิดปัญหา นอกจากนี้ยังมีการแก้ไขบั๊กเรื่องการเก็บรักษาประวัติ session (session-history persistence) และบั๊กเรื่อง test isolation (ทั้งสองอย่างไม่เกี่ยวข้องกับ citation) ในการปรับปรุงรอบเดียวกันนี้ด้วย</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>Citation คือตัวชี้ไปยังแหล่งที่มา ไม่ใช่การเปลี่ยนระดับความอ่อนไหวของแหล่งที่มานั้น citation ที่อ้างถึงข้อมูล SAM ระดับ Tier 3 ก็ยังคงเป็น Tier 3 อยู่เช่นเดิม — ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> สำหรับกฎเกณฑ์พื้นฐานที่เกี่ยวข้อง</p>
+</section>
+
+
+<div class="pager">
+  <a href="langgraph-tool-loop-fix.html">← การแก้ไข LangGraph Tool Loop</a>
+  <a href="excel-processing-enhancements.html">การปรับปรุงการประมวลผล Excel →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှု လမ်းညွှန်</div>
+    <h1>Citation System စတင်မိတ်ဆက်ခြင်း</h1>
+    <p class="lede">SAM ၏ ပြန်ကြားချက်များတွင် ယခုအခါ ပွင့်လင်းသော source attribution ပါဝင်လာပြီ — အပ်လုဒ်လုပ်ထားသည့် စာရွက်စာတမ်းများအတွက် နှိပ်နိုင်သော citation များ၊ ဒေတာဘေ့စ် query များအတွက် ဖော်ပြချက်ပါ citation တစ်ခုတည်း၊ နှင့် သတင်းများအတွက် ထုတ်ဝေသည့်ရက်စွဲပါ citation များ ပါဝင်သဖြင့် အချက်အလက်တစ်ခု မည်သည့်နေရာမှ လာသည်ကို ရှာနေစရာမလိုဘဲ စစ်ဆေးနိုင်ပါပြီ။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အရာများ</h2>
+  <ul>
+    <li><strong>စာရွက်စာတမ်း Citation များ:</strong> နှိပ်နိုင်သော superscript နံပါတ်များ (ဥပမာ <code>[1]</code>, <code>[2]</code>) ဖြစ်ပြီး မူရင်း document သို့ တိုက်ရိုက်ပို့ဆောင်ပေးသည်။ document တစ်ခုစီသည် conversation တစ်ခုစီအလိုက် သီးသန့်နံပါတ်တစ်ခု ရရှိသည်။</li>
+    <li><strong>ဒေတာဘေ့စ် Citation:</strong> query တစ်ခုစီအတွက် ဖော်ပြချက်ပါ citation တစ်ခုတည်း (ဥပမာ "Data from SAM database: stock_data tables") ဖြစ်ပြီး ရှုပ်ထွေးမှုကို လျှော့ချပေးသည်။</li>
+    <li><strong>သတင်း Citation:</strong> source ၏ အမှန်တကယ် ထုတ်ဝေသည့်ရက်စွဲဖြင့် တိုးတက်ကောင်းမွန်စေထားပြီး၊ အချက်အလက်သည် မည်မျှ လတ်ဆတ်သည်ကို အကဲဖြတ်နိုင်စေသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>အလုပ်လုပ်ပုံ</h2>
+  <p><code>custom_tool_wrapper</code> တစ်ခုတည်းကို share လုပ်ပြီး tool ၏ response များတွင် global citation counter နောက်ကွယ်မှ citation များကို ပူးတွဲပေးသဖြင့် response တစ်ခုတည်းအတွင်း tool ကို အကြိမ်များစွာ ခေါ်ဆိုလျှင်ပင် နံပါတ်များ ထပ်နေခြင်း မရှိပါ။ processor သည် compatibility အတွက် structured citation object များနှင့် ရိုးရိုး dictionary များ နှစ်မျိုးလုံးကို လက်ခံပြီး၊ ထို့နောက် chat UI တွင် အသုံးပြုရလွယ်ကူသော format အဖြစ် render ပြုလုပ်ပေးသည်။</p>
+  <table>
+    <tr><th>တိုင်းတာချက်</th><th>ရလဒ်</th></tr>
+    <tr><td>Citation ပြုပြင်ဆောင်ရွက်မှု Overhead</td><td>response တစ်ခုလျှင် 5ms အောက်</td></tr>
+    <tr><td>Memory အသုံးပြုမှု</td><td>citation တစ်ခုလျှင် ~1KB ခန့်</td></tr>
+    <tr><td>Test Coverage</td><td>78% → 85%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Downtime မရှိဘဲ feature flag ဖြင့် rollout ပြုလုပ်ခြင်း။</strong> Database migration မလိုအပ်ပါ၊ ရှိပြီးသား chat session များနှင့် အပြည့်အဝ backward compatible ဖြစ်ပြီး၊ ပြဿနာတစ်စုံတစ်ရာ ဖြစ်ပေါ်လာပါက <code>ENABLE_CITATIONS</code> setting မှတစ်ဆင့် ဖွင့်/ပိတ် လုပ်နိုင်သည်။ ၎င်းနှင့်အတူ session-history persistence ချို့ယွင်းချက်တစ်ခု နှင့် test-isolation ချို့ယွင်းချက်တစ်ခု (နှစ်ခုစလုံး citation နှင့် မသက်ဆိုင်ပါ) ကိုလည်း အလုပ်တစ်ခုတည်းတွင် ပြင်ဆင်ပြီးပါပြီ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>Citation တစ်ခုသည် source တစ်ခုသို့ ညွှန်ပြသော pointer တစ်ခုသာဖြစ်ပြီး ထို source ၏ sensitivity ကို ပြောင်းလဲစေခြင်း မဟုတ်ပါ။ Tier 3 SAM ဒေတာကို ညွှန်ပြသော citation သည်လည်း Tier 3 အဖြစ်ပင် ဆက်လက်ရှိနေဆဲဖြစ်သည် — အခြေခံစည်းမျဉ်းများအတွက် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကိုကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="langgraph-tool-loop-fix.html">← LangGraph Tool Loop ပြင်ဆင်ချက်</a>
+  <a href="excel-processing-enhancements.html">Excel Processing တိုးတက်မှုများ →</a>
 </div>
 
 </main>

@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -161,6 +167,110 @@
 <div class="pager">
   <a href="chatbot-architecture-refactor.html">← Chatbot Architecture Refactor</a>
   <a href="citation-system-launch.html">Citation System Launch →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การแก้ไขปัญหา Tool Loop ใน LangGraph</h1>
+    <p class="lede">การแก้ไขบั๊กประเภทหนึ่งที่ทำให้ chatbot อาจติดค้างอยู่ในสถานะเรียกใช้ tools ซ้ำ ๆ โดยไม่เคยส่งคำตอบกลับมา — แก้ไขผ่านการจัดการ message ที่ถูกต้องใน LangGraph และกลไกจำกัด recursion ที่ฉลาดขึ้น</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สิ่งที่ผิดพลาด</h2>
+  <ul>
+    <li><strong>Tool calling loops:</strong> การไหลของ message ที่ไม่ถูกต้องระหว่างการเรียก LLM และการทำงานของ tools อาจทำให้ chatbot เรียกใช้ tools ซ้ำไปเรื่อย ๆ อย่างไม่มีที่สิ้นสุด แทนที่จะส่งคำตอบกลับมา</li>
+    <li><strong>Anthropic provider errors:</strong> พารามิเตอร์ <code>request_timeout</code> ที่ไม่รองรับ ทำให้เกิดความล้มเหลวในการ initialize โดยเฉพาะกับ Claude</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การแก้ไข</h2>
+  <ul>
+    <li>เพิ่ม <code>messages</code> list ที่ถูกต้องเข้าไปใน graph state โดยใช้ message types ที่สอดคล้องกับ LangGraph (<code>HumanMessage</code>, <code>AIMessage</code>, <code>ToolMessage</code>, <code>SystemMessage</code>) ตลอดทั้งระบบ</li>
+    <li>แทนที่การตั้งค่า max-tool-executions แบบ hardcode ด้วยกลไก <code>RemainingSteps</code> ที่มีอยู่ในตัวของ LangGraph ซึ่งจะลดระดับการทำงานอย่างนุ่มนวลพร้อมข้อความที่เป็นมิตรต่อผู้ใช้ แทนที่จะแสดง error กะทันหันเมื่อบทสนทนาใกล้ถึงขีดจำกัดความลึก</li>
+    <li>แก้ไข Anthropic provider ให้ใช้พารามิเตอร์ timeout ที่รองรับจริง โดยไม่กระทบต่อ providers อื่น ๆ (OpenAI, Fireworks)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบเดิมทั้งหมดผ่านเรียบร้อย พร้อมเพิ่ม coverage ใหม่</strong> สำหรับการจัดการ message และพฤติกรรมของ remaining-steps ตรวจสอบเพิ่มเติมด้วยการทดสอบด้วยตนเองในสถานการณ์การเรียกใช้ tools ต่าง ๆ</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้เช่นเดิม</h2>
+  <p>นี่คือการแก้ไขด้านความน่าเชื่อถือในวิธีที่ chatbot จัดการ orchestration การเรียกใช้ tools เท่านั้น — ไม่ได้เปลี่ยนแปลงว่าข้อมูลใดที่ tool แต่ละตัวได้รับอนุญาตให้เข้าถึง กฎ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> มาตรฐานยังคงบังคับใช้กับการเรียกใช้ tool ทุกครั้ง</p>
+</section>
+
+
+<div class="pager">
+  <a href="chatbot-architecture-refactor.html">← การปรับโครงสร้างสถาปัตยกรรม Chatbot</a>
+  <a href="citation-system-launch.html">เปิดตัวระบบ Citation →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · နည်းပညာရည်ညွှန်းချက်</div>
+    <h1>LangGraph Tool Loop ပြဿနာ ပြင်ဆင်ချက်</h1>
+    <p class="lede">chatbot သည် အဖြေတစ်ခုမျှ မပြန်ပေးဘဲ tools များကို ထပ်ခါထပ်ခါ ခေါ်နေရာတွင် ပိတ်မိသွားနိုင်သည့် bug အမျိုးအစားတစ်ခုအတွက် ပြင်ဆင်ချက် — LangGraph ၏ message handling ကို မှန်ကန်စွာ ပြုလုပ်ခြင်းနှင့် ပိုမိုပါးနပ်သော recursion-limit ယန္တရားဖြင့် ပြင်ဆင်ထားသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ဘာမှားယွင်းခဲ့သနည်း</h2>
+  <ul>
+    <li><strong>Tool calling loops:</strong> LLM ခေါ်ဆိုမှုများနှင့် tool execution များကြား message flow မမှန်ကန်ခြင်းကြောင့် chatbot သည် အဖြေပြန်မပေးဘဲ tools များကို အဆုံးမရှိ ခေါ်ဆိုနေနိုင်သည်။</li>
+    <li><strong>Anthropic provider errors:</strong> ပံ့ပိုးမထားသော <code>request_timeout</code> parameter သည် Claude အတွက်သီးသန့် initialization ပျက်ကွက်မှုများ ဖြစ်စေခဲ့သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ပြင်ဆင်ချက်</h2>
+  <ul>
+    <li>graph state ထဲသို့ မှန်ကန်သော <code>messages</code> list ကို ထည့်သွင်းပြီး၊ LangGraph နှင့် ကိုက်ညီသော message types (<code>HumanMessage</code>, <code>AIMessage</code>, <code>ToolMessage</code>, <code>SystemMessage</code>) များကို တစ်ချောင်းလုံး အသုံးပြုထားသည်။</li>
+    <li>hardcode လုပ်ထားသော max-tool-executions setting ကို LangGraph ၏ built-in <code>RemainingSteps</code> ယန္တရားဖြင့် အစားထိုးထားသည်။ ၎င်းသည် စကားဝိုင်း depth limit သို့ ရောက်ရှိလာသောအခါ ရုတ်တရက် error မဖြစ်စေဘဲ အသုံးပြုသူ နားလည်လွယ်သော message ဖြင့် နူးညံ့စွာ degrade ဖြစ်စေသည်။</li>
+    <li>Anthropic provider ကို ၎င်းအမှန်တကယ် ပံ့ပိုးထားသော timeout parameter ကို အသုံးပြုစေရန် ပြင်ဆင်ထားပြီး၊ အခြား providers (OpenAI, Fireworks) များကို ထိခိုက်မှု မရှိစေပါ။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ရှိပြီးသား test များအားလုံး အောင်မြင်ပြီး၊ message handling နှင့် remaining-steps အပြုအမူအတွက် coverage အသစ်များပါ ထပ်ထည့်ထားသည်</strong> — tool-calling scenarios အမျိုးမျိုးတွင် manual testing ဖြင့် အတည်ပြုထားသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>ဤသည်မှာ chatbot က tool calls များကို orchestrate ပြုလုပ်ပုံအတွက် ယုံကြည်စိတ်ချရမှု ပြင်ဆင်ချက်တစ်ခုသာ ဖြစ်ပြီး — tool တစ်ခုချင်းစီ ထိတွေ့ခွင့်ရှိသော ဒေတာကို ပြောင်းလဲခြင်း မဟုတ်ပါ။ standard <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စည်းမျဉ်းများသည် tool call တိုင်းတွင် ဆက်လက် သက်ရောက်နေမည်ဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="chatbot-architecture-refactor.html">← Chatbot Architecture ပြန်လည်ဖွဲ့စည်းမှု</a>
+  <a href="citation-system-launch.html">Citation စနစ် စတင်မိတ်ဆက်ခြင်း →</a>
 </div>
 
 </main>

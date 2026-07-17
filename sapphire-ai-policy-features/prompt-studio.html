@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -218,6 +224,216 @@ insights.</code></pre>
 
 </main>
 </div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>คลัง Prompt Template</h1>
+    <p class="lede">SAM กำลังจะมีคลัง prompt template ที่ดูแลโดยแอดมินในตัว สำหรับงานวิเคราะห์ที่ทำเป็นประจำ — จัดหมวดหมู่ เขียนด้วย markdown และสร้างขึ้นจาก placeholder แบบเติมคำในช่องว่าง เช่น <code>{{Company}}</code> หน้านี้อธิบายวิธีการทำงานของคลังนี้และวิธีใช้งานให้ได้ผลดี</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Prompt Template คืออะไร</h2>
+  <p>Prompt template คือ prompt ที่เขียนไว้ล่วงหน้าและนำกลับมาใช้ซ้ำได้ สำหรับงานวิเคราะห์ที่เกิดขึ้นซ้ำ ๆ เช่น ภาพรวมบริษัท investment thesis หรือการเปรียบเทียบคู่แข่ง — เพื่อให้นักวิเคราะห์ไม่ต้องสร้างโครงสร้าง prompt แบบเดียวกันขึ้นมาใหม่ทุกครั้ง Template มีลักษณะดังนี้:</p>
+  <ul>
+    <li><strong>บริหารจัดการโดยแอดมินของไซต์ในระดับส่วนกลาง</strong> ผ่านหน้า admin interface ที่สร้างขึ้นเฉพาะ ไม่ใช่สิ่งที่ผู้ใช้แต่ละคนสร้างขึ้นเองตามใจ</li>
+    <li><strong>เขียนด้วย markdown</strong> ผ่านตัวแก้ไขที่เหมาะสม ทำให้การจัดรูปแบบ (หัวข้อ ตัวหนา bullet list) ยังคงอยู่ใน prompt สุดท้าย</li>
+    <li><strong>จัดหมวดหมู่</strong> — เช่น investment research, competitive analysis — เพื่อให้ค้นหาและเรียกดูใน SAM ได้ง่าย</li>
+    <li><strong>ใช้งานได้กับผู้ใช้ทุกคน</strong> เมื่อเผยแพร่แล้ว โดยแอดมินเป็นผู้ควบคุมว่า template ใดเปิดใช้งานอยู่และเรียงลำดับการแสดงผลอย่างไร</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Placeholder ทำงานอย่างไร</h2>
+  <p>Template ใช้ placeholder แบบวงเล็บปีกกาคู่ที่คุณเติมข้อมูลก่อนรัน prompt ระบบจะตรวจจับ placeholder โดยอัตโนมัติเมื่อบันทึก template และจับคู่โดยไม่สนตัวพิมพ์เล็ก-ใหญ่ ดังนั้น <code>{{Company}}</code> และ <code>{{company}}</code> จะทำงานเหมือนกัน</p>
+  <table>
+    <tr><th>Placeholder</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+    <tr><td><code>{{Company}}</code></td><td>การเลือกบริษัทเดียว</td><td><code>{{Company}}</code> → Petronas</td></tr>
+    <tr><td><code>{{Companies}}</code></td><td>หลายบริษัท คั่นด้วยจุลภาค</td><td><code>{{Companies}}</code> → Petronas, Shell, TotalEnergies</td></tr>
+    <tr><td><code>{{Date}}</code></td><td>เติมวันที่ปัจจุบันให้อัตโนมัติ</td><td><code>{{Date}}</code> → วันที่ของวันนี้</td></tr>
+    <tr><td><code>{{User}}</code></td><td>เติมชื่อผู้ใช้ปัจจุบันให้อัตโนมัติ</td><td><code>{{User}}</code> → ชื่อของคุณ</td></tr>
+  </table>
+  <div class="callout">
+    <p><strong>คำใดก็ได้สามารถใช้เป็น placeholder ได้</strong> ผู้เขียน template ไม่ได้จำกัดอยู่แค่สี่แบบข้างต้น — <code>{{Competitor1}}</code>, <code>{{Sector}}</code> หรือรูปแบบ <code>{{...}}</code> อื่นใดก็ถูกจดจำในลักษณะเดียวกัน สี่แบบที่ระบุไว้เป็นแบบที่ SAM เข้าใจดีพอที่จะเสนอการแทนที่อัจฉริยะ (การค้นหาบริษัท เติมวันที่/ผู้ใช้อัตโนมัติ) ส่วนแบบอื่น ๆ เป็นเพียงช่องว่างธรรมดาให้เติมคำ</p>
+  </div>
+</section>
+
+<section>
+  <h2>ตัวอย่าง Template</h2>
+
+  <h3>Investment Thesis Template</h3>
+  <div class="example">
+    <div class="label">หมวดหมู่: Investment Research</div>
+    <pre><code>## Background and Thesis for {{Company}}
+
+Write a detailed overview of {{Company}}, tailored for long-term
+fundamental investors with an investment horizon of 3-5 years.
+The summary should include:
+
+- Company Description: primary business activities, key products
+  or services, market focus, and geographical presence, broken
+  down by segment and geography where possible.
+- Investment Thesis: why the company is attractive for a 3-5 year
+  horizon — structural growth drivers, competitive advantages,
+  market positioning, alignment with global trends.
+- Risk: macro risks, competitive dynamics, regulatory concerns,
+  company-specific operational or financial risks.
+- Ownership: shareholder structure — insider, institutional,
+  strategic investors, and free float.</code></pre>
+  </div>
+
+  <h3>Competitive Analysis Template</h3>
+  <div class="example">
+    <div class="label">หมวดหมู่: Investment Research</div>
+    <pre><code>Analyze the competitive landscape for {{Company}} compared to
+{{Competitor1}} and {{Competitor2}} in the following areas:
+
+1. Market share and positioning
+2. Product/service differentiation
+3. Financial performance metrics
+4. Growth strategies
+5. Key risks and opportunities
+
+Focus on data from the last 3 years and provide forward-looking
+insights.</code></pre>
+  </div>
+</section>
+
+<section>
+  <h2>จะหาได้ที่ไหนใน SAM</h2>
+  <p>Template อยู่ในคลังภายในหน้า chatbot interface จัดกลุ่มตามหมวดหมู่เพื่อให้เรียกดูได้แทนที่จะต้องค้นหาเอง การเลือก template จะวางเนื้อหา markdown ลงใน prompt ของคุณพร้อม placeholder ที่ยังคงอยู่ครบ — คุณต้องแทนที่ <code>{{Company}}</code>, <code>{{Competitor1}}</code> และ token ที่คล้ายกันด้วยค่าจริงก่อนส่ง</p>
+  <div class="callout warn">
+    <p><strong>ทยอยเปิดใช้งานเป็นระยะ</strong> คลัง template และเครื่องมือบริหารจัดการสำหรับแอดมินเป็นโครงสร้างพื้นฐานฝั่ง backend ที่จะออกมาก่อน ส่วน modal เลือก template ในหน้าแชท การเติมชื่อบริษัทอัตโนมัติสำหรับ placeholder และการแสดงตัวอย่างแบบเรียลไทม์ มีแผนจะตามมาในรุ่น frontend ถัดไป — ตรวจสอบกับหัวหน้าทีมของคุณเกี่ยวกับความพร้อมใช้งานปัจจุบันก่อนพึ่งพาใช้งานจริง</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้เช่นเดิม</h2>
+  <p>Template เปล่าคือ Tier 1 — เป็นเพียงโครงสร้างต้นแบบที่ไม่มีเนื้อหาเฉพาะของ ENVISAGE สิ่งที่คุณเติมลงใน <code>{{Company}}</code> และ placeholder โดยรอบเป็นตัวกำหนด tier ของ prompt ที่ได้ เช่นเดียวกับ input อื่น ๆ ที่ป้อนให้ AI</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">ปกติแล้วไม่มีปัญหา</span><h4>ใช้เฉพาะชื่อบริษัทสาธารณะ</h4><p>การเติม <code>{{Company}}</code> ด้วยชื่อบริษัทที่เป็นที่รู้จักต่อสาธารณะสำหรับภาพรวมงานวิจัยทั่วไป ทำให้ prompt ยังใกล้เคียง Tier 1</p></div>
+    <div class="card"><span class="badge amber">ตรวจสอบก่อน</span><h4>มีการใส่บริบทลูกค้าหรือโครงการเข้าไป</h4><p>หาก prompt ที่เติมข้อมูลแล้วเผยให้เห็นว่าลูกค้ารายใดเป็นผู้ขอให้วิเคราะห์ เพราะเหตุใด หรือเชื่อมโยงกับโครงการที่กำลังดำเนินอยู่ ให้ถือว่าเป็น Tier 2/3 และส่งต่อตามขั้นตอนที่เหมาะสม — ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="index.html">← กลับหน้าหลัก</a>
+  <a href="scorecard-rankings.html">Scorecard Rankings →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဖီးချား လမ်းညွှန်</div>
+    <h1>Prompt Template Library</h1>
+    <p class="lede">SAM သည် ပုံမှန်ဖြစ်ပေါ်လေ့ရှိသော ခွဲခြမ်းစိတ်ဖြာမှု လုပ်ငန်းများအတွက် admin မှ စီမံခန့်ခွဲသော prompt template များ စုစည်းထားသည့် built-in library တစ်ခုကို ရရှိတော့မည် — အမျိုးအစားအလိုက် စုစည်းထားပြီး markdown ဖြင့် ရေးသားထားကာ <code>{{Company}}</code> ကဲ့သို့သော ဖြည့်စွက်ရန် placeholder များပေါ်တွင် တည်ဆောက်ထားသည်။ ဤစာမျက်နှာသည် library ဘယ်လိုအလုပ်လုပ်သည်နှင့် ကောင်းစွာ အသုံးချနည်းကို ရှင်းပြသည်။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Prompt Template ဆိုတာ ဘာလဲ</h2>
+  <p>Prompt Template များသည် ကုမ္ပဏီ overview၊ investment thesis သို့မဟုတ် ပြိုင်ဘက်နှိုင်းယှဉ်ချက် ကဲ့သို့ ထပ်ခါထပ်ခါ ဖြစ်ပေါ်သော ခွဲခြမ်းစိတ်ဖြာမှု လုပ်ငန်းများအတွက် ကြိုတင်ရေးသားထားပြီး ထပ်မံအသုံးပြုနိုင်သော prompt များ ဖြစ်သည် — ၎င်းကြောင့် analyst များသည် တူညီသော prompt ဖွဲ့စည်းပုံကို အကြိမ်တိုင်း အသစ်ပြန်တည်ဆောက်စရာ မလိုတော့ပါ။ Template များသည် —</p>
+  <ul>
+    <li><strong>Site admin များက ဗဟိုချုပ်ကိုင် စီမံခန့်ခွဲသည်</strong> custom admin interface မှတစ်ဆင့် ဖြစ်ပြီး၊ တစ်ဦးချင်းစီ user များက လိုအလိုလို ဖန်တီးသည် မဟုတ်ပါ။</li>
+    <li><strong>Markdown ဖြင့် ရေးသား</strong> သင့်လျော်သော editor ဖြင့် ဖြစ်သဖြင့် formatting (heading, bold, bullet list) များသည် နောက်ဆုံး prompt ထဲသို့ ဆက်လက်ရောက်ရှိသည်။</li>
+    <li><strong>အမျိုးအစားအလိုက် စုစည်းထား</strong> — ဥပမာ investment research, competitive analysis — SAM ထဲတွင် ရှာဖွေကြည့်ရှုရ လွယ်ကူစေရန်။</li>
+    <li><strong>ထုတ်ပြန်ပြီးပါက user အားလုံး အသုံးပြုနိုင်</strong> admin များက မည်သည့် template များကို active ဖြစ်စေမည်၊ မည်သည့်အစီအစဉ်ဖြင့် ပေါ်စေမည်ကို ထိန်းချုပ်သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Placeholder များ မည်သို့ အလုပ်လုပ်သနည်း</h2>
+  <p>Template များသည် prompt ကို run မလုပ်မီ ဖြည့်စွက်ရမည့် curly-brace နှစ်ထပ် placeholder များကို သုံးသည်။ Template ကို သိမ်းဆည်းသည့်အခါ placeholder များကို အလိုအလျောက် ရှာဖွေတွေ့ရှိပြီး စာလုံးအကြီးအသေး ခွဲခြားခြင်းမရှိဘဲ ကိုက်ညီစေသည်၊ ထို့ကြောင့် <code>{{Company}}</code> နှင့် <code>{{company}}</code> သည် အလားတူ အလုပ်လုပ်သည်။</p>
+  <table>
+    <tr><th>Placeholder</th><th>အဓိပ္ပာယ်</th><th>ဥပမာ</th></tr>
+    <tr><td><code>{{Company}}</code></td><td>ကုမ္ပဏီတစ်ခု ရွေးချယ်မှု</td><td><code>{{Company}}</code> → Petronas</td></tr>
+    <tr><td><code>{{Companies}}</code></td><td>ကုမ္ပဏီများစွာ ကော်မာဖြင့် ပိုင်းခြား</td><td><code>{{Companies}}</code> → Petronas, Shell, TotalEnergies</td></tr>
+    <tr><td><code>{{Date}}</code></td><td>လက်ရှိရက်စွဲကို အလိုအလျောက် ဖြည့်ပေး</td><td><code>{{Date}}</code> → ယနေ့ရက်စွဲ</td></tr>
+    <tr><td><code>{{User}}</code></td><td>လက်ရှိ user အမည်ကို အလိုအလျောက် ဖြည့်ပေး</td><td><code>{{User}}</code> → သင့်အမည်</td></tr>
+  </table>
+  <div class="callout">
+    <p><strong>မည်သည့်စကားလုံးမဆို placeholder အဖြစ် သုံးနိုင်သည်။</strong> Template ရေးသားသူများသည် အထက်ပါ လေးခုတွင်သာ ကန့်သတ်မထားပါ — <code>{{Competitor1}}</code>, <code>{{Sector}}</code> သို့မဟုတ် အခြား <code>{{...}}</code> ပုံစံ မည်သည်ကိုမဆို အလားတူ မှတ်သားနိုင်သည်။ ဖော်ပြထားသော လေးခုသည် SAM က ကောင်းစွာ နားလည်ပြီး smart replacement (ကုမ္ပဏီရှာဖွေမှု၊ ရက်စွဲ/user အလိုအလျောက်ဖြည့်ခြင်း) ပေးနိုင်သော အရာများ ဖြစ်ပြီး ကျန်အရာများမှာ ရိုးရိုး fill-in-the-blank ဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>Template ဥပမာများ</h2>
+
+  <h3>Investment Thesis Template</h3>
+  <div class="example">
+    <div class="label">အမျိုးအစား: Investment Research</div>
+    <pre><code>## Background and Thesis for {{Company}}
+
+Write a detailed overview of {{Company}}, tailored for long-term
+fundamental investors with an investment horizon of 3-5 years.
+The summary should include:
+
+- Company Description: primary business activities, key products
+  or services, market focus, and geographical presence, broken
+  down by segment and geography where possible.
+- Investment Thesis: why the company is attractive for a 3-5 year
+  horizon — structural growth drivers, competitive advantages,
+  market positioning, alignment with global trends.
+- Risk: macro risks, competitive dynamics, regulatory concerns,
+  company-specific operational or financial risks.
+- Ownership: shareholder structure — insider, institutional,
+  strategic investors, and free float.</code></pre>
+  </div>
+
+  <h3>Competitive Analysis Template</h3>
+  <div class="example">
+    <div class="label">အမျိုးအစား: Investment Research</div>
+    <pre><code>Analyze the competitive landscape for {{Company}} compared to
+{{Competitor1}} and {{Competitor2}} in the following areas:
+
+1. Market share and positioning
+2. Product/service differentiation
+3. Financial performance metrics
+4. Growth strategies
+5. Key risks and opportunities
+
+Focus on data from the last 3 years and provide forward-looking
+insights.</code></pre>
+  </div>
+</section>
+
+<section>
+  <h2>SAM ထဲတွင် ဘယ်နေရာမှာ ရှာနိုင်သနည်း</h2>
+  <p>Template များသည် chatbot interface အတွင်း library တစ်ခုတွင် ရှိပြီး၊ အမျိုးအစားအလိုက် အုပ်စုဖွဲ့ထားသဖြင့် ရှာဖွေရမည့်အစား ကြည့်ရှုရွေးချယ်နိုင်သည်။ Template တစ်ခုကို ရွေးချယ်လိုက်လျှင် markdown ကို placeholder များ ပြည့်စုံစွာ ပါဝင်လျက် သင့် prompt ထဲသို့ ချထည့်ပေးသည် — <code>{{Company}}</code>, <code>{{Competitor1}}</code> နှင့် အလားတူ token များကို ပို့မီ တကယ့်တန်ဖိုးများဖြင့် အစားထိုးရမည်။</p>
+  <div class="callout warn">
+    <p><strong>အဆင့်ဆင့် ထွက်ရှိနေသည်။</strong> Template library နှင့် admin management tool များသည် ဦးစွာ ရောက်ရှိလာမည့် backend infrastructure ဖြစ်သည်။ In-chat selection modal၊ placeholder များအတွက် ကုမ္ပဏီ autocomplete နှင့် real-time preview တို့ကို နောက်ဆက်တွဲ frontend release တွင် ထည့်သွင်းရန် စီစဉ်ထားသည် — live အလုပ်တွင် အားထားမီ သင့်အဖွဲ့ခေါင်းဆောင်နှင့် လက်ရှိရရှိနိုင်မှုကို စစ်ဆေးပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်</h2>
+  <p>အလွတ် template တစ်ခုသည် Tier 1 ဖြစ်သည် — ENVISAGE-ဆိုင်ရာ အကြောင်းအရာ မပါဝင်သော boilerplate ဖွဲ့စည်းပုံသာ ဖြစ်သည်။ <code>{{Company}}</code> နှင့် ၎င်းပတ်ဝန်းကျင်ရှိ placeholder များထဲသို့ သင်ဖြည့်စွက်လိုက်သည့်အရာက ရလဒ် prompt ၏ tier ကို အခြား AI input များနည်းတူ ဆုံးဖြတ်ပေးသည်။</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">ပုံမှန်အားဖြင့် ပြဿနာမရှိ</span><h4>အများပြည်သူသိ ကုမ္ပဏီအမည်သာ</h4><p><code>{{Company}}</code> ကို ယေဘုယျ သုတေသန overview အတွက် အများသိ ကုမ္ပဏီအမည်ဖြင့် ဖြည့်ခြင်းသည် prompt ကို Tier 1 အနီးတွင် ထားနိုင်သည်။</p></div>
+    <div class="card"><span class="badge amber">အရင်စစ်ဆေးပါ</span><h4>ဖောက်သည် သို့မဟုတ် ပရောဂျက် framing ထပ်ပေါင်း</h4><p>ဖြည့်စွက်ထားသော prompt သည် မည်သည့်ဖောက်သည်က ဤခွဲခြမ်းစိတ်ဖြာမှုကို တောင်းဆိုသည်၊ ဘာကြောင့်၊ သို့မဟုတ် လက်ရှိလုပ်ဆောင်နေသော engagement နှင့် ဆက်စပ်ကြောင်း ဖော်ပြပါက Tier 2/3 အဖြစ် သတ်မှတ်ပြီး လျော်ညီစွာ ပို့ဆောင်ပါ — <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="index.html">← ပင်မစာမျက်နှာသို့</a>
+  <a href="scorecard-rankings.html">Scorecard Rankings →</a>
+</div>
+
+</main>
+</div><!-- /my -->
 
 </body>
 </html>

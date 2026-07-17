@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -162,6 +168,112 @@
 <div class="pager">
   <a href="daily-price-metrics-launch.html">← Daily Price Metrics Tool Launch</a>
   <a href="price-equity-tool.html">PriceEquity OHLCV Tool →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>เครื่องมือสร้างกราฟ</h1>
+    <p class="lede">ตอนนี้ SAM วาดภาพได้แล้ว เครื่องมือสร้างกราฟใหม่นี้ช่วยให้ AI สร้างกราฟ Highcharts แบบ interactive ได้โดยตรงในหน้าแชท — รองรับกราฟ 14 ประเภท ปรับธีมมืด/สว่างอัตโนมัติ และแสดงผลแบบเรียลไทม์โดยไม่ต้องรีเฟรชหน้า</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>กราฟ 14 ประเภท</h2>
+  <p>กราฟเส้น กราฟแท่งแนวนอน กราฟแท่งแนวตั้ง กราฟวงกลม กราฟโดนัท กราฟพื้นที่ กราฟกระจาย (scatter) กราฟฟอง (bubble) heatmap treemap กราฟเชิงขั้ว (polar) waterfall funnel แผนผังองค์กร (organization) และ sankey diagram — ครอบคลุมตั้งแต่แนวโน้มราคาแบบง่าย ๆ ไปจนถึงผังองค์กรเต็มรูปแบบหรือแผนผังกระบวนการ</p>
+</section>
+
+<section>
+  <h2>สถาปัตยกรรม</h2>
+  <table>
+    <tr><th>โมดูล</th><th>วัตถุประสงค์</th></tr>
+    <tr><td>tool.py</td><td>การทำงานหลักของ LangChain tool</td></tr>
+    <tr><td>config_builder.py</td><td>ตัวสร้าง configuration ของ Highcharts สำหรับแต่ละประเภทกราฟ</td></tr>
+    <tr><td>data_processors.py</td><td>การแปลงและประมวลผลข้อมูล</td></tr>
+    <tr><td>validators.py</td><td>การตรวจสอบ input และจัดการข้อผิดพลาด</td></tr>
+    <tr><td>themes.py</td><td>การตั้งค่าธีมมืดและสว่าง</td></tr>
+  </table>
+  <p>กราฟจะแสดงผลโดยตรงในหน้าต่างแชทผ่าน <code>chart_renderer.js</code> โดยเฉพาะ พร้อมสลับธีมอัตโนมัติ และรองรับการบันทึกกราฟไว้ในประวัติการสนทนา — มีการเพิ่มฟิลด์ <code>charts</code> ลงในโมเดลข้อความแชทเพื่อเก็บ configuration เหล่านี้</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ครอบคลุมการทดสอบ 92%</strong> จากการทดสอบ 828 test case ครอบคลุมกราฟทุกประเภทและกรณี edge case ที่หลากหลาย</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>กราฟจะมีความอ่อนไหวเท่ากับข้อมูลที่นำมาพล็อตเท่านั้น กราฟแนวโน้มราคาสาธารณะจัดเป็น Tier 1 ส่วนกราฟที่สร้างจากการถือครองในพอร์ตของลูกค้าจัดเป็น Tier 3 ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> — ควรปฏิบัติต่อกราฟที่บันทึกหรือแชร์เหมือนกับตัวเลขต้นทางที่อยู่เบื้องหลัง</p>
+</section>
+
+
+<div class="pager">
+  <a href="daily-price-metrics-launch.html">← เปิดตัวเครื่องมือ Daily Price Metrics</a>
+  <a href="price-equity-tool.html">เครื่องมือ PriceEquity OHLCV →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ်ထွက်ရှိ · ဖီချာလမ်းညွှန်</div>
+    <h1>ဂရပ်ဖ် ဖန်တီးခြင်း ကိရိယာ</h1>
+    <p class="lede">ယခုအခါ SAM သည် ပုံဆွဲနိုင်ပါပြီ။ ဂရပ်ဖ် ဖန်တီးခြင်း ကိရိယာအသစ်က AI ကို chat ထဲတွင် တိုက်ရိုက် interactive Highcharts ပုံများ ဖန်တီးနိုင်စေသည် — ဂရပ်ဖ် အမျိုးအစား ၁၄ မျိုး၊ dark/light theme အလိုအလျောက် ပြောင်းခြင်း နှင့် စာမျက်နှာ ပြန်မဆွဲရဘဲ real-time ပြသခြင်း။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ဂရပ်ဖ် အမျိုးအစား ၁၄ မျိုး</h2>
+  <p>မျဉ်းဂရပ်ဖ်၊ bar ဂရပ်ဖ်၊ column ဂရပ်ဖ်၊ pie ဂရပ်ဖ်၊ donut ဂရပ်ဖ်၊ area ဂရပ်ဖ်၊ scatter ဂရပ်ဖ်၊ bubble ဂရပ်ဖ်၊ heatmap၊ treemap၊ polar ဂရပ်ဖ်၊ waterfall၊ funnel၊ organization chart နှင့် sankey diagram တို့ — ရိုးရှင်းသော ဈေးနှုန်း လမ်းကြောင်းမှသည် org chart အပြည့်အစုံ သို့မဟုတ် flow diagram အထိ လွှမ်းခြုံသည်။</p>
+</section>
+
+<section>
+  <h2>ဖွဲ့စည်းပုံ</h2>
+  <table>
+    <tr><th>မော်ဂျူး</th><th>ရည်ရွယ်ချက်</th></tr>
+    <tr><td>tool.py</td><td>LangChain tool အဓိက အကောင်အထည်ဖော်မှု</td></tr>
+    <tr><td>config_builder.py</td><td>ဂရပ်ဖ် အမျိုးအစားအလိုက် Highcharts configuration တည်ဆောက်သော အစိတ်အပိုင်း</td></tr>
+    <tr><td>data_processors.py</td><td>ဒေတာ ပြောင်းလဲခြင်းနှင့် ပြုပြင်ခြင်း</td></tr>
+    <tr><td>validators.py</td><td>Input စစ်ဆေးခြင်းနှင့် error ကိုင်တွယ်ခြင်း</td></tr>
+    <tr><td>themes.py</td><td>Dark နှင့် light theme ဆက်တင်များ</td></tr>
+  </table>
+  <p>ဂရပ်ဖ်များကို chat interface ထဲတွင် <code>chart_renderer.js</code> အထူးမှတစ်ဆင့် တိုက်ရိုက်ပြသပြီး၊ theme အလိုအလျောက် ပြောင်းခြင်းနှင့် conversation history တွင် ဂရပ်ဖ်ကို ဆက်လက်သိမ်းဆည်းနိုင်ခြင်းကို ပံ့ပိုးသည် — configuration များကို သိမ်းဆည်းရန် chat message model တွင် <code>charts</code> field ကို ထည့်သွင်းခဲ့သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>test case ၈၂၈ ခုအနက် <strong>92% test coverage</strong> ရရှိပြီး ဂရပ်ဖ် အမျိုးအစားအားလုံးနှင့် edge case အမျိုးမျိုးကို လွှမ်းခြုံသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်</h2>
+  <p>ဂရပ်ဖ်တစ်ခု၏ အရေးကြီးမှုသည် ၎င်းတွင် ဖော်ပြထားသော ဒေတာအပေါ်သာ မူတည်သည်။ အများပြည်သူ ဈေးနှုန်း လမ်းကြောင်း ဂရပ်ဖ်သည် Tier 1 ဖြစ်ပြီး ဖောက်သည် portfolio ၏ holdings မှ ဖန်တီးထားသော ဂရပ်ဖ်သည် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ Tier 3 ဖြစ်သည် — သိမ်းဆည်းထားသော သို့မဟုတ် share လုပ်ထားသော ဂရပ်ဖ်ကို နောက်ကွယ်ရှိ ဂဏန်းများနှင့် အတူတူပင် ဆက်ဆံပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="daily-price-metrics-launch.html">← Daily Price Metrics ကိရိယာ စတင်မိတ်ဆက်ခြင်း</a>
+  <a href="price-equity-tool.html">PriceEquity OHLCV ကိရိယာ →</a>
 </div>
 
 </main>

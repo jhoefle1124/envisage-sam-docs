@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -152,6 +158,92 @@
 <div class="pager">
   <a href="portfolio-analyst-field-parity.html">← Portfolio Analyst Field Parity</a>
   <a href="export-service-layer.html">Export Service Layer & Error Handling →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · ข้อมูลอ้างอิงทางเทคนิค</div>
+    <h1>การแก้ไขบั๊กตัวจัดรูปแบบ ROE</h1>
+    <p class="lede">การแก้ไขในฟิลด์เดียว: ค่า ROE แสดงผลสูงเกินจริงถึง 100 เท่า เนื่องจากถูกประมวลผลผ่านตัวจัดรูปแบบเปอร์เซ็นต์ที่ไม่ถูกต้อง</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ปัญหาที่พบ</h2>
+  <table>
+    <tr><th>ชั้นข้อมูล</th><th>พฤติกรรม</th></tr>
+    <tr><td>การจัดเก็บข้อมูล</td><td>ค่า ROE ถูกจัดเก็บเป็นค่าเปอร์เซ็นต์อยู่แล้ว (15 หมายถึง 15%)</td></tr>
+    <tr><td>ตัวจัดรูปแบบที่ใช้</td><td><code>format_decimal_percentage</code> ซึ่งคูณด้วย 100</td></tr>
+    <tr><td>ผลลัพธ์</td><td>15% แสดงผลเป็น 1500%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>การแก้ไข</h2>
+  <p>เปลี่ยนฟิลด์ ROE ให้ใช้ <code>format_percentage</code> ซึ่งจัดการค่าที่จัดเก็บเป็นเปอร์เซ็นต์อยู่แล้วได้อย่างถูกต้องโดยไม่มีการคูณซ้ำ ฟิลด์เปอร์เซ็นต์และทศนิยมอื่น ๆ ทั้งหมดใน field registry ได้รับการตรวจสอบแล้ว — ROE เป็นรายการเดียวที่ไม่ตรงกัน</p>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงเดิม</h2>
+  <p>นี่เป็นเพียงการแก้ไขรูปแบบการแสดงผล — ไม่มีการเปลี่ยนแปลงข้อมูลที่เข้าถึงได้หรือชั้นข้อมูลของข้อมูลนั้น ดู <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a> สำหรับกฎมาตรฐานที่ใช้กับข้อมูลทางการเงิน</p>
+</section>
+
+
+<div class="pager">
+  <a href="portfolio-analyst-field-parity.html">← ความเท่าเทียมของฟิลด์ใน Portfolio Analyst</a>
+  <a href="export-service-layer.html">ชั้นบริการส่งออกข้อมูลและการจัดการข้อผิดพลาด →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာအညွှန်း</div>
+    <h1>ROE ဖော်မတ်ချက် ချွတ်ယွင်းမှု ပြင်ဆင်ခြင်း</h1>
+    <p class="lede">ကွက်တစ်ခုတည်း ပြင်ဆင်ချက် — ROE တန်ဖိုးကို မှားယွင်းသော ရာခိုင်နှုန်း ဖော်မတ်ကိရိယာဖြင့် တွက်ချက်ခဲ့သဖြင့် အမှန်ထက် ၁၀၀ ဆ မြင့်၍ ပြသနေခဲ့သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ပြဿနာ</h2>
+  <table>
+    <tr><th>အလွှာ</th><th>အပြုအမူ</th></tr>
+    <tr><td>ဒေတာသိမ်းဆည်းမှု</td><td>ROE ကို ရာခိုင်နှုန်းတန်ဖိုးအဖြစ် သိမ်းဆည်းထားပြီးသားဖြစ်သည် (15 က 15% ကို ဆိုလိုသည်)</td></tr>
+    <tr><td>အသုံးပြုသော ဖော်မတ်ကိရိယာ</td><td><code>format_decimal_percentage</code>, ၎င်းသည် 100 နှင့် မြှောက်သည်</td></tr>
+    <tr><td>ရလဒ်</td><td>15% ကို 1500% အဖြစ် ပြသသည်</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ပြင်ဆင်ချက်</h2>
+  <p>ROE ကွက်ကို <code>format_percentage</code> သို့ ပြောင်းလဲလိုက်သည်။ ၎င်းသည် ရာခိုင်နှုန်းအဖြစ် သိမ်းဆည်းပြီးသား တန်ဖိုးများကို ထပ်မံမြှောက်ခြင်းမပြုဘဲ မှန်ကန်စွာ ကိုင်တွယ်ပေးသည်။ field registry ရှိ အခြား ရာခိုင်နှုန်းနှင့် ဒဿမကွက်အားလုံးကို စစ်ဆေးပြီးဖြစ်ပြီး — ROE သာလျှင် မကိုက်ညီသော တစ်ခုတည်းသော ကွက်ဖြစ်သည်။</p>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>ဤသည်မှာ ပြသမှုပုံစံ ပြင်ဆင်ချက်တစ်ခုသာ ဖြစ်သည် — မည်သည့်ဒေတာ ရရှိနိုင်သည် သို့မဟုတ် ၎င်း၏ tier တွင် ပြောင်းလဲမှု မရှိပါ။ ဘဏ္ဍာရေးဒေတာအတွက် စံစည်းမျဉ်းများကို <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> တွင် ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="portfolio-analyst-field-parity.html">← Portfolio Analyst ကွက် ညီညွတ်မှု</a>
+  <a href="export-service-layer.html">ထုတ်ယူမှု ဝန်ဆောင်မှုအလွှာနှင့် အမှားကိုင်တွယ်မှု →</a>
 </div>
 
 </main>

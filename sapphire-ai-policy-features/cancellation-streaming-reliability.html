@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -176,6 +182,132 @@
 
 </main>
 </div>
+
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การยกเลิกคำขอและความเสถียรของการสตรีมข้อมูล</h1>
+    <p class="lede">การปรับปรุงด้านความน่าเชื่อถือที่แก้ไขปัญหาคำขอพร้อมกัน (concurrent requests) การตอบกลับที่ค้าง (stale responses) และ race condition ในการยกเลิก — พร้อมปุ่มหยุดใหม่ ระยะเวลา timeout ของการสตรีมที่ยาวขึ้น และการแก้ไขการกรองตามวันที่ในเครื่องมือค้นหา Brave News</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Concurrency และ Race Condition</h2>
+  <ul>
+    <li><strong>การป้องกันการตอบกลับพร้อมกัน:</strong> ข้อความใหม่จะถูกปฏิเสธในขณะที่มีการสตรีมคำตอบอยู่แล้วสำหรับ session เดียวกัน โดยบังคับใช้ด้วย atomic database lock</li>
+    <li><strong>การตรวจจับการตอบกลับที่ค้าง:</strong> tracker ที่เก่ากว่า 10 นาทีจะถูกทำเครื่องหมายว่าล้มเหลวโดยอัตโนมัติ เพื่อไม่ให้ไปขวางคำขอใหม่</li>
+    <li><strong>การปรับปรุงการยกเลิก:</strong> เพิ่ม flag สำหรับการยกเลิกก่อนกำหนด (ก่อนที่ tracker จะถูกสร้างขึ้น) และการป้องกันการยกเลิกซ้ำ โดยตรวจสอบสถานะสุดท้าย (terminal status) ของ tracker ก่อนพยายามยกเลิก</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การสตรีมข้อมูลและ Timeout</h2>
+  <table>
+    <tr><th>การตั้งค่า</th><th>ก่อนหน้า</th><th>หลังปรับปรุง</th></tr>
+    <tr><td>Celery soft limit</td><td>5 นาที</td><td>12 นาที</td></tr>
+    <tr><td>Celery hard limit</td><td>6 นาที</td><td>15 นาที</td></tr>
+    <tr><td>Redis buffer TTL</td><td>5 นาที</td><td>15 นาที</td></tr>
+  </table>
+  <p>ปุ่มหยุดใหม่ช่วยให้คุณยกเลิกการตอบกลับระหว่างที่กำลังสร้างเนื้อหาได้ และการตอบกลับที่ค้าง (ไม่มีการอัปเดตเป็นเวลา 15 นาที) ตอนนี้จะกู้คืนโดยอัตโนมัติแทนที่จะรอไม่มีกำหนด</p>
+</section>
+
+<section>
+  <h2>การแก้ไขอื่น ๆ</h2>
+  <ul>
+    <li>Brave News search ตอนนี้ใช้พารามิเตอร์ <code>freshness</code> ของ API ได้อย่างถูกต้อง พร้อมรองรับรหัส preset และการค้นหาย้อนหลังแบบ "X ago"</li>
+    <li>ลบการขึ้นบรรทัดใหม่ซ้อนกันในรายการ (list items) ออกแล้ว เพื่อไม่ให้การคัดลอกคำตอบไปวางใน Word หรือ Google Docs กลายเป็นรายการที่เว้นบรรทัดคู่</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>ความครอบคลุมของการทดสอบ (test coverage) สำหรับ consumer helper ที่ได้รับผลกระทบเพิ่มขึ้นจาก 40% เป็น 73% (19 → 57 การทดสอบ) พร้อมการทดสอบใหม่สำหรับการตรวจจับการค้าง การป้องกันคำขอพร้อมกัน และกรณีขอบเขต (edge case) ของการยกเลิก</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>เป็นเพียงการแก้ไขด้านความน่าเชื่อถือและจังหวะเวลาเท่านั้น — ไม่มีการเปลี่ยนแปลงข้อมูลที่ tool call ใด ๆ สามารถเข้าถึงได้ ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="image-upload-vision.html">← อัปโหลดรูปภาพและการประมวลผลภาพ (Vision)</a>
+  <a href="model-fallback-chains.html">ห่วงโซ่สำรองของโมเดล (Model Fallback Chains) →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာရည်ညွှန်း</div>
+    <h1>ပယ်ဖျက်မှုနှင့် Streaming ယုံကြည်စိတ်ချရမှု</h1>
+    <p class="lede">တစ်ချိန်တည်း တောင်းဆိုမှုများ (concurrent requests)၊ ရပ်တန့်နေသော တုံ့ပြန်မှုများ (stale responses) နှင့် ပယ်ဖျက်ခြင်း race condition များကို ဖြေရှင်းပေးသော ယုံကြည်စိတ်ချရမှု ပြုပြင်မှု — stop ခလုတ်အသစ်၊ ရှည်လျားသော streaming timeout များ နှင့် Brave News ရှာဖွေရေးကိရိယာ၏ ရက်စွဲစစ်ထုတ်မှု ပြင်ဆင်ချက်တို့ ပါဝင်သည်</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Concurrency နှင့် Race Condition များ</h2>
+  <ul>
+    <li><strong>တစ်ချိန်တည်း တုံ့ပြန်မှု ကာကွယ်ခြင်း -</strong> session တစ်ခုတည်းအတွက် တုံ့ပြန်မှု streaming နေဆဲအချိန်တွင် စာအသစ်ကို ပယ်ချမည်၊ atomic database lock များဖြင့် အတည်ပြု အကောင်အထည်ဖော်ထားသည်</li>
+    <li><strong>ရပ်တန့်နေသော တုံ့ပြန်မှု ရှာဖွေတွေ့ရှိခြင်း -</strong> 10 မိနစ်ထက် ကြာသော tracker များကို အလိုအလျောက် failed ဟု အမှတ်အသားပြုလိုက်သည်၊ တောင်းဆိုမှုအသစ်များကို ပိတ်ဆို့မှု မဖြစ်စေရန်</li>
+    <li><strong>ပယ်ဖျက်ခြင်း တိုးတက်မှုများ -</strong> tracker မတည်ရှိမီ စောစီးစွာ ပယ်ဖျက်ခြင်းအတွက် flag များနှင့် ပယ်ဖျက်မှု ထပ်ခါထပ်ခါ မဖြစ်စေရေး ကာကွယ်မှု၊ ပယ်ဖျက်ရန် ကြိုးစားမီ tracker ၏ terminal status ကို စစ်ဆေးသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Streaming နှင့် Timeout များ</h2>
+  <table>
+    <tr><th>ချိန်ညှိချက်</th><th>ယခင်</th><th>ပြင်ဆင်ပြီးနောက်</th></tr>
+    <tr><td>Celery soft limit</td><td>5 မိနစ်</td><td>12 မိနစ်</td></tr>
+    <tr><td>Celery hard limit</td><td>6 မိနစ်</td><td>15 မိနစ်</td></tr>
+    <tr><td>Redis buffer TTL</td><td>5 မိနစ်</td><td>15 မိနစ်</td></tr>
+  </table>
+  <p>stop ခလုတ်အသစ်က တုံ့ပြန်မှု ထုတ်လုပ်နေစဉ် အလယ်တွင် ပယ်ဖျက်နိုင်စေပြီး ရပ်တန့်နေသော တုံ့ပြန်မှုများ (15 မိနစ်အတွင်း update မရှိသော) ယခုအခါ အကန့်အသတ်မရှိစောင့်နေမည့်အစား အလိုအလျောက် ပြန်လည်ရယူသည်</p>
+</section>
+
+<section>
+  <h2>အခြား ပြင်ဆင်ချက်များ</h2>
+  <ul>
+    <li>Brave News search သည် API ၏ <code>freshness</code> parameter ကို မှန်ကန်စွာ အသုံးပြုပြီ၊ preset code များနှင့် "X ago" ပုံစံ ယခင်ရှာဖွေမှုများကို ပံ့ပိုးသည်</li>
+    <li>list item များတွင် ထပ်နေသော line break များကို ဖယ်ရှားလိုက်သည်၊ တုံ့ပြန်မှုကို Word သို့မဟုတ် Google Docs သို့ ကူးထည့်သည့်အခါ list များ line နှစ်ဆ space မဖြစ်စေတော့ပါ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>ထိခိုက်သော consumer helper များအတွက် test coverage သည် 40% မှ 73% သို့ (test 19 → 57) တိုးတက်လာပြီး ရပ်တန့်မှု ရှာဖွေခြင်း၊ တစ်ချိန်တည်း တောင်းဆိုမှု ကာကွယ်ခြင်း နှင့် ပယ်ဖျက်ခြင်း edge case များအတွက် test အသစ်များ ထည့်သွင်းထားသည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်သည်</h2>
+  <p>ဤသည်မှာ ယုံကြည်စိတ်ချရမှုနှင့် အချိန်ဆိုင်ရာ ပြင်ဆင်ချက်သာဖြစ်သည် — tool call မည်သည့်ဒေတာကို ဝင်ရောက်ရယူနိုင်သည်ဆိုသည်မှာ ပြောင်းလဲခြင်း မရှိပါ။ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="image-upload-vision.html">← ပုံတင်ခြင်းနှင့် Vision စီမံဆောင်ရွက်မှု</a>
+  <a href="model-fallback-chains.html">Model Fallback Chains (မော်ဒယ် အရန်သင့် ကွင်းဆက်) →</a>
+</div>
+
+</main>
+</div><!-- /my -->
 
 </body>
 </html>

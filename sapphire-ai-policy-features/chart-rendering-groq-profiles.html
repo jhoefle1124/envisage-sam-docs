@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -165,7 +171,113 @@
 </div>
 
 </main>
+</div><!-- /en -->
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเรนเดอร์กราฟ, Groq และโปรไฟล์พารามิเตอร์</h1>
+    <p class="lede">แก้ไข race condition ในการเรนเดอร์กราฟและช่องว่างของธีมโหมดมืด เพิ่ม Groq เป็นผู้ให้บริการโมเดลรายใหม่ และนำเสนอโปรไฟล์พารามิเตอร์ที่ปรับพฤติกรรมของโมเดลตามประเภทของงานที่ทำอยู่</p>
+  </div>
 </div>
+
+<main>
+
+
+<section>
+  <h2>การแก้ไขข้อบกพร่อง</h2>
+  <ul>
+    <li><strong>Race condition ในการเรนเดอร์กราฟ:</strong> แก้ไขปัญหาด้านจังหวะเวลาเมื่อกราฟถูกเรนเดอร์ภายในข้อความแบบ streaming</li>
+    <li><strong>ธีมโหมดมืด:</strong> ปรับปรุงทั้งหมดให้ใช้ธีม Highcharts แบบ native แทนการ override เฉพาะกิจ พร้อมแก้ไข hover state ของปุ่มส่งออกและระยะห่างของหัวข้อ/หัวข้อรองของกราฟไปในตัว</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ฟีเจอร์ใหม่</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Groq Provider</h4><p>เพิ่มเป็นผู้ให้บริการ LLM รายใหม่พร้อมการตั้งค่าของตัวเอง</p></div>
+    <div class="card"><h4>โปรไฟล์พารามิเตอร์</h4><p>ชุดพารามิเตอร์แบบไดนามิกที่ปรับตามกรณีใช้งาน ได้แก่ default, research, creative, coding และ analysis</p></div>
+    <div class="card"><h4>Assumptions Protocol</h4><p>เพิ่มขั้นตอนการระบุสมมติฐานและการประมาณการอย่างชัดเจนใน system prompt เพื่อการให้เหตุผลที่โปร่งใสยิ่งขึ้น</p></div>
+    <div class="card"><h4>คำแนะนำการสร้างกราฟ</h4><p>ปรับปรุงคำแนะนำสำหรับโมเดลในการเลือกประเภทกราฟและการสร้างกราฟ</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>อัปเดตชุดทดสอบ chart generator สำหรับระบบธีมใหม่ เพิ่มการทดสอบ 285 บรรทัดสำหรับโปรไฟล์พารามิเตอร์ และปรับปรุงการทดสอบ LLM factory</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>ผู้ให้บริการโมเดลรายใหม่ยังคงอยู่ภายใต้กฎการเลือกเครื่องมือของ <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a> เช่นเดิม — Groq เช่นเดียวกับผู้ให้บริการรายอื่น จะได้รับเฉพาะข้อมูลตามที่ระดับชั้นของเนื้อหานั้นอนุญาตเท่านั้น</p>
+</section>
+
+
+<div class="pager">
+  <a href="price-equity-tool.html">← เครื่องมือ PriceEquity OHLCV</a>
+  <a href="save-screener-results.html">บันทึกผลลัพธ์การคัดกรองจากแชท →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · Feature Guide</div>
+    <h1>ဂရပ်ဖ်ဖော်ပြခြင်း၊ Groq နှင့် Parameter Profile များ</h1>
+    <p class="lede">ဂရပ်ဖ်ဖော်ပြခြင်း race condition တစ်ခုနှင့် dark-mode theme ကွာဟမှုတစ်ခုကို ပြင်ဆင်ပြီး၊ Groq ကို model provider အသစ်တစ်ခုအဖြစ် ထည့်သွင်းကာ၊ လုပ်ဆောင်နေသည့်အလုပ်အမျိုးအစားပေါ်မူတည်၍ model ၏ အပြုအမူကို ချိန်ညှိပေးသော parameter profile များကို မိတ်ဆက်ပေးသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ချို့ယွင်းချက် ပြင်ဆင်မှုများ</h2>
+  <ul>
+    <li><strong>ဂရပ်ဖ်ဖော်ပြခြင်း race condition:</strong> streaming message အတွင်း ဂရပ်ဖ်များ ဖော်ပြသည့်အခါ timing ပြဿနာများကို ပြင်ဆင်ထားသည်။</li>
+    <li><strong>Dark mode theme:</strong> ad hoc override များအစား native Highcharts theme များကို အသုံးပြုရန် အားလုံးကို ပြန်လည်ပြင်ဆင်ထားပြီး၊ export ခလုတ် hover state နှင့် ဂရပ်ဖ်ခေါင်းစဉ်/ခေါင်းစဉ်ခွဲ spacing ကိုပါ တစ်ပါတည်း ပြင်ဆင်ထားသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဝန်ဆောင်မှုအသစ်များ</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Groq Provider</h4><p>ကိုယ်ပိုင် configuration ပါသော LLM provider အသစ်အဖြစ် ထည့်သွင်းထားသည်။</p></div>
+    <div class="card"><h4>Parameter Profile များ</h4><p>အသုံးပြုမှုအမျိုးအစားအလိုက် ချိန်ညှိထားသော dynamic parameter set များ — default, research, creative, coding နှင့် analysis။</p></div>
+    <div class="card"><h4>Assumptions Protocol</h4><p>ပိုမိုပွင့်လင်းသော ကျိုးကြောင်းဆက်နွှယ်မှုအတွက် system prompt တွင် ရှင်းလင်းသော assumptions-and-estimations protocol ကို ထည့်သွင်းထားသည်။</p></div>
+    <div class="card"><h4>ဂရပ်ဖ် လမ်းညွှန်ချက်</h4><p>model အတွက် ဂရပ်ဖ်အမျိုးအစား ရွေးချယ်ခြင်းနှင့် ဂရပ်ဖ်ဖန်တီးခြင်း လမ်းညွှန်ချက်ကို ပိုမိုကောင်းမွန်အောင် ပြုလုပ်ထားသည်။</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>Theme စနစ်အသစ်အတွက် chart generator test များကို update လုပ်ထားပြီး parameter profile များအတွက် test line ၂၈၅ လိုင်း အသစ်ထည့်သွင်းထားကာ LLM factory test များကိုလည်း မြှင့်တင်ထားသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်း ဆက်လက်သက်ရောက်</h2>
+  <p>Model provider အသစ်တစ်ခုသည်လည်း <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> ၏ tool-routing စည်းမျဉ်းများနှင့် ချည်နှောင်ဆက်လက်ရှိနေသည် — Groq သည် အခြား provider များကဲ့သို့ပင် underlying content ၏ tier က ခွင့်ပြုသည့်အရာကိုသာ ရရှိမည်ဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="price-equity-tool.html">← PriceEquity OHLCV Tool</a>
+  <a href="save-screener-results.html">Chat မှ Screener ရလဒ်များ သိမ်းဆည်းခြင်း →</a>
+</div>
+
+</main>
+</div><!-- /my -->
 
 </body>
 </html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adding up to Sixty Additional Fields on Screens — ENVISAGE WORLDWIDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
+<script src="search-data.js"></script>
+<script src="help-search.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand brand-logo" href="index.html"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Chat Interface &amp; Prompt Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="prompt-templates.html">Prompt Templates</a></li>
+          <li><a href="prompt-studio.html">Prompt Studio</a></li>
+          <li><a href="admin-prompt-management.html">Administrative Management of Prompt Writing</a></li>
+          <li><a href="personal-prompt-templates.html">Personal Prompt Templates</a></li>
+          <li><a href="prompt-studio-modal-autocomplete.html">Prompt Studio Modal & Company Autocomplete</a></li>
+          <li><a href="modern-chat-ui-redesign.html">Modern Chat UI Redesign</a></li>
+          <li><a href="typescript-migration.html">TypeScript Migration</a></li>
+          <li><a href="pdf-export-copy-formats.html">PDF Export & Copy Formats</a></li>
+          <li><a href="streaming-recovery-session-handling.html">Streaming Recovery & Session Handling</a></li>
+          <li><a href="shareable-chat-links.html">Shareable Chat Links</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="active">Screening &amp; Filtering</a>
+        <ul class="dropdown-menu">
+          <li><a href="filtering-tools.html">System-wide Filtering Tools</a></li>
+          <li><a href="exclusion-list.html">Exclusion List Capabilities</a></li>
+          <li><a href="additional-fields.html" class="active">Adding up to Sixty Additional Fields on Screens</a></li>
+          <li><a href="export-functionality.html">Enhanced Export Functionality</a></li>
+          <li><a href="regional-filtering-company-lists.html">Regional Filtering & Company Lists</a></li>
+          <li><a href="partial-match-exclusions.html">Partial Match Exclusions</a></li>
+          <li><a href="export-service-layer.html">Export Service Layer & Error Handling</a></li>
+          <li><a href="save-screener-results.html">Save Screener Results from Chat</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Financial Data Tools</a>
+        <ul class="dropdown-menu">
+          <li><a href="daily-price-metrics.html">Daily Price Metrics Tool</a></li>
+          <li><a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch</a></li>
+          <li><a href="historical-financial-data.html">Historical Financial Data</a></li>
+          <li><a href="price-equity-tool.html">PriceEquity OHLCV Tool</a></li>
+          <li><a href="chart-generation-tool.html">Chart Generation Tool</a></li>
+          <li><a href="chart-rendering-groq-profiles.html">Chart Rendering, Groq & Parameter Profiles</a></li>
+          <li><a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch</a></li>
+          <li><a href="portfolio-analyst-field-parity.html">Portfolio Analyst Field Parity</a></li>
+          <li><a href="company-financials-batch.html">Company Financials Batch Retrieval</a></li>
+          <li><a href="roe-formatter-fix.html">ROE Formatter Bug Fix</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Scorecards &amp; Research</a>
+        <ul class="dropdown-menu">
+          <li><a href="scorecard-rankings.html">Scorecard Rankings</a></li>
+          <li><a href="scorecard-chatbot-integration.html">Integrate Scorecards into SAMAI Chatbot</a></li>
+          <li><a href="scorecard-tool-launch.html">Scorecard Tool Launch</a></li>
+          <li><a href="scorecard-team-averages-spider-charts.html">Scorecard Team Averages & Spider Charts</a></li>
+          <li><a href="scorecard-rankings-portfolio-analyst.html">Scorecard Rankings in Portfolio Analyst</a></li>
+          <li><a href="broker-notes-mcp.html">Broker Notes MCP Integration</a></li>
+          <li><a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Response Quality &amp; Reliability</a>
+        <ul class="dropdown-menu">
+          <li><a href="citation-management.html">Citation Management in SAM</a></li>
+          <li><a href="citation-system-launch.html">Citation System Launch</a></li>
+          <li><a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements</a></li>
+          <li><a href="citation-source-id-fix.html">Citation Source ID Bug Fix</a></li>
+          <li><a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips</a></li>
+          <li><a href="anthropic-content.html">Improving Anthropic Content and Complexity</a></li>
+          <li><a href="streaming-content-extraction.html">Streaming Content Extraction</a></li>
+          <li><a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Platform &amp; Infrastructure</a>
+        <ul class="dropdown-menu">
+          <li><a href="chatbot-architecture-refactor.html">Chatbot Architecture Refactor</a></li>
+          <li><a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop Fix</a></li>
+          <li><a href="context-management.html">Context Management Enhancements</a></li>
+          <li><a href="context-budget-model-updates.html">Context Budget & Model Updates</a></li>
+          <li><a href="langgraph-v1-mic-ticker.html">LangGraph v1 & MIC Ticker Matching</a></li>
+          <li><a href="model-fallback-chains.html">Model Fallback Chains</a></li>
+          <li><a href="ai-core-runtime-extraction.html">AI Core Runtime Extraction</a></li>
+          <li><a href="excel-processing-enhancements.html">Excel Processing Enhancements</a></li>
+          <li><a href="firecrawl-web-extraction.html">Firecrawl Web Extraction Tool</a></li>
+          <li><a href="image-upload-vision.html">Image Upload & Vision Processing</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
+  </div>
+</nav>
+<div class="help-bar">
+  <div class="help-bar-inner">
+    <label for="help-search-input" class="help-bar-label">Need something specific?</label>
+    <div class="help-search-wrap">
+      <input type="text" id="help-search-input" placeholder="Search features — e.g. citations, screener, streaming..." autocomplete="off">
+      <div id="help-search-results" class="help-results"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">New in SAM · Feature Guide</div>
+    <h1>Adding up to Sixty Additional Fields on Screens</h1>
+    <p class="lede">Portfolio analyst now returns 60+ additional financial and company fields, bringing it to full parity with our database schema — and a new <code>include_fields</code> option lets you request only the fields you actually need.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>What's New</h2>
+  <ul>
+    <li><strong>60+ new fields</strong> across financial metrics, valuation metrics, company fundamentals, and performance indicators — closing the gap between the portfolio analyst tool and the underlying database schema.</li>
+    <li><strong>Selective field inclusion</strong> via a new <code>include_fields</code> parameter, so a query can request a specific subset of data instead of everything.</li>
+    <li><strong>Backward compatible:</strong> if <code>include_fields</code> isn't specified, the tool still returns the full field set as before.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Field Categories</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Financial Metrics</h4><p>ROA, ROE, Revenue Growth Rate, and related profitability and growth measures.</p></div>
+    <div class="card"><h4>Valuation Metrics</h4><p>EV/EBITDA, Price-to-Sales, FCF Yield, and other valuation multiples.</p></div>
+    <div class="card"><h4>Company Fundamentals</h4><p>Market Cap, Industry, Country, and other core company identifiers.</p></div>
+    <div class="card"><h4>Performance Indicators</h4><p>Quarterly revenue growth, quarterly earnings growth, and related period-over-period measures.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Selective Field Inclusion</h2>
+  <p>The new <code>include_fields</code> parameter lets a query ask for exactly the data it needs rather than the full field set every time. This reduces response size and improves performance, which matters most on large portfolios or batch queries.</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Omitted</h4><p>Not specifying <code>include_fields</code> returns the full field set, exactly as the tool behaved before this change.</p></div>
+    <div class="card"><span class="num">2</span><h4>Specified</h4><p>Naming specific fields returns only those — smaller, faster responses when you don't need everything.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>What You Can Ask</h2>
+  <div class="example good">
+    <div class="label">Example</div>
+    <p>"Show me ROE and FCF yield for my portfolio companies."</p>
+  </div>
+  <div class="example good">
+    <div class="label">Example</div>
+    <p>"Just give me market cap and industry for these tickers — I don't need the full profile."</p>
+  </div>
+  <p>Behind the scenes, SAM maps a request like this to the relevant fields via <code>include_fields</code>, so you get a focused answer instead of a full data dump you then have to sift through.</p>
+</section>
+
+<section>
+  <h2>Reliability</h2>
+  <div class="callout ok">
+    <p><strong>Backward compatible.</strong> Existing queries that don't use <code>include_fields</code> are unaffected. Testing covered correct data return for all new fields, various <code>include_fields</code> combinations, and formatting for percentages, currency, and dates. Field names follow existing database schema conventions.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Data Handling Still Applies</h2>
+  <p>Public financial metrics and company fundamentals on their own are generally <strong>Tier 1</strong>. As with scorecards and screening, the tier shifts once results are tied to a specific ENVISAGE portfolio or client context.</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">Usually fine</span><h4>Public metrics, standalone</h4><p>Pulling ROE, EV/EBITDA, or market cap for a publicly listed company on its own stays close to Tier 1.</p></div>
+    <div class="card"><span class="badge amber">Check first</span><h4>Tied to a portfolio or watchlist</h4><p>Returning these fields for a specific client's portfolio or watchlist ties the data to that engagement — treat it as Tier 2/3 and keep it inside SAM and approved workflows, per <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a>.</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="exclusion-list.html">← Exclusion List Capabilities</a>
+  <a href="export-functionality.html">Enhanced Export Functionality →</a>
+</div>
+
+</main>
+</div><!-- /en -->
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเพิ่มฟิลด์เสริมสูงสุด 60 ฟิลด์ในหน้าจอคัดกรอง</h1>
+    <p class="lede">ตอนนี้ Portfolio Analyst ส่งคืนฟิลด์ทางการเงินและข้อมูลบริษัทเพิ่มเติมกว่า 60 ฟิลด์ ทำให้เทียบเท่ากับ schema ฐานข้อมูลของเราอย่างสมบูรณ์ — และตัวเลือกใหม่ <code>include_fields</code> ช่วยให้คุณขอเฉพาะฟิลด์ที่ต้องการจริง ๆ</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>ฟิลด์ใหม่กว่า 60 ฟิลด์</strong> ครอบคลุมตัวชี้วัดทางการเงิน ตัวชี้วัดการประเมินมูลค่า ปัจจัยพื้นฐานของบริษัท และตัวชี้วัดผลการดำเนินงาน — ปิดช่องว่างระหว่างเครื่องมือ portfolio analyst กับ schema ฐานข้อมูลที่รองรับอยู่</li>
+    <li><strong>การเลือกฟิลด์แบบเจาะจง</strong> ผ่านพารามิเตอร์ใหม่ <code>include_fields</code> ทำให้ query สามารถขอข้อมูลเฉพาะบางส่วนแทนที่จะขอทั้งหมด</li>
+    <li><strong>ใช้งานร่วมกับของเดิมได้:</strong> หากไม่ระบุ <code>include_fields</code> เครื่องมือจะยังคงส่งคืนชุดฟิลด์เต็มเหมือนเดิม</li>
+  </ul>
+</section>
+
+<section>
+  <h2>หมวดหมู่ฟิลด์</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>ตัวชี้วัดทางการเงิน</h4><p>ROA, ROE, Revenue Growth Rate และตัวชี้วัดความสามารถในการทำกำไรและการเติบโตที่เกี่ยวข้อง</p></div>
+    <div class="card"><h4>ตัวชี้วัดการประเมินมูลค่า</h4><p>EV/EBITDA, Price-to-Sales, FCF Yield และตัวคูณการประเมินมูลค่าอื่น ๆ</p></div>
+    <div class="card"><h4>ปัจจัยพื้นฐานของบริษัท</h4><p>Market Cap, Industry, Country และตัวระบุตัวตนหลักอื่น ๆ ของบริษัท</p></div>
+    <div class="card"><h4>ตัวชี้วัดผลการดำเนินงาน</h4><p>การเติบโตของรายได้รายไตรมาส การเติบโตของกำไรรายไตรมาส และตัวชี้วัดเปรียบเทียบช่วงเวลาที่เกี่ยวข้อง</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>การเลือกฟิลด์แบบเจาะจง</h2>
+  <p>พารามิเตอร์ใหม่ <code>include_fields</code> ช่วยให้ query สามารถขอข้อมูลที่ต้องการจริง ๆ แทนที่จะขอชุดฟิลด์เต็มทุกครั้ง วิธีนี้ช่วยลดขนาดการตอบกลับและเพิ่มประสิทธิภาพ ซึ่งสำคัญที่สุดสำหรับพอร์ตขนาดใหญ่หรือ query แบบ batch</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>ไม่ระบุ</h4><p>การไม่ระบุ <code>include_fields</code> จะส่งคืนชุดฟิลด์เต็ม เหมือนกับพฤติกรรมเดิมของเครื่องมือก่อนการเปลี่ยนแปลงนี้</p></div>
+    <div class="card"><span class="num">2</span><h4>ระบุ</h4><p>การระบุชื่อฟิลด์เฉพาะจะส่งคืนเฉพาะฟิลด์เหล่านั้น — การตอบกลับที่เล็กลงและเร็วขึ้นเมื่อคุณไม่ต้องการข้อมูลทั้งหมด</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>สิ่งที่คุณสามารถถามได้</h2>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"แสดง ROE และ FCF yield สำหรับบริษัทในพอร์ตของฉัน"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"ขอแค่ market cap และ industry สำหรับ ticker เหล่านี้ — ไม่ต้องการโปรไฟล์เต็ม"</p>
+  </div>
+  <p>เบื้องหลัง SAM จะจับคู่คำขอลักษณะนี้กับฟิลด์ที่เกี่ยวข้องผ่าน <code>include_fields</code> ทำให้คุณได้คำตอบที่ตรงจุดแทนที่จะได้ข้อมูลดิบจำนวนมากที่ต้องมาคัดกรองเอง</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ใช้งานร่วมกับของเดิมได้</strong> query เดิมที่ไม่ได้ใช้ <code>include_fields</code> จะไม่ได้รับผลกระทบ การทดสอบครอบคลุมการส่งคืนข้อมูลที่ถูกต้องสำหรับฟิลด์ใหม่ทั้งหมด การผสมผสาน <code>include_fields</code> ต่าง ๆ และการจัดรูปแบบเปอร์เซ็นต์ สกุลเงิน และวันที่ ชื่อฟิลด์เป็นไปตามข้อตกลง schema ฐานข้อมูลที่มีอยู่เดิม</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>ตัวชี้วัดทางการเงินสาธารณะและปัจจัยพื้นฐานของบริษัทโดยลำพัง โดยทั่วไปจัดเป็น <strong>Tier 1</strong> เช่นเดียวกับ scorecard และการคัดกรอง ระดับชั้นข้อมูลจะเปลี่ยนไปเมื่อผลลัพธ์ถูกผูกกับพอร์ตหรือบริบทลูกค้าของ ENVISAGE โดยเฉพาะ</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">โดยทั่วไปไม่มีปัญหา</span><h4>ตัวชี้วัดสาธารณะ แบบเดี่ยว</h4><p>การดึง ROE, EV/EBITDA หรือ market cap สำหรับบริษัทมหาชนโดยลำพัง ยังคงใกล้เคียงกับ Tier 1</p></div>
+    <div class="card"><span class="badge amber">ตรวจสอบก่อน</span><h4>ผูกกับพอร์ตหรือ watchlist</h4><p>การส่งคืนฟิลด์เหล่านี้สำหรับพอร์ตหรือ watchlist ของลูกค้ารายใดรายหนึ่งโดยเฉพาะ ทำให้ข้อมูลผูกกับงานนั้น — ให้ถือว่าเป็น Tier 2/3 และเก็บไว้ภายใน SAM และ workflow ที่ได้รับอนุมัติ ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a></p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="exclusion-list.html">← ความสามารถของรายการยกเว้น</a>
+  <a href="export-functionality.html">ฟังก์ชันการส่งออกที่ปรับปรุงแล้ว →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · Feature Guide</div>
+    <h1>မျက်နှာပြင်များတွင် အပိုဒေတာအကွက် ၆၀ အထိ ထည့်သွင်းခြင်း</h1>
+    <p class="lede">Portfolio analyst သည် ယခုအခါ ဘဏ္ဍာရေးနှင့် ကုမ္ပဏီဒေတာအကွက် ၆၀ ကျော် ထပ်မံပေးပို့နိုင်ပြီဖြစ်ပြီး ကျွန်ုပ်တို့၏ ဒေတာဘေ့စ် schema နှင့် အပြည့်အဝ ကိုက်ညီအောင် ပြုလုပ်ထားသည် — ပြီးတော့ အသစ်ဖြစ်သော <code>include_fields</code> ရွေးချယ်မှုက သင်လိုအပ်သည့်အကွက်များကိုသာ တောင်းဆိုနိုင်စေသည်။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>အသစ်များ</h2>
+  <ul>
+    <li><strong>အကွက်အသစ် ၆၀ ကျော်</strong> ဘဏ္ဍာရေးညွှန်းကိန်း၊ တန်ဖိုးဆန်းစစ်ညွှန်းကိန်း၊ ကုမ္ပဏီအခြေခံအချက်အလက် နှင့် စွမ်းဆောင်ရည်ညွှန်းကိန်းများ ပါဝင်သည် — portfolio analyst tool နှင့် database schema အကြား ကွာဟမှုကို ပိတ်ပေးသည်။</li>
+    <li><strong>ရွေးချယ်၍ အကွက်ထည့်သွင်းခြင်း</strong> အသစ်ဖြစ်သော <code>include_fields</code> parameter မှတစ်ဆင့် query တစ်ခုသည် အချက်အလက်အားလုံးအစား သီးခြားအပိုင်းကိုသာ တောင်းဆိုနိုင်သည်။</li>
+    <li><strong>နောက်ကြောင်းပြန်လိုက်ဖက်မှု:</strong> <code>include_fields</code> ကို မသတ်မှတ်ပါက tool သည် ယခင်ကအတိုင်း အကွက်အစုံကို ဆက်လက်ပေးပို့ပါမည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>အကွက်အမျိုးအစားများ</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>ဘဏ္ဍာရေးညွှန်းကိန်းများ</h4><p>ROA, ROE, Revenue Growth Rate နှင့် ဆက်စပ် အမြတ်အစွန်းနှင့် တိုးတက်မှု ညွှန်းကိန်းများ</p></div>
+    <div class="card"><h4>တန်ဖိုးဆန်းစစ်ညွှန်းကိန်းများ</h4><p>EV/EBITDA, Price-to-Sales, FCF Yield နှင့် အခြား valuation multiple များ</p></div>
+    <div class="card"><h4>ကုမ္ပဏီအခြေခံအချက်အလက်</h4><p>Market Cap, Industry, Country နှင့် အခြား ကုမ္ပဏီအဓိက identifier များ</p></div>
+    <div class="card"><h4>စွမ်းဆောင်ရည်ညွှန်းကိန်းများ</h4><p>သုံးလပတ် ဝင်ငွေတိုးတက်မှု၊ သုံးလပတ် အမြတ်တိုးတက်မှု နှင့် ဆက်စပ် period-over-period ညွှန်းကိန်းများ</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ရွေးချယ်၍ အကွက်ထည့်သွင်းခြင်း</h2>
+  <p>အသစ်ဖြစ်သော <code>include_fields</code> parameter က query တစ်ခုအား အကွက်အစုံအစား လိုအပ်သောဒေတာကိုသာ တောင်းဆိုနိုင်စေသည်။ ၎င်းက response size ကို လျှော့ချပြီး စွမ်းဆောင်ရည်ကို မြှင့်တင်ပေးသည် — portfolio ကြီးများ (သို့) batch query များတွင် အရေးအကြီးဆုံးဖြစ်သည်။</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>ချန်ထားခြင်း</h4><p><code>include_fields</code> ကို မသတ်မှတ်ခြင်းသည် ဤပြောင်းလဲမှုမတိုင်မီက tool ၏ အမူအကျင့်အတိုင်း အကွက်အစုံကို ပြန်ပေးသည်။</p></div>
+    <div class="card"><span class="num">2</span><h4>သတ်မှတ်ခြင်း</h4><p>သီးခြားအကွက်များကို အမည်ဖော်ခြင်းသည် ၎င်းတို့ကိုသာ ပြန်ပေးသည် — အားလုံးမလိုအပ်သည့်အခါ သေးငယ်၍ မြန်ဆန်သော response များ ရရှိသည်။</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>မေးမြန်းနိုင်သည့်အရာများ</h2>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"ကျွန်ုပ်၏ portfolio ကုမ္ပဏီများအတွက် ROE နှင့် FCF yield ကို ပြပါ။"</p>
+  </div>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"ဤ ticker များအတွက် market cap နှင့် industry ကိုသာ ပေးပါ — ကျွန်ုပ် ပရိုဖိုင်အပြည့်အစုံ မလိုအပ်ပါ။"</p>
+  </div>
+  <p>နောက်ကွယ်တွင် SAM သည် ဤကဲ့သို့သော တောင်းဆိုချက်ကို <code>include_fields</code> မှတစ်ဆင့် သက်ဆိုင်ရာ အကွက်များနှင့် ချိတ်ဆက်ပေးသဖြင့် သင်သည် နောက်မှ ကိုယ်တိုင် စစ်ထုတ်ရမည့် ဒေတာအလုံးအရင်းအစား ဦးတည်ချက်ရှိသော အဖြေကို ရရှိသည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>နောက်ကြောင်းပြန်လိုက်ဖက်မှု။</strong> <code>include_fields</code> ကို မသုံးသေးသော query များ ရှိနှင့်ပြီးသားများသည် ခံစားရမှု မရှိပါ။ စမ်းသပ်မှုများတွင် အကွက်အသစ်အားလုံးအတွက် ဒေတာမှန်ကန်စွာ ပြန်ပေးမှု၊ <code>include_fields</code> ပေါင်းစပ်မှုအမျိုးမျိုး နှင့် ရာခိုင်နှုန်း၊ ငွေကြေး၊ ရက်စွဲ format များ ပါဝင်သည်။ Field name များသည် လက်ရှိ database schema convention များနှင့် ကိုက်ညီသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်း ဆက်လက်သက်ရောက်</h2>
+  <p>အများပြည်သူ ဘဏ္ဍာရေးညွှန်းကိန်းများနှင့် ကုမ္ပဏီအခြေခံအချက်အလက်များကို တစ်ကိုယ်တည်းသုံးလျှင် ယေဘုယျအားဖြင့် <strong>Tier 1</strong> ဖြစ်သည်။ scorecard နှင့် screening ကဲ့သို့ပင် ရလဒ်များကို ENVISAGE ၏ သီးခြား portfolio (သို့) client context နှင့် ချိတ်ဆက်လိုက်သောအခါ tier ပြောင်းလဲသွားသည်။</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge green">ပုံမှန်အားဖြင့် ကျန်</span><h4>အများပြည်သူ ညွှန်းကိန်းများ၊ တစ်ကိုယ်တည်း</h4><p>အများပြည်သူ စာရင်းဝင်ကုမ္ပဏီတစ်ခုအတွက် ROE, EV/EBITDA (သို့) market cap ကို တစ်ကိုယ်တည်းရယူခြင်းသည် Tier 1 နှင့် နီးစပ်စွာ ကျန်ရှိသည်။</p></div>
+    <div class="card"><span class="badge amber">အရင်စစ်ဆေးပါ</span><h4>Portfolio (သို့) watchlist နှင့် ချိတ်ဆက်ထားလျှင်</h4><p>ဤအကွက်များကို client တစ်ဦးချင်းစီ၏ portfolio (သို့) watchlist အတွက် ပြန်ပေးခြင်းသည် ဒေတာကို ထို engagement နှင့် ချိတ်ဆက်စေသည် — ၎င်းကို Tier 2/3 အဖြစ် သတ်မှတ်ပြီး SAM နှင့် ခွင့်ပြုထားသော workflow များအတွင်း ထိန်းသိမ်းပါ၊ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> အတိုင်း။</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="exclusion-list.html">← ဖယ်ထုတ်စာရင်း စွမ်းရည်များ</a>
+  <a href="export-functionality.html">မြှင့်တင်ထားသော Export လုပ်ဆောင်ချက် →</a>
+</div>
+
+</main>
+</div><!-- /my -->
+
+</body>
+</html>

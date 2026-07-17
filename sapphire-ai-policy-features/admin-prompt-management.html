@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -189,6 +195,166 @@
 <div class="pager">
   <a href="prompt-studio.html">← Prompt Studio</a>
   <a href="daily-price-metrics.html">Daily Price Metrics Tool →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การบริหารจัดการงานเขียนพรอมต์สำหรับผู้ดูแลระบบ</h1>
+    <p class="lede">นี่คือสถาปัตยกรรมฝั่งแบ็กเอนด์ (backend) ที่อยู่เบื้องหลังระบบเทมเพลตพรอมต์ — โมเดลข้อมูล การกำหนดสิทธิ์การเข้าถึง และขอบเขตของ API ที่หน้า <a href="prompt-studio.html">Prompt Studio</a> และ <a href="prompt-templates.html">Prompt Templates</a> ถูกสร้างขึ้นบนพื้นฐานนี้ หากคุณเป็นผู้ดูแลระบบหรือนักพัฒนาที่ต้องการเข้าใจว่าเทมเพลตถูกจัดโครงสร้างและควบคุมดูแลอย่างไร หน้านี้เหมาะสำหรับคุณ</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>ภาพรวมความเชื่อมโยงของแต่ละหน้า</h2>
+  <p>ขณะนี้มีสามหน้าบนเว็บไซต์นี้ที่ครอบคลุมระบบเทมเพลตพรอมต์จากมุมมองที่แตกต่างกัน:</p>
+  <div class="grid cols-3">
+    <div class="card"><h4>Prompt Templates</h4><p>คู่มือสำหรับผู้ใช้งาน: เทมเพลตคืออะไร ไวยากรณ์ของ placeholder และตัวอย่างเทมเพลต ดูที่ <a href="prompt-templates.html">Prompt Templates</a></p></div>
+    <div class="card"><h4>Prompt Studio</h4><p>UI สำหรับผู้ดูแลระบบในการแก้ไข: หมวดหมู่แบบลำดับชั้น ตัวแก้ไข markdown และการจัดลำดับด้วยการลากวาง ดูที่ <a href="prompt-studio.html">Prompt Studio</a></p></div>
+    <div class="card"><h4>หน้านี้</h4><p>โมเดลข้อมูลพื้นฐาน การควบคุมการเข้าถึง และ API endpoint ที่ทำให้อีกสองหน้าเป็นไปได้</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>โมเดลข้อมูล</h2>
+  <table>
+    <tr><th>โมเดล</th><th>ฟิลด์สำคัญ</th></tr>
+    <tr><td><code>PromptTemplateCategory</code></td><td>name (ไม่ซ้ำกัน), description, slug (ไม่ซ้ำกัน), order, is_active</td></tr>
+    <tr><td><code>PromptTemplate</code></td><td>name, description, category (เชื่อมโยงกับหมวดหมู่หนึ่ง), template_text, placeholders (รายการที่ตรวจพบอัตโนมัติ), is_active, created_by, order</td></tr>
+  </table>
+  <p>หมวดหมู่มีกลไกป้องกันข้อมูลสูญหายโดยไม่ตั้งใจ: หมวดหมู่จะไม่สามารถลบได้ตราบใดที่ยังมีเทมเพลตผูกอยู่กับหมวดหมู่นั้น ส่วนเทมเพลตรองรับการลบแบบ soft deletion แทนที่จะถูกลบออกอย่างถาวร</p>
+</section>
+
+<section>
+  <h2>การควบคุมการเข้าถึง</h2>
+  <p>ทุกหน้าจอผู้ดูแลระบบสำหรับหมวดหมู่และเทมเพลต — รายการ การสร้าง การแก้ไข การลบ และรายละเอียด/ตัวอย่าง — ต้องมีสิทธิ์ site-admin ผู้ใช้งานทั่วไปจะไม่เห็นอินเทอร์เฟซของผู้ดูแลระบบเลย พวกเขาจะเห็นเทมเพลตก็ต่อเมื่อผู้ดูแลระบบเผยแพร่เทมเพลตนั้นเป็น active แล้วเท่านั้น</p>
+</section>
+
+<section>
+  <h2>การตรวจจับและตรวจสอบความถูกต้องของ Placeholder</h2>
+  <p>Placeholder จะถูกตรวจจับโดยอัตโนมัติจากข้อความเทมเพลตโดยใช้รูปแบบ <code>{{...}}</code> ตรวจสอบความถูกต้องของไวยากรณ์ และจัดเก็บไว้คู่กับเทมเพลตเพื่อให้อ้างอิงได้อย่างรวดเร็ว — การจับคู่ไม่สนใจตัวพิมพ์เล็ก-ใหญ่ ดังนั้น <code>{{Company}}</code> และ <code>{{company}}</code> จะถือว่าเหมือนกัน placeholder ทั้งสี่แบบที่ SAM รองรับมีอธิบายไว้ในหน้า <a href="prompt-templates.html">Prompt Templates</a></p>
+</section>
+
+<section>
+  <h2>ขอบเขตของ API</h2>
+  <table>
+    <tr><th>Endpoint</th><th>วัตถุประสงค์</th></tr>
+    <tr><td>Templates list API</td><td>ส่งคืนเทมเพลตที่ active ทั้งหมด จัดกลุ่มตามหมวดหมู่ เพื่อใช้งานในอินเทอร์เฟซแชท</td></tr>
+    <tr><td>Template detail API</td><td>ส่งคืนรายละเอียดทั้งหมดของเทมเพลตหนึ่งรายการตาม ID</td></tr>
+  </table>
+  <p>ทั้งสอง endpoint ต้องการผู้ใช้ที่ล็อกอินแล้ว นี่คือขอบเขตที่ตัวเลือกเทมเพลตของอินเทอร์เฟซแชทคาดว่าจะเรียกใช้ — ดูหัวข้อสิ่งที่ยังไม่ได้สร้างด้านล่างสำหรับสิ่งที่ยังไม่มี</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ทดสอบครอบคลุมทุกชั้นของระบบ</strong> การทดสอบครอบคลุมการตรวจสอบโมเดลและการดึง placeholder การตรวจสอบสิทธิ์ในระดับ view ความถูกต้องของการตอบกลับจาก API และการตรวจสอบ placeholder ในระดับฟอร์ม รวมถึงกรณีขอบเขตต่าง ๆ ของรูปแบบ placeholder</p>
+  </div>
+</section>
+
+<section>
+  <h2>สิ่งที่ยังไม่ได้สร้าง</h2>
+  <div class="callout warn">
+    <p><strong>การเลือกเทมเพลตฝั่ง frontend เป็นงานแยกต่างหากที่จะทำในภายหลัง</strong> โมดัลสำหรับเลือกเทมเพลตในหน้าแชท การเติมชื่อบริษัทอัตโนมัติ (autocomplete) สำหรับกรอก placeholder การแสดงตัวอย่างแบบเรียลไทม์พร้อมค่าที่แทนที่ การค้นหาเทมเพลต และการรองรับ placeholder หลายบริษัท ล้วนวางแผนไว้เป็นงาน frontend ที่จะตามมา — ไม่ใช่ส่วนหนึ่งของระบบแบ็กเอนด์นี้ อย่าคาดเดาว่าประสบการณ์การใช้งานในหน้าแชทแบบเต็มรูปแบบพร้อมใช้งานแล้ว โปรดตรวจสอบกับหัวหน้าทีมของคุณถึงความพร้อมใช้งานในปัจจุบัน</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงมีผลบังคับใช้</h2>
+  <p>เทมเพลตที่จัดเก็บผ่านระบบนี้จะปรากฏต่อผู้ใช้งานทุกคนเมื่อเผยแพร่แล้ว คำแนะนำเดียวกันจาก <a href="prompt-studio.html">Prompt Studio</a> ใช้ได้กับหน้านี้เช่นกัน: โครงสร้างเทมเพลตและ placeholder เป็น boilerplate ระดับ Tier 1 ที่มีไว้สำหรับใช้ซ้ำ — อย่าเขียนชื่อลูกค้าจริง รายละเอียดงาน (engagement) หรือรายละเอียดเฉพาะเคสลงในข้อความเทมเพลตที่จัดเก็บไว้โดยตรง ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+<div class="pager">
+  <a href="prompt-studio.html">← Prompt Studio</a>
+  <a href="daily-price-metrics.html">เครื่องมือ Daily Price Metrics →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာဆိုင်ရာ ကိုးကားချက်</div>
+    <h1>Prompt ရေးသားမှုအတွက် Admin စီမံခန့်ခွဲမှု</h1>
+    <p class="lede">ဤစာမျက်နှာသည် Prompt Template စနစ်၏ နောက်ကွယ်ရှိ backend architecture ဖြစ်သည် — <a href="prompt-studio.html">Prompt Studio</a> နှင့် <a href="prompt-templates.html">Prompt Templates</a> တို့ တည်ဆောက်ရာတွင် အခြေခံအဖြစ် အသုံးပြုသည့် data model, ခွင့်ပြုချက်များ နှင့် API surface တို့ဖြစ်သည်။ Template များကို မည်သို့ဖွဲ့စည်းပြီး ထိန်းချုပ်ထားသည်ကို နားလည်လိုသော admin သို့မဟုတ် developer တစ်ဦးဖြစ်ပါက ဤစာမျက်နှာသည် သင့်အတွက်ဖြစ်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>ဤစာမျက်နှာများ မည်သို့ ဆက်စပ်နေသည်</h2>
+  <p>ယခုအခါ ဤဝဘ်ဆိုက်ရှိ စာမျက်နှာသုံးခုသည် Prompt Template စနစ်ကို ရှုထောင့်အမျိုးမျိုးမှ ဖော်ပြထားသည် —</p>
+  <div class="grid cols-3">
+    <div class="card"><h4>Prompt Templates</h4><p>အသုံးပြုသူများအတွက် လမ်းညွှန်: Template ဆိုသည်မှာ ဘာလဲ၊ placeholder syntax နှင့် နမူနာ Template များ။ <a href="prompt-templates.html">Prompt Templates</a> တွင် ကြည့်ပါ။</p></div>
+    <div class="card"><h4>Prompt Studio</h4><p>Admin တည်းဖြတ်သည့် UI: အဆင့်ဆင့် category များ၊ markdown editor၊ drag-and-drop စီစဉ်မှု။ <a href="prompt-studio.html">Prompt Studio</a> တွင် ကြည့်ပါ။</p></div>
+    <div class="card"><h4>ဤစာမျက်နှာ</h4><p>အခြားစာမျက်နှာနှစ်ခုကို ဖြစ်နိုင်စေသော အခြေခံ data model၊ access control နှင့် API endpoint များ</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Data Model</h2>
+  <table>
+    <tr><th>Model</th><th>အဓိက Field များ</th></tr>
+    <tr><td><code>PromptTemplateCategory</code></td><td>name (ထူးခြားသော), description, slug (ထူးခြားသော), order, is_active</td></tr>
+    <tr><td><code>PromptTemplate</code></td><td>name, description, category (category တစ်ခုနှင့် ချိတ်ဆက်ထား), template_text, placeholders (အလိုအလျောက် ရှာဖွေတွေ့ရှိသော list), is_active, created_by, order</td></tr>
+  </table>
+  <p>Category များသည် မတော်တဆ ဒေတာဆုံးရှုံးမှုမှ ကာကွယ်ပေးသည်: category တစ်ခုတွင် Template များ ဆက်စပ်နေသေးလျှင် ထို category ကို ဖျက်၍မရပါ။ Template များသည် အပြီးတိုင် ဖယ်ရှားခြင်းထက် soft deletion ကို ပံ့ပိုးထားသည်။</p>
+</section>
+
+<section>
+  <h2>Access Control</h2>
+  <p>Category နှင့် Template များအတွက် admin view အားလုံး — list, create, edit, delete နှင့် detail/preview — သည် site-admin ခွင့်ပြုချက် လိုအပ်သည်။ ပုံမှန်အသုံးပြုသူများသည် admin interface ကို လုံးဝမမြင်ရပါ; admin မှ active အဖြစ် ထုတ်ပြန်ပြီးမှသာ Template များကို မြင်ရသည်။</p>
+</section>
+
+<section>
+  <h2>Placeholder ရှာဖွေခြင်းနှင့် စစ်ဆေးခြင်း</h2>
+  <p>Placeholder များကို <code>{{...}}</code> ပုံစံသုံး၍ Template စာသားမှ အလိုအလျောက် ရှာဖွေတွေ့ရှိပြီး syntax မှန်ကန်မှုကို စစ်ဆေးကာ Template နှင့်အတူ လျင်မြန်စွာ ကိုးကားနိုင်ရန် သိမ်းဆည်းထားသည် — ကိုက်ညီမှုစစ်ဆေးရာတွင် စာလုံးအကြီးအသေး ခွဲခြားမထားပါ၊ ထို့ကြောင့် <code>{{Company}}</code> နှင့် <code>{{company}}</code> ကို တူညီသည်ဟု ယူဆသည်။ SAM နားလည်သော placeholder လေးမျိုးကို <a href="prompt-templates.html">Prompt Templates</a> စာမျက်နှာတွင် မှတ်တမ်းတင်ထားသည်။</p>
+</section>
+
+<section>
+  <h2>API Surface</h2>
+  <table>
+    <tr><th>Endpoint</th><th>ရည်ရွယ်ချက်</th></tr>
+    <tr><td>Templates list API</td><td>active Template အားလုံးကို category အလိုက် စုစည်းပြီး chat interface တွင် အသုံးပြုရန် ပြန်ပေးသည်</td></tr>
+    <tr><td>Template detail API</td><td>Template တစ်ခု၏ အသေးစိတ်အချက်အလက်အားလုံးကို ID ဖြင့် ပြန်ပေးသည်</td></tr>
+  </table>
+  <p>Endpoint နှစ်ခုစလုံးသည် login ဝင်ထားသော အသုံးပြုသူ လိုအပ်သည်။ ဤသည်မှာ chat interface ၏ Template ရွေးချယ်ရေး UI မှ ခေါ်သုံးရန် မျှော်လင့်ထားသော surface ဖြစ်သည် — ဘာများ မတည်ဆောက်ရသေးသည်ကို အောက်ပါ Future Considerations တွင် ကြည့်ပါ။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Stack တစ်ခုလုံးတွင် စမ်းသပ်ထားသည်။</strong> Coverage သည် model validation နှင့် placeholder ထုတ်ယူခြင်း၊ view level ခွင့်ပြုချက်စစ်ဆေးမှု၊ API response မှန်ကန်မှု နှင့် form level placeholder validation အထိ ပါဝင်ပြီး placeholder ပုံစံ အမျိုးမျိုး၏ edge case များပါ ပါဝင်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>မတည်ဆောက်ရသေးသော အရာများ</h2>
+  <div class="callout warn">
+    <p><strong>Frontend ရွေးချယ်မှုသည် နောက်မှ လုပ်ဆောင်မည့် သီးခြားအလုပ်တစ်ခု ဖြစ်သည်။</strong> Template ရွေးချယ်ရန် chat တွင်း modal, placeholder ဖြည့်ရန် company autocomplete, အစားထိုးချက်များပါသော real-time preview, Template ရှာဖွေခြင်း နှင့် company အများအပြားအတွက် placeholder ပံ့ပိုးမှု တို့ကို နောက်ဆက်တွဲ frontend အလုပ်အဖြစ် စီစဉ်ထားသည် — ဤ backend စနစ်၏ အစိတ်အပိုင်းမဟုတ်ပါ။ chat တွင်း အပြည့်အဝ အတွေ့အကြုံသည် အသုံးပြုနိုင်ပြီဟု မယူဆပါနှင့်; လက်ရှိ availability ကို သင့်အဖွဲ့ခေါင်းဆောင်နှင့် စစ်ဆေးပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်နေဆဲ</h2>
+  <p>ဤစနစ်မှတစ်ဆင့် သိမ်းဆည်းထားသော Template များကို ထုတ်ပြန်ပြီးသည်နှင့် အသုံးပြုသူတိုင်း မြင်ရသည်။ <a href="prompt-studio.html">Prompt Studio</a> မှ လမ်းညွှန်ချက်အတိုင်းပင် ဤနေရာတွင်လည်း သက်ရောက်သည်: Template ဖွဲ့စည်းပုံနှင့် placeholder များသည် ပြန်လည်အသုံးပြုရန်အတွက် Tier 1 boilerplate ဖြစ်သည် — <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ တကယ့်ဖောက်သည်နာမည်၊ engagement အသေးစိတ် သို့မဟုတ် ကိစ္စတစ်ခုချင်းစီ၏ အသေးစိတ်ကို သိမ်းဆည်းထားသော Template စာသားထဲသို့ တိုက်ရိုက် မရေးပါနှင့်။</p>
+</section>
+
+<div class="pager">
+  <a href="prompt-studio.html">← Prompt Studio</a>
+  <a href="daily-price-metrics.html">ငွေရေးနေ့စဉ်ဈေးနှုန်း ကိရိယာ →</a>
 </div>
 
 </main>

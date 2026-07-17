@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -167,6 +173,122 @@
 <div class="pager">
   <a href="citation-source-id-fix.html">← Citation Source ID Bug Fix</a>
   <a href="daily-price-metrics-launch.html">Daily Price Metrics Tool Launch →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>ข้อมูลการเงินย้อนหลัง</h1>
+    <p class="lede">เครื่องมือข้อมูลการเงินของบริษัทตอนนี้สามารถย้อนดูข้อมูลในอดีตได้แล้ว — งบกำไรขาดทุน กระแสเงินสด งบดุล และประมาณการของนักวิเคราะห์ — ด้วยพารามิเตอร์ <code>data_types</code> ใหม่ และระบบแคชอัจฉริยะที่ปรับตามความถี่ในการเปลี่ยนแปลงจริงของข้อมูลแต่ละประเภท</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สิ่งที่คุณสามารถขอได้</h2>
+  <table>
+    <tr><th>ค่า data_types</th><th>ผลลัพธ์ที่ได้</th></tr>
+    <tr><td><code>overview</code> (ค่าเริ่มต้น)</td><td>ข้อมูลการเงินปัจจุบัน</td></tr>
+    <tr><td><code>income_statement</code></td><td>ข้อมูลกำไรขาดทุนย้อนหลัง</td></tr>
+    <tr><td><code>cash_flow</code></td><td>งบกระแสเงินสดย้อนหลัง</td></tr>
+    <tr><td><code>balance_sheet</code></td><td>งบดุลย้อนหลัง</td></tr>
+    <tr><td><code>forecast</code></td><td>ประมาณการที่นักวิเคราะห์เห็นพ้องต้องกัน</td></tr>
+    <tr><td><code>all</code></td><td>ข้อมูลทุกประเภทที่มีในการเรียกครั้งเดียว</td></tr>
+  </table>
+  <p>พารามิเตอร์ <code>years</code> ใช้กำหนดว่าจะย้อนดูข้อมูลย้อนหลังไปกี่ปี (1–10 ค่าเริ่มต้นคือ 5) และพารามิเตอร์ <code>metrics</code> ใช้จำกัดผลลัพธ์ให้แสดงเฉพาะฟิลด์ที่ต้องการ</p>
+</section>
+
+<section>
+  <h2>การแคชข้อมูล</h2>
+  <ul>
+    <li><strong>TTL 5 นาที</strong> สำหรับข้อมูล overview (ข้อมูลปัจจุบัน)</li>
+    <li><strong>TTL 24 ชั่วโมง</strong> สำหรับข้อมูลย้อนหลัง ซึ่งเปลี่ยนแปลงน้อยกว่ามาก</li>
+    <li>คีย์ของแคชครอบคลุมพารามิเตอร์ทุกตัว คำขอที่ใช้ data_types หรือ years ต่างกันจึงไม่ชนกัน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ลดโค้ดที่ซ้ำซ้อนไปได้ประมาณ 200 บรรทัด</strong> ด้วยการแยกเมธอด <code>_fetch_financial_statements</code> แบบทั่วไปออกมาใช้ร่วมกัน และเมธอด run หลักก็ลดขนาดจาก 316 บรรทัด เหลือประมาณ 60 บรรทัด ผ่านการแยก helper ทดสอบเดิมทั้ง 57 รายการยังคงผ่านทั้งหมด</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้ได้เหมือนเดิม</h2>
+  <p>ข้อมูลการเงินย้อนหลังของบริษัทที่จดทะเบียนในตลาดหลักทรัพย์โดยทั่วไปถือเป็น Tier 1 เมื่อใช้ตามลำพัง ทันทีที่คำขอถูกกำหนดกรอบโดยอิงกับงานของลูกค้ารายใดรายหนึ่งโดยเฉพาะ ให้ถือว่าเป็น Tier 2/3 ตามที่ระบุใน <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="citation-source-id-fix.html">← แก้ไขข้อบกพร่อง Citation Source ID</a>
+  <a href="daily-price-metrics-launch.html">เปิดตัวเครื่องมือ Daily Price Metrics →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှု လမ်းညွှန်</div>
+    <h1>ငွေကြေးရာဇဝင် အချက်အလက်များ</h1>
+    <p class="lede">ကုမ္ပဏီ ငွေကြေးအချက်အလက် ကိရိယာသည် ယခုအခါ အချိန်ကာလနောက်ပြန်၍ ကြည့်ရှုနိုင်ပြီ — ဝင်ငွေထုတ်ပြန်ချက်များ၊ ငွေသားစီးဆင်းမှုများ၊ လက်ကျန်ရှင်းတမ်းများ နှင့် သုံးသပ်သူ ခန့်မှန်းချက်များ — <code>data_types</code> parameter အသစ်တစ်ခုနှင့် ဒေတာအမျိုးအစားတစ်ခုစီ မည်မျှမကြာခဏ ပြောင်းလဲသည်ကို လိုက်၍ ချိန်ညှိထားသော ဉာဏ်ရည်ရှိ caching စနစ်ဖြင့်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>မည်သည့်အချက်အလက်ကို တောင်းဆိုနိုင်သနည်း</h2>
+  <table>
+    <tr><th>data_types တန်ဖိုး</th><th>ရလဒ်</th></tr>
+    <tr><td><code>overview</code> (default)</td><td>လက်ရှိ ငွေကြေးဆိုင်ရာ metrics များ</td></tr>
+    <tr><td><code>income_statement</code></td><td>ရာဇဝင် ဝင်ငွေထုတ်ပြန်ချက် ဒေတာ</td></tr>
+    <tr><td><code>cash_flow</code></td><td>ရာဇဝင် ငွေသားစီးဆင်းမှု ထုတ်ပြန်ချက်များ</td></tr>
+    <tr><td><code>balance_sheet</code></td><td>ရာဇဝင် လက်ကျန်ရှင်းတမ်းများ</td></tr>
+    <tr><td><code>forecast</code></td><td>သုံးသပ်သူများ သဘောတူညီသော ခန့်မှန်းချက်များ</td></tr>
+    <tr><td><code>all</code></td><td>ရနိုင်သော ဒေတာအမျိုးအစား အားလုံးကို တစ်ကြိမ်တည်း ခေါ်ယူခြင်း</td></tr>
+  </table>
+  <p><code>years</code> parameter သည် မည်မျှ အချိန်နောက်ပြန်ကြည့်မည်ကို ထိန်းချုပ်ပေးသည် (1–10, ပုံသေတန်ဖိုး 5) ။ <code>metrics</code> parameter သည် ရလဒ်ကို သတ်မှတ်ထားသော field များအထိသာ ကျဉ်းသွားစေသည်။</p>
+</section>
+
+<section>
+  <h2>Caching</h2>
+  <ul>
+    <li>overview (လက်ရှိ) ဒေတာအတွက် <strong>TTL 5 မိနစ်</strong></li>
+    <li>ပို၍ ရှားရှားပါးပါးသာ ပြောင်းလဲတတ်သော ရာဇဝင်ဒေတာအတွက် <strong>TTL 24 နာရီ</strong></li>
+    <li>Cache key များတွင် parameter တိုင်းပါဝင်သဖြင့် data_types သို့မဟုတ် years မတူညီသော တောင်းဆိုမှုများသည် အချင်းချင်း တိုက်နေခြင်း မရှိပါ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ထပ်နေသော code လိုင်း ~200 ခန့်ကို ဖယ်ရှားနိုင်ခဲ့သည်</strong> — generic <code>_fetch_financial_statements</code> method တစ်ခု ထုတ်ယူခြင်းဖြင့် ဖြစ်သည်။ helper extraction မှတစ်ဆင့် run method အဓိကသည် လိုင်း 316 မှ ခန့်မှန်း 60 အထိ ကျုံ့သွားခဲ့သည်။ လက်ရှိစမ်းသပ်မှု 57 ခုလုံး ဆက်လက်အောင်မြင်နေဆဲဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>အများပြည်သူ စာရင်းဝင် ကုမ္ပဏီတစ်ခု၏ ရာဇဝင် ငွေကြေးအချက်အလက်များသည် တစ်ကိုယ်တည်း အသုံးပြုသောအခါ ယေဘုယျအားဖြင့် Tier 1 ဖြစ်သည်။ မေးမြန်းချက်တစ်ခုကို သီးခြား client engagement တစ်ခုအတွက် ဘောင်ဖွဲ့လိုက်သည်နှင့်တစ်ပြိုင်နက် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ Tier 2/3 အဖြစ် သတ်မှတ်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="citation-source-id-fix.html">← Citation Source ID Bug Fix ပြင်ဆင်ချက်</a>
+  <a href="daily-price-metrics-launch.html">Daily Price Metrics Tool စတင်မှု →</a>
 </div>
 
 </main>

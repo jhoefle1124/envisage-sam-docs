@@ -101,6 +101,12 @@
         </ul>
       </li>
     </ul>
+    <div class="lang-switch">
+      <button data-setlang="en">EN</button>
+      <button data-setlang="th">ไทย</button>
+      <button data-setlang="my">မြန်မာ</button>
+    </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -153,6 +159,94 @@
 <div class="pager">
   <a href="chart-rendering-groq-profiles.html">← Chart Rendering, Groq & Parameter Profiles</a>
   <a href="portfolio-analyst-launch.html">Portfolio Analyst Tool Launch →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>บันทึกผลตัวคัดกรองจากแชท</h1>
+    <p class="lede">ผลลัพธ์การคัดกรองหุ้นที่สร้างขึ้นภายในบทสนทนา AI สามารถบันทึกได้ด้วยคลิกเดียว แทนที่จะสูญหายไปเมื่อแชทเลื่อนผ่านไป — ข้อมูลจะถูกบันทึกลงฐานข้อมูลและสามารถนำกลับมาใช้ใหม่ได้ในภายหลัง</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li>ปุ่มบันทึกจะปรากฏบนข้อความของแชทบอทที่มีผลลัพธ์การคัดกรองหุ้น</li>
+    <li>ผลลัพธ์จะถูกจัดเก็บในฟิลด์ JSON ใหม่ชื่อ <code>stock_screener_data</code> บนข้อความแชท ผ่าน endpoint สำหรับการบันทึกโดยเฉพาะ</li>
+    <li>ปุ่มจะแสดงสถานะที่คงอยู่ถาวรหลังจากบันทึกสำเร็จ พร้อมการแจ้งเตือนทั้งกรณีสำเร็จและกรณีผิดพลาด</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>เปลี่ยนแปลง 20 ไฟล์ เพิ่มโค้ด 1,896 บรรทัด</strong> การทดสอบครอบคลุมการทำ URL routing การจัดการข้อผิดพลาดในการดึงข้อมูลเครื่องมือ (tool extraction) ความคงอยู่ของข้อมูลหลังบันทึก และ workflow การบันทึกทั้งหมดตั้งแต่ต้นจนจบ ไม่มีการเปลี่ยนแปลงที่กระทบฟังก์ชันการทำงานเดิม</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>ผลลัพธ์ screener ที่บันทึกไว้จะมี tier เดียวกันกับ query ที่สร้างผลลัพธ์นั้น การคัดกรองสาธารณะทั่วไปคือ Tier 1 ส่วนการคัดกรองที่รันกับ watchlist ของลูกค้าคือ Tier 2/3 — ดู <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a> ก่อนบันทึกข้อมูลเฉพาะลูกค้าใด ๆ ไว้นอกระบบ SAM</p>
+</section>
+
+
+<div class="pager">
+  <a href="chart-rendering-groq-profiles.html">← การแสดงผลกราฟ Groq และโปรไฟล์พารามิเตอร์</a>
+  <a href="portfolio-analyst-launch.html">เปิดตัวเครื่องมือนักวิเคราะห์พอร์ตโฟลิโอ →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · Feature Guide</div>
+    <h1>စကားပြောမှတ်တမ်းမှ Screener ရလဒ် သိမ်းဆည်းခြင်း</h1>
+    <p class="lede">AI စကားဝိုင်းအတွင်း ဖန်တီးထားသော stock screener ရလဒ်များကို ယခုအခါ တစ်ချက်နှိပ်ရုံဖြင့် သိမ်းဆည်းနိုင်ပြီ — chat scroll ဖြတ်သွားချိန်တွင် ပျောက်ဆုံးသွားမည့်အစား ဒေတာဘေ့စ်တွင် သိမ်းဆည်းထားပြီး နောက်ပိုင်း ပြန်လည်အသုံးပြုနိုင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ဘာတွေရှိလဲ</h2>
+  <ul>
+    <li>Chatbot message တစ်ခုတွင် stock screener ရလဒ် ပါဝင်လျှင် သိမ်းဆည်းရန် ခလုတ် ပေါ်လာသည်။</li>
+    <li>ရလဒ်များကို chat message ပေါ်ရှိ <code>stock_screener_data</code> ဟု အမည်ပေးထားသော JSON field အသစ်တွင် သီးသန့် save endpoint မှတစ်ဆင့် သိမ်းဆည်းသည်။</li>
+    <li>သိမ်းဆည်းမှု အောင်မြင်ပြီးနောက် ခလုတ်သည် အမြဲတမ်းရှိနေသော status ကို ပြသပြီး အောင်မြင်မှုနှင့် error အသိပေးချက်များ ပါဝင်သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ဖိုင် ၂၀ ပြောင်းလဲပြီး ကုဒ်လိုင်း ၁,၈၉၆ လိုင်း ထပ်ထည့်ထားသည်။</strong> URL routing, tool-extraction error ကိုင်တွယ်မှု, save persistence နှင့် save workflow တစ်ခုလုံးကို အစအဆုံး စစ်ဆေးသော test များ ပါဝင်သည်။ လက်ရှိလုပ်ဆောင်ချက်များကို ထိခိုက်စေမည့် ပြောင်းလဲမှု မရှိပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်း ဆက်လက်သက်ရောက်</h2>
+  <p>သိမ်းဆည်းထားသော screener ရလဒ်သည် ၎င်းကို ဖန်တီးပေးသည့် query ၏ tier အတိုင်းပင် ရှိနေမည်ဖြစ်သည်။ ယေဘုယျ အများပြည်သူ screen တစ်ခုသည် Tier 1 ဖြစ်ပြီး ဖောက်သည် watchlist တစ်ခုအပေါ် run ထားသော screen သည် Tier 2/3 ဖြစ်သည် — SAM အပြင်ဘက်တွင် ဖောက်သည်နှင့်ဆိုင်သော အရာတစ်ခုခုကို မသိမ်းဆည်းမီ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="chart-rendering-groq-profiles.html">← ဇယားကွက်ပြသမှု၊ Groq နှင့် Parameter Profiles</a>
+  <a href="portfolio-analyst-launch.html">Portfolio Analyst ကိရိယာ စတင်မိတ်ဆက်ခြင်း →</a>
 </div>
 
 </main>
