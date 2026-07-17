@@ -106,6 +106,7 @@
       <button data-setlang="th">ไทย</button>
       <button data-setlang="my">မြန်မာ</button>
     </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -161,6 +162,100 @@
 <div class="pager">
   <a href="excel-processing-enhancements.html">← Excel Processing Enhancements</a>
   <a href="citation-ui-screener-improvements.html">Citation, UI & Screener Improvements →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>เครื่องมือดึงข้อมูลเว็บ Firecrawl</h1>
+    <p class="lede">ตอนนี้ SAM สามารถดึงเนื้อหาจากเว็บไซต์ที่ render ด้วย JavaScript ได้แล้ว — ไม่ว่าจะเป็นหน้าเดียว การ crawl ทั้งเว็บไซต์ หรือการดึง URL แบบขนานหลายรายการพร้อมกัน — ผ่านเครื่องมือ Firecrawl ใหม่ที่มี caching และ retry logic ในตัว</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สามโหมดการทำงาน</h2>
+  <div class="grid cols-3">
+    <div class="card"><h4>Scrape</h4><p>ดึงข้อมูลหน้าเดียว พร้อม render JavaScript แบบเต็มรูปแบบ</p></div>
+    <div class="card"><h4>Crawl</h4><p>การ crawl ทั้งเว็บไซต์ พร้อมกำหนดความลึกและตัวกรอง path ได้</p></div>
+    <div class="card"><h4>Batch</h4><p>ดึง URL หลายรายการพร้อมกันแบบขนานในคำขอเดียว</p></div>
+  </div>
+  <p>รองรับรูปแบบผลลัพธ์หลายแบบ (markdown, HTML, structured) พร้อม caching และ retry logic ในตัว รวมถึงการจัดการข้อผิดพลาดที่ครอบคลุม</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือและคุณภาพโค้ด</h2>
+  <ul>
+    <li>แก้ไขบั๊กที่ทำให้โหมด crawl คืนค่าเนื้อหาว่างเปล่าเมื่อใช้รูปแบบ structured</li>
+    <li>ปรับโครงสร้างเมธอดหลักใหม่เป็นคลาส configuration (<code>CrawlConfig</code>, <code>ExtractionRequest</code>) ตัวจัดการเฉพาะแต่ละโหมด wrapper สำหรับ retry แบบรวมศูนย์ และเมธอด utility สำหรับ cache key และ payload — ขจัดคำเตือนเรื่องความซับซ้อนของโค้ดทั้งหมด</li>
+    <li>unit test ใหม่ 94 รายการ ผ่านทั้งหมด พร้อมทั้ง integration test และการตรวจสอบด้วยมือสำหรับทั้งสามโหมด</li>
+  </ul>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>เนื้อหาที่ดึงมาจากเว็บสาธารณะโดยทั่วไปจัดเป็น <strong>Tier 1</strong> เมื่อใช้ตามลำพัง และจะกลายเป็น Tier 2/3 ทันทีที่นำไปรวมกับการวิเคราะห์ของ ENVISAGE บริบทของลูกค้า หรือถูก crawl มาจากเว็บไซต์ที่มีข้อมูลที่ไม่เปิดเผยต่อสาธารณะ — เป็นกฎเดียวกับที่ใช้กับแหล่ง OSINT อื่น ๆ ตามที่ระบุใน <a href="../sapphire-ai-policy-core/osint-usage.html">Usage of OSINT</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="excel-processing-enhancements.html">← การปรับปรุงการประมวลผล Excel</a>
+  <a href="citation-ui-screener-improvements.html">การปรับปรุง Citation, UI และ Screener →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ်ထွက်ရှိ · ဖီချာလမ်းညွှန်</div>
+    <h1>Firecrawl ဝဘ် ထုတ်ယူမှု ကိရိယာ</h1>
+    <p class="lede">ယခုအခါ SAM သည် JavaScript ဖြင့် render လုပ်ထားသော ဝဘ်ဆိုက်များမှ အကြောင်းအရာများကို ဆွဲထုတ်နိုင်ပါပြီ — စာမျက်နှာတစ်ခုတည်း၊ ဆိုက်တစ်ခုလုံး crawl လုပ်ခြင်း သို့မဟုတ် URL များစွာကို တစ်ပြိုင်နက် batch လုပ်ခြင်း — caching နှင့် retry logic တို့ ပါဝင်သော Firecrawl ကိရိယာအသစ်တစ်ခုမှတစ်ဆင့် ဖြစ်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Mode သုံးမျိုး</h2>
+  <div class="grid cols-3">
+    <div class="card"><h4>Scrape</h4><p>JavaScript ကို အပြည့်အစုံ render လုပ်ပြီး စာမျက်နှာတစ်ခုတည်း ထုတ်ယူခြင်း</p></div>
+    <div class="card"><h4>Crawl</h4><p>စိတ်ကြိုက် ချိန်ညှိနိုင်သော အနက်ရှိုင်းနှင့် path filter များဖြင့် ဆိုက်တစ်ခုလုံး crawl လုပ်ခြင်း</p></div>
+    <div class="card"><h4>Batch</h4><p>တောင်းဆိုမှု တစ်ခုတည်းတွင် URL များစွာကို တစ်ပြိုင်နက် ထုတ်ယူခြင်း</p></div>
+  </div>
+  <p>output format များစွာ (markdown, HTML, structured) ကို ပံ့ပိုးပြီး caching နှင့် retry logic ပါဝင်ကာ error ကိုင်တွယ်မှုလည်း အပြည့်အစုံပါဝင်သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှုနှင့် ကုဒ်အရည်အသွေး</h2>
+  <ul>
+    <li>structured format သုံးသောအခါ crawl mode က content အလွတ်ပြန်ပေးသည့် bug ကို ပြင်ဆင်ခဲ့သည်</li>
+    <li>အဓိက method ကို configuration class များ (<code>CrawlConfig</code>, <code>ExtractionRequest</code>)၊ mode အလိုက် handler များ၊ ပေါင်းစည်းထားသော retry wrapper နှင့် cache key၊ payload အတွက် utility method များအဖြစ် ပြန်လည်ဖွဲ့စည်းခဲ့သည် — complexity warning အားလုံးကို ဖယ်ရှားနိုင်ခဲ့သည်</li>
+    <li>unit test အသစ် ၉၄ ခု အားလုံးအောင်မြင်ပြီး integration test များနှင့် mode သုံးမျိုးလုံးအတွက် လက်ဖြင့် စစ်ဆေးအတည်ပြုမှုနှင့်အတူ ရှိသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်</h2>
+  <p>အများပြည်သူ ဝဘ်မှ ဆွဲထုတ်သော အကြောင်းအရာသည် တစ်ကိုယ်တည်းသုံးသောအခါ ယေဘုယျအားဖြင့် <strong>Tier 1</strong> ဖြစ်သည်။ ENVISAGE ၏ ခွဲခြမ်းစိတ်ဖြာမှု၊ ဖောက်သည် framing နှင့် ပေါင်းစပ်လိုက်သည့်အခါ သို့မဟုတ် အများမသိသော အချက်အလက်ပါသည့် ဆိုက်မှ crawl လုပ်လိုက်သည့်အခါ Tier 2/3 ဖြစ်သွားသည် — <a href="../sapphire-ai-policy-core/osint-usage.html">Usage of OSINT</a> တွင်ဖော်ပြထားသော အခြား OSINT ရင်းမြစ်များအတွက် အသုံးပြုသည့် စည်းမျဉ်းတူညီစွာပင်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="excel-processing-enhancements.html">← Excel ပြုပြင်မှု မြှင့်တင်ချက်များ</a>
+  <a href="citation-ui-screener-improvements.html">Citation, UI နှင့် Screener တိုးတက်မှုများ →</a>
 </div>
 
 </main>

@@ -106,6 +106,7 @@
       <button data-setlang="th">ไทย</button>
       <button data-setlang="my">မြန်မာ</button>
     </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -170,6 +171,118 @@
 <div class="pager">
   <a href="prompt-studio-modal-autocomplete.html">← Prompt Studio Modal & Company Autocomplete</a>
   <a href="broker-notes-mcp.html">Broker Notes MCP Integration →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>LangGraph v1 และการจับคู่ Ticker แบบ MIC</h1>
+    <p class="lede">การบำรุงรักษา dependency และแพลตฟอร์ม: อัปเกรด LangChain/LangGraph เป็น v1.0 พร้อมรูปแบบการเขียนโค้ดที่เป็นมาตรฐาน (idiomatic) เพิ่มการจับคู่ ticker แบบรหัส MIC ที่แม่นยำในระบบค้นหาบริษัททั้งหมด และรองรับ Docker สำหรับ marimo notebook ในการพัฒนาบนเครื่อง local</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>การอัปเดต Dependency</h2>
+  <ul>
+    <li><strong>LangChain/LangGraph v1.0:</strong> อัปเกรดจาก v0.x ปรับโครงสร้างใหม่ให้เป็นไปตามรูปแบบมาตรฐานของ v1 (<code>StateGraph</code>, node <code>START</code>/<code>END</code>) โดยย้าย graph state ไปใช้ <code>TypedDict</code> และ <code>Annotated</code></li>
+    <li>Pre-commit hooks และ production requirements ถูกสร้างใหม่จาก lockfile ที่อัปเดตแล้ว</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การค้นหาบริษัทและการจับคู่ Ticker</h2>
+  <p>เพิ่มการจับคู่แบบแม่นยำสำหรับ ticker ที่มีรหัส MIC (เช่น <code>AAPL:XNAS</code>) ในระบบ autocomplete การค้นหา และเครื่องมือข้อมูลการเงินบริษัท โดยไม่สนตัวพิมพ์เล็ก/ใหญ่ นอกจากนี้ scorecard repository ยังได้รับการปรับปรุงประสิทธิภาพ <code>select_related</code> สำหรับ foreign key ของบริษัทด้วย</p>
+</section>
+
+<section>
+  <h2>เครื่องมือสำหรับการพัฒนา</h2>
+  <p>เพิ่มการรองรับ Docker สำหรับ marimo ซึ่งเป็น environment สำหรับ Python notebook แบบ interactive โดยตั้งค่าให้ทำงานร่วมกับ Django ORM และ dependency ของโปรเจกต์ได้ — เป็นแบบ opt-in และไม่มีผลกระทบต่อการ deploy บน production</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p>อัปเดต test ที่มีอยู่เดิมทั้งหมดให้เข้ากันได้กับ LangGraph v1 พร้อมเพิ่ม test ใหม่สำหรับการจับคู่ ticker แบบรหัส MIC และการปรับปรุงประสิทธิภาพ query ของ scorecard repository</p>
+  </div>
+  <div class="callout warn">
+    <p><strong>Breaking change (เฉพาะภายใน):</strong> รูปแบบการสร้าง graph เปลี่ยนแปลงอย่างมากจากการย้ายไปใช้ v1 แต่พฤติกรรมของแชทบอทที่ผู้ใช้ภายนอกเห็นไม่ได้รับผลกระทบ</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>การอัปเกรด dependency และการปรับปรุงการจับคู่การค้นหา — ไม่มีการเปลี่ยนแปลงต่อข้อมูลที่เครื่องมือใด ๆ สามารถเข้าถึงได้ ดูเพิ่มเติมที่ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="prompt-studio-modal-autocomplete.html">← Prompt Studio Modal และ Company Autocomplete</a>
+  <a href="broker-notes-mcp.html">การผสานรวม Broker Notes MCP →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ်ထွက်ရှိ · နည်းပညာ ကိုးကားချက်</div>
+    <h1>LangGraph v1 နှင့် MIC Ticker ကိုက်ညီမှု</h1>
+    <p class="lede">Dependency နှင့် platform ပြုပြင်ထိန်းသိမ်းမှု: LangChain/LangGraph ကို idiomatic pattern များနှင့်အတူ v1.0 သို့ အဆင့်မြှင့်ခဲ့ပြီး၊ ကုမ္ပဏီရှာဖွေမှု တစ်ခုလုံးတွင် exact MIC-coded ticker ကိုက်ညီမှု ထည့်သွင်းခဲ့ကာ local development တွင် marimo notebook များအတွက် Docker ပံ့ပိုးမှုကိုလည်း ထည့်သွင်းခဲ့သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Dependency အပ်ဒိတ်များ</h2>
+  <ul>
+    <li><strong>LangChain/LangGraph v1.0:</strong> v0.x မှ အဆင့်မြှင့်ခဲ့ပြီး v1 idiomatic pattern များ (<code>StateGraph</code>, <code>START</code>/<code>END</code> node) သို့ ပြန်လည်ဖွဲ့စည်းခဲ့သည်၊ graph state ကို <code>TypedDict</code> နှင့် <code>Annotated</code> သို့ ပြောင်းရွှေ့ခဲ့သည်။</li>
+    <li>Pre-commit hook များနှင့် production requirement များကို အပ်ဒိတ်လုပ်ထားသော lockfile မှ ပြန်လည်ထုတ်လုပ်ခဲ့သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ကုမ္ပဏီရှာဖွေမှုနှင့် Ticker ကိုက်ညီမှု</h2>
+  <p>MIC-coded ticker များ (ဥပမာ <code>AAPL:XNAS</code>) အတွက် exact matching ကို autocomplete၊ search နှင့် company financials tool တစ်လျှောက် ထည့်သွင်းခဲ့ပြီး စာလုံးအကြီးအသေး မခွဲခြားဘဲ ကိုင်တွယ်နိုင်သည်။ scorecard repository သည်လည်း ၎င်း၏ ကုမ္ပဏီ foreign key အတွက် <code>select_related</code> optimization ရရှိခဲ့သည်။</p>
+</section>
+
+<section>
+  <h2>ဖွံ့ဖြိုးတိုးတက်ရေး ကိရိယာများ</h2>
+  <p>Django ORM နှင့် project dependency များနှင့် အလုပ်လုပ်နိုင်ရန် ချိန်ညှိထားသော interactive Python notebook environment ဖြစ်သည့် marimo အတွက် Docker ပံ့ပိုးမှု ထည့်သွင်းခဲ့သည် — opt-in ဖြစ်ပြီး production deployment များအပေါ် မည်သည့်အကျိုးသက်ရောက်မှုမျှ မရှိပါ။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>ရှိပြီးသား test အားလုံးကို LangGraph v1 နှင့် ကိုက်ညီစေရန် အပ်ဒိတ်လုပ်ခဲ့ပြီး MIC-coded ticker ကိုက်ညီမှုနှင့် scorecard repository query optimization အတွက် test အသစ်များ ထည့်သွင်းခဲ့သည်။</p>
+  </div>
+  <div class="callout warn">
+    <p><strong>Breaking (အတွင်းပိုင်းသာ):</strong> v1 migration အောက်တွင် graph တည်ဆောက်ပုံများ သိသိသာသာ ပြောင်းလဲခဲ့သော်လည်း ပြင်ပ chatbot အပြုအမူသည် မည်သို့မျှ ထိခိုက်ခြင်း မရှိပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်</h2>
+  <p>Dependency အဆင့်မြှင့်ခြင်းနှင့် search-matching တိုးတက်မှု — မည်သည့်ကိရိယာမျှ ရယူနိုင်သော ဒေတာအပေါ် ပြောင်းလဲမှု မရှိပါ။ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="prompt-studio-modal-autocomplete.html">← Prompt Studio Modal နှင့် Company Autocomplete</a>
+  <a href="broker-notes-mcp.html">Broker Notes MCP ပေါင်းစည်းမှု →</a>
 </div>
 
 </main>

@@ -106,6 +106,7 @@
       <button data-setlang="th">ไทย</button>
       <button data-setlang="my">မြန်မာ</button>
     </div>
+    <a href="../index.html" class="site-home-link">All Docs</a>
   </div>
 </nav>
 <div class="help-bar">
@@ -158,6 +159,94 @@
 <div class="pager">
   <a href="context-budget-model-updates.html">← Context Budget & Model Updates</a>
   <a href="citation-deduplication-tooltips.html">Citation Deduplication & Tooltips →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การดึงเนื้อหาแบบสตรีมมิง</h1>
+    <p class="lede">การปรับปรุงความทนทานของวิธีที่ SAM ดึงข้อความจากการตอบสนองแบบสตรีมมิงของ Claude — รูปแบบ content-block ทุกแบบที่ API สามารถส่งกลับมาได้ ตอนนี้ได้รับการจัดการผ่านเส้นทางศูนย์กลางเดียว แทนที่จะกระจัดกระจายอยู่ตามลอจิกต่าง ๆ</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การดึงเนื้อหาที่แข็งแกร่งขึ้น:</strong> ยูทิลิตีที่ใช้ร่วมกันตัวใหม่จัดการข้อความธรรมดา การอัปเดตแบบเดลต้า รายการของ content block ที่ผสมกัน และอื่น ๆ ทั้งหมดผ่านฟังก์ชันควบคุมกลางเดียวคือ <code>extract_message_content()</code></li>
+    <li><strong>การตรวจจับ tool block:</strong> เนื้อหาที่เกี่ยวข้องกับเครื่องมือ (<code>tool_use</code>, <code>tool_result</code>, <code>input_json_delta</code>) ตอนนี้ถูกกรองออกจากสิ่งที่คุณเห็นในแชทอย่างถูกต้องแล้ว</li>
+    <li><strong>การลบแท็ก thinking ที่สะอาดขึ้น:</strong> รูปแบบที่ปรับให้เหมาะสมสามารถลบทั้งแท็ก thinking แบบดิบและแบบเข้ารหัส HTML ได้ในครั้งเดียว</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบใหม่ 46 รายการ</strong> (27 รายการสำหรับ LLM factory, 19 รายการสำหรับการประมวลผลเหตุการณ์สตรีมมิง) ควบคู่ไปกับชุดทดสอบเดิมทั้งหมดที่ยังคงผ่านการทดสอบ ดูเพิ่มเติมที่ <a href="anthropic-content.html">การปรับปรุงเนื้อหาและความซับซ้อนของ Anthropic</a></p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>นี่คือการแก้ไขด้านความน่าเชื่อถือของการแสดงผล — ไม่ได้เปลี่ยนแปลงข้อมูลที่ไหลผ่าน SAM กฎมาตรฐานของ <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a> ยังคงมีผลบังคับใช้กับทุกสิ่งที่พิมพ์ลงในแชท</p>
+</section>
+
+
+<div class="pager">
+  <a href="context-budget-model-updates.html">← งบประมาณบริบทและการอัปเดตโมเดล</a>
+  <a href="citation-deduplication-tooltips.html">การลบการอ้างอิงซ้ำและทูลทิป →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ် · နည်းပညာ ရည်ညွှန်းချက်</div>
+    <h1>Streaming အကြောင်းအရာ ထုတ်ယူခြင်း</h1>
+    <p class="lede">SAM သည် Claude ၏ streaming response များမှ စာသားထုတ်ယူပုံနည်းလမ်းအား ခိုင်မာအောင် ပြင်ဆင်ထားပြီး — API မှ ပြန်ပေးနိုင်သည့် content-block ပုံစံ အားလုံးကို ယခုအခါ ကွဲပြားနေသော logic များအစား ဗဟိုချုပ်ကိုင်သည့် လမ်းကြောင်းတစ်ခုတည်းမှတစ်ဆင့် ကိုင်တွယ်ထားသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ဘာတွေရှိလဲ</h2>
+  <ul>
+    <li><strong>ခိုင်မာသော အကြောင်းအရာ ထုတ်ယူခြင်း:</strong> မျှဝေအသုံးပြုသည့် utility အသစ်များသည် <code>extract_message_content()</code> ဟူသော ဗဟိုကြပ်မတ်ဆောင်ရွက်သည့် function တစ်ခုတည်းမှတစ်ဆင့် ရိုးရိုးစာသား၊ delta update များ၊ ရောနှောထားသော content block စာရင်းများနှင့် အခြားအရာများကို ကိုင်တွယ်သည်။</li>
+    <li><strong>Tool Block ရှာဖွေတွေ့ရှိခြင်း:</strong> tool နှင့်ဆိုင်သော အကြောင်းအရာ (<code>tool_use</code>, <code>tool_result</code>, <code>input_json_delta</code>) ကို chat တွင် မြင်ရသောအရာများမှ ယခုအခါ မှန်ကန်စွာ စစ်ထုတ်ပယ်ထုတ်ထားသည်။</li>
+    <li><strong>ပိုမိုသန့်ရှင်းသော Thinking-Tag ဖယ်ရှားခြင်း:</strong> ပိုမိုကောင်းမွန်အောင် ပြုလုပ်ထားသော pattern တစ်ခုသည် ရိုးရိုး thinking tag နှင့် HTML-encoded thinking tag နှစ်မျိုးလုံးကို တစ်ကြိမ်တည်းနှင့် ဖယ်ရှားပေးသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test အသစ် ၄၆ ခု</strong> (LLM factory အတွက် ၂၇ ခု၊ streaming event ကိုင်တွယ်မှုအတွက် ၁၉ ခု) အပြင် လက်ရှိ test suite အပြည့်အစုံသည်လည်း ဆက်လက်၍ အောင်မြင်နေသေးသည်။ <a href="anthropic-content.html">Anthropic အကြောင်းအရာနှင့် ရှုပ်ထွေးမှု တိုးတက်မှု</a> ကိုလည်း ကြည့်ပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်း ဆက်လက်သက်ရောက်</h2>
+  <p>ဤသည်မှာ ဖော်ပြမှု ယုံကြည်စိတ်ချရရေး ပြင်ဆင်ချက် တစ်ခုသာဖြစ်သည် — SAM ကို ဖြတ်သန်းသွားသော ဒေတာကို ပြောင်းလဲခြင်း မရှိပါ။ Chat တွင် ရိုက်ထည့်သမျှ အရာအားလုံးအတွက် standard <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> စည်းမျဉ်းများ ဆက်လက် သက်ရောက်နေဆဲဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="context-budget-model-updates.html">← Context Budget နှင့် Model အပ်ဒိတ်များ</a>
+  <a href="citation-deduplication-tooltips.html">ကိုးကားချက် ထပ်နေမှု ဖယ်ရှားခြင်းနှင့် Tooltip →</a>
 </div>
 
 </main>

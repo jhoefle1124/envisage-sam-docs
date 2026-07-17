@@ -2,199 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>From Raw Data to Structured Intelligence — ENVISAGE WORLDWIDE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js"></script>
 <style>
-  /* ── BRAND TOKENS ───────────────────────────────────── */
-  :root{
-    --navy:#0d1f3c;
-    --navy-dark:#081427;
-    --sapphire:#2563eb;
-    --sapphire-light:#dbeafe;
-    --ink:#1e293b;
-    --muted:#64748b;
-    --bg:#f7f9fc;
-    --card:#ffffff;
-    --border:#e2e8f0;
-    --green:#15803d;
-    --green-bg:#dcfce7;
-    --amber:#b45309;
-    --amber-bg:#fef3c7;
-    --red:#b91c1c;
-    --red-bg:#fee2e2;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:15px}
-
-  /* ── HEADER NAV ─────────────────────────────────────── */
-  .site-header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-  .header-inner{max-width:920px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  .brand{color:#fff;font-weight:800;letter-spacing:.06em;font-size:.95rem;padding:14px 0;text-decoration:none}
-  .brand.brand-logo{display:flex;align-items:center;padding:10px 0}
-  .brand.brand-logo img{display:block;height:71px;width:auto;background:#fff;border-radius:8px;padding:8px 17px}
-  .nav-logo-right{display:flex;align-items:center}
-  .nav-logo-right img{display:block;height:34px;width:auto;background:#fff;border-radius:6px;padding:4px 9px}
-  .brand span{color:#6ea8ff}
-  .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0}
-  .header-right .doc-label{color:#8fa3c2;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-right:1px solid #2e466e;padding-right:12px;margin-right:4px}
-  .lang-nav{display:flex;gap:4px}
-  .lang-nav a{color:#c7d4ea;text-decoration:none;font-size:.82rem;font-weight:600;border:1px solid #2e466e;border-radius:6px;padding:5px 12px;transition:all .15s}
-  .lang-nav a:hover{color:#fff;border-color:#6ea8ff}
-  .lang-nav a.en{background:var(--sapphire);border-color:var(--sapphire);color:#fff}
-
-  /* ── COVER PAGE ─────────────────────────────────────── */
-  .cover{background:linear-gradient(135deg,var(--navy-dark),var(--navy) 60%,#15366b);color:#fff;padding:72px 24px 64px;min-height:520px;display:flex;align-items:center}
-  .cover-inner{max-width:920px;margin:0 auto;width:100%}
-  .eyebrow{color:#6ea8ff;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
-  .cover h1{font-size:2.1rem;line-height:1.22;max-width:780px;margin-bottom:14px}
-  .cover .subtitle{color:#b9c8e0;font-size:1.05rem;max-width:720px;margin-bottom:28px}
-  .cover-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+  /* ── CASE STUDY — page-specific presentation (not used elsewhere on the site) ── */
+  .cover-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
   .cover-meta-item{display:flex;flex-direction:column;gap:3px}
   .cover-meta-item .meta-label{color:#6ea8ff;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
   .cover-meta-item .meta-value{color:#e2e8f0;font-size:.92rem;font-weight:600}
-
-  /* ── SECTION DIVIDER ─────────────────────────────────── */
-  .section-divider{background:var(--navy);color:#fff;padding:18px 24px;margin-top:0}
-  .section-divider-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:16px}
-  .section-divider .lang-flag{background:var(--sapphire);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:999px}
-  .section-divider h2{color:#e2e8f0;font-size:1.05rem;font-weight:600}
-
-  /* ── MAIN CONTENT ────────────────────────────────────── */
-  .lang-section{background:var(--bg)}
-  main.content-area{max-width:920px;margin:0 auto;padding:40px 24px 56px}
-  section.step{margin-bottom:36px}
   .step-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
   .step-num{flex-shrink:0;background:var(--sapphire);color:#fff;font-weight:800;font-size:.85rem;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
   .step-title-block h3{color:var(--navy);font-size:1.12rem;margin:0 0 3px}
   .step-title-block .step-sub{color:var(--muted);font-size:.85rem}
-  p{margin-bottom:12px;max-width:820px;line-height:1.7}
-  ul,ol{margin:0 0 14px 22px;max-width:820px}
-  li{margin-bottom:5px;line-height:1.65}
-  h2.section-heading{color:var(--navy);font-size:1.3rem;margin-bottom:6px;margin-top:0;padding-top:0}
-  .rule{border:none;border-top:1px solid var(--border);margin:32px 0}
-
-  /* CARDS */
-  .grid{display:grid;gap:14px;margin:16px 0}
-  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(13,31,60,.06)}
-  .card h4{color:var(--navy);font-size:.96rem;margin-bottom:8px;margin-top:0}
-  .card p,.card li{font-size:.91rem}
-  .card ul{margin-bottom:0}
-
-  /* CALLOUTS */
-  .callout{border-left:4px solid var(--sapphire);background:var(--sapphire-light);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;max-width:820px}
-  .callout.warn{border-left-color:var(--amber);background:var(--amber-bg)}
-  .callout.ok{border-left-color:var(--green);background:var(--green-bg)}
-  .callout.rule-block{border-left-color:var(--red);background:var(--red-bg)}
-  .callout p{margin:0;font-size:.92rem}
-  .callout p+p{margin-top:7px}
-  .callout strong{color:var(--navy)}
-  .callout ul{margin:8px 0 0 18px;font-size:.92rem}
-  .callout ul li{margin-bottom:3px}
-
-  /* EXAMPLE BLOCKS */
-  .example{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;max-width:820px}
-  .example .label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
-  .example.good .label{color:var(--green)}
-  .example.neutral .label{color:var(--sapphire)}
-  .example p{font-size:.91rem;margin-bottom:0;font-family:"SF Mono",Consolas,Menlo,monospace;color:#334155;white-space:pre-wrap;line-height:1.55}
-
-  /* TABLES */
-  table{width:100%;border-collapse:collapse;margin:16px 0;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:.88rem}
-  th{background:var(--navy);color:#fff;text-align:left;padding:10px 14px;font-size:.8rem;letter-spacing:.03em}
-  td{padding:9px 14px;border-top:1px solid var(--border);vertical-align:top;line-height:1.55}
-  tr:nth-child(even) td{background:#fafcff}
-  .badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 9px;border-radius:999px}
-  .badge.green{background:var(--green-bg);color:var(--green)}
-  .badge.amber{background:var(--amber-bg);color:var(--amber)}
-  .badge.blue{background:var(--sapphire-light);color:var(--sapphire)}
-
-  /* SUMMARY FLOW */
+  section.step{margin-bottom:36px}
   .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:16px 0;max-width:820px}
   .flow-step{background:var(--sapphire);color:#fff;font-size:.8rem;font-weight:700;padding:7px 14px;border-radius:999px}
   .flow-arrow{color:var(--muted);font-size:1.1rem;font-weight:700}
-
-  /* FOOTER */
-  .page-footer{background:var(--navy-dark);color:#8fa3c2;padding:24px;font-size:.8rem}
-  .page-footer-inner{max-width:920px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  .page-footer strong{color:#fff}
-
-  /* ── THAI FONT ───────────────────────────────────────── */
-  .lang-th{font-family:'Noto Sans Thai',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75}
-  .lang-th .cover h1{line-height:1.4}
-  .lang-th th,.lang-th td{line-height:1.7}
-
-  /* ── BURMESE FONT ────────────────────────────────────── */
-  .lang-my{font-family:'Noto Sans Myanmar',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.95}
-  .lang-my .cover h1{line-height:1.55}
-  .lang-my th,.lang-my td{line-height:1.85}
-  .lang-my p,.lang-my li{line-height:1.95}
-
-  /* ── PRINT CSS ───────────────────────────────────────── */
-  @media print{
-    .site-header{display:none}
-    .print-note{display:none!important}
-    body{background:#fff;font-size:11pt}
-    .cover{min-height:auto;padding:48px 24px 40px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .section-divider{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .lang-section.break-before{page-break-before:always}
-    th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .step-num{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .flow-step{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .callout,.example,.card{break-inside:avoid}
-    main.content-area{padding:24px 24px 40px}
-  }
-
-  /* ── PRINT INSTRUCTIONS BANNER ───────────────────────── */
-  .print-note{background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 18px;margin:16px 24px;font-size:.85rem;color:#78350f;max-width:880px;margin-left:auto;margin-right:auto}
-  .print-note strong{color:#92400e}
-
-  @media(max-width:640px){
-    .cover h1{font-size:1.5rem}
-    .header-inner{padding:0 14px}
-  }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════
-     HEADER NAV
-     ═══════════════════════════════════════════════════════ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html"><span>ENVISAGE</span> WORLDWIDE</a>
-    <div class="header-right">
-      <span class="doc-label">Case Study</span>
-      <nav class="lang-nav">
-        <a href="#section-en" class="en">EN</a>
-        <a href="#section-th">TH</a>
-        <a href="#section-my">MY</a>
-      </nav>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">ENVISAGE <span>WORLDWIDE</span></a>
+      <div class="nav-right">
+        <div class="lang-switch">
+          <button data-setlang="en">EN</button>
+          <button data-setlang="th">ไทย</button>
+          <button data-setlang="my">မြန်မာ</button>
+        </div>
+        <a href="../index.html" class="site-home-link">All Docs</a>
       <a href="../sapphire-ai-policy-features/index.html" class="nav-logo-right"><img src="SAM-logoLine.png" alt="Sapphire for Asset Managers"></a>
+      </div>
     </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="claude.html">Claude &amp; Cowork</a></li>
+      <li><a href="token-efficiency.html">Token Efficiency</a></li>
+      <li><a href="data-security.html">Data Security</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="ai-toolkit.html">AI Toolkit</a></li>
+      <li><a href="ai-tools-directory.html">AI Directory</a></li>
+      <li><a href="osint-usage.html">Usage of OSINT</a></li>
+      <li><a href="por-case-study.html" class="active">Case Study</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<!-- ═══════════════════════════════════════════════════════
-     PRINT INSTRUCTIONS (screen only)
-     ═══════════════════════════════════════════════════════ -->
-<div class="print-note">
-  <strong>To save as PDF:</strong> Open this file in Chrome → File → Print (or Ctrl+P / ⌘P) → Destination: <em>Save as PDF</em> → More settings → enable <em>Background graphics</em> → Save. The Thai and Burmese fonts will be embedded automatically.
-</div>
+<!-- ================= ENGLISH ================= -->
+<div class="lang-section" data-lang="en">
 
-<!-- ═══════════════════════════════════════════════════════
-     SECTION 1 — ENGLISH
-     ═══════════════════════════════════════════════════════ -->
-<div id="section-en" class="lang-section">
-
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="eyebrow">Staff Research Methods · Case Study · ENVISAGE WORLDWIDE</div>
-      <h1>From Raw Data to Structured Intelligence</h1>
-      <p class="subtitle">A step-by-step workflow for using AI as a controlled intelligence processing system — applicable across the Sapphire and SAM research programmes.</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Staff Research Methods · Case Study · ENVISAGE WORLDWIDE</div>
+    <h1>From Raw Data to Structured Intelligence</h1>
+    <p class="lede">A step-by-step workflow for using AI as a controlled intelligence processing system — applicable across the Sapphire and SAM research programmes.</p>
       <div class="cover-meta">
         <div class="cover-meta-item">
           <span class="meta-label">Author</span>
@@ -213,19 +80,11 @@
           <span class="meta-value">1.0 · June 2026</span>
         </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <div class="section-divider">
-    <div class="section-divider-inner">
-      <span class="lang-flag">EN</span>
-      <h2>English — Research Workflow Case Study</h2>
-    </div>
-  </div>
-
-  <main class="content-area">
-
-    <section>
+<main>
+<section>
       <p>This case study documents a proven methodology for transforming raw, unstructured source material into verified, structured intelligence outputs using AI tools — including free-tier platforms. The workflow is designed to maximise extraction quality while maintaining the data security standards required for ENVISAGE research.</p>
       <p>The core principle: <strong>AI is not a question-answering chatbot. It is a controlled intelligence processing system.</strong> This distinction determines every decision in the workflow below.</p>
     </section>
@@ -518,28 +377,25 @@ List them clearly.</p>
       </div>
     </section>
 
-  </main>
+</main>
 
-  <footer class="page-footer">
-    <div class="page-footer-inner">
-      <span><strong>ENVISAGE WORLDWIDE</strong> · AI Policy &amp; Research Methods</span>
-      <span>Internal use only · Do not share externally</span>
-    </div>
-  </footer>
+<footer>
+  <div class="footer-inner">
+    <span><strong>ENVISAGE WORLDWIDE</strong> &middot; AI Policy &amp; Research Methods</span>
+    <span>Internal use only · Do not share externally</span>
+  </div>
+</footer>
 
-</div><!-- /section-en -->
+</div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
 
-<!-- ═══════════════════════════════════════════════════════
-     SECTION 2 — THAI
-     ═══════════════════════════════════════════════════════ -->
-<div id="section-th" class="lang-section lang-th break-before">
-
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="eyebrow">วิธีการวิจัยของเจ้าหน้าที่ · กรณีศึกษา · ENVISAGE WORLDWIDE</div>
-      <h1>จากข้อมูลดิบสู่ข่าวกรองที่มีโครงสร้าง</h1>
-      <p class="subtitle">คู่มือขั้นตอนการใช้ AI เป็นระบบประมวลผลข่าวกรองแบบควบคุม — ใช้ได้กับงานวิจัยโครงการ Sapphire และ SAM</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">วิธีการวิจัยของเจ้าหน้าที่ · กรณีศึกษา · ENVISAGE WORLDWIDE</div>
+    <h1>จากข้อมูลดิบสู่ข่าวกรองที่มีโครงสร้าง</h1>
+    <p class="lede">คู่มือขั้นตอนการใช้ AI เป็นระบบประมวลผลข่าวกรองแบบควบคุม — ใช้ได้กับงานวิจัยโครงการ Sapphire และ SAM</p>
       <div class="cover-meta">
         <div class="cover-meta-item">
           <span class="meta-label">ผู้เขียน</span>
@@ -558,19 +414,11 @@ List them clearly.</p>
           <span class="meta-value">1.0 · มิถุนายน 2569</span>
         </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <div class="section-divider">
-    <div class="section-divider-inner">
-      <span class="lang-flag">TH</span>
-      <h2>ภาษาไทย — กรณีศึกษากระบวนการวิจัย</h2>
-    </div>
-  </div>
-
-  <main class="content-area">
-
-    <section>
+<main>
+<section>
       <p>กรณีศึกษานี้บันทึกวิธีการที่พิสูจน์แล้วในการแปลงข้อมูลดิบที่ไม่มีโครงสร้างให้เป็นผลลัพธ์ข่าวกรองที่ตรวจสอบได้และมีโครงสร้างชัดเจน โดยใช้เครื่องมือ AI รวมถึงแพลตฟอร์มแบบฟรี กระบวนการนี้ออกแบบมาเพื่อเพิ่มคุณภาพการดึงข้อมูลสูงสุด พร้อมรักษามาตรฐานความปลอดภัยข้อมูลที่จำเป็นสำหรับงานวิจัย ENVISAGE</p>
       <p>หลักการสำคัญ: <strong>AI ไม่ใช่แชทบอทตอบคำถาม แต่คือระบบประมวลผลข่าวกรองแบบควบคุม</strong> ความแตกต่างนี้กำหนดทุกการตัดสินใจในกระบวนการด้านล่าง</p>
     </section>
@@ -814,28 +662,25 @@ List them clearly.</p>
       </div>
     </section>
 
-  </main>
+</main>
 
-  <footer class="page-footer">
-    <div class="page-footer-inner">
-      <span><strong>ENVISAGE WORLDWIDE</strong> · นโยบาย AI และวิธีการวิจัย</span>
-      <span>ใช้ภายในเท่านั้น · ห้ามแชร์ภายนอก</span>
-    </div>
-  </footer>
+<footer>
+  <div class="footer-inner">
+    <span><strong>ENVISAGE WORLDWIDE</strong> &middot; นโยบาย AI และวิธีการวิจัย</span>
+    <span>ใช้ภายในเท่านั้น · ห้ามแชร์ภายนอก</span>
+  </div>
+</footer>
 
-</div><!-- /section-th -->
+</div>
 
+<!-- ================= BURMESE (MYANMAR) ================= -->
+<div class="lang-section" data-lang="my">
 
-<!-- ═══════════════════════════════════════════════════════
-     SECTION 3 — BURMESE
-     ═══════════════════════════════════════════════════════ -->
-<div id="section-my" class="lang-section lang-my break-before">
-
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="eyebrow">ဝန်ထမ်းသုတေသနနည်းလမ်း · ကိစ္စလေ့လာချက် · ENVISAGE WORLDWIDE</div>
-      <h1>အချက်အလက်ကြမ်းများမှ ဖွဲ့စည်းပုံကျသောသတင်းထောက်လှမ်းချက်သို့</h1>
-      <p class="subtitle">AI ကို ထိန်းချုပ်ထားသောသတင်းထောက်လှမ်းချက်ပြုစုနည်းစနစ်အဖြစ် အဆင့်ဆင့်အသုံးပြုရန် လမ်းညွှန်ချက် — Sapphire နှင့် SAM သုတေသနအစီအစဉ်များတွင် တိုက်ရိုက်အသုံးချနိုင်သည်။</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ဝန်ထမ်းသုတေသနနည်းလမ်း · ကိစ္စလေ့လာချက် · ENVISAGE WORLDWIDE</div>
+    <h1>အချက်အလက်ကြမ်းများမှ ဖွဲ့စည်းပုံကျသောသတင်းထောက်လှမ်းချက်သို့</h1>
+    <p class="lede">AI ကို ထိန်းချုပ်ထားသောသတင်းထောက်လှမ်းချက်ပြုစုနည်းစနစ်အဖြစ် အဆင့်ဆင့်အသုံးပြုရန် လမ်းညွှန်ချက် — Sapphire နှင့် SAM သုတေသနအစီအစဉ်များတွင် တိုက်ရိုက်အသုံးချနိုင်သည်။</p>
       <div class="cover-meta">
         <div class="cover-meta-item">
           <span class="meta-label">ရေးသားသူ</span>
@@ -854,19 +699,11 @@ List them clearly.</p>
           <span class="meta-value">1.0 · ဇွန် ၂၀၂၆</span>
         </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <div class="section-divider">
-    <div class="section-divider-inner">
-      <span class="lang-flag">MY</span>
-      <h2>မြန်မာဘာသာ — သုတေသနနည်းလမ်း ကိစ္စလေ့လာချက်</h2>
-    </div>
-  </div>
-
-  <main class="content-area">
-
-    <section>
+<main>
+<section>
       <p>ဤကိစ္စလေ့လာချက်တွင် AI ကိရိယာများ — အခမဲ့ tier ပလက်ဖောင်းများအပါအဝင် — ကိုသုံး၍ ဖွဲ့စည်းပုံမကျသောရင်းမြစ်အချက်အလက်ကို စစ်ဆေးနိုင်ပြီး ဖွဲ့စည်းပုံကျသောသတင်းထောက်လှမ်းချက်ရလဒ်များသို့ ပြောင်းလဲရန် သက်သေပြပြီးဖြစ်သောနည်းလမ်းကို မှတ်တမ်းတင်ထားသည်။</p>
       <p>အဓိကမူ: <strong>AI သည် မေးခွန်းဖြေသောချတ်ဘော့မဟုတ်ပါ။ ၎င်းသည် ထိန်းချုပ်ထားသောသတင်းထောက်လှမ်းချက်ပြုစုနည်းစနစ်ဖြစ်သည်။</strong> ဤကွာခြားချက်သည် အောက်ပါနည်းလမ်းရှိ ဆုံးဖြတ်ချက်တိုင်းကို သတ်မှတ်သည်။</p>
     </section>
@@ -999,7 +836,7 @@ List them clearly.</p>
         <div class="step-num">6</div>
         <div class="step-title-block">
           <h3>ဒေတာအစုကို အသုံးဝင်သောရလဒ်များသို့ ပြောင်းပါ</h3>
-          <span class="step-sub">ကိုင်တွယ်ဆောင်ရွက်ရေးကိရိယာများ — မှတ်တမ်းများသာမဟုတ်</h3>
+          <span class="step-sub">ကိုင်တွယ်ဆောင်ရွက်ရေးကိရိယာများ — မှတ်တမ်းများသာမဟုတ်</span>
         </div>
       </div>
       <p>ဖွဲ့စည်းပုံကျသောဒေတာအစုသည် ရလဒ်ပုံစံအားလုံး ဆင်းသက်လာသည့် ရင်းမြစ်ဖြစ်သည်။ ဒါတွေကို တပြိုင်နက်မဖန်တီးပါနှင့် — ဒေတာအစုကို ဦးစွာတည်ဆောက်ပြီးနောက် ၎င်းမှ ရလဒ်ဖန်တီးပါ။</p>
@@ -1104,4 +941,16 @@ List them clearly.</p>
       </div>
     </section>
 
-  <
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span><strong>ENVISAGE WORLDWIDE</strong> &middot; AI မူဝါဒနှင့် သုတေသနနည်းလမ်းများ</span>
+    <span>အတွင်းပိုင်းအသုံးပြုရန်သာ · ပြင်ပသို့ မျှဝေခြင်း မပြုပါနှင့်</span>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>
