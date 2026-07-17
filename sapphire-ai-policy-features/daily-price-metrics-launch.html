@@ -173,5 +173,113 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>เปิดตัวเครื่องมือ Daily Price Metrics</h1>
+    <p class="lede">การเปิดตัวครั้งแรกของเครื่องมือ daily price metrics — สืบค้นข้อมูล time-series ทางการเงินย้อนหลังครอบคลุมมากกว่า 40 ตัวชี้วัดใน 8 หมวดหมู่ พร้อมการรวมข้อมูล (aggregation) อัจฉริยะและการรับ input ที่ยืดหยุ่นตั้งแต่วันแรก</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>หมวดหมู่ตัวชี้วัด</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>PE Ratios</h4><p>ตัวชี้วัด P/E ย้อนหลังและข้อมูล EPS</p></div>
+    <div class="card"><h4>Price to Book</h4><p>อัตราส่วน P/B และตัวชี้วัดมูลค่าทางบัญชี</p></div>
+    <div class="card"><h4>EV Multiples</h4><p>อัตราส่วน EV/EBITDA และ EV/Sales</p></div>
+    <div class="card"><h4>Market Data</h4><p>ราคา มูลค่าตลาด จำนวนหุ้นที่ออก และเงินปันผล</p></div>
+    <div class="card"><h4>Debt Metrics</h4><p>ระดับหนี้สินและสถานะเงินสด</p></div>
+    <div class="card"><h4>Financial Fundamentals</h4><p>รายได้ EBITDA และกำไร</p></div>
+    <div class="card"><h4>Equity Metrics</h4><p>ROE อัตราการจ่ายเงินปันผล และมูลค่าส่วนของผู้ถือหุ้น</p></div>
+    <div class="card"><h4>Fiscal Data</h4><p>วันที่รายงานและไตรมาส</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>การรับ Input อัจฉริยะ</h2>
+  <p>สืบค้นได้ตามชื่อบริษัท ticker หรือ ID ในช่วงวันที่ใดก็ได้ พร้อมเลือกฟิลด์แต่ละรายการได้ ทำให้คำขอ "ขอแค่ราคาปิด" ไม่ต้องดึงข้อมูลทั้งหมวดหมู่มา การตรวจสอบพารามิเตอร์รองรับรูปแบบหลากหลายที่ LLM อาจสร้างขึ้น — รายการที่แปลงเป็น string, string เดี่ยว — และคำแนะนำการรวมข้อมูลจะปรับโดยอัตโนมัติตามช่วงวันที่ที่ร้องขอ ผลลัพธ์ถูกแคชไว้เป็นเวลา 24 ชั่วโมง</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบครอบคลุม 32 รายการ</strong> ครอบคลุมการตรวจสอบ input การจัดรูปแบบ การแคช และกรณีขอบเขตพิเศษ (edge case) พร้อมทั้งเอกสาร test-prompts เฉพาะที่เขียนขึ้นสำหรับการทดสอบกับ LLM</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>ข้อมูลราคาและปัจจัยพื้นฐานสาธารณะแบบเดี่ยว ๆ โดยทั่วไปจัดเป็น Tier 1 เมื่อการสืบค้นถูกผูกเข้ากับพอร์ตหรือ engagement ใดโดยเฉพาะ ให้ถือว่าเป็น Tier 2/3 ตาม <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="historical-financial-data.html">← ข้อมูลการเงินย้อนหลัง</a>
+  <a href="chart-generation-tool.html">เครื่องมือสร้างกราฟ →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Daily Price Metrics ကိရိယာ မိတ်ဆက်</h1>
+    <p class="lede">daily price metrics ကိရိယာ၏ မူလစတင်မိတ်ဆက်မှု — အမျိုးအစား ၈ ခုအတွင်း ဘဏ္ဍာရေးဆိုင်ရာ metric ၄၀ ကျော်ကို ခြုံငုံသော historical time-series ဒေတာကို စုံစမ်းမေးမြန်းနိုင်ပြီး၊ ပထမနေ့မှစတင်၍ ထည့်သွင်းထားသော ဉာဏ်ရည်ရှိသော aggregation နှင့် ပြောင်းလွယ်ပြင်လွယ် input ကိုင်တွယ်မှုပါဝင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Metric အမျိုးအစားများ</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>PE Ratios</h4><p>Historical P/E metric များနှင့် EPS ဒေတာ</p></div>
+    <div class="card"><h4>Price to Book</h4><p>P/B အချိုးများနှင့် စာရင်းတန်ဖိုး metric များ</p></div>
+    <div class="card"><h4>EV Multiples</h4><p>EV/EBITDA နှင့် EV/Sales အချိုးများ</p></div>
+    <div class="card"><h4>Market Data</h4><p>ဈေးနှုန်း၊ market cap၊ ရှယ်ယာအရေအတွက်နှင့် ငွေခွဲဝေမှု</p></div>
+    <div class="card"><h4>Debt Metrics</h4><p>အကြွေးအဆင့်နှင့် ငွေသားအခြေအနေ</p></div>
+    <div class="card"><h4>Financial Fundamentals</h4><p>အသုံးအဆောင်ငွေ၊ EBITDA၊ အမြတ်</p></div>
+    <div class="card"><h4>Equity Metrics</h4><p>ROE၊ ငွေခွဲဝေမှုအချိုးနှင့် equity တန်ဖိုးများ</p></div>
+    <div class="card"><h4>Fiscal Data</h4><p>အစီရင်ခံရက်စွဲနှင့် သုံးလပတ်များ</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ဉာဏ်ရည်ရှိသော Input ကိုင်တွယ်မှု</h2>
+  <p>ကုမ္ပဏီအမည်၊ ticker သို့မဟုတ် ID ဖြင့် မည်သည့်ရက်စွဲအပိုင်းအခြားမဆို စုံစမ်းမေးမြန်းနိုင်ပြီး၊ field တစ်ခုချင်းစီရွေးချယ်နိုင်သဖြင့် "ပိတ်ဈေးတစ်ခုတည်း" ကို တောင်းဆိုချက်သည် metric အမျိုးအစားတစ်ခုလုံးကို ဆွဲယူစရာ မလိုတော့ပါ။ Parameter validation သည် LLM တစ်ခုက ဖန်တီးနိုင်သော ပုံစံအမျိုးမျိုးကို လက်ခံသည် — string အဖြစ်ပြောင်းထားသော list များ၊ string တစ်ခုတည်း — ပြီးတော့ aggregation အကြံပြုချက်များသည် တောင်းဆိုထားသော ရက်စွဲအပိုင်းအခြားပေါ် အခြေခံ၍ အလိုအလျောက် ချိန်ညှိပေးသည်။ ရလဒ်များကို ၂၄ နာရီကြာ cache ထားသည်</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ကျယ်ကျယ်ပြန့်ပြန့် test ၃၂ ခု</strong> ဖြင့် input validation၊ ပုံစံချခြင်း၊ caching နှင့် edge case များကို ခြုံငုံစစ်ဆေးထားပြီး LLM စမ်းသပ်ခြင်းအတွက် အထူးရေးသားထားသော test-prompts စာတမ်းတစ်စောင်ပါ ပါဝင်သည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>အများပြည်သူ ဈေးနှုန်းနှင့် အခြေခံအချက်အလက် ဒေတာ တစ်ခုတည်းအနေနဲ့ ယေဘုယျအားဖြင့် Tier 1 ဖြစ်သည်။ query တစ်ခုသည် သီးခြား portfolio သို့မဟုတ် engagement တစ်ခုနှင့် ချိတ်ဆက်လိုက်သည်နှင့် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ Tier 2/3 အဖြစ် ကိုင်တွယ်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="historical-financial-data.html">← Historical Financial Data</a>
+  <a href="chart-generation-tool.html">Chart Generation Tool →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

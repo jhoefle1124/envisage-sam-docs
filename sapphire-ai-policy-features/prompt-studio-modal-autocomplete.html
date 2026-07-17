@@ -186,5 +186,139 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ใหม่ · คู่มือฟีเจอร์</div>
+    <h1>Prompt Studio</h1>
+    <p class="lede">Prompt Studio คืออินเทอร์เฟซแอดมินสำหรับสร้างและจัดระเบียบเทมเพลตที่อยู่เบื้องหลัง <a href="prompt-templates.html">Prompt Template Library</a> — จุดที่แอดมินของไซต์สร้างและจัดระเบียบเทมเพลตที่ผู้ใช้เลือกใน SAM หมวดหมู่แบบลำดับชั้น editor แบบ markdown ที่สมบูรณ์ และการจัดลำดับด้วยการลากวาง เข้ามาแทนที่การจัดการเทมเพลตด้วยมือแบบเดิม</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>สิ่งใหม่ในเวอร์ชันนี้</h2>
+  <ul>
+    <li><strong>หมวดหมู่แบบลำดับชั้น:</strong> ตอนนี้หมวดหมู่สามารถซ้อนอยู่ภายใต้หมวดหมู่แม่ได้ ไม่ใช่แค่เรียงอยู่ในรายการแบบเรียบอีกต่อไป</li>
+    <li><strong>การแก้ไข markdown แบบเต็มรูปแบบ:</strong> เนื้อหาเทมเพลตเขียนด้วย EasyMDE ซึ่งเป็น markdown editor ที่มี syntax highlighting และ live preview</li>
+    <li><strong>อินเทอร์เฟซจัดลำดับแบบรวมศูนย์:</strong> มุมมองเดียวให้คุณลากวางทั้งหมวดหมู่และเทมเพลตเพื่อจัดลำดับได้ โดยหมวดหมู่ที่ซ้อนกันสามารถย่อ (collapsible) เพื่อให้นำทางง่ายขึ้น</li>
+    <li><strong>รายการที่เรียงลำดับและกรองได้:</strong> มุมมองรายการหมวดหมู่และเทมเพลตที่ใช้ Tabulator รองรับการเรียงลำดับและการกรอง แทนที่ตารางธรรมดา</li>
+    <li><strong>การตรวจสอบตัวแปรเทมเพลต:</strong> รูปแบบ placeholder ที่ใช้ในเทมเพลต (<code>{{Company}}</code> และคล้ายกัน — ดู <a href="prompt-templates.html">Prompt Templates</a>) จะถูกตรวจสอบเมื่อบันทึก</li>
+    <li><strong>การมองเห็นแบบ public/private:</strong> เทมเพลตสามารถเก็บเป็น private ได้ระหว่างที่ยังร่างอยู่ หรือทำให้เป็น public เมื่อพร้อมสำหรับผู้ใช้ทุกคน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความสัมพันธ์กับ Prompt Templates</h2>
+  <p>Prompt Studio คือฝั่งการสร้างเนื้อหา (authoring) ส่วนหน้า <a href="prompt-templates.html">Prompt Template Library</a> อธิบายผลลัพธ์ที่ผู้ใช้เห็น หากคุณเป็นแอดมินของไซต์ที่กำลังสร้างหรือจัดระเบียบเทมเพลต หน้านี้คือสำหรับคุณ หากคุณกำลังมองหาวิธีใช้เทมเพลตที่เผยแพร่แล้ว หรือวิธีการทำงานของ placeholder แบบ <code>{{Company}}</code> ให้ดูที่ Prompt Templates แทน</p>
+</section>
+
+<section>
+  <h2>การจัดการหมวดหมู่</h2>
+  <p>ตอนนี้หมวดหมู่รองรับความสัมพันธ์แบบแม่-ลูก ทำให้เทมเพลตที่เกี่ยวข้องกันสามารถจัดกลุ่มอยู่ภายใต้หมวดหมู่แม่เดียวกันได้ (ตัวอย่างเช่น หมวดหมู่แม่ "Investment Research" ที่มีหมวดหมู่ย่อยอยู่ภายใต้) อินเทอร์เฟซจัดลำดับแสดงหมวดหมู่ที่ซ้อนกันเป็นกลุ่มที่ย่อได้ และทั้งหมวดหมู่และเทมเพลตภายในสามารถจัดลำดับใหม่ได้ด้วยการลากวาง</p>
+</section>
+
+<section>
+  <h2>การจัดการเทมเพลต</h2>
+  <p>เนื้อหาเทมเพลตเขียนด้วย EasyMDE แทนที่จะเป็นกล่องข้อความธรรมดา — syntax highlighting และ live preview ช่วยให้ตรวจสอบการจัดรูปแบบได้ง่ายขึ้นก่อนเผยแพร่ มีสองเรื่องที่ควรรู้:</p>
+  <div class="grid cols-2">
+    <div class="card"><h4>การตรวจสอบตัวแปร</h4><p>รูปแบบ placeholder จะถูกตรวจสอบเมื่อบันทึก ดังนั้นแท็ก <code>{{...}}</code> ที่ผิดรูปแบบจะถูกจับได้ก่อนที่เทมเพลตจะไปถึงผู้ใช้</p></div>
+    <div class="card"><h4>สลับ public/private</h4><p>ร่างเทมเพลตแบบ private ระหว่างที่ปรับแก้ จากนั้นสลับเป็น public เมื่อพร้อมให้ทั้งทีมเห็นใน SAM</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ผ่านการทดสอบอย่างละเอียด</strong> การอัปเดตนี้มาพร้อม test suite ที่ครอบคลุม models, forms และ views รวมถึงการตรวจสอบสิทธิ์ (permission checks) การตรวจสอบความถูกต้อง (validation) และ edge case ต่าง ๆ — coverage 100% สำหรับฟังก์ชันใหม่ในไฟล์ที่เปลี่ยนแปลงประมาณ 30 ไฟล์</p>
+  </div>
+</section>
+
+<section>
+  <h2>ข้อกำหนดการจัดการข้อมูลยังคงมีผล</h2>
+  <p>เทมเพลตที่สร้างใน Prompt Studio จะถูกเผยแพร่ในวงกว้าง — เมื่อเป็น public แล้ว ผู้ใช้ทุกคนสามารถเลือกใช้ใน SAM ได้ ควรคำนึงถึงกลุ่มผู้ใช้นี้ขณะร่างเทมเพลต</p>
+  <div class="callout warn">
+    <p><strong>อย่าใส่ข้อมูลเฉพาะของลูกค้าลงในเทมเพลตที่ใช้ร่วมกัน</strong> โครงสร้างและ placeholder ของเทมเพลต (Tier 1) มีไว้เพื่อให้นำกลับมาใช้ซ้ำได้ในหลายโครงการ การระบุชื่อลูกค้าจริง ชื่อโครงการ หรือรายละเอียดคดีลงในเนื้อหาเทมเพลตโดยตรง จะทำให้ผู้ใช้ทุกคนที่เข้าถึงเทมเพลตนั้นมองเห็นข้อมูลนี้ได้ — ให้ร่างด้วย placeholder ไม่ใช่ชื่อจริง ตามที่อธิบายไว้ใน <a href="prompt-templates.html">Prompt Templates</a> และ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="citation-management.html">← การจัดการ Citation ใน SAM</a>
+  <a href="admin-prompt-management.html">การจัดการเชิงบริหารของการเขียน Prompt →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝိသေသလက္ခဏာ လမ်းညွှန်</div>
+    <h1>Prompt Studio</h1>
+    <p class="lede">Prompt Studio သည် <a href="prompt-templates.html">Prompt Template Library</a> ၏ နောက်ကွယ်တွင်ရှိသော admin interface ဖြစ်ပြီး — ဆိုက် admin များက SAM တွင် အသုံးပြုသူများ ရွေးချယ်သော template များကို တည်ဆောက်ပြီး စီစဉ်ရသည့်နေရာဖြစ်သည်။ Hierarchical categories၊ ကောင်းမွန်သော markdown editor နှင့် drag-and-drop စီစဉ်ခြင်းတို့သည် ယခင်က manual ဖြင့် template စီမံခန့်ခွဲရသည့်နည်းလမ်းကို အစားထိုးလိုက်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>အသစ်ပါဝင်လာသောအရာများ</h2>
+  <ul>
+    <li><strong>Hierarchical categories:</strong> categories များသည် flat list တစ်ခုတည်းတွင်မရှိတော့ဘဲ parent category အောက်တွင် nest လုပ်နိုင်ပြီဖြစ်သည်။</li>
+    <li><strong>ပြည့်စုံသော markdown တည်းဖြတ်ခြင်း:</strong> template အကြောင်းအရာကို syntax highlighting နှင့် live preview ပါသော markdown editor တစ်ခုဖြစ်သည့် EasyMDE ဖြင့် ရေးသားသည်။</li>
+    <li><strong>ပေါင်းစည်းထားသော စီစဉ်ခြင်း interface:</strong> view တစ်ခုတည်းဖြင့် categories နှင့် templates နှစ်ခုစလုံးကို drag and drop ဖြင့် စီစဉ်နိုင်ပြီး nest လုပ်ထားသော categories များကို navigate လွယ်ကူစေရန် collapse လုပ်နိုင်သည်။</li>
+    <li><strong>Sort နှင့် filter လုပ်နိုင်သော list များ:</strong> categories နှင့် templates အတွက် Tabulator-based list view များသည် ရိုးရှင်းသော table အစား sort နှင့် filter ကို ပံ့ပိုးပေးသည်။</li>
+    <li><strong>Template variable validation:</strong> template များတွင် အသုံးပြုသော placeholder syntax (<code>{{Company}}</code> နှင့် အလားတူများ — <a href="prompt-templates.html">Prompt Templates</a> ကိုကြည့်ပါ) ကို save လုပ်ချိန်တွင် validate လုပ်သည်။</li>
+    <li><strong>Public/private မြင်နိုင်မှု:</strong> template တစ်ခုကို draft ဆွဲနေဆဲအချိန်တွင် private အဖြစ်ထားနိုင်ပြီး၊ အသုံးပြုသူအားလုံးအတွက် အသင့်ဖြစ်သောအခါ public ပြုလုပ်နိုင်သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Prompt Templates နှင့် ဆက်စပ်ပုံ</h2>
+  <p>Prompt Studio သည် ရေးသားဖန်တီးသည့်ဘက် (authoring side) ဖြစ်ပြီး <a href="prompt-templates.html">Prompt Template Library</a> စာမျက်နှာက အသုံးပြုသူမြင်ရသော ရလဒ်ကို ဖော်ပြသည်။ သင်သည် template များကို တည်ဆောက်နေသော သို့မဟုတ် စီစဉ်နေသော ဆိုက် admin ဖြစ်ပါက ဤစာမျက်နှာသည် သင့်အတွက်ဖြစ်သည်။ တင်ပြီးသား template ကို မည်သို့အသုံးပြုရမည်၊ သို့မဟုတ် <code>{{Company}}</code> ပုံစံ placeholder များ မည်သို့အလုပ်လုပ်သည်ကို လိုချင်ပါက Prompt Templates ကို ကြည့်ပါ။</p>
+</section>
+
+<section>
+  <h2>Categories စီမံခန့်ခွဲခြင်း</h2>
+  <p>ယခုအခါ categories များသည် parent-child ဆက်ဆံရေးကို ပံ့ပိုးပေးသဖြင့် ဆက်စပ်သော template များကို parent category တစ်ခုတည်း အောက်တွင် အုပ်စုဖွဲ့နိုင်သည် (ဥပမာ — "Investment Research" ဟူသော parent category အောက်တွင် sub-category များ)။ စီစဉ်ခြင်း interface သည် nest လုပ်ထားသော categories များကို collapse လုပ်နိုင်သော အုပ်စုများအဖြစ် ပြသပြီး categories နှင့် အတွင်းရှိ template များ နှစ်ခုစလုံးကို drag and drop ဖြင့် ပြန်လည်စီစဉ်နိုင်သည်။</p>
+</section>
+
+<section>
+  <h2>Templates စီမံခန့်ခွဲခြင်း</h2>
+  <p>Template အကြောင်းအရာကို ရိုးရှင်းသော text box အစား EasyMDE ဖြင့် ရေးသားသည် — syntax highlighting နှင့် live preview က publish မလုပ်မီ ပုံစံချမှုကို စစ်ဆေးရာတွင် ပိုမိုလွယ်ကူစေသည်။ သိထားသင့်သော အချက်နှစ်ချက်ရှိသည် —</p>
+  <div class="grid cols-2">
+    <div class="card"><h4>Variable validation</h4><p>Placeholder syntax ကို save လုပ်ချိန်တွင် စစ်ဆေးသောကြောင့် ပုံစံမှားနေသော <code>{{...}}</code> tag ကို template သည် အသုံးပြုသူများထံ မရောက်မီ ဖမ်းမိနိုင်သည်။</p></div>
+    <div class="card"><h4>Public/private toggle</h4><p>Template ကို ပြင်ဆင်နေစဉ် private အဖြစ် draft ရေးပြီး၊ SAM တွင် team တစ်ခုလုံး မြင်ရန် အသင့်ဖြစ်သောအခါ public သို့ ပြောင်းပါ။</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>အသေးစိတ် စမ်းသပ်ပြီးဖြစ်သည်။</strong> ဤ update သည် permission checks၊ validation နှင့် edge case များအပါအဝင် models၊ forms နှင့် views များကို ဖုံးလွှမ်းသော ပြည့်စုံသည့် test suite နှင့်အတူ ထွက်ရှိလာသည် — ပြောင်းလဲခဲ့သော file ခန့်မှန်းခြေ 30 ခုတွင် feature အသစ်အတွက် coverage 100% ရှိသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေဆဲ</h2>
+  <p>Prompt Studio တွင် ရေးသားထားသော template များကို ကျယ်ပြန့်စွာ publish လုပ်သည် — public ဖြစ်သွားပြီးနောက် အသုံးပြုသူတိုင်းက SAM တွင် ၎င်းတို့ကို ရွေးချယ်နိုင်သည်။ Template ရေးဆွဲနေစဉ် ဤ audience ကို သတိထားပါ။</p>
+  <div class="callout warn">
+    <p><strong>ဖောက်သည်၏ တိကျသောအချက်အလက်များကို မျှဝေထားသော template ထဲသို့ တိုက်ရိုက်ထည့်သွင်းခြင်း မပြုပါနှင့်။</strong> Template ၏ ဖွဲ့စည်းပုံနှင့် placeholder များ (Tier 1) သည် engagement များစွာတွင် ပြန်လည်အသုံးပြုနိုင်ရန် ရည်ရွယ်သည်။ Template စာသားထဲတွင် တကယ့်ဖောက်သည်၊ engagement သို့မဟုတ် case အသေးစိတ်ကို တိုက်ရိုက်ဖော်ပြခြင်းသည် template ကို ဝင်ရောက်ခွင့်ရှိသူ အားလုံး မြင်နိုင်သောအရာအဖြစ် ပြောင်းလဲသွားစေသည် — <a href="prompt-templates.html">Prompt Templates</a> နှင့် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> တွင် ဖော်ပြထားသည့်အတိုင်း တကယ့်နာမည်များအစား placeholder များဖြင့် draft ရေးပါ။</p>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="citation-management.html">← SAM ရှိ Citation Management</a>
+  <a href="admin-prompt-management.html">Prompt ရေးသားမှု အုပ်ချုပ်ရေးဆိုင်ရာ စီမံခန့်ခွဲမှု →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

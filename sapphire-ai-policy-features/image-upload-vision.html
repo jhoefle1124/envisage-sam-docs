@@ -168,5 +168,103 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>อัปโหลดรูปภาพและการประมวลผลด้วย Vision</h1>
+    <p class="lede">ตอนนี้ SAM มองเห็นภาพได้แล้ว อัปโหลดไฟล์ JPG, PNG, GIF หรือ WebP แล้ว vision model จะแปลงเป็นคำอธิบายข้อความที่โมเดลแชทใดก็ตามสามารถนำไปวิเคราะห์ต่อได้ — ทั้งกราฟ ภาพหน้าจอ และภาพทั่วไป ล้วนได้รับการจัดการอย่างเข้าใจบริบท</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>การประมวลผลด้วย Vision Model:</strong> vision model จาก Fireworks.ai (Qwen3 VL 235B) แปลงรูปภาพที่อัปโหลดให้เป็นคำอธิบายข้อความ พร้อม prompt ที่เข้าใจบริบทสำหรับกราฟ ภาพหน้าจอ หรือภาพทั่วไป</li>
+    <li><strong>การประมวลผลแบบ Async:</strong> รูปภาพถูกประมวลผลผ่าน Celery task ที่รองรับการลองใหม่ (retry) พร้อมสถานะ "กำลังวิเคราะห์" แบบใหม่ที่แสดงระหว่างดำเนินการ</li>
+    <li><strong>การปรับทิศทางภาพตาม EXIF:</strong> ภาพถ่ายจากโทรศัพท์ที่พึ่งพา EXIF metadata สำหรับทิศทางที่ถูกต้อง ตอนนี้แสดงผลถูกต้องแล้ว แทนที่จะเอียงข้างหรือกลับหัว</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ข้อจำกัดและการตั้งค่า</h2>
+  <p>รูปภาพถูกจำกัดไว้ที่ 5MB (เทียบกับ 100MB สำหรับเอกสาร) และตรวจสอบด้วยประเภท MIME การจำกัดขนาดมิติขั้นต่ำช่วยป้องกันข้อผิดพลาดกับภาพที่มีอัตราส่วนภาพสุดโต่ง</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบใหม่มากกว่า 48 รายการ</strong> ครอบคลุมการตรวจสอบและการประมวลผลล่วงหน้า การเชื่อมต่อ vision model พฤติกรรมการ retry ของ Celery อัตราส่วนภาพสุดโต่ง ภาพที่เสียหาย การแปลงโหมด palette ความเข้ากันได้กับ S3 storage และการปรับทิศทางตาม EXIF</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>รูปภาพที่อัปโหลดจะถูกปฏิบัติเหมือนเอกสารอื่น ๆ ในแง่ของการจัดชั้นข้อมูล ภาพหน้าจอที่มีข้อมูลลูกค้าหรือข้อมูล person-of-interest จัดเป็น Tier 3 ทันทีที่อัปโหลด — ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ก่อนอัปโหลดสิ่งใดก็ตามที่เกินกว่าภาพทั่วไปสาธารณะ</p>
+</section>
+
+
+<div class="pager">
+  <a href="streaming-recovery-session-handling.html">← การกู้คืน Streaming และการจัดการ Session</a>
+  <a href="cancellation-streaming-reliability.html">การยกเลิกและความน่าเชื่อถือของ Streaming →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>ပုံတင်ခြင်းနှင့် Vision ဖြင့် ပုံဖတ်ခြင်း</h1>
+    <p class="lede">SAM သည် ယခုအခါ ပုံများကို မြင်နိုင်ပြီ။ JPG, PNG, GIF သို့မဟုတ် WebP ပုံဖိုင်ကို တင်လိုက်ပါက vision model တစ်ခုသည် ၎င်းကို chat model မည်သည့်ခြင်းမဆို ဆင်ခြင်တွေးခေါ်နိုင်သည့် စာသားဖော်ပြချက်အဖြစ် ပြောင်းလဲပေးသည် — chart၊ screenshot နှင့် ပုံအထွေထွေအားလုံးအတွက် context ကို နားလည်သော ကိုင်တွယ်မှု ရရှိသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အရာများ</h2>
+  <ul>
+    <li><strong>Vision Model ဖြင့် ပုံဖတ်ခြင်း:</strong> Fireworks.ai ၏ vision model (Qwen3 VL 235B) သည် တင်ထားသော ပုံများကို chart၊ screenshot သို့မဟုတ် ပုံအထွေထွေအတွက် context သိသော prompt များဖြင့် စာသားဖော်ပြချက်များအဖြစ် ပြောင်းလဲပေးသည်</li>
+    <li><strong>Async ကိုင်တွယ်မှု:</strong> ပုံများကို retry ပံ့ပိုးထားသော Celery task မှတစ်ဆင့် ကိုင်တွယ်ပြီး လုပ်ဆောင်နေစဉ် "analyzing" ဟူသော status အသစ်ကို ပြသသည်</li>
+    <li><strong>EXIF orientation ပုံမှန်ပြုပြင်ခြင်း:</strong> မှန်ကန်သော ဦးတည်ချက်အတွက် EXIF metadata အပေါ် မှီခိုနေသော ဖုန်းဓာတ်ပုံများ ယခုအခါ ဘေးတိုက် သို့မဟုတ် အောက်ခြေမှ အပေါ်သို့ မဟုတ်တော့ဘဲ မှန်ကန်စွာ ပြသပါပြီ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ကန့်သတ်ချက်များနှင့် ပြင်ဆင်သတ်မှတ်ချက်</h2>
+  <p>ပုံများကို 5MB ဖြင့် ကန့်သတ်ထားသည် (စာတမ်းများအတွက် 100MB နှင့် နှိုင်းယှဉ်ပါက) MIME အမျိုးအစားဖြင့် အတည်ပြုသည်။ အနည်းဆုံးအရွယ်အစား clamping က ပုံအချိုးအစား အလွန်အကျွံရှိသော ပုံများတွင် error ဖြစ်ခြင်းကို ကာကွယ်ပေးသည်</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test အသစ် ၄၈ ခုကျော်</strong> ဖြင့် validation နှင့် preprocessing၊ vision model ပေါင်းစည်းမှု၊ Celery retry အပြုအမူ၊ ပုံအချိုးအစား အလွန်အကျွံရှိသော ပုံများ၊ ပျက်စီးနေသော ပုံများ၊ palette-mode ပြောင်းလဲမှု၊ S3 storage ဟန်ချက်ညီမှုနှင့် EXIF ပုံမှန်ပြုပြင်ခြင်းတို့ကို ခြုံငုံစစ်ဆေးထားသည်</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>Tier သတ်မှတ်ရာတွင် တင်ထားသော ပုံတစ်ပုံကို အခြားစာတမ်းတစ်စောင်နည်းတူ ဆက်ဆံသည်။ ဖောက်သည်ဒေတာ သို့မဟုတ် person-of-interest အချက်အလက်ပါသော screenshot တစ်ခုသည် တင်လိုက်သည်နှင့် Tier 3 ချက်ချင်း ဖြစ်သွားသည် — အထွေထွေ အများပြည်သူပုံများထက် ပိုသော မည်သည့်အရာမဆို မတင်မီ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ</p>
+</section>
+
+
+<div class="pager">
+  <a href="streaming-recovery-session-handling.html">← Streaming Recovery & Session Handling</a>
+  <a href="cancellation-streaming-reliability.html">Cancellation & Streaming Reliability →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

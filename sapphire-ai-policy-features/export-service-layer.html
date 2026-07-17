@@ -168,5 +168,103 @@
 </main>
 </div>
 
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ฟีเจอร์ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>Export Service Layer และการจัดการข้อผิดพลาด</h1>
+    <p class="lede">การส่งออกผลลัพธ์จาก AI screener ไปยัง manual screener ได้รับ shared service layer การจัดการข้อผิดพลาดที่ครอบคลุม และขีดจำกัดการส่งออกที่กำหนดค่าได้ — ทำให้เส้นทางการส่งออกแข็งแกร่งขึ้นและขยายต่อได้ง่ายขึ้น</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>Shared export service:</strong> service layer ใหม่ที่ใช้ร่วมกันทั้ง AI screener และ manual screener ช่วยลดความซ้ำซ้อนของ export logic</li>
+    <li><strong>Enhanced error handling:</strong> การตรวจสอบความยาวชื่อ screener (จำกัดไม่เกิน 60 ตัวอักษร) และข้อความที่เป็นมิตรกับผู้ใช้สำหรับทุกกรณีที่เกิดข้อผิดพลาด</li>
+    <li><strong>Dynamic export limits:</strong> ข้อความแจ้งขีดจำกัดการส่งออกอ่านค่าจากตัวแปรสภาพแวดล้อม <code>SCREENER_EXPORT_LIMIT</code> แทนการกำหนดค่าตายตัวไว้ในโค้ด</li>
+  </ul>
+</section>
+
+<section>
+  <h2>คุณภาพของโค้ด</h2>
+  <p>ลบ decorator <code>@transaction.atomic</code> ที่ซ้ำซ้อนออกในจุดที่ไม่จำเป็น ปรับปรุงการจัดระเบียบ view ให้ดีขึ้น และรวม export logic ที่ซ้ำซ้อนซึ่งก่อนหน้านี้แยกกันอยู่ระหว่าง AI screener และ manual screener เข้าด้วยกัน</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>การทดสอบ 345 บรรทัด</strong> สำหรับ export helper functions และ <strong>539 บรรทัด</strong> สำหรับการรวม AI screener forms พร้อมทั้งแก้ไข test ที่เคยไม่เสถียร (flaky) ไม่มีการเปลี่ยนแปลงที่กระทบการทำงานเดิม ดูเพิ่มเติมที่ <a href="export-functionality.html">ฟังก์ชันการส่งออกที่ปรับปรุงแล้ว</a> สำหรับมุมมองฝั่งผู้ใช้</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงมีผลใช้บังคับ</h2>
+  <p>การส่งออกผ่าน shared service ไม่ได้เปลี่ยนแปลงกฎเรื่อง tier — การส่งออกหน้าจอสาธารณะทั่วไปยังคงใกล้เคียง Tier 1 ในขณะที่การส่งออกที่ระบุชื่อหรือผูกกับลูกค้าจะต้องปฏิบัติตามกฎ Tier 2/3 ตาม <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยของข้อมูล</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="roe-formatter-fix.html">← แก้ไขบั๊ก ROE Formatter</a>
+  <a href="context-budget-model-updates.html">อัปเดต Context Budget และโมเดล →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM ရှိ အသစ်များ · ဝန်ဆောင်မှုလမ်းညွှန်</div>
+    <h1>Export Service Layer နှင့် အမှားများ ကိုင်တွယ်ခြင်း</h1>
+    <p class="lede">AI screener ရလဒ်များကို manual screener သို့ export လုပ်ခြင်းသည် shared service layer၊ ပြည့်စုံသော error handling နှင့် ချိန်ညှိနိုင်သော export ကန့်သတ်ချက်များ ရရှိလာသည် — export လမ်းကြောင်းကို ပိုမိုခိုင်မာစေပြီး တိုးချဲ့ရလွယ်ကူစေသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်မှုများ</h2>
+  <ul>
+    <li><strong>Shared export service:</strong> AI screener နှင့် manual screener နှစ်ခုစလုံးတွင် အသုံးပြုသော service layer အသစ်တစ်ခု — export logic ထပ်နေမှုများကို ဖယ်ရှားပေးသည်</li>
+    <li><strong>Enhanced error handling:</strong> screener အမည်၏ အရှည် (စာလုံး 60 လုံး ကန့်သတ်ချက်) စစ်ဆေးခြင်းနှင့် error scenario တိုင်းအတွက် သုံးရလွယ်ကူသော message များ</li>
+    <li><strong>Dynamic export limits:</strong> export ကန့်သတ်ချက် message သည် ယခုအခါ ကုဒ်တွင် hardcode မလုပ်တော့ဘဲ <code>SCREENER_EXPORT_LIMIT</code> environment variable မှ တန်ဖိုးကို ဖတ်ယူသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ကုဒ်အရည်အသွေး</h2>
+  <p>မလိုအပ်သည့်နေရာများတွင် ထပ်နေသော <code>@transaction.atomic</code> decorator များကို ဖယ်ရှားပြီး view ဖွဲ့စည်းပုံကို ပိုမိုကောင်းမွန်အောင်ပြုလုပ်ကာ AI screener နှင့် manual screener အတွက် သီးခြားစီ ရှိနေခဲ့သော export logic ထပ်နေမှုများကို ပေါင်းစည်းလိုက်သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>စာကြောင်း 345 ကြောင်း</strong> export helper function များအတွက် test များနှင့် <strong>စာကြောင်း 539 ကြောင်း</strong> AI screener forms ပေါင်းစည်းမှုအတွက် test များ အပြင် ယခင်က မတည်ငြိမ်ခဲ့သော (flaky) test များကိုပါ ပြင်ဆင်ထားသည်။ Breaking change များ မရှိပါ။ ဝန်ဆောင်မှုအသုံးပြုသူဘက်မှ မြင်ကွင်းအတွက် <a href="export-functionality.html">မြှင့်တင်ထားသော Export လုပ်ဆောင်ချက်</a> ကိုပါ ကြည့်ပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေသည်</h2>
+  <p>shared service မှတစ်ဆင့် export လုပ်ခြင်းသည် tier စည်းမျဉ်းများကို ပြောင်းလဲမသွားစေပါ — အထွေထွေ public screen export သည် Tier 1 နှင့် နီးစပ်နေဆဲဖြစ်ပြီး အမည်ဖော်ထားသော သို့မဟုတ် ဖောက်သည်နှင့်ဆက်စပ်သော export သည် <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> အရ Tier 2/3 စည်းမျဉ်းများကို လိုက်နာရမည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="roe-formatter-fix.html">← ROE Formatter ချွတ်ယွင်းချက် ပြင်ဆင်မှု</a>
+  <a href="context-budget-model-updates.html">Context Budget နှင့် Model အပ်ဒိတ်များ →</a>
+</div>
+
+</main>
+</div><!-- /my -->
+
 </body>
 </html>

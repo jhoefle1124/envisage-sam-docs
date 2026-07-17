@@ -164,5 +164,95 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การเชื่อมต่อ Broker Notes MCP</h1>
+    <p class="lede">ตอนนี้ SAM สามารถค้นหาและดึงข้อมูล NTAsset broker research notes ผ่าน MCP server ที่ใช้ Pinecone ได้แล้ว — โดยควบคุมการเข้าถึงตามทีม เพื่อให้เฉพาะทีมที่ได้รับอนุมัติเท่านั้นที่จะเห็นคำแนะนำหรือแม้แต่เครื่องมือนี้เลย</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>มีอะไรใหม่</h2>
+  <ul>
+    <li><strong>เครื่องมือใหม่สองตัว:</strong> <code>broker_notes_search</code> สำหรับการค้นหาเชิงความหมาย (semantic search) และ <code>broker_notes_fetch</code> สำหรับดึงเนื้อหา note แบบเต็ม โดยสื่อสารผ่าน SSE กับ Pinecone MCP server</li>
+    <li><strong>การตัดทอนเนื้อหา:</strong> จำกัดการตอบกลับไว้ที่ 15,000 ตัวอักษร เพื่อป้องกันไม่ให้ context window ล้น พร้อมการจัดรูปแบบการอ้างอิง (citation) ที่รวมการดึง domain ด้วย</li>
+    <li><strong>การควบคุมการเข้าถึงตามทีม:</strong> สามารถกำหนดค่าการเข้าถึงเครื่องมือได้ตามทีมผ่านการตั้งค่า โดยกรองในขณะเรียก LLM เพื่อให้ยังคงเข้ากันได้กับสถาปัตยกรรม compiled tool node ของ LangGraph</li>
+    <li><strong>System prompt แบบไดนามิก:</strong> คำแนะนำเกี่ยวกับ broker notes จะปรากฏเฉพาะกับทีมที่มีสิทธิ์เข้าถึงจริงเท่านั้น พร้อมคำสั่งเชิงรุกให้ตรวจสอบ broker notes ก่อนที่จะย้อนกลับไปใช้การค้นหาเว็บ (web search)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>เทสเคส 41 รายการ</strong> ครอบคลุมสิทธิ์การเข้าถึงของทีม การทำงานของเครื่องมือ MCP และการรับรู้ system message — ผ่านทั้งหมดโดยมีการแยกส่วน (isolation) และการทำ mocking ที่เหมาะสม</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>Broker research notes เป็นเนื้อหาจากบุคคลที่สามที่เข้าถึงผ่านการเชื่อมต่อที่ได้รับอนุมัติ — การควบคุมการเข้าถึงตามทีมกำหนดว่าใครสามารถ query ข้อมูลนี้ได้ แต่กฎ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> เดียวกันยังคงใช้บังคับกับสิ่งใดก็ตามที่นำมาจากข้อมูลนี้เพื่อใช้ใน deliverable</p>
+</section>
+
+
+<div class="pager">
+  <a href="langgraph-v1-mic-ticker.html">← LangGraph v1 & MIC Ticker Matching</a>
+  <a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5 →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · Feature လမ်းညွှန်</div>
+    <h1>Broker Notes MCP ချိတ်ဆက်မှု</h1>
+    <p class="lede">SAM သည် ယခုအခါ Pinecone အခြေခံသော MCP server မှတစ်ဆင့် NTAsset broker research notes များကို ရှာဖွေပြီး ရယူနိုင်ပါပြီ — team အခြေခံ access control ဖြင့် ထိန်းချုပ်ထားသဖြင့် ခွင့်ပြုထားသော team များသာ လမ်းညွှန်ချက်ကို သော်လည်းကောင်း၊ ကိရိယာများကို သော်လည်းကောင်း မြင်နိုင်ပါသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အချက်များ</h2>
+  <ul>
+    <li><strong>ကိရိယာအသစ် နှစ်ခု —</strong> semantic search အတွက် <code>broker_notes_search</code> နှင့် note အကြောင်းအရာအပြည့်အစုံကို ရယူရန် <code>broker_notes_fetch</code>၊ Pinecone MCP server နှင့် SSE မှတစ်ဆင့် ဆက်သွယ်ပါသည်။</li>
+    <li><strong>အကြောင်းအရာ ဖြတ်တောက်ခြင်း —</strong> context window ပြည့်လျှံမှုကို ကာကွယ်ရန် response များကို စာလုံး 15,000 ဖြင့် ကန့်သတ်ထားပြီး domain ထုတ်ယူမှုပါဝင်သော citation ပုံစံချထားသည်။</li>
+    <li><strong>Team အခြေခံ access control —</strong> ကိရိယာအသုံးပြုခွင့်ကို settings မှတစ်ဆင့် team အလိုက် ပြင်ဆင်သတ်မှတ်နိုင်ပြီး LLM ခေါ်ယူချိန်တွင် filter လုပ်သဖြင့် LangGraph ၏ compiled tool node architecture နှင့် ဆက်လက် ကိုက်ညီနေပါသည်။</li>
+    <li><strong>Dynamic system prompting —</strong> broker notes လမ်းညွှန်ချက်သည် တကယ် access ရှိသော team များထံသာ ပေါ်လာပြီး၊ web search သို့ ပြန်မသုံးမီ broker notes ကို ဦးစွာ စစ်ဆေးရန် ကြိုတင် ညွှန်ကြားချက် ပါဝင်ပါသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test case ၄၁ ခု</strong> — team ခွင့်ပြုချက်များ၊ MCP tool လုပ်ဆောင်ချက်များ နှင့် system message သိရှိမှုတို့ကို ခြုံငုံပြီး သင့်လျော်သော isolation နှင့် mocking ဖြင့် အားလုံး pass ဖြစ်ခဲ့သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် အသက်ဝင်နေဆဲ</h2>
+  <p>Broker research notes များသည် ခွင့်ပြုထားသော ချိတ်ဆက်မှုမှတစ်ဆင့် ရယူနိုင်သော တတိယပါတီ အကြောင်းအရာများ ဖြစ်သည် — team access control က ဤအချက်အလက်များကို မည်သူ query လုပ်နိုင်သည်ကို သတ်မှတ်ပေးသော်လည်း၊ ၎င်းမှ deliverable တစ်ခုသို့ ထုတ်ယူအသုံးပြုသည့် မည်သည့်အရာအတွက်မဆို တူညီသော <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စည်းမျဉ်းများ ဆက်လက် အသက်ဝင်နေဆဲ ဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="langgraph-v1-mic-ticker.html">← LangGraph v1 & MIC Ticker Matching</a>
+  <a href="broker-notes-date-filtering.html">Broker Notes Date Filtering & Opus 4.5 →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

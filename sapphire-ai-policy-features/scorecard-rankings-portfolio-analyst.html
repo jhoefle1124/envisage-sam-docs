@@ -267,5 +267,301 @@
 </main>
 </div>
 
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การผนวก Scorecard เข้ากับ SAMAI Chatbot</h1>
+    <p class="lede">Scorecard tool provider ตัวใหม่ช่วยให้ chatbot ดึงข้อมูล Scorecard และ ValuationScorecard ที่ scope ตามทีมมาใช้ในบทสนทนา Investment Thesis และการวิเคราะห์บริษัทได้โดยตรง — ทำให้ผลการประเมิน scorecard ปรากฏควบคู่กับข้อมูลการเงิน แทนที่จะต้องเปิดค้นหาแยกต่างหาก</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>ภาพรวม</h2>
+  <p>ข้อมูล Scorecard — ทั้ง <strong>Scorecard</strong> ปกติและ <strong>ValuationScorecard</strong> — ตอนนี้พร้อมใช้งานสำหรับ chatbot ในฐานะ tool ระดับ first-class เมื่อผู้ใช้ขอ Investment Thesis หรือการวิเคราะห์บริษัททั่วไป chatbot สามารถดึงผลการประเมิน scorecard ของทีมเองสำหรับบริษัทนั้นเข้ามาได้ Scorecard ถูก scope ตามทีม — แต่ละทีมจะเห็นเฉพาะ scorecard ที่ทีมตนเองสร้างขึ้นเท่านั้น</p>
+</section>
+
+<section>
+  <h2>แผนการดำเนินงาน</h2>
+
+  <h3>1. Scorecard Tool Provider</h3>
+  <p><code>apps/chatbots/tool_providers/scorecard_tool.py</code></p>
+  <ul>
+    <li>คลาส <code>ScorecardProvider</code> ใหม่ที่สืบทอดจาก <code>ToolProvider</code></li>
+    <li>สืบค้น scorecard ตามบริษัท (ชื่อ ticker หรือ ID)</li>
+    <li>กรองตามประเภท scorecard (factor types)</li>
+    <li>รวมทั้ง scorecard ปกติและ valuation scorecard</li>
+    <li>คืนค่าคะแนนรวม คะแนนแต่ละ factor และความคิดเห็น</li>
+    <li>จัดรูปแบบผลลัพธ์พร้อมข้อมูลนักวิเคราะห์</li>
+    <li>ใช้ <code>get_context_value("team_id")</code> เพื่อบังคับให้การสืบค้นถูก scope ตามทีม</li>
+    <li>รองรับกรณีที่ไม่มี scorecard สำหรับบริษัทนั้น</li>
+  </ul>
+
+  <h3>2. Tool Input Schema</h3>
+  <p><code>apps/chatbots/tool_providers/scorecard_tool.py</code></p>
+  <table>
+    <tr><th>Field</th><th>วัตถุประสงค์</th></tr>
+    <tr><td><code>query</code></td><td>ชื่อบริษัท ticker หรือ ID</td></tr>
+    <tr><td><code>scorecard_types</code></td><td>รายการประเภทที่ต้องการรวม หรือ "all"</td></tr>
+    <tr><td><code>include_valuation</code></td><td>Boolean — รวม valuation scorecard หรือไม่</td></tr>
+    <tr><td><code>include_details</code></td><td>Boolean — คะแนน factor/subfactor แบบละเอียด</td></tr>
+    <tr><td><code>limit</code></td><td>จำนวนผลลัพธ์สูงสุดต่อบริษัท</td></tr>
+  </table>
+
+  <h3>3. Tool Logic</h3>
+  <div class="grid cols-2">
+    <div class="card"><h4>Team scoping</h4><p>ทุกการสืบค้นถูก scope ด้วย <code>team_id</code> ที่ดึงมาจาก context</p></div>
+    <div class="card"><h4>Company matching</h4><p>Join กับ Company model เพื่อค้นหาตามชื่อ/ticker</p></div>
+    <div class="card"><h4>Score breakdowns</h4><p>รวมคะแนนถ่วงน้ำหนักและรายละเอียด factor</p></div>
+    <div class="card"><h4>Valuation formatting</h4><p>จัดรูปแบบตัวชี้วัดทางการเงิน (IRR ราคาเป้าหมาย) จาก valuation scorecard</p></div>
+    <div class="card"><h4>Attribution</h4><p>รวมชื่อนักวิเคราะห์และวันที่สร้าง</p></div>
+    <div class="card"><h4>LLM-ready output</h4><p>คืนค่าข้อมูลที่มีโครงสร้างเหมาะสำหรับการตีความโดย LLM</p></div>
+  </div>
+
+  <h3>4. Tool Registration</h3>
+  <p><code>apps/chatbots/apps.py</code> — import <code>ScorecardProvider</code> และลงทะเบียนด้วย <code>tool_registry.register(ScorecardProvider())</code></p>
+
+  <h3>5. Tests</h3>
+  <p><code>apps/chatbots/tests/test_scorecard_tool.py</code> ครอบคลุม</p>
+  <ul>
+    <li>การสืบค้นที่ scope ตามทีม</li>
+    <li>การค้นหาบริษัทตามชื่อ ticker หรือ ID</li>
+    <li>การกรองตามประเภท scorecard</li>
+    <li>การผนวกรวม valuation scorecard</li>
+    <li>การจัดการกรณีไม่มีผลลัพธ์</li>
+    <li>พฤติกรรมทั้งกรณีมีและไม่มี team context</li>
+  </ul>
+
+  <h3>6. Tool Priority</h3>
+  <p><code>apps/chatbots/registry.py</code> — เพิ่ม <code>"scorecard"</code> เข้าไปในรายการ <code>priority_order</code> ต่อจาก <code>"company_financials"</code> ทันที เพื่อให้มั่นใจว่าข้อมูล scorecard พร้อมใช้ตั้งแต่ช่วงต้นของการเลือก tool</p>
+
+  <h3>7. ทางเลือกเพิ่มเติม: Investment Thesis Generator Tool</h3>
+  <p><code>apps/chatbots/tool_providers/investment_thesis_generator.py</code> — tool เฉพาะทางที่รวมข้อมูลการเงินของบริษัท scorecard และบันทึกเข้าด้วยกันเป็น investment thesis ที่มีโครงสร้าง สามารถบันทึกลงใน <code>InvestmentThesis</code> model ได้เมื่อร้องขอ และจัดรูปแบบผลลัพธ์อย่างมืออาชีพ</p>
+</section>
+
+<section>
+  <h2>การตัดสินใจออกแบบที่สำคัญ</h2>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Team scoping</h4><p>การสืบค้น scorecard ทั้งหมดจะถูกกรองอัตโนมัติด้วย <code>team_id</code> จาก context</p></div>
+    <div class="card"><span class="num">2</span><h4>การแยก tool</h4><p>Scorecard tool แยกจาก company_financials เพื่อความเป็นโมดูล</p></div>
+    <div class="card"><span class="num">3</span><h4>การรวมข้อมูล</h4><p>Scorecard ทั้งสองประเภทจะถูกคืนค่าในรูปแบบเดียวกันที่รวมเป็นหนึ่ง</p></div>
+    <div class="card"><span class="num">4</span><h4>รองรับการอ้างอิง</h4><p>ข้อมูล scorecard มีการอ้างอิงกลับไปยังแหล่งที่มาอย่างถูกต้อง — ดู <a href="citation-management.html">Citation Management in SAM</a></p></div>
+    <div class="card"><span class="num">5</span><h4>ประสิทธิภาพ</h4><p><code>select_related</code>/<code>prefetch_related</code> ช่วยให้การสืบค้นพื้นฐานมีประสิทธิภาพ</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>ตัวอย่างการใช้งาน Tool</h2>
+  <div class="example good">
+    <div class="label">ตัวอย่าง</div>
+    <p>"Investment thesis ของ Apple เป็นอย่างไร?"</p>
+  </div>
+  <p>สำหรับคำขอลักษณะนี้ chatbot จะ</p>
+  <ul>
+    <li>ใช้ tool <code>company_financials</code> เพื่อดึงข้อมูลการเงิน</li>
+    <li>ใช้ scorecard tool เพื่อดึงผลการประเมิน scorecard ของทีม</li>
+    <li>อาจใช้ document tools สำหรับเอกสารที่เกี่ยวข้อง</li>
+    <li>สังเคราะห์ทุกอย่างเข้าด้วยกันเป็น investment thesis ที่ครอบคลุม</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความเกี่ยวข้องกับ Scorecard Rankings</h2>
+  <p>นี่เป็นอีกช่องทางหนึ่งสำหรับข้อมูล scorecard ที่ต่างจาก <a href="scorecard-rankings.html">Portfolio Analyst: Scorecard Rankings</a> ฟีเจอร์นั้นดึงคะแนน scorecard เข้าสู่การสืบค้นแบบ batch ของ portfolio/watchlist ภายใน portfolio analyst tool ส่วนฟีเจอร์นี้ทำให้ข้อมูล scorecard พร้อมใช้งานสำหรับ SAM chatbot ทั่วไปในบทสนทนา Investment Thesis และการวิเคราะห์บริษัทเดี่ยว ทั้งสองฟีเจอร์ถูก scope ตามทีมและอยู่ภายใน SAM ทั้งคู่ — เพียงแต่รองรับรูปแบบการสืบค้นที่ต่างกัน</p>
+</section>
+
+<section>
+  <h2>ประโยชน์</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>ข้อมูลเชิงลึกเฉพาะทีม</h4><p>แต่ละทีมเห็นเฉพาะผลการประเมิน scorecard ของทีมตนเอง</p></div>
+    <div class="card"><h4>การวิเคราะห์ที่ครอบคลุม</h4><p>รวมข้อมูลเชิงปริมาณ (การเงิน) และเชิงคุณภาพ (scorecard) ไว้ในคำตอบเดียว</p></div>
+    <div class="card"><h4>สนับสนุนการตัดสินใจลงทุน</h4><p>ให้ข้อมูลการประเมินที่มีโครงสร้างเพื่อสนับสนุนการตัดสินใจลงทุน</p></div>
+    <div class="card"><h4>ร่องรอยตรวจสอบ (Audit trail)</h4><p>รักษาการระบุแหล่งที่มาที่ชัดเจนถึงนักวิเคราะห์และวันที่</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>การทดสอบและการตรวจสอบ</h2>
+  <table>
+    <tr><th>ชั้น</th><th>ขอบเขตการทดสอบ</th></tr>
+    <tr><td>Unit tests</td><td>แต่ละส่วนประกอบถูกทดสอบแยกกัน</td></tr>
+    <tr><td>Integration tests</td><td>ทดสอบ tool กับการสืบค้นฐานข้อมูลจริง</td></tr>
+    <tr><td>End-to-end tests</td><td>ทดสอบผ่านหน้า chatbot ด้วยคำถามตัวอย่าง</td></tr>
+    <tr><td>Team isolation tests</td><td>ยืนยันว่าแต่ละทีมเห็นเฉพาะข้อมูล scorecard ของตนเองเท่านั้น</td></tr>
+  </table>
+  <div class="callout ok">
+    <p><strong>เป้าหมาย: coverage มากกว่า 90%</strong> เกณฑ์การยอมรับกำหนดให้ tool ต้องถูกลงทะเบียนและปรากฏในรายการ tool ที่ chatbot ใช้ได้ กรองตามทีมได้ถูกต้อง ค้นหาบริษัทตามชื่อ/ticker/ID ได้ รวม scorecard ทั้งสองประเภท และปรากฏในคำถาม Investment Thesis ได้ — โดยต้องยืนยัน team isolation ก่อนเปิดใช้งานจริง</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้</h2>
+  <p>ผลการประเมิน scorecard เป็นข้อมูลลูกค้าของ SAM ที่ผูกกับงาน portfolio ของทีมใดทีมหนึ่งโดยเฉพาะ — อยู่ในระดับชั้นเดียวกับข้อมูลการถือครองกองทุนหรือบันทึกการตัดสินใจอื่น ๆ ตามหน้า <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> การ scope ตามทีมเป็นเพียงการควบคุมการเข้าถึงภายใน SAM ไม่ใช่การลดระดับชั้นความลับ</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge red">Tier 3</span><h4>อยู่ภายใน SAM เท่านั้น</h4><p>คะแนน scorecard รายละเอียด factor ความคิดเห็นของนักวิเคราะห์ และ thesis ใด ๆ ที่สร้างจากข้อมูลเหล่านี้ จะถูกประมวลผลเฉพาะภายใน SAM และ workflow ของ Claude ที่ได้รับอนุมัติเท่านั้น — ห้ามคัดลอกวางลงในเครื่องมือฟรีหรือโมเดลตรวจสอบภายนอกโดยเด็ดขาด</p></div>
+    <div class="card"><span class="badge amber">ตรวจสอบก่อนอ้างอิงภายนอก</span><h4>บทสรุป thesis และคำอธิบายประกอบ</h4><p>หากคุณกำลังร่างคำอธิบายที่อ้างอิง thesis ซึ่งมาจาก scorecard ในบริบทนอก SAM ให้ปฏิบัติต่อข้อมูลระบุตัวตนของลูกค้าและบริษัทเช่นเดียวกับเนื้อหา Tier 3 อื่น ๆ — ทำให้ไม่ระบุตัวตน (anonymize) หรือส่งผ่าน workflow ที่ได้รับอนุมัติ</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="daily-price-metrics.html">← เครื่องมือ Daily Price Metrics</a>
+  <a href="chatbot-architecture-refactor.html">การปรับโครงสร้างสถาปัตยกรรม Chatbot →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာ ကိုးကားချက်</div>
+    <h1>Scorecard များကို SAMAI Chatbot သို့ ပေါင်းစည်းခြင်း</h1>
+    <p class="lede">Scorecard tool provider အသစ်တစ်ခုသည် chatbot အား team scope ပြုလုပ်ထားသော Scorecard နှင့် ValuationScorecard ဒေတာများကို Investment Thesis နှင့် ကုမ္ပဏီခွဲခြမ်းစိတ်ဖြာမှု စကားဝိုင်းများထဲသို့ တိုက်ရိုက် ထည့်သွင်းနိုင်စေသည် — scorecard အကဲဖြတ်ချက်များကို ငွေကြေးအချက်အလက်များနှင့်အတူ ပြသနိုင်ပြီး သီးခြားရှာဖွေရန် မလိုတော့ပါ။</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>ခြုံငုံသုံးသပ်ချက်</h2>
+  <p>Scorecard ဒေတာ — ပုံမှန် <strong>Scorecard</strong> နှင့် <strong>ValuationScorecard</strong> မှတ်တမ်းနှစ်မျိုးလုံး — ယခု chatbot အတွက် first-class tool အဖြစ် ရရှိနိုင်ပြီဖြစ်သည်။ အသုံးပြုသူက Investment Thesis သို့မဟုတ် ယေဘုယျ ကုမ္ပဏီခွဲခြမ်းစိတ်ဖြာမှု တောင်းဆိုသောအခါ chatbot သည် ထိုကုမ္ပဏီအတွက် ၎င်း၏ team ကိုယ်တိုင် ပြုလုပ်ထားသော scorecard အကဲဖြတ်ချက်များကို ထည့်သွင်းနိုင်သည်။ Scorecard များသည် team scope ဖြစ်သည် — team တစ်ခုစီသည် မိမိတို့ ဖန်တီးထားသော scorecard များကိုသာ မြင်ရသည်။</p>
+</section>
+
+<section>
+  <h2>အကောင်အထည်ဖော်မည့် အစီအစဉ်</h2>
+
+  <h3>1. Scorecard Tool Provider</h3>
+  <p><code>apps/chatbots/tool_providers/scorecard_tool.py</code></p>
+  <ul>
+    <li><code>ToolProvider</code> မှ inherit လုပ်ထားသော <code>ScorecardProvider</code> class အသစ်</li>
+    <li>ကုမ္ပဏီအလိုက် (အမည်၊ ticker သို့မဟုတ် ID) scorecard များကို ရှာဖွေသည်</li>
+    <li>Scorecard အမျိုးအစား (factor types) အလိုက် စစ်ထုတ်သည်</li>
+    <li>ပုံမှန် scorecard နှင့် valuation scorecard နှစ်မျိုးလုံး ပါဝင်သည်</li>
+    <li>စုစုပေါင်းရမှတ်၊ factor ရမှတ်များနှင့် မှတ်ချက်များကို ပြန်ပေးသည်</li>
+    <li>ရလဒ်များကို analyst အချက်အလက်နှင့်အတူ ပုံစံချသည်</li>
+    <li>team scope ဖြင့် ရှာဖွေမှုများကို အတည်ပြုစေရန် <code>get_context_value("team_id")</code> ကို အသုံးပြုသည်</li>
+    <li>ကုမ္ပဏီတစ်ခုအတွက် scorecard မရှိသည့်အခြေအနေကို ကိုင်တွယ်သည်</li>
+  </ul>
+
+  <h3>2. Tool Input Schema</h3>
+  <p><code>apps/chatbots/tool_providers/scorecard_tool.py</code></p>
+  <table>
+    <tr><th>Field</th><th>ရည်ရွယ်ချက်</th></tr>
+    <tr><td><code>query</code></td><td>ကုမ္ပဏီအမည်၊ ticker သို့မဟုတ် ID</td></tr>
+    <tr><td><code>scorecard_types</code></td><td>ထည့်သွင်းလိုသော အမျိုးအစားများ စာရင်း၊ သို့မဟုတ် "all"</td></tr>
+    <tr><td><code>include_valuation</code></td><td>Boolean — valuation scorecard ထည့်ရန်</td></tr>
+    <tr><td><code>include_details</code></td><td>Boolean — အသေးစိတ် factor/subfactor ရမှတ်များ</td></tr>
+    <tr><td><code>limit</code></td><td>ကုမ္ပဏီတစ်ခုလျှင် အများဆုံးရလဒ်အရေအတွက်</td></tr>
+  </table>
+
+  <h3>3. Tool Logic</h3>
+  <div class="grid cols-2">
+    <div class="card"><h4>Team scoping</h4><p>ရှာဖွေမှုတိုင်းသည် context မှ ရယူထားသော <code>team_id</code> ဖြင့် scope ပြုလုပ်ထားသည်။</p></div>
+    <div class="card"><h4>Company matching</h4><p>အမည်/ticker ရှာဖွေရန် Company model နှင့် join လုပ်သည်။</p></div>
+    <div class="card"><h4>Score breakdowns</h4><p>အလေးချိန်ပေးထားသော ရမှတ်များနှင့် factor အသေးစိတ် ခွဲခြမ်းချက်များ ပါဝင်သည်။</p></div>
+    <div class="card"><h4>Valuation formatting</h4><p>Valuation scorecard များမှ ငွေကြေးဆိုင်ရာ တိုင်းတာချက်များ (IRR၊ ပစ်မှတ်စျေးနှုန်း) ကို ပုံစံချသည်။</p></div>
+    <div class="card"><h4>Attribution</h4><p>Analyst အမည်များနှင့် ဖန်တီးသည့် ရက်စွဲများ ပါဝင်သည်။</p></div>
+    <div class="card"><h4>LLM-ready output</h4><p>LLM အနက်ပြန်ဆိုရန် သင့်လျော်သော ဖွဲ့စည်းပုံရှိသည့် ဒေတာကို ပြန်ပေးသည်။</p></div>
+  </div>
+
+  <h3>4. Tool Registration</h3>
+  <p><code>apps/chatbots/apps.py</code> — <code>ScorecardProvider</code> ကို import လုပ်ပြီး <code>tool_registry.register(ScorecardProvider())</code> ဖြင့် register လုပ်ပါ။</p>
+
+  <h3>5. Tests</h3>
+  <p><code>apps/chatbots/tests/test_scorecard_tool.py</code> တွင် အောက်ပါများ ပါဝင်သည် —</p>
+  <ul>
+    <li>Team scope ရှာဖွေမှုများ</li>
+    <li>အမည်၊ ticker သို့မဟုတ် ID ဖြင့် ကုမ္ပဏီရှာဖွေခြင်း</li>
+    <li>Scorecard အမျိုးအစားများအလိုက် စစ်ထုတ်ခြင်း</li>
+    <li>Valuation scorecard ပေါင်းစည်းမှု</li>
+    <li>ရလဒ်မရှိသည့် အခြေအနေကို ကိုင်တွယ်ခြင်း</li>
+    <li>Team context ရှိသည့်/မရှိသည့် အပြုအမူ</li>
+  </ul>
+
+  <h3>6. Tool Priority</h3>
+  <p><code>apps/chatbots/registry.py</code> — <code>"scorecard"</code> ကို <code>"company_financials"</code> ၏ ပြီးချက်ချင်း <code>priority_order</code> စာရင်းထဲသို့ ထည့်သွင်းထားပြီး tool ရွေးချယ်မှု အစောပိုင်းတွင် scorecard ဒေတာ ရရှိနိုင်စေသည်။</p>
+
+  <h3>7. ရွေးချယ်ခွင့်: Investment Thesis Generator Tool</h3>
+  <p><code>apps/chatbots/tool_providers/investment_thesis_generator.py</code> — ကုမ္ပဏီ ငွေကြေးအချက်အလက်၊ scorecard များနှင့် မှတ်စုများကို ဖွဲ့စည်းပုံရှိသော investment thesis တစ်ခုအဖြစ် ပေါင်းစပ်ပေးသည့် အထူးပြု tool တစ်ခုဖြစ်ပြီး တောင်းဆိုပါက <code>InvestmentThesis</code> model တွင် သိမ်းဆည်းနိုင်ပြီး ရလဒ်ကို ပရော်ဖက်ရှင်နယ်ပုံစံဖြင့် ပြင်ဆင်ပေးသည်။</p>
+</section>
+
+<section>
+  <h2>အဓိက ဒီဇိုင်း ဆုံးဖြတ်ချက်များ</h2>
+  <div class="grid cols-2">
+    <div class="card"><span class="num">1</span><h4>Team scoping</h4><p>Scorecard ရှာဖွေမှုအားလုံးကို context မှ <code>team_id</code> ဖြင့် အလိုအလျောက် စစ်ထုတ်ထားသည်။</p></div>
+    <div class="card"><span class="num">2</span><h4>Tool ခွဲထားခြင်း</h4><p>Scorecard tool ကို modularity အတွက် company_financials နှင့် သီးခြားထားသည်။</p></div>
+    <div class="card"><span class="num">3</span><h4>ဒေတာပေါင်းစည်းမှု</h4><p>Scorecard အမျိုးအစားနှစ်မျိုးလုံးကို ပေါင်းစည်းထားသော ပုံစံတစ်မျိုးတည်းဖြင့် ပြန်ပေးသည်။</p></div>
+    <div class="card"><span class="num">4</span><h4>ကိုးကားချက် ပံ့ပိုးမှု</h4><p>Scorecard ဒေတာသည် ၎င်း၏ ရင်းမြစ်သို့ သင့်လျော်သော ကိုးကားချက် ပါရှိသည် — <a href="citation-management.html">Citation Management in SAM</a> ကို ကြည့်ပါ။</p></div>
+    <div class="card"><span class="num">5</span><h4>စွမ်းဆောင်ရည်</h4><p><code>select_related</code>/<code>prefetch_related</code> သည် အခြေခံ query များကို ထိရောက်စွာ ထိန်းသိမ်းပေးသည်။</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Tool အသုံးပြုမှု ဥပမာ</h2>
+  <div class="example good">
+    <div class="label">ဥပမာ</div>
+    <p>"Apple အတွက် investment thesis ဘာလဲ?"</p>
+  </div>
+  <p>ဤကဲ့သို့သော တောင်းဆိုမှုအတွက် chatbot သည် —</p>
+  <ul>
+    <li>ငွေကြေးအချက်အလက် ရယူရန် <code>company_financials</code> tool ကို အသုံးပြုမည်</li>
+    <li>Team ၏ scorecard အကဲဖြတ်ချက်များ ရယူရန် scorecard tool ကို အသုံးပြုမည်</li>
+    <li>သက်ဆိုင်ရာ စာရွက်စာတမ်းများအတွက် document tools ကို အသုံးပြုနိုင်သည်</li>
+    <li>အားလုံးကို ပေါင်းစပ်ပြီး ပြည့်စုံသော investment thesis တစ်ခု ဖန်တီးမည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Scorecard Rankings နှင့် ဆက်စပ်ပုံ</h2>
+  <p>ဤသည်မှာ <a href="scorecard-rankings.html">Portfolio Analyst: Scorecard Rankings</a> နှင့် မတူညီသော scorecard ဒေတာ ပြသနည်းတစ်ခု ဖြစ်သည်။ ထိုဖီချာသည် scorecard ရမှတ်များကို portfolio analyst tool အတွင်း portfolio/watchlist batch ရှာဖွေမှုများထဲသို့ ထည့်သွင်းသည်။ ဤဖီချာမူ scorecard ဒေတာကို ယေဘုယျ SAM chatbot တွင် ကုမ္ပဏီတစ်ခုချင်း Investment Thesis နှင့် ခွဲခြမ်းစိတ်ဖြာမှု စကားဝိုင်းများအတွက် ရရှိနိုင်စေသည်။ နှစ်ခုစလုံးသည် team scope ဖြစ်ပြီး SAM အတွင်း၌သာ ရှိနေသည် — ရှာဖွေမှု ပုံစံများ ကွဲပြားခြင်းသာ ကွာခြားသည်။</p>
+</section>
+
+<section>
+  <h2>အကျိုးကျေးဇူးများ</h2>
+  <div class="grid cols-2">
+    <div class="card"><h4>Team အလိုက် ထိုးထွင်းသိမြင်မှု</h4><p>Team တစ်ခုစီသည် မိမိတို့၏ scorecard အကဲဖြတ်ချက်များကိုသာ မြင်ရသည်။</p></div>
+    <div class="card"><h4>ပြည့်စုံသော ခွဲခြမ်းစိတ်ဖြာမှု</h4><p>အရေအတွက်ဆိုင်ရာ (ငွေကြေး) နှင့် အရည်အသွေးဆိုင်ရာ (scorecard) ဒေတာကို အဖြေတစ်ခုတည်းတွင် ပေါင်းစပ်ပေးသည်။</p></div>
+    <div class="card"><h4>ရင်းနှီးမြှုပ်နှံမှု ဆုံးဖြတ်ချက် ပံ့ပိုးမှု</h4><p>ရင်းနှီးမြှုပ်နှံမှု ဆုံးဖြတ်ချက်များကို ပံ့ပိုးရန် ဖွဲ့စည်းပုံရှိသော အကဲဖြတ်ဒေတာကို ပေးအပ်သည်။</p></div>
+    <div class="card"><h4>Audit trail</h4><p>Analyst များနှင့် ရက်စွဲများကို ရှင်းလင်းစွာ ဆက်စပ်ညွှန်းဆိုမှု ထိန်းသိမ်းသည်။</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>စမ်းသပ်မှုနှင့် အတည်ပြုခြင်း</h2>
+  <table>
+    <tr><th>အလွှာ</th><th>လွှမ်းခြုံမှု</th></tr>
+    <tr><td>Unit tests</td><td>Component တစ်ခုချင်းစီကို သီးခြားစီ စမ်းသပ်သည်</td></tr>
+    <tr><td>Integration tests</td><td>Tool ကို ဒေတာဘေ့စ် query အစစ်များဖြင့် စမ်းသပ်သည်</td></tr>
+    <tr><td>End-to-end tests</td><td>နမူနာမေးခွန်းများဖြင့် chatbot interface မှတစ်ဆင့် စမ်းသပ်သည်</td></tr>
+    <tr><td>Team isolation tests</td><td>Team များသည် မိမိတို့၏ scorecard ဒေတာကိုသာ အမြဲမြင်ကြောင်း အတည်ပြုသည်</td></tr>
+  </table>
+  <div class="callout ok">
+    <p><strong>ပစ်မှတ်: coverage 90% ကျော်။</strong> လက်ခံနိုင်သော စံသတ်မှတ်ချက်များအရ tool သည် register ဖြစ်ရမည်၊ chatbot ၏ tool စာရင်းတွင် ပေါ်လာရမည်၊ team အလိုက် မှန်ကန်စွာ စစ်ထုတ်ရမည်၊ ကုမ္ပဏီများကို အမည်/ticker/ID ဖြင့် ရှာဖွေနိုင်ရမည်၊ scorecard အမျိုးအစားနှစ်မျိုးလုံး ပါဝင်ရမည် နှင့် Investment Thesis မေးခွန်းများတွင် ပေါ်လာရမည် — rollout မတိုင်မီ team isolation ကို အတည်ပြုပြီး ဖြစ်ရမည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်ဆဲ</h2>
+  <p>Scorecard အကဲဖြတ်ချက်များသည် သီးခြား team တစ်ခု၏ portfolio လုပ်ငန်းနှင့် ချိတ်ဆက်နေသော SAM client ဒေတာဖြစ်ပြီး <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စာမျက်နှာပေါ်ရှိ အခြားရန်ပုံငွေ ထိန်းချုပ်မှု သို့မဟုတ် ဆုံးဖြတ်ချက်မှတ်တမ်းများနည်းတူ tier အဆင့်တူညီသည်။ Team scoping သည် SAM အတွင်း access control တစ်ခုသာဖြစ်ပြီး declassification မဟုတ်ပါ။</p>
+  <div class="grid cols-2">
+    <div class="card"><span class="badge red">Tier 3</span><h4>SAM အတွင်း၌သာ ရှိနေသည်</h4><p>Scorecard ရမှတ်များ၊ factor အသေးစိတ် ခွဲခြမ်းချက်များ၊ analyst မှတ်ချက်များ နှင့် ၎င်းတို့မှ ဖန်တီးထားသော thesis မည်သည်ကိုမဆို SAM နှင့် ခွင့်ပြုထားသော Claude workflow များအတွင်းသာ ပြုလုပ်ရမည် — အခမဲ့ tools သို့မဟုတ် စစ်ဆေးရေး မော်ဒယ်များထဲ ဘယ်တော့မှ ကူးထည့်ခြင်း မပြုရ။</p></div>
+    <div class="card"><span class="badge amber">ပြင်ပတွင် ကိုးကားမီ စစ်ဆေးပါ</span><h4>Thesis အကျဉ်းချုပ်နှင့် ရှင်းလင်းချက်များ</h4><p>SAM အပြင်ဘက်တွင် scorecard မှ ရရှိသော thesis ကို ကိုးကားသည့် ရှင်းလင်းချက်ကို ရေးနေပါက ဖောက်သည်နှင့် ကုမ္ပဏီ identifier များကို အခြား Tier 3 အကြောင်းအရာများကဲ့သို့ပင် ဆက်ဆံပါ — anonymize လုပ်ပါ သို့မဟုတ် ခွင့်ပြုထားသော workflow မှတစ်ဆင့် ဖြတ်သန်းပါ။</p></div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="daily-price-metrics.html">← Daily Price Metrics ကိရိယာ</a>
+  <a href="chatbot-architecture-refactor.html">Chatbot ဗိသုကာ ပြန်လည်ပြင်ဆင်ခြင်း →</a>
+</div>
+
+</main>
+</div><!-- /my -->
+
 </body>
 </html>

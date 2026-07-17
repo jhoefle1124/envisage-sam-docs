@@ -166,5 +166,99 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · คู่มือฟีเจอร์</div>
+    <h1>การออกแบบ UI แชทใหม่ที่ทันสมัย</h1>
+    <p class="lede">การปรับโฉมภาพรวมของหน้าจอแชททั้งหมด: ข้อความสไตล์ bubble เลย์เอาต์ที่รองรับมือถือพร้อม header และ footer แบบ sticky การแจ้งเตือนแบบ toast สำหรับข้อผิดพลาดชั่วคราว และ Prompt Studio ที่สะอาดตาขึ้นทั้งบนเดสก์ท็อปและมือถือ</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สิ่งใหม่</h2>
+  <ul>
+    <li><strong>เลย์เอาต์แบบ bubble:</strong> ดีไซน์ chat bubble ที่ทันสมัยพร้อมลำดับชั้นภาพที่ดีขึ้น เพิ่ม max-width (1280px) สำหรับหน้าจอขนาดใหญ่ และใช้ขนาดฟอนต์เริ่มต้นของเว็บไซต์เพื่อให้อ่านง่ายขึ้น</li>
+    <li><strong>รองรับการใช้งานบนมือถือ:</strong> header และ footer แบบ sticky แก้ปัญหา viewport ที่ค้าง และ wrapper ตารางที่เลื่อนได้ ทำให้ตารางกว้างไม่ล้นออกจาก chat bubble อีกต่อไป</li>
+    <li><strong>การปรับปรุง Prompt Studio:</strong> placeholder ที่ยุบ/ขยายได้ และแท็บเทมเพลตบนมือถือที่สะอาดตาขึ้น พร้อมการปรับปรุง UX บนเดสก์ท็อปอีก 5 จุด</li>
+    <li><strong>การแจ้งเตือนแบบ toast:</strong> ข้อผิดพลาดชั่วคราวจะแสดงเป็น toast แทนข้อความแจ้งข้อผิดพลาดแบบฝังในหน้า</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การแก้ไขบั๊ก</h2>
+  <ul>
+    <li>ความล้มเหลวในการเริ่มต้นตัวแก้ไข EasyMDE ตอนนี้ถูกจัดการอย่างเหมาะสม แทนที่จะทำให้ช่องกรอกข้อมูลใช้งานไม่ได้</li>
+    <li>แก้ไขบั๊กการ escape ซ้ำซ้อนในการเปลี่ยนชื่อหัวข้อแชท</li>
+    <li>แป้นพิมพ์จะไม่บังช่องกรอกข้อความอีกต่อไป หลังจากแทรกพรอมต์บนมือถือ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงเหมือนเดิม</h2>
+  <p>เป็นการปรับโฉมด้านภาพเท่านั้น — ไม่มีการเปลี่ยนแปลงข้อมูลที่หน้าจอแชทส่งหรือจัดเก็บ กฎมาตรฐานของ <a href="../sapphire-ai-policy-core/data-security.html">ความปลอดภัยข้อมูล</a> ยังคงมีผลบังคับใช้เช่นเดิม</p>
+</section>
+
+
+<div class="pager">
+  <a href="personal-prompt-templates.html">← เทมเพลตพรอมต์ส่วนตัว</a>
+  <a href="typescript-migration.html">การย้ายไปใช้ TypeScript →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · Feature လမ်းညွှန်</div>
+    <h1>ခေတ်မီ Chat UI ပြန်လည်ဒီဇိုင်းဆွဲခြင်း</h1>
+    <p class="lede">Chat interface ကို အပြည့်အစုံ visual ပြန်လည်ပြင်ဆင်ခြင်း — bubble စတိုင် message များ၊ sticky header နှင့် footer ပါဝင်သော mobile-responsive layout၊ ယာယီ error များအတွက် toast notification များ နှင့် desktop နှင့် mobile နှစ်မျိုးလုံးတွင် သန့်ရှင်းလှပသော Prompt Studio။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်များ</h2>
+  <ul>
+    <li><strong>Bubble စတိုင် Layout:</strong> visual hierarchy ပိုမိုကောင်းမွန်သော ခေတ်မီ chat bubble ဒီဇိုင်း၊ ဖန်သားပြင်ကြီးများအတွက် max-width (1280px) တိုးမြှင့်ခြင်း နှင့် ပိုမိုဖတ်ရှုလွယ်ကူစေရန် site ၏ default font size ကို အသုံးပြုခြင်း။</li>
+    <li><strong>Mobile Responsiveness:</strong> sticky header နှင့် footer၊ viewport ပြဿနာများ ပြင်ဆင်ခြင်း၊ ကျယ်ပြန့်သော table များသည် chat bubble မှ ပြင်ပသို့ မလွှမ်းနိုင်တော့စေရန် scroll လုပ်နိုင်သော table wrapper များ။</li>
+    <li><strong>Prompt Studio တိုးတက်မှုများ:</strong> ချုံ့/ဖြန့်နိုင်သော placeholder များနှင့် ပိုသန့်ရှင်းသော mobile templates tab၊ ထို့ပြင် သီးသန့် desktop UX ပြင်ဆင်မှု ၅ ခု။</li>
+    <li><strong>Toast Notification များ:</strong> ယာယီ error များသည် inline error စာသားအစား ယခုအခါ toast အဖြစ် ပေါ်လာသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ပြင်ဆင်ချက်များ</h2>
+  <ul>
+    <li>EasyMDE editor စတင်ရာတွင် ပျက်ကွက်မှုများကို ယခုအခါ input ကို ချို့ယွင်းစေမည့်အစား ချောမွေ့စွာ ကိုင်တွယ်ပေးသည်။</li>
+    <li>Chat ခေါင်းစဉ် အမည်ပြောင်းရာတွင် ဖြစ်ပေါ်သော double-escaping bug ကို ပြင်ဆင်ပြီးပြီ။</li>
+    <li>Mobile တွင် prompt ထည့်သွင်းပြီးနောက် ကီးဘုတ်သည် input field ကို ဖုံးအုပ်ခြင်း မရှိတော့ပါ။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု ဆက်လက်သက်ရောက်နေဆဲ</h2>
+  <p>Visual ပြန်လည်ဒီဇိုင်းဆွဲမှုတစ်ခုသာဖြစ်ပြီး — chat interface မှ ပို့ဆောင်သော သို့မဟုတ် သိမ်းဆည်းသော ဒေတာတွင် ပြောင်းလဲမှု မရှိပါ။ စံ <a href="../sapphire-ai-policy-core/data-security.html">ဒေတာလုံခြုံရေး</a> စည်းမျဉ်းများ ဆက်လက် သက်ရောက်နေဆဲဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="personal-prompt-templates.html">← ကိုယ်ပိုင် Prompt တမ်းပလိတ်များ</a>
+  <a href="typescript-migration.html">TypeScript ပြောင်းရွှေ့ခြင်း →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

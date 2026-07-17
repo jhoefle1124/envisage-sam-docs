@@ -176,5 +176,119 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>งบประมาณบริบทและการอัปเดตโมเดล</h1>
+    <p class="lede">งานด้านวิศวกรรมเบื้องหลังการจัดการหน้าต่างบริบท (context window) ของ SAM — ตัวติดตามงบประมาณจำนวน 769 บรรทัด การสรุปประวัติการสนทนาแบบเป็นชุด (batch) การอัปเกรดโมเดลเป็น GLM-4.6 และ DeepSeek v3.1 และการเปลี่ยนแปลงที่ส่งผลกระทบ (breaking change) ต่อขีดจำกัดการดึงข้อมูลการเงินบริษัทแบบเป็นชุด</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>การจัดการหน้าต่างบริบท</h2>
+  <ul>
+    <li><strong>การติดตามงบประมาณบริบท:</strong> ตรวจสอบขนาดของบทสนทนาแบบเรียลไทม์และจัดการก่อนที่จะถึงขีดจำกัด โดยใช้การประมาณจำนวนโทเคนที่คำนึงถึงผู้ให้บริการ (provider) ด้วย tiktoken</li>
+    <li><strong>การสรุปประวัติการสนทนา:</strong> บทสนทนาที่ยาวจะถูกสรุปเป็นชุด (batch) แทนที่จะถูกตัดทิ้ง โดยข้อความที่ผ่านการทำความสะอาดแล้ว (sanitized) จะถูกบันทึกไว้ เพื่อไม่ให้สรุปเหล่านั้นถูกใส่กลับเข้าไปใหม่ในรอบถัดไป</li>
+    <li><strong>การจัดการ overflow อย่างเหมาะสม:</strong> แสดงข้อความที่ชัดเจนและสามารถนำไปปฏิบัติต่อได้ แทนที่จะปล่อยให้ล้มเหลวแบบเงียบหรือสร้างความสับสน เมื่อบทสนทนายังคงเกินขีดจำกัด ดูรายละเอียดฉบับเต็มสำหรับผู้ใช้งานได้ที่ <a href="context-management.html">การปรับปรุงการจัดการบริบท</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>การอัปเดตโมเดลและการตั้งค่า</h2>
+  <table>
+    <tr><th>การเปลี่ยนแปลง</th><th>รายละเอียด</th></tr>
+    <tr><td>โมเดลแชทเริ่มต้น</td><td>GLM-4.5 → GLM-4.6</td></tr>
+    <tr><td>DeepSeek</td><td>อัปเกรดเป็น v3.1 terminus</td></tr>
+    <tr><td>ความพยายามในการใช้เหตุผล (Reasoning effort)</td><td>พารามิเตอร์ใหม่ที่ปรับตั้งค่าได้สำหรับการตั้งค่าผู้ให้บริการแชท</td></tr>
+  </table>
+  <div class="callout danger">
+    <p><strong>การเปลี่ยนแปลงที่ส่งผลกระทบ (Breaking change):</strong> ขีดจำกัดการดึงข้อมูลการเงินบริษัทแบบเป็นชุดลดลงจาก 5 บริษัทเหลือ 3 บริษัทต่อคำขอ workflow ที่ตั้งสมมติฐานว่าดึงได้ครั้งละ 5 บริษัทจำเป็นต้องแบ่งคำขอเป็นกลุ่มย่อยลง</p>
+  </div>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>1,482 บรรทัด</strong> ของการทดสอบงบประมาณบริบท <strong>358 บรรทัด</strong> ของการทดสอบการจัดการข้อผิดพลาด และ <strong>219 บรรทัด</strong> ของการทดสอบตัวสรุปความ มี migration <code>0013_add_context_budget_to_session.py</code> รวมอยู่ด้วย ไม่จำเป็นต้อง migrate ข้อมูลด้วยตนเอง</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงมีผลบังคับใช้</h2>
+  <p>การสรุปความจัดการเรื่องขนาดของบทสนทนา ไม่ใช่ระดับความอ่อนไหวของข้อมูล — บทสนทนาที่ถูกสรุปแล้วยังคงมีเนื้อหาระดับ Tier 2/3 ได้ หากต้นฉบับมีเนื้อหาเช่นนั้นอยู่ ดู <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a></p>
+</section>
+
+
+<div class="pager">
+  <a href="export-service-layer.html">← Export Service Layer & Error Handling</a>
+  <a href="streaming-content-extraction.html">การดึงเนื้อหาแบบสตรีมมิง →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာဆိုင်ရာ ကိုးကားချက်</div>
+    <h1>Context Budget နှင့် Model အပ်ဒိတ်များ</h1>
+    <p class="lede">SAM ၏ context window စီမံခန့်ခွဲမှု နောက်ကွယ်ရှိ engineering — 769 line budget tracker, batch အလိုက် history summarization, GLM-4.6 နှင့် DeepSeek v3.1 သို့ model အဆင့်မြှင့်တင်ခြင်း၊ company financials batch ကန့်သတ်ချက်၏ breaking change တစ်ခု။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Context Window စီမံခန့်ခွဲမှု</h2>
+  <ul>
+    <li><strong>Context budget tracking:</strong> tiktoken ကို အသုံးပြု၍ provider-aware token estimation ဖြင့် ဆွေးနွေးမှု အရွယ်အစားကို real-time စောင့်ကြည့်ပြီး ကန့်သတ်ချက်မထိမီ စီမံပေးသည်</li>
+    <li><strong>History summarization:</strong> ဆွေးနွေးမှု ရှည်လျားသည်များကို ဖြတ်တောက်မည့်အစား batch အလိုက် အနှစ်ချုပ်ပေးပြီး၊ summary များ နောက်တစ်ကြိမ်တွင် ပြန်မထည့်စေရန် သန့်ရှင်းပြီးသား message များကို သိမ်းဆည်းထားသည်</li>
+    <li><strong>Overflow ကို သင့်လျော်စွာ ကိုင်တွယ်ခြင်း:</strong> ဆွေးနွေးမှုသည် ကန့်သတ်ချက်ထက် ကျော်လွန်နေဆဲဖြစ်လျှင် ဆိတ်ငြိမ်သော သို့မဟုတ် ရှုပ်ထွေးစေသော failure အစား ရှင်းလင်းပြီး လုပ်ဆောင်နိုင်သော message ကို ပြသသည်။ User-facing အသေးစိတ်အတွက် <a href="context-management.html">Context Management တိုးတက်မှုများ</a> တွင် ကြည့်ပါ။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Model နှင့် Configuration အပ်ဒိတ်များ</h2>
+  <table>
+    <tr><th>ပြောင်းလဲမှု</th><th>အသေးစိတ်</th></tr>
+    <tr><td>ပုံမှန် chat model</td><td>GLM-4.5 → GLM-4.6</td></tr>
+    <tr><td>DeepSeek</td><td>v3.1 terminus သို့ အဆင့်မြှင့်ထား</td></tr>
+    <tr><td>Reasoning effort</td><td>chat provider settings အတွက် ချိန်ညှိနိုင်သော parameter အသစ်</td></tr>
+  </table>
+  <div class="callout danger">
+    <p><strong>Breaking change:</strong> company financials batch ကန့်သတ်ချက်ကို တစ်ကြိမ်လျှင် ကုမ္ပဏီ 5 ခုမှ 3 ခုသို့ လျှော့ချထားသည်။ ကုမ္ပဏီ 5 ခု batch ဟု ယူဆထားသော workflow များသည် အုပ်စုငယ်များခွဲ၍ တောင်းဆိုရန် လိုအပ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p>Context budget စမ်းသပ်မှု <strong>line 1,482</strong>, error-handling စမ်းသပ်မှု <strong>line 358</strong> နှင့် summarizer စမ်းသပ်မှု <strong>line 219</strong>။ Migration <code>0013_add_context_budget_to_session.py</code> ပါဝင်ပြီးသား — ဒေတာကို လက်ဖြင့် migrate ရန် မလိုအပ်ပါ။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်နေဆဲ</h2>
+  <p>Summarization သည် ဆွေးနွေးမှု အရွယ်အစားကို စီမံသည်၊ အာရုံအထိမှုကို မဟုတ်ပါ — မူရင်း ဆွေးနွေးမှုတွင် Tier 2/3 အကြောင်းအရာ ပါရှိခဲ့လျှင် summarize လုပ်ပြီးသော ဆွေးနွေးမှုတွင်လည်း ထိုအကြောင်းအရာ ပါနေနိုင်ဆဲဖြစ်သည်။ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="export-service-layer.html">← Export Service Layer & Error Handling</a>
+  <a href="streaming-content-extraction.html">Streaming Content Extraction →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

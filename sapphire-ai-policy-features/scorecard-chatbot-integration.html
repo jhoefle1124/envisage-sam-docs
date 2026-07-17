@@ -168,5 +168,103 @@
 </main>
 </div>
 
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การจัดอันดับ Scorecard ใน Portfolio Analyst</h1>
+    <p class="lede">เบื้องหลังด้านวิศวกรรมของ query type ประเภท scorecard_rankings ที่กล่าวถึงในหน้าฟีเจอร์ Scorecard Rankings — การดึงข้อมูล scorecard แบบ batch เพิ่มขึ้นจาก 3 เป็น 50 บริษัทต่อ query และการจัดอันดับตาม factor กลายเป็นการเรียก tool เพียงครั้งเดียว แทนที่จะเรียกทีละบริษัท</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>การเปลี่ยนแปลงที่เกิดขึ้น</h2>
+  <ul>
+    <li><strong>Query type ใหม่:</strong> <code>scorecard_rankings</code> จัดอันดับบริษัทในพอร์ตหรือ watchlist ตาม scorecard factor ทั้งภายใน ภายนอก หรือ ESG ได้ในคำขอเดียว</li>
+    <li><strong>การประมวลผลแบบ batch:</strong> สูงสุด 50 บริษัทต่อ query แทนที่การเรียก tool แยกกัน N ครั้งด้วยการเรียกเพียงครั้งเดียว — พร้อมการจัดการ input อย่างชาญฉลาดสำหรับ query เดี่ยว, query หลายรายการ, หรือ company ID โดยตรง</li>
+    <li><strong>การแก้ไข PostgreSQL:</strong> แก้ปัญหาของ clause <code>DISTINCT ON</code> โดยเปลี่ยนไปใช้ subquery ที่ถูกต้อง ซึ่งช่วยขจัดปัญหา N+1 query ทั้งกลุ่ม</li>
+  </ul>
+</section>
+
+<section>
+  <h2>สถาปัตยกรรม</h2>
+  <p>Portfolio analyst ที่แต่เดิมมีโครงสร้างแบบ monolithic ถูกแยกออกเป็นโมดูลที่จัดระเบียบตามแนวทาง repository pattern พร้อมด้วย query builder abstraction เพื่อให้การสร้าง query ดูแลรักษาง่ายและขยายต่อได้ ดูหน้า <a href="scorecard-rankings.html">Scorecard Rankings</a> สำหรับมุมมองของฟีเจอร์นี้ในฝั่งผู้ใช้งาน</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>มี test case มากกว่า 100 รายการ ครอบคลุม 14 test module</strong> รวมถึง integration test สำหรับ workflow แบบครบวงจร, edge case สำหรับการทำงานแบบ batch และการตรวจสอบประสิทธิภาพสำหรับการแก้ไขปัญหา N+1 query ยังคงรักษาความเข้ากันได้แบบย้อนหลัง (backward compatibility) ไว้อย่างสมบูรณ์</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงใช้บังคับ</h2>
+  <p>การดึงข้อมูล scorecard แบบ batch ไม่ได้เปลี่ยนแปลงระดับชั้น (tier) ของข้อมูล — ข้อมูลพอร์ตและ scorecard ยังคงเป็น Tier 3 ตามนโยบาย <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ไม่ว่า query เดียวจะมีจำนวนบริษัทมากเท่าใดก็ตาม</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-team-averages-spider-charts.html">← ค่าเฉลี่ยทีม Scorecard และ Spider Chart</a>
+  <a href="regional-filtering-company-lists.html">การกรองตามภูมิภาคและรายชื่อบริษัท →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာ ရည်ညွှန်းချက်</div>
+    <h1>Portfolio Analyst တွင် Scorecard အဆင့်သတ်မှတ်ချက်များ</h1>
+    <p class="lede">Scorecard Rankings ဖီချာစာမျက်နှာတွင် ဖော်ပြထားသော scorecard_rankings query အမျိုးအစား၏ နောက်ကွယ်ရှိ engineering — batch scorecard ထုတ်ယူမှုသည် query တစ်ခုလျှင် ကုမ္ပဏီ 3 ခုမှ 50 ခုအထိ တိုးလာပြီး၊ factor အခြေခံ အဆင့်သတ်မှတ်ချက်များသည် ကုမ္ပဏီတစ်ခုစီအတွက် tool ခေါ်ဆိုမှုတစ်ခုစီအစား tool ခေါ်ဆိုမှု တစ်ကြိမ်တည်းသာ ဖြစ်လာသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ပြောင်းလဲမှုများ</h2>
+  <ul>
+    <li><strong>Query အမျိုးအစားအသစ်:</strong> <code>scorecard_rankings</code> သည် ပေါ်တ်ဖိုလီယို သို့မဟုတ် watchlist ကုမ္ပဏီများကို အတွင်းပိုင်း၊ ပြင်ပ သို့မဟုတ် ESG scorecard factor များအလိုက် တောင်းဆိုမှုတစ်ခုတည်းဖြင့် အဆင့်သတ်မှတ်ပေးသည်။</li>
+    <li><strong>Batch လုပ်ဆောင်ချက်:</strong> query တစ်ခုလျှင် ကုမ္ပဏီ 50 ခုအထိ — tool ခေါ်ဆိုမှု N ကြိမ် သီးခြားစီအစား တစ်ကြိမ်တည်းဖြင့် အစားထိုးသည်၊ query တစ်ခုတည်း၊ query များစွာ သို့မဟုတ် company ID တိုက်ရိုက်ဖြင့် ရိုက်ထည့်ခြင်းတို့အတွက် ဉာဏ်ရည်ရှိသော input ကိုင်တွယ်မှုနှင့်တကွ။</li>
+    <li><strong>PostgreSQL ပြင်ဆင်ချက်:</strong> <code>DISTINCT ON</code> clause ပြဿနာများကို subquery များကို မှန်ကန်စွာ အသုံးပြုခြင်းဖြင့် ဖြေရှင်းပြီး N+1 query ပြဿနာအမျိုးအစားတစ်ခုလုံးကို ဖယ်ရှားလိုက်သည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဗိသုကာပုံစံ</h2>
+  <p>ယခင်က monolithic ဖြစ်နေသော portfolio analyst ကို repository pattern အတိုင်း စနစ်တကျ module များအဖြစ် ခွဲထုတ်လိုက်ပြီး၊ ထိန်းသိမ်းရလွယ်ကူပြီး တိုးချဲ့နိုင်သော query တည်ဆောက်မှုအတွက် query builder abstraction ပါဝင်သည်။ ဤဖီချာ၏ အသုံးပြုသူဘက်မှ ရှုထောင့်အတွက် <a href="scorecard-rankings.html">Scorecard Rankings</a> ကို ကြည့်ပါ။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test module 14 ခုတွင် test case 100 ကျော်</strong> ပါဝင်ပြီး၊ ပြီးပြည့်စုံသော workflow များအတွက် integration test များ၊ batch လုပ်ဆောင်ချက်များအတွက် edge case များ နှင့် N+1 query ပြင်ဆင်ချက်များအတွက် စွမ်းဆောင်ရည် အတည်ပြုမှုများ ပါဝင်သည်။ Backward compatibility ကို အပြည့်အဝ ထိန်းသိမ်းထားသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>Batch scorecard ထုတ်ယူမှုသည် ဒေတာ၏ tier ကို ပြောင်းလဲစေခြင်း မရှိပါ — <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> အရ ပေါ်တ်ဖိုလီယိုနှင့် scorecard ဒေတာသည် query တစ်ခုတွင် ကုမ္ပဏီအရေအတွက် မည်မျှပါဝင်သည်ဖြစ်စေ Tier 3 အဖြစ် ဆက်လက်ရှိနေမည်ဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-team-averages-spider-charts.html">← Scorecard အသင်း ပျမ်းမျှနှုန်းနှင့် Spider Chart</a>
+  <a href="regional-filtering-company-lists.html">ဒေသအလိုက် စစ်ထုတ်ခြင်းနှင့် ကုမ္ပဏီစာရင်းများ →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

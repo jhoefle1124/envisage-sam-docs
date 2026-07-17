@@ -177,5 +177,121 @@
 </main>
 </div>
 
+<!-- ===== THAI ===== -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>ห่วงโซ่การสำรองโมเดล (Model Fallback Chains)</h1>
+    <p class="lede">หากโมเดลที่คุณเลือกใช้งานไม่พร้อมใช้งานระหว่างการสนทนา ตอนนี้ SAM จะสำรอง (fallback) ไปยังโมเดลอื่นโดยอัตโนมัติผ่านห่วงโซ่หลายระดับ แทนที่จะล้มเหลวไปเลย — ซึ่งเป็นส่วนหนึ่งของการอัปเดตที่ครอบคลุมกว่าเดิม ซึ่งรวมถึงการย้าย embedding model และการเสริมความแข็งแกร่งให้กับการประมวลผลเอกสารด้วย</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>ระบบ Model Fallback</h2>
+  <ul>
+    <li><strong>ห่วงโซ่การสำรองหลายระดับ:</strong> ระบบจะสำรองโมเดลโดยอัตโนมัติขณะรันไทม์ เมื่อโมเดลที่บันทึกไว้ในเซสชันล้าสมัยหรือถูกปฏิเสธ พร้อมแจ้งเตือนแบบ toast บอกคุณว่ามีการสลับโมเดลให้โดยอัตโนมัติ</li>
+    <li><strong>การคำนวณ context budget ใหม่:</strong> เมื่อสำรองไปยังโมเดลที่มี token limit ต่างกัน ระบบจะคำนวณ context budget ใหม่แทนที่จะสันนิษฐานเอาเอง</li>
+    <li>สถานะโมเดลเดิมจะถูกกู้คืนหากการสำรองโมเดลเองล้มเหลว และข้อผิดพลาดแบบเงียบ (silent failures) ถูกแทนที่ด้วยข้อผิดพลาดที่ชัดเจนตลอดกระบวนการหาโมเดล (model resolution)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การอัปเดตโมเดลและโครงสร้างพื้นฐาน</h2>
+  <ul>
+    <li>การสร้างชื่อหัวข้อ (title generation) เปลี่ยนไปใช้ gpt-oss-120b โดยกรองข้อความแจ้งเตือนการใช้เครื่องมือ (tool-announcement messages) ออกจากสิ่งที่นำมาสรุป</li>
+    <li>ย้าย embedding model ไปใช้ Qwen3-Embedding-8B ที่ 1024 มิติ — embeddings เดิมจะถูกประมวลผลใหม่ผ่านการทำ data migration</li>
+    <li>ใช้ระบบล็อกการประมวลผลเอกสารแบบกระจาย (distributed) พร้อมการกู้คืนจากสถานะค้าง (staleness recovery) เพื่อป้องกันไม่ให้สองกระบวนการทำงานกับเอกสารเดียวกันพร้อมกัน</li>
+  </ul>
+</section>
+
+<section>
+  <h2>การปรับปรุง UI</h2>
+  <p>วันที่และเวลาที่สร้างข้อความจะแสดงใต้ chat bubble แล้ว (แสดงวันที่ตลอด และแสดง timestamp เต็มเมื่อวางเมาส์ค้าง) ชิปเอกสาร (document chips) สามารถคลิกเพื่อเปิดไฟล์ได้โดยตรง และการอัปโหลดที่ค้างจะแสดงไอคอนเตือนสีเหลืองอำพันแทนที่จะหมุนวนไม่รู้จบ</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>เทสต์ใหม่มากกว่า 5,680 บรรทัด</strong> ครอบคลุมการล็อกเอกสาร ห่วงโซ่การสำรองโมเดล การคำนวณ context budget ใหม่ บริการ embedding และตัว migration เอง รวมทั้งหมด 52 ไฟล์</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>การสลับโมเดลโดยอัตโนมัติไม่ได้เปลี่ยนแปลงว่าเนื้อหาระดับใด (tier) สามารถส่งไปยังโมเดลนั้นได้ — ห่วงโซ่การสำรองโมเดลยังคงปฏิบัติตามกฎเครื่องมือและโมเดลของ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> เช่นเดียวกับการเลือกโมเดลด้วยตนเอง</p>
+</section>
+
+
+<div class="pager">
+  <a href="cancellation-streaming-reliability.html">← การยกเลิกและความน่าเชื่อถือของ Streaming</a>
+  <a href="shareable-chat-links.html">ลิงก์แชทที่แชร์ได้ →</a>
+</div>
+
+</main>
+</div><!-- /th -->
+
+<!-- ===== BURMESE (MYANMAR) ===== -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာဆိုင်ရာ ကိုးကားချက်</div>
+    <h1>Model Fallback Chains</h1>
+    <p class="lede">သင်ရွေးချယ်ထားသော model သည် စကားပြောနေစဉ်အတွင်း မရရှိနိုင်တော့ပါက SAM သည် ယခုအခါ လုံးဝ fail မဖြစ်တော့ဘဲ၊ level များစွာပါဝင်သော chain တစ်ခုမှတစ်ဆင့် အလိုအလျောက် fallback ပြုလုပ်ပေးပါသည် — ဤသည်မှာ embedding model ကို ပြောင်းရွှေ့ခြင်းနှင့် document processing ကို ပိုမိုကြံ့ခိုင်အောင် ပြုလုပ်ခြင်းလည်း ပါဝင်သော ပိုမိုကျယ်ပြန့်သည့် update ၏ တစ်စိတ်တစ်ပိုင်း ဖြစ်ပါသည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Model Fallback စနစ်</h2>
+  <ul>
+    <li><strong>Level များစွာပါ Fallback Chain:</strong> သိမ်းဆည်းထားသော session model သည် ရက်ကုန်သွားခြင်း သို့မဟုတ် ငြင်းပယ်ခံရခြင်းရှိပါက runtime တွင် အလိုအလျောက် fallback ပြုလုပ်ပြီး၊ model ကို auto-switch လုပ်ခဲ့ကြောင်း toast notification ဖြင့် အသိပေးပါသည်။</li>
+    <li><strong>Context Rebudgeting:</strong> token limit မတူညီသော model တစ်ခုသို့ fallback ပြုလုပ်သည့်အခါ context budget ကို ယူဆမည့်အစား ပြန်လည်တွက်ချက်ပေးပါသည်။</li>
+    <li>Fallback ကိုယ်တိုင် မအောင်မြင်ပါက မူလ model အခြေအနေကို ပြန်လည်ရယူပေးပြီး၊ model resolution တစ်လျှောက်လုံးတွင် silent failure များအား ရှင်းလင်းသော error များဖြင့် အစားထိုးထားပါသည်။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Model နှင့် Infrastructure အပ်ဒိတ်များ</h2>
+  <ul>
+    <li>Title generation ကို gpt-oss-120b သို့ ပြောင်းလိုက်ပြီး၊ အကျဉ်းချုပ်ရာတွင် tool-announcement message များကို ဖယ်ထုတ်ထားသည်။</li>
+    <li>Embedding model ကို Qwen3-Embedding-8B (dimension 1024) သို့ ပြောင်းရွှေ့ထားပြီး — ရှိပြီးသား embedding များကို data migration တစ်ခုမှတစ်ဆင့် ပြန်လည်ပြုပြင်ပါသည်။</li>
+    <li>Document processing lock များကို distributed ပုံစံဖြင့် staleness recovery ပါဝင်စွာ အသုံးပြုထားသဖြင့် process နှစ်ခုက document တစ်ခုတည်းကို တစ်ပြိုင်နက်တည်း ကိုင်တွယ်မှု မဖြစ်ပေါ်စေပါ။</li>
+  </ul>
+</section>
+
+<section>
+  <h2>UI တိုးတက်မှုများ</h2>
+  <p>Message ဖန်တီးသည့် ရက်စွဲနှင့် အချိန်ကို chat bubble အောက်တွင် ယခုပြသပါပြီ (ရက်စွဲကို မြင်ရပြီး၊ mouse ကို hover လုပ်လျှင် timestamp အပြည့်အစုံပြပါသည်)၊ document chip များကို click နှိပ်ပြီး ဖိုင်ကို တိုက်ရိုက်ဖွင့်နိုင်ပါသည်၊ ရပ်တန့်နေသော upload များကို အဆုံးမရှိ လည်နေမည့်အစား အဝါရောင် သတိပေးအိုင်ကွန်ဖြင့် ပြသပါသည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>Test line 5,680+ ကို အသစ်ရေးထားသည်</strong> document lock, fallback chain, context rebudgeting, embedding service နှင့် migration ကိုယ်တိုင်အပါအဝင် ဖိုင် 52 ဖိုင်ကို လွှမ်းခြုံထားသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်</h2>
+  <p>Model ကို အလိုအလျောက် ပြောင်းလဲခြင်းသည် ၎င်းသို့ မည်သည့် tier အဆင့်ရှိ content ကို ပို့နိုင်သည်ကို မပြောင်းလဲစေပါ — fallback chain သည် model ကို ကိုယ်တိုင်ရွေးချယ်ခြင်းနှင့် အတူတူပင် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကိရိယာနှင့် model စည်းမျဉ်းများကို ဆက်လက်လိုက်နာပါသည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="cancellation-streaming-reliability.html">← ပယ်ဖျက်ခြင်းနှင့် Streaming ယုံကြည်စိတ်ချရမှု</a>
+  <a href="shareable-chat-links.html">မျှဝေနိုင်သော Chat Link များ →</a>
+</div>
+
+</main>
+</div><!-- /my -->
+
 </body>
 </html>

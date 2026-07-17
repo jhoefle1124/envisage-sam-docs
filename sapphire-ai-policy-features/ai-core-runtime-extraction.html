@@ -178,5 +178,123 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การแยกส่วน AI Core Runtime</h1>
+    <p class="lede">การปรับโครงสร้างโค้ด: โครงสร้างพื้นฐาน AI runtime ที่ใช้ร่วมกันถูกย้ายออกจากแอป chatbots ไปยัง apps.ai_core ที่สร้างขึ้นใหม่ และ tool providers ถูกย้ายไปยังแอปโดเมนที่เป็นเจ้าของข้อมูลนั้นจริง ๆ — ไม่มีการเปลี่ยนแปลงพฤติกรรมการทำงานใด ๆ</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>เหตุผล</h2>
+  <p>แอป chatbots เติบโตขึ้นจนกลายเป็นโมดูลแพลตฟอร์ม AI อเนกประสงค์ ซึ่งแอปอื่น ๆ (AI screener, portfolios, scorecards) ต้องเข้ามาเรียกใช้เพื่อดึง tool contracts, LLM factory และ stock-screener query types การผูกติดกันเช่นนี้ทำให้การเปลี่ยนแปลงเฉพาะส่วนแชทมีความเสี่ยง และขัดขวางการนำ tool runtime ไปใช้ซ้ำนอกเหนือจากส่วนแชท</p>
+</section>
+
+<section>
+  <h2>สิ่งที่ย้ายไปไว้ที่ใด</h2>
+  <table>
+    <tr><th>ที่อยู่ใหม่</th><th>Tool providers</th></tr>
+    <tr><td>apps.ai_core.tool_providers</td><td>การเชื่อมต่อภายนอกทั่วไป: การค้นหาด้วย Tavily, การอ่านเอกสารด้วย Jina, การค้นหาข่าวด้วย Brave News, broker notes MCP, Firecrawl</td></tr>
+    <tr><td>apps.stock_data.tool_providers</td><td>company_financials, daily_price_metrics, price_equity</td></tr>
+    <tr><td>apps.stock_screener.tool_providers</td><td>เครื่องมือ stock_screener และตัวจำกัดความซับซ้อนของมัน</td></tr>
+    <tr><td>apps.scorecards.tool_providers</td><td>scorecard</td></tr>
+    <tr><td>apps.portfolios.tool_providers</td><td>portfolio_analyst</td></tr>
+    <tr><td>apps.chatbots.tool_providers</td><td>คงอยู่ที่เดิม: เครื่องมือเฉพาะแชท (document tools, chart_generator) ที่ผูกกับสถานะ session ของแชท</td></tr>
+  </table>
+  <p>แอป <code>apps.ai_core</code> ใหม่นี้เป็นที่รวมของ tool registry, context, responses, base classes, categories, LLM factory, exceptions, URL helpers และ financial formatter ส่วน stock-screener query contracts (filter schemas, field registry, query builder) ถูกย้ายไปยัง <code>apps.stock_screener.query</code></p>
+</section>
+
+<section>
+  <h2>การบังคับใช้ขอบเขตการ Import</h2>
+  <p>regression tests แบบใหม่ที่ใช้ AST คอยปกป้องสถาปัตยกรรมใหม่นี้ โดยกำหนดว่า runtime modules ใน <code>ai_core</code> และ stock-screener query contracts จะ import จาก <code>apps.chatbots</code> ไม่ได้ แพ็กเกจ tool provider ของแต่ละโดเมนก็จะ import จาก <code>apps.chatbots</code> ไม่ได้เช่นกัน และ <code>apps.chatbots.tool_providers</code> ถูกป้องกันไม่ให้มีโมดูลใหม่สำหรับ providers ที่ย้ายออกไปแล้วกลับมาปรากฏอีก</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>41 commits</strong> ตลอดสี่ระลอกของการย้ายระบบ (migration waves) โดย compatibility shims ชั่วคราวถูกลบออกทั้งหมดเมื่อ runtime caller และ test ทุกตัวถูกชี้ไปยังตำแหน่งใหม่เรียบร้อยแล้ว ชุดทดสอบทั้งหมดผ่านโดยไม่มีปัญหา การเปลี่ยนแปลงพฤติกรรมเพียงอย่างเดียวคือการแก้ไข performance แบบเจาะจงใน allowed-fields lookup ของ stock screener ซึ่งมี test เฉพาะของตัวเองคอยตรวจสอบ</p>
+  </div>
+</section>
+
+<section>
+  <h2>หลักการจัดการข้อมูลยังคงบังคับใช้เหมือนเดิม</h2>
+  <p>การปรับโครงสร้างโค้ดนี้ไม่มีการเปลี่ยนแปลงด้านฟังก์ชันการทำงาน — เครื่องมือทุกตัวยังคงปฏิบัติตามกฎการจัดชั้นข้อมูล (tiering rules) แบบเดียวกับก่อนการย้ายระบบ ดูรายละเอียดที่ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> สำหรับนโยบายที่โค้ดชุดนี้บังคับใช้</p>
+</section>
+
+
+<div class="pager">
+  <a href="shareable-chat-links.html">← ลิงก์แชทที่แชร์ได้</a>
+  <a href="index.html">กลับหน้าหลัก →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာ ကိုးကားချက်</div>
+    <h1>AI Core Runtime ခွဲထုတ်ခြင်း</h1>
+    <p class="lede">ဖွဲ့စည်းပုံဆိုင်ရာ ပြုပြင်ပြောင်းလဲမှု — chatbots app မှ share ထားသော AI runtime အခြေခံအဆောက်အအုံကို အသစ်ဖန်တီးထားသော apps.ai_core ထဲသို့ ရွှေ့ပြီး၊ tool providers များကို ၎င်းတို့၏ဒေတာကို တကယ်ပိုင်ဆိုင်သော domain app များထဲသို့ ပြောင်းရွှေ့ခဲ့သည် — functional အပြုအမူ ပြောင်းလဲမှု မရှိပါ။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အကြောင်းရင်း</h2>
+  <p>chatbots app သည် အခြား app များ (AI screener, portfolios, scorecards) က tool contracts, LLM factory နှင့် stock-screener query types များအတွက် ဝင်ရောက်အသုံးပြုရန် လိုအပ်သော ယေဘုယျ AI platform module တစ်ခုအဖြစ် ကြီးထွားလာခဲ့သည်။ ထိုချိတ်ဆက်မှုကြောင့် chat-only ပြောင်းလဲမှုများသည် အန္တရာယ်ရှိလာပြီး chat surface အပြင်ဘက်တွင် tool runtime ကို ပြန်လည်အသုံးပြုခြင်းကို ပိတ်ဆို့ထားသည်။</p>
+</section>
+
+<section>
+  <h2>ဘာတွေ ဘယ်ကို ရွှေ့ခဲ့သလဲ</h2>
+  <table>
+    <tr><th>နေရာအသစ်</th><th>Tool providers</th></tr>
+    <tr><td>apps.ai_core.tool_providers</td><td>ယေဘုယျ ပြင်ပ ပေါင်းစပ်မှုများ − Tavily ဖြင့်ရှာဖွေခြင်း၊ Jina ဖြင့်ဖတ်ခြင်း၊ Brave News ဖြင့်သတင်းရှာဖွေခြင်း၊ broker notes MCP၊ Firecrawl</td></tr>
+    <tr><td>apps.stock_data.tool_providers</td><td>company_financials, daily_price_metrics, price_equity</td></tr>
+    <tr><td>apps.stock_screener.tool_providers</td><td>stock_screener tool နှင့် ၎င်း၏ complexity limiter</td></tr>
+    <tr><td>apps.scorecards.tool_providers</td><td>scorecard</td></tr>
+    <tr><td>apps.portfolios.tool_providers</td><td>portfolio_analyst</td></tr>
+    <tr><td>apps.chatbots.tool_providers</td><td>မူလနေရာတွင်ပင် ရှိနေဆဲ − chat session state နှင့် ချိတ်ဆက်ထားသော chat-only tools (document tools, chart_generator)</td></tr>
+  </table>
+  <p><code>apps.ai_core</code> app အသစ်သည် tool registry, context, responses, base classes, categories, LLM factory, exceptions, URL helpers နှင့် financial formatter တို့ကို ယခုအခါ ကိုင်တွယ်ထားသည်။ Stock-screener query contracts (filter schemas, field registry, query builder) များကို <code>apps.stock_screener.query</code> သို့ ပြောင်းရွှေ့ခဲ့သည်။</p>
+</section>
+
+<section>
+  <h2>Import Boundary ကို တင်းကျပ်စွာ ကျင့်သုံးခြင်း</h2>
+  <p>AST အခြေခံ regression test အသစ်များသည် ဗိသုကာအသစ်ကို ကာကွယ်ပေးသည် — <code>ai_core</code> ရှိ runtime module များနှင့် stock-screener query contracts များသည် <code>apps.chatbots</code> မှ import လုပ်ခွင့်မရှိပါ၊ domain တစ်ခုစီ၏ tool provider package များသည်လည်း <code>apps.chatbots</code> မှ import လုပ်ခွင့်မရှိပါ၊ ထို့အပြင် <code>apps.chatbots.tool_providers</code> ကို ရွှေ့ပြောင်းပြီးသား provider များအတွက် module အသစ်များ ပြန်လည်ပေါ်လာခြင်း မရှိစေရန် ကာကွယ်ထားသည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>41 commits</strong> ဖြင့် migration wave လေးခုကို ဖြတ်သန်းခဲ့ပြီး၊ runtime caller နှင့် test အားလုံးကို ပြန်လည်ညွှန်းပြီးသည်နှင့် ယာယီ compatibility shim များကို ဖယ်ရှားခဲ့သည်။ test suite အပြည့်အစုံသည် ချောမွေ့စွာ run ဖြစ်သည်။ အပြုအမူ ပြောင်းလဲမှု တစ်ခုတည်းမှာ stock screener ၏ allowed-fields lookup တွင် ရည်ရွယ်ချက်ရှိရှိ performance ပြင်ဆင်မှုတစ်ခုဖြစ်ပြီး ၎င်းအတွက် သီးသန့် test တစ်ခုက အကာအကွယ်ပေးထားသည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက်သက်ရောက်နေဆဲ</h2>
+  <p>ဖွဲ့စည်းပုံဆိုင်ရာ code ပြုပြင်ပြောင်းလဲမှုတစ်ခုသာဖြစ်ပြီး functional ပြောင်းလဲမှု မရှိပါ — ကိရိယာတိုင်းသည် ရွှေ့ပြောင်းမီကရှိခဲ့သည့် tiering rules များကိုပင် ဆက်လက်လိုက်နာနေဆဲဖြစ်သည်။ ဤ codebase မှ ကျင့်သုံးနေသော အခြေခံ policy အတွက် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> ကို ကြည့်ပါ။</p>
+</section>
+
+
+<div class="pager">
+  <a href="shareable-chat-links.html">← မျှဝေနိုင်သော Chat လင့်ခ်များ</a>
+  <a href="index.html">ပင်မစာမျက်နှာသို့ →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

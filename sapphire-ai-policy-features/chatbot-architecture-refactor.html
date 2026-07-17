@@ -185,5 +185,137 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · เอกสารอ้างอิงทางเทคนิค</div>
+    <h1>การปรับสถาปัตยกรรมของแชทบอทครั้งใหญ่</h1>
+    <p class="lede">การปรับปรุงสถาปัตยกรรมของแบ็กเอนด์แชทบอทตั้งแต่รากฐาน: registry สำหรับจัดการ handler ของข้อความ WebSocket ตัวจัดการวงจรชีวิต (lifecycle) ที่เหมาะสมสำหรับ LangGraph ตัวจัดการเอกสารแบบรวมศูนย์ และลำดับชั้น exception ที่แท้จริง — พร้อมกับการปรับปรุงประสิทธิภาพและการจัดการไฟล์ที่เห็นผลชัดเจน</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สิ่งที่ใหม่</h2>
+  <ul>
+    <li><strong>MessageHandlerRegistry:</strong> รูปแบบ registry สำหรับจัดการข้อความ WebSocket ที่เข้ามาแทนที่ consumer ขนาดใหญ่เพียงตัวเดียวด้วย handler ที่แยกหน้าที่ชัดเจนและทดสอบได้</li>
+    <li><strong>GraphManager:</strong> ตัวจัดการวงจรชีวิตที่เหมาะสมสำหรับ instance ของ LangGraph ตามแนวปฏิบัติที่ดีที่สุดของแอปพลิเคชันแบบ async</li>
+    <li><strong>DocumentManager:</strong> การทำงานที่เกี่ยวข้องกับเอกสารทั้งหมดถูกรวมไว้ในคลาสตัวจัดการเฉพาะเพียงตัวเดียว</li>
+    <li><strong>ลำดับชั้น Exception:</strong> exception ชนิดเฉพาะกว่า 15 แบบเข้ามาแทนที่การจัดการข้อผิดพลาดทั่วไป เพื่อการดีบักที่แม่นยำ</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ผลด้านประสิทธิภาพ</h2>
+  <table>
+    <tr><th>ด้าน</th><th>การปรับปรุง</th></tr>
+    <tr><td>การ query ฐานข้อมูล</td><td>เร็วขึ้น 30-50% สำหรับการค้นหาผู้ใช้/เซสชัน ผ่านการทำ index และ select_related/prefetch_related</td></tr>
+    <tr><td>การประมวลผลไฟล์ขนาดใหญ่</td><td>ประสิทธิภาพหน่วยความจำเพิ่มขึ้น 60% ผ่านการทำ lazy loading สำหรับ PDF ที่มีขนาดเกิน 2MB</td></tr>
+    <tr><td>การสร้าง embedding</td><td>ปริมาณงานเพิ่มขึ้น 25% — เพิ่มขนาด batch จาก 50 เป็น 100</td></tr>
+    <tr><td>การจัดการ WebSocket</td><td>ลดความซับซ้อนลง 40% จากรูปแบบ registry</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>การประมวลผลเอกสารที่ปรับปรุงแล้ว</h2>
+  <ul>
+    <li>เพิ่มการรองรับไฟล์ประเภท DOCX และ XLSX นอกเหนือจากการรองรับ PDF ที่มีอยู่เดิม</li>
+    <li>ขยายขีดจำกัดขนาดไฟล์: ไฟล์ทั่วไปจาก 10MB เป็น 25MB ไฟล์ Excel สูงสุด 50MB</li>
+    <li>ติดตามความคืบหน้าแบบเรียลไทม์สำหรับการอัปโหลดและการประมวลผล พร้อมการจัดการแบบ async สำหรับไฟล์ขนาดใหญ่</li>
+    <li>PDF ขนาดใหญ่ (100 หน้าขึ้นไป) ใช้การประมวลผลแบบ batch (ครั้งละ 50 หน้า); เอกสารจำกัดไว้ที่ 500 chunk เพื่อป้องกันการประมวลผลที่ไม่มีที่สิ้นสุด</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>เข้ากันได้กับระบบเดิม เป็นเพียงการ migration แบบเพิ่มเติมเท่านั้น</strong> เปลี่ยนแปลง 70 ไฟล์ พร้อมไฟล์ทดสอบใหม่กว่า 20 ไฟล์ ไม่จำเป็นต้องเปลี่ยนแปลงการตั้งค่าใด ๆ — เอกสารที่มีอยู่เดิมจะได้รับการติดตามความคืบหน้าแบบใหม่โดยอัตโนมัติ</p>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการจัดการข้อมูลยังคงมีผลบังคับใช้</h2>
+  <p>นี่คือการปรับโครงสร้างพื้นฐาน — เปลี่ยนแปลงวิธีที่เอกสารและข้อความเคลื่อนที่ผ่านระบบ ไม่ได้เปลี่ยนแปลงระดับชั้นข้อมูลที่เอกสารเหล่านั้นถืออยู่ กฎของ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> เกี่ยวกับสิ่งที่สามารถอัปโหลดได้ยังคงมีผลบังคับใช้เหมือนเดิมทุกประการ</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-chatbot-integration.html">← ผสานรวมสกอร์การ์ดเข้ากับแชทบอท SAMAI</a>
+  <a href="langgraph-tool-loop-fix.html">การแก้ไข LangGraph Tool Loop →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာဆိုင်ရာ ကိုးကားချက်</div>
+    <h1>Chatbot Architecture ပြန်လည်တည်ဆောက်မှု</h1>
+    <p class="lede">Chatbot backend ကို အခြေခံမှ ပြန်လည်ဒီဇိုင်းဆွဲထားခြင်း — WebSocket traffic အတွက် message handler registry, LangGraph အတွက် သင့်လျော်သော lifecycle manager, စုစည်းထားသော document manager နှင့် တကယ့် exception hierarchy — ထို့အပြင် သိသာထင်ရှားသော ဆောင်ရွက်နိုင်စွမ်းနှင့် ဖိုင်ကိုင်တွယ်မှု တိုးတက်မှုများပါ ပါဝင်သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>အသစ်ပါဝင်သည့်အရာများ</h2>
+  <ul>
+    <li><strong>MessageHandlerRegistry:</strong> ကျယ်ပြန့်နေသော consumer တစ်ခုကို အာရုံစိုက်ပြီး စမ်းသပ်နိုင်သော handler များဖြင့် အစားထိုးသည့် WebSocket message handling အတွက် registry pattern</li>
+    <li><strong>GraphManager:</strong> async application အကောင်းဆုံးအလေ့အကျင့်များအတိုင်း LangGraph instance များအတွက် သင့်လျော်သော lifecycle manager</li>
+    <li><strong>DocumentManager:</strong> document ဆိုင်ရာ လုပ်ဆောင်ချက်အားလုံးကို သီးသန့် manager class တစ်ခုတည်းထဲသို့ စုစည်းထားသည်</li>
+    <li><strong>Exception hierarchy:</strong> တိကျသော debug လုပ်နိုင်ရန် ယေဘုယျ error handling ကို အစားထိုးသည့် သီးခြား exception အမျိုးအစား ၁၅ မျိုးကျော်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ဆောင်ရွက်နိုင်စွမ်း တိုးတက်မှုများ</h2>
+  <table>
+    <tr><th>နယ်ပယ်</th><th>တိုးတက်မှု</th></tr>
+    <tr><td>Database query များ</td><td>index များနှင့် select_related/prefetch_related မှတစ်ဆင့် user/session ရှာဖွေမှုအတွက် +30-50% ပိုမြန်</td></tr>
+    <tr><td>ဖိုင်ကြီးများ ပြုပြင်ခြင်း</td><td>2MB ကျော် PDF များအတွက် lazy loading အသုံးပြုခြင်းဖြင့် memory efficiency +60%</td></tr>
+    <tr><td>Embedding ထုတ်လုပ်ခြင်း</td><td>throughput +25% — batch size ကို 50 မှ 100 သို့ တိုးမြှင့်</td></tr>
+    <tr><td>WebSocket ကိုင်တွယ်ခြင်း</td><td>registry pattern ကြောင့် ရှုပ်ထွေးမှု -40%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>တိုးတက်ထားသော Document ကိုင်တွယ်ခြင်း</h2>
+  <ul>
+    <li>ရှိပြီးသား PDF ကိုင်တွယ်မှုအပြင် DOCX နှင့် XLSX ဖိုင်ပုံစံများအတွက် ပံ့ပိုးမှု ထပ်ထည့်ထားသည်</li>
+    <li>ဖိုင်အရွယ်အစား ကန့်သတ်ချက် တိုးမြှင့်: ပုံမှန်ဖိုင် 10MB → 25MB, Excel ဖိုင် 50MB အထိ</li>
+    <li>Upload နှင့် processing အတွက် real-time progress tracking၊ ဖိုင်ကြီးများအတွက် async ကိုင်တွယ်မှုနှင့်အတူ</li>
+    <li>PDF ကြီးများ (စာမျက်နှာ 100+) သည် batch processing (တစ်ကြိမ်လျှင် 50 မျက်နှာ) ကို အသုံးပြုသည်; processing မထိန်းချုပ်နိုင်အောင် ဖြစ်မသွားစေရန် document တစ်ခုကို chunk 500 ဖြင့် ကန့်သတ်ထားသည်</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>ရှေ့နောက် လိုက်ဖက်ညီပြီး ထပ်ဆင့်ထည့်သော migration များသာ ဖြစ်သည်။</strong> Test ဖိုင်အသစ် 20+ ဖိုင်ဖြင့် ဖိုင် 70 ခု ပြောင်းလဲထားသည်။ configuration ပြောင်းလဲရန် မလိုအပ်ပါ — ရှိပြီးသား document များသည် progress tracking အသစ်ကို အလိုအလျောက် ရရှိသွားမည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာကိုင်တွယ်မှု စည်းမျဉ်းများ ဆက်လက် သက်ရောက်နေဆဲ</h2>
+  <p>ဤသည်မှာ document နှင့် message များ စနစ်ထဲကို မည်သို့ ရွှေ့ပြောင်းသည်ကို ပြောင်းလဲသည့် infrastructure ပြန်လည်တည်ဆောက်မှု ဖြစ်ပြီး ၎င်းတို့ ကိုင်ဆောင်ထားသော tier ကို ပြောင်းလဲခြင်း မဟုတ်ပါ။ မည်သည့်အရာကို upload လုပ်နိုင်သည်ဆိုသည့် <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စည်းမျဉ်းများသည် ယခင်အတိုင်းပင် ဆက်လက် သက်ရောက်နေဆဲဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="scorecard-chatbot-integration.html">← SAMAI Chatbot ထဲသို့ Scorecard များ ပေါင်းစည်းခြင်း</a>
+  <a href="langgraph-tool-loop-fix.html">LangGraph Tool Loop ပြင်ဆင်ချက် →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>

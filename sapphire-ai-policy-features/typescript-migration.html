@@ -172,5 +172,111 @@
 </main>
 </div>
 
+<!-- ================= THAI ================= -->
+<div class="lang-section" data-lang="th">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">ใหม่ใน SAM · ข้อมูลอ้างอิงทางเทคนิค</div>
+    <h1>TypeScript Migration</h1>
+    <p class="lede">chat.js ไฟล์เดียวขนาดใหญ่ 5,300 บรรทัดของ chat frontend ถูกแยกออกเป็น TypeScript modules ที่มีจุดเน้นเฉพาะทางประมาณ 30 โมดูล พร้อมทั้งเพิ่ม Biome linter และการทดสอบที่ครอบคลุมเข้าไปด้วยระหว่างทาง</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>สถาปัตยกรรมแบบโมดูล</h2>
+  <table>
+    <tr><th>กลุ่มโมดูล</th><th>เนื้อหา</th></tr>
+    <tr><td>stores/</td><td>การจัดการ state ของ Alpine.js (ข้อความแชท สถานะแชท ตัวแก้ไข prompt)</td></tr>
+    <tr><td>components/</td><td>คอมโพเนนต์ของ Alpine.js (การเริ่มต้นแชท อินพุตแชท)</td></tr>
+    <tr><td>websocket/</td><td>การจัดการ WebSocket พร้อม message handlers</td></tr>
+    <tr><td>text/</td><td>การเรนเดอร์ Markdown การประมวลผลการอ้างอิง (citation) และการประมวลผล thinking-tag</td></tr>
+    <tr><td>dom/</td><td>การจัดการการแจ้งเตือน ชื่อเรื่อง และ tooltip</td></tr>
+    <tr><td>charts/</td><td>การผสานรวม Highcharts พร้อมการรองรับด้านการเข้าถึง (accessibility)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>คุณภาพของโค้ด</h2>
+  <p>มีการเพิ่ม Biome สำหรับ linting และการจัดรูปแบบ JS/TS โดยถือว่าคำเตือน (warnings) เป็นข้อผิดพลาด (errors) นอกจากนี้ยังเพิ่มการคอมไพล์ TypeScript เข้าไปใน CI pipeline และลบ debug logging รุ่นเก่าออกไป</p>
+</section>
+
+<section>
+  <h2>ความน่าเชื่อถือ</h2>
+  <div class="callout ok">
+    <p><strong>ไฟล์ทดสอบใหม่มากกว่า 40 ไฟล์</strong> ครอบคลุมโมดูลใหม่ทั้งหมด ไม่มีการเปลี่ยนแปลงเชิงฟังก์ชันต่อพฤติกรรมของแชท — นี่เป็นเพียงการปรับโครงสร้าง (refactor) เท่านั้น</p>
+  </div>
+</section>
+
+<section>
+  <h2>การจัดการข้อมูลยังคงบังคับใช้เช่นเดิม</h2>
+  <p>การปรับโครงสร้างสถาปัตยกรรมของ frontend โดยไม่มีการเปลี่ยนแปลงเชิงฟังก์ชัน — กฎเกณฑ์ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> เดิมยังคงบังคับใช้เหมือนเดิมทุกประการ</p>
+</section>
+
+
+<div class="pager">
+  <a href="modern-chat-ui-redesign.html">← การปรับโฉม Modern Chat UI ใหม่</a>
+  <a href="pdf-export-copy-formats.html">การส่งออก PDF และรูปแบบการคัดลอก →</a>
+</div>
+
+</main>
+</div>
+
+<!-- ================= BURMESE (MYANMAR) ================= -->
+<div class="lang-section" data-lang="my">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">SAM တွင် အသစ် · နည်းပညာရည်ညွှန်းချက်</div>
+    <h1>TypeScript Migration</h1>
+    <p class="lede">chat frontend ၏ line 5,300 ရှိသော monolithic chat.js ကို အထူးပြု TypeScript modules ခန့် 30 ခန့်အဖြစ် ခွဲခြမ်းထားပြီး Biome linter နှင့် ကျယ်ပြန့်သော test coverage ကိုလည်း လမ်းကြောင်းတစ်လျှောက် ပေါင်းထည့်ခဲ့သည်။</p>
+  </div>
+</div>
+
+<main>
+
+
+<section>
+  <h2>Module ဖွဲ့စည်းပုံ</h2>
+  <table>
+    <tr><th>Module အုပ်စု</th><th>ပါဝင်အကြောင်းအရာ</th></tr>
+    <tr><td>stores/</td><td>Alpine.js state စီမံခန့်ခွဲမှု (chat messages, chat state, prompt editor)</td></tr>
+    <tr><td>components/</td><td>Alpine.js components (chat init, chat input)</td></tr>
+    <tr><td>websocket/</td><td>message handlers ပါသော WebSocket စီမံခန့်ခွဲမှု</td></tr>
+    <tr><td>text/</td><td>Markdown rendering, citation processing, thinking-tag processing</td></tr>
+    <tr><td>dom/</td><td>Notification, title နှင့် tooltip စီမံခန့်ခွဲမှု</td></tr>
+    <tr><td>charts/</td><td>accessibility support ပါသော Highcharts ပေါင်းစည်းမှု</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>ကုဒ်အရည်အသွေး</h2>
+  <p>warnings များကို errors အဖြစ် သတ်မှတ်ကာ JS/TS linting နှင့် formatting အတွက် Biome ကို ထည့်သွင်းခဲ့သည်။ CI pipeline တွင် TypeScript compilation ကို ထပ်ပေါင်းထည့်ပြီး legacy debug logging ကို ဖယ်ရှားခဲ့သည်။</p>
+</section>
+
+<section>
+  <h2>ယုံကြည်စိတ်ချရမှု</h2>
+  <div class="callout ok">
+    <p><strong>test file အသစ် ၄၀ ကျော်</strong>သည် module အသစ်အားလုံးကို ဖုံးလွှမ်းသည်။ chat အပြုအမူတွင် functional ပြောင်းလဲမှု မရှိပါ — ဤသည်မှာ ဖွဲ့စည်းပုံ ပြင်ဆင်မှု (structural refactor) တစ်ခုသာ ဖြစ်သည်။</p>
+  </div>
+</section>
+
+<section>
+  <h2>ဒေတာ ကိုင်တွယ်မှု ဆက်လက် သက်ရောက်</h2>
+  <p>functional ပြောင်းလဲမှု မရှိသော frontend architecture ပြင်ဆင်မှု — အလားတူ <a href="../sapphire-ai-policy-core/data-security.html">Data Security</a> စည်းမျဉ်းများ ယခင်အတိုင်း အတိအကျ သက်ရောက်ဆဲဖြစ်သည်။</p>
+</section>
+
+
+<div class="pager">
+  <a href="modern-chat-ui-redesign.html">← Modern Chat UI ပြန်လည်ဒီဇိုင်းရေးဆွဲမှု</a>
+  <a href="pdf-export-copy-formats.html">PDF Export & မိတ္တူ ပုံစံများ →</a>
+</div>
+
+</main>
+</div>
+
 </body>
 </html>
