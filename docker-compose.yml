@@ -1,0 +1,16 @@
+services:
+  envisage-sam-docs:
+    image: nginx:alpine
+    container_name: envisage-sam-docs
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    ports:
+      - "8083:80"
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run --token ${CLOUDFLARE_TOKEN}
+    restart: unless-stopped
+    depends_on:
+      - envisage-sam-docs
