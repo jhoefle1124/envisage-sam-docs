@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM Team Data (Small Data) — SAM-AI System Architecture</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ai-models-hosting.html">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html" class="active">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pillar 4 &middot; Team-Specific Knowledge Layer</div>
+    <h1>SAM Team Data (Small Data)</h1>
+    <p class="lede">The higher-touch, team-specific layer of the platform: how content gets vectorized and embedded for precise retrieval, and how performance is continuously measured to keep that retrieval trustworthy.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Data Processing &amp; Vectorization</h2>
+  <p class="sub">Before team knowledge is searchable, it has to be turned into vectors — numerical representations a model can compare for similarity rather than exact-match keywords.</p>
+
+  <h3>Custom Integration</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <h4>Custom Fine-tuned Models</h4>
+      <p>Industry-trained models for domain-specific content — models adapted specifically to the vocabulary and patterns of asset management rather than relying on a general-purpose base model alone.</p>
+    </div>
+    <div class="card">
+      <h4>Domain-specific Embeddings</h4>
+      <p>Custom embeddings trained on the firm's own data, so semantic similarity is measured in terms that actually match how the team thinks about its content.</p>
+    </div>
+  </div>
+
+  <h3>Embedding Models</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <h4>OpenAI Embeddings</h4>
+      <p><code>text-embedding-ada-002</code>, <code>text-embedding-3-small</code>, and <code>text-embedding-3-large</code> — general-purpose embedding models used where broad semantic coverage matters more than domain specialization.</p>
+    </div>
+    <div class="card">
+      <h4>Open Source Models</h4>
+      <p>Sentence-BERT, Word2Vec, GloVe, and other alternatives, used where self-hosting the embedding step is preferable to a hosted API call.</p>
+    </div>
+  </div>
+
+  <h3>Vectorization Methods</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Semantic Chunking</h4>
+      <p>Breaking documents into meaningful segments for better retrieval, so a search returns the specific passage that matters rather than an entire document.</p>
+    </div>
+    <div class="card">
+      <h4>Text Embeddings</h4>
+      <p>Converting text to numerical vectors using models like OpenAI or BERT, the core operation that makes semantic search possible.</p>
+    </div>
+    <div class="card">
+      <h4>Metadata Enrichment</h4>
+      <p>Adding contextual information to improve search relevance — tagging vectors with source, date, or category so retrieval can filter as well as rank.</p>
+    </div>
+  </div>
+
+  <h3>Vector Databases</h3>
+  <div class="grid cols-4">
+    <div class="card">
+      <h4>Pinecone</h4>
+      <p>Managed vector database service with automatic scaling, used where operational simplicity matters more than self-hosting control.</p>
+    </div>
+    <div class="card">
+      <h4>FAISS</h4>
+      <p>Facebook's similarity search library for efficient vector operations, favored for high-performance local or self-hosted search.</p>
+    </div>
+    <div class="card">
+      <h4>Chroma</h4>
+      <p>Open-source vector database with built-in embedding functions, useful for lightweight deployments that need both storage and embedding in one tool.</p>
+    </div>
+    <div class="card">
+      <h4>Weaviate</h4>
+      <p>GraphQL-based vector database with semantic search capabilities, suited to teams that want a query interface beyond simple similarity lookups.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Performance &amp; Monitoring</h2>
+  <p class="sub">Vectorized team data is only useful if it stays accurate — this layer tracks whether it does, and improves it when it doesn't.</p>
+
+  <h3>User Feedback</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Continuous Improvement</h4>
+      <p>Iterative refinement based on user input, so the retrieval and response quality gets better with use rather than staying static.</p>
+    </div>
+    <div class="card">
+      <h4>Feedback Analysis</h4>
+      <p>Sentiment analysis and improvement identification, turning raw user reactions into specific, actionable fixes.</p>
+    </div>
+    <div class="card">
+      <h4>Rating Systems</h4>
+      <p>User satisfaction scoring and qualitative feedback, giving the platform a direct, quantifiable signal of how well it's performing.</p>
+    </div>
+  </div>
+
+  <h3>Performance Metrics</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Accuracy Metrics</h4>
+      <p>Precision, recall, and relevance scoring — the statistical measures of whether retrieval is actually returning the right information.</p>
+    </div>
+    <div class="card">
+      <h4>Response Time</h4>
+      <p>Latency measurements and optimization opportunities, tracking how quickly the system answers and where delays are worth fixing.</p>
+    </div>
+    <div class="card">
+      <h4>Resource Usage</h4>
+      <p>CPU, memory, and API consumption monitoring, keeping the cost and infrastructure footprint of the system visible and manageable.</p>
+    </div>
+  </div>
+
+  <h3>Analytics</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Usage Statistics</h4>
+      <p>Query volume, user engagement, and feature adoption — the top-line numbers on how much the platform is actually being used, and by whom.</p>
+    </div>
+    <div class="card">
+      <h4>Success Rates</h4>
+      <p>Accuracy, completion rates, and user satisfaction metrics, tracked together to give a fuller picture than any single measure alone.</p>
+    </div>
+    <div class="card">
+      <h4>User Behavior</h4>
+      <p>Interaction patterns, common queries, and usage trends, surfacing what teams actually ask for so the platform can be tuned to real demand.</p>
+    </div>
+  </div>
+
+  <h3>Logging</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Performance Logs</h4>
+      <p>Response times, resource usage, and system health, recorded continuously to catch degradation before it becomes a user-facing problem.</p>
+    </div>
+    <div class="card">
+      <h4>Error Logs</h4>
+      <p>Detailed error tracking and debugging information, giving engineers what they need to diagnose and fix issues quickly.</p>
+    </div>
+    <div class="card">
+      <h4>Request Logs</h4>
+      <p>A complete audit trail of all interactions and API calls, supporting both debugging and compliance review.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="sam-data-big-data.html">← SAM Data (Big Data)</a>
+  <a href="sam-analysis.html">Next: SAM Analysis &amp; Decision Monitoring →</a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — System Architecture Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>

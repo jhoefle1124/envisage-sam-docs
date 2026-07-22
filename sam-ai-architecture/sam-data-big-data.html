@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM Data (Big Data) — SAM-AI System Architecture</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ai-models-hosting.html">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html" class="active">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pillar 3 &middot; Firm-Wide Data Estate</div>
+    <h1>SAM Data (Big Data)</h1>
+    <p class="lede">The permissioned, firm-wide data layer SAM-AI reasons over: who can see what, the database tools that store it, the pipelines that bring it in, and the orchestration layer that routes work across all of it.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Multi-level Permission Based Access</h2>
+  <p class="sub">Every query against SAM Data passes through permissioning before it reaches a database — access is scoped by role, not granted wholesale.</p>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="badge amber">Content Moderation</span>
+      <p>Filtering inappropriate content and enforcing usage policies, so outputs drawn from the big data layer stay within the firm's acceptable-use standards before they ever reach a user.</p>
+    </div>
+    <div class="card">
+      <span class="badge red">Data Privacy</span>
+      <p>PII protection, data encryption, and access controls that govern how personally identifiable and sensitive information is stored, transmitted, and surfaced by the platform.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Database Tools</h2>
+  <p class="sub">The storage and retrieval systems SAM-AI queries directly, chosen for the shape of the data involved.</p>
+  <table>
+    <tr><th>Category</th><th>Examples</th><th>Used For</th></tr>
+    <tr>
+      <td><strong>SQL Databases</strong></td>
+      <td>PostgreSQL, MySQL, SQLite</td>
+      <td>Structured data access — records with fixed schemas and relational integrity</td>
+    </tr>
+    <tr>
+      <td><strong>NoSQL Databases</strong></td>
+      <td>MongoDB, Redis</td>
+      <td>Flexible data storage and caching for less rigidly structured or high-throughput data</td>
+    </tr>
+    <tr>
+      <td><strong>Vector Search</strong></td>
+      <td>Similarity-based retrieval</td>
+      <td>Pulling the most semantically relevant records from vector databases, rather than an exact match</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Data Ingestion</h2>
+  <p class="sub">How information enters the big data layer in the first place, from static documents to live feeds.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Document Processing</h4>
+      <p>PDF, Word, Excel, and other document format parsing — converting unstructured files into text and structured fields the platform can search and reason over.</p>
+    </div>
+    <div class="card">
+      <h4>Real-time Feeds</h4>
+      <p>Streaming data from social media, news, and other live sources, so the platform's picture of the world updates continuously rather than in periodic batches.</p>
+    </div>
+    <div class="card">
+      <h4>API Data Sources</h4>
+      <p>Real-time data feeds from external APIs and databases, pulling in third-party data the moment it's needed rather than pre-loading everything in advance.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Orchestration Layer</h2>
+  <p class="sub">Once data is available, the orchestration layer decides how work moves across it — what runs in what order, where it's routed, and what happens when something fails.</p>
+
+  <h3>Workflow Management</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Sequential Processing</h4>
+      <p>Step-by-step execution of complex tasks, where each stage depends on the output of the one before it.</p>
+    </div>
+    <div class="card">
+      <h4>Conditional Branching</h4>
+      <p>Dynamic workflow paths based on conditions, letting a single workflow definition handle several different outcomes.</p>
+    </div>
+    <div class="card">
+      <h4>Parallel Execution</h4>
+      <p>Concurrent processing of independent operations, so tasks that don't depend on each other run at the same time instead of queuing up.</p>
+    </div>
+  </div>
+
+  <h3>Task Routing</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Intent Recognition</h4>
+      <p>Understanding user goals and routing to appropriate handlers, so a request lands with the system best equipped to answer it.</p>
+    </div>
+    <div class="card">
+      <h4>Load Balancing</h4>
+      <p>Distributing requests across available resources, keeping any single database or service from becoming a bottleneck.</p>
+    </div>
+    <div class="card">
+      <h4>Priority Management</h4>
+      <p>Handling urgent vs. non-urgent requests appropriately, so time-sensitive work doesn't wait behind routine queries.</p>
+    </div>
+  </div>
+
+  <h3>Error Handling</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Graceful Degradation</h4>
+      <p>Maintaining functionality even with partial failures, so a single broken component doesn't take down the whole workflow.</p>
+    </div>
+    <div class="card">
+      <h4>Retry Mechanisms</h4>
+      <p>Automatic retry logic for transient failures, resolving temporary issues without requiring a person to intervene.</p>
+    </div>
+    <div class="card">
+      <h4>Fallback Strategies</h4>
+      <p>Alternative approaches when primary methods fail, so the platform has a second path to an answer rather than simply erroring out.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="fm-ai-instructions.html">← FM Configured AI Instructions</a>
+  <a href="sam-team-data.html">Next: SAM Team Data (Small Data) →</a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — System Architecture Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>
