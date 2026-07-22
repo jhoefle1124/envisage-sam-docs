@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Output and Integration — SAM-AI System Architecture</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ai-models-hosting.html">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html" class="active">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pillar 6 &middot; Delivery Layer</div>
+    <h1>MCP Output and Integration</h1>
+    <p class="lede">How SAM-AI's tools, data, and analysis reach the user — exposed through the Model Context Protocol so a Claude Cowork-style workflow can call them, chain them into multi-step work, and hand back finished files, live views, and scheduled reports.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Why This Layer Exists</h2>
+  <p>The first five pillars build SAM-AI's intelligence: a model, directed by firm instructions, reasoning over firm and team data, with its output scored and tracked. None of that is useful until it reaches someone in a form they can actually act on. MCP Output and Integration is the interface layer that makes that handoff possible — it takes the internal functions, data access, and agent coordination described in the FM Configured AI Instructions pillar and exposes them through the <strong>Model Context Protocol (MCP)</strong>, the open standard that lets an agentic client like Claude Cowork discover what SAM-AI can do, call it directly, and turn the result into a delivered piece of work rather than a chat transcript.</p>
+  <p>Where Pillar 2 defines <em>what</em> the AI can reason about and act on, this pillar defines <em>how that capability gets packaged and handed to a workflow</em> — as a callable tool, a browsable resource, a generated file, or a running scheduled task.</p>
+</section>
+
+<section>
+  <h2>MCP Server Architecture</h2>
+  <p class="sub">The plumbing that turns SAM-AI's internal functions into something an external agent can discover and call.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Tool Exposure</h4>
+      <p>SAM-AI's business logic, database queries, and valuation functions are registered as MCP tools with defined input and output schemas, so an agent can call a scorecard calculation or a data lookup the same way it would call any other function — without needing to know how it's implemented underneath.</p>
+    </div>
+    <div class="card">
+      <h4>Resource &amp; Context Exposure</h4>
+      <p>SAM Data and SAM Team Data are surfaced as browsable MCP resources — documents, records, and embeddings the connected client can read directly — rather than requiring every access to go through a bespoke tool call.</p>
+    </div>
+    <div class="card">
+      <h4>Deferred Tool Loading</h4>
+      <p>Because a fully integrated SAM-AI instance can expose dozens of tools across data, analysis, and delivery, schemas are loaded on demand rather than all at once — the agent sees a tool's name first and only pulls its full definition when the task actually calls for it, keeping large toolsets fast and manageable.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Connector Integrations</h2>
+  <p class="sub">The channels through which a Cowork-style workflow reaches the systems the team already works in.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>File &amp; Folder Connectors</h4>
+      <p>Scoped access to a specific working folder — local or cloud-based — so the AI can read source material and write finished deliverables directly where the team will find them, without broad access to an entire drive.</p>
+    </div>
+    <div class="card">
+      <h4>Productivity &amp; Data Connectors</h4>
+      <p>Integrations with the tools a research or portfolio team already uses — messaging, project tracking, document platforms, and the firm's own databases — so SAM-AI's output lands inside the existing workflow instead of a separate silo.</p>
+    </div>
+    <div class="card">
+      <h4>Authentication &amp; Scoped Access</h4>
+      <p>Every connector is authorized explicitly by the user before use, through the credential flow appropriate to that service, and is limited to the narrowest scope the task requires.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Cowork Workflow Patterns</h2>
+  <p class="sub">How MCP tool calls are sequenced into an actual piece of multi-step work, rather than a single request and response.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Task Planning &amp; Progress Tracking</h4>
+      <p>Multi-step work is broken into a visible task list before execution begins, so the user can see what the AI intends to do and track progress as each step completes.</p>
+    </div>
+    <div class="card">
+      <h4>Multi-step Agentic Execution</h4>
+      <p>Tool calls are chained together — querying SAM Data, running a valuation scorecard, and drafting a deliverable — with each step's output feeding the next, so a single request can complete an entire piece of research rather than one lookup at a time.</p>
+    </div>
+    <div class="card">
+      <h4>Human-in-the-Loop Checkpoints</h4>
+      <p>Before committing to an ambiguous course of action, or before a high-stakes step, the workflow pauses to ask the user a clarifying question rather than guessing — keeping a person in control of any consequential decision.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Output Delivery</h2>
+  <p class="sub">The forms SAM-AI's finished work actually takes once a workflow completes.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>File Artifacts</h4>
+      <p>Analysis and research are delivered as finished documents, spreadsheets, decks, or PDFs — formatted, saved to the user's workspace, and ready to open, rather than left as raw text in a chat window.</p>
+    </div>
+    <div class="card">
+      <h4>Live Artifacts</h4>
+      <p>Recurring views — a portfolio dashboard, a status tracker, a comparative scorecard — are delivered as persistent pages that pull fresh data from connectors each time they're reopened, instead of a one-time snapshot.</p>
+    </div>
+    <div class="card">
+      <h4>Scheduled Tasks</h4>
+      <p>Work that needs to happen on a cadence — a daily market brief, a weekly performance summary — is set up to run automatically, so the output is waiting for the team rather than requiring a fresh request each time.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Governance &amp; Guardrails</h2>
+  <p class="sub">The same discipline that governs SAM Data access applies to every MCP tool call and every delivered output.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Minimum Necessary Access</h4>
+      <p>A workflow gets the one connector or folder its task requires, not standing access to everything the user could theoretically reach — narrowing the blast radius of any single request.</p>
+    </div>
+    <div class="card">
+      <h4>Sandboxed Execution</h4>
+      <p>Any code or script execution a tool call triggers runs in an isolated environment, separate from production systems and the user's own machine.</p>
+    </div>
+    <div class="card">
+      <h4>Audit Logging</h4>
+      <p>Every tool call, connector access, and delivered artifact is recorded, feeding directly into the decision tracking described under SAM Analysis &amp; Decision Monitoring — so an AI-assisted deliverable is traceable back to exactly which tools and data produced it.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p><strong>How it connects back:</strong> MCP Output and Integration doesn't add new intelligence to SAM-AI — it exposes the intelligence built in Pillars 1 through 4, and feeds the record of what it delivered into the accountability loop closed by Pillar 5.</p>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="sam-analysis.html">← SAM Analysis &amp; Decision Monitoring</a>
+  <a href="index.html">Back to Overview →</a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — System Architecture Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>

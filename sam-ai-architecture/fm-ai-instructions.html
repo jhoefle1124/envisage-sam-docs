@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM-AI — FM Configured AI Instructions — SAM-AI System Architecture</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ai-models-hosting.html">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html" class="active">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pillar 2 &middot; Applied Across the System</div>
+    <h1>SAM-AI — FM Configured AI Instructions</h1>
+    <p class="lede">The instruction layer that sits between the foundation model and every other pillar of the platform — the tools the AI can call, the agents it can coordinate with, and the prompt engineering that shapes how it reasons.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Why This Layer Runs "Across the System"</h2>
+  <p>Fund-manager-configured AI instructions are not tied to one feature or one page — they are the connective tissue that every other pillar depends on. Tool Integration gives the model hands: the functions, APIs, and external services it can actually call to get work done. System Prompt Engineering gives it judgment: the context management, prompt design, and behavior rules that determine how it interprets a request before it ever touches a tool. Together, they are configured once by the fund manager and then applied consistently to every query, regardless of whether that query ultimately touches SAM Data, SAM Team Data, or both.</p>
+</section>
+
+<section>
+  <h2>Tool Integration</h2>
+  <p class="sub">The mechanisms SAM-AI uses to act on the world beyond generating text.</p>
+
+  <h3>Custom Functions</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Business Logic</h4>
+      <p>Domain-specific rules, calculations, and decision-making encoded directly into callable functions, so the model applies the firm's own logic rather than improvising it.</p>
+    </div>
+    <div class="card">
+      <h4>Data Processing</h4>
+      <p>ETL pipelines, data cleaning, and format conversion — the plumbing that turns raw inputs into something a model or downstream system can actually use.</p>
+    </div>
+    <div class="card">
+      <h4>Python Scripts</h4>
+      <p>Custom data processing, analysis, and transformation logic for tasks too specific or too computational to leave to a language model alone.</p>
+    </div>
+  </div>
+
+  <h3>API Tools</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>REST APIs</h4>
+      <p>Standard web service integrations for data retrieval and actions — the default way SAM-AI reaches most internal and external systems.</p>
+    </div>
+    <div class="card">
+      <h4>Webhooks</h4>
+      <p>Real-time event-driven integrations and notifications, letting the platform react to something happening elsewhere rather than only responding when asked.</p>
+    </div>
+    <div class="card">
+      <h4>GraphQL</h4>
+      <p>Efficient data querying with flexible field selection, used where a request needs precisely shaped data without over-fetching.</p>
+    </div>
+  </div>
+
+  <h3>External Services</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Third-party APIs</h4>
+      <p>Weather, maps, news, financial data, and other specialized services that extend the platform's awareness beyond its own data.</p>
+    </div>
+    <div class="card">
+      <h4>SaaS Platforms</h4>
+      <p>CRM, ERP, and other business system integrations that let the AI read from and write to the tools the firm already runs on.</p>
+    </div>
+    <div class="card">
+      <h4>Cloud Services</h4>
+      <p>AWS, Google Cloud, and Azure integrations for scalable infrastructure — compute, storage, and managed services the platform draws on as needed.</p>
+    </div>
+  </div>
+
+  <h3>Agent Coordination</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Role-based Agents</h4>
+      <p>Agents with specific expertise and responsibilities, each scoped to a narrower task than a general-purpose assistant would handle alone.</p>
+    </div>
+    <div class="card">
+      <h4>Multi-agent Systems</h4>
+      <p>Multiple specialized AI agents working together, dividing a complex task into pieces that individual agents are better suited to solve.</p>
+    </div>
+    <div class="card">
+      <h4>Agent Communication</h4>
+      <p>Inter-agent messaging and coordination protocols that let agents share intermediate results and hand off work without losing context.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>System Prompt Engineering</h2>
+  <p class="sub">The configuration layer that determines how the model interprets and responds to a request — independent of any single tool call.</p>
+
+  <h3>Context Management</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Window Management</h4>
+      <p>Optimizing context window usage for maximum relevance, so the limited space available to the model is spent on what actually matters to the current request.</p>
+    </div>
+    <div class="card">
+      <h4>Relevance Scoring</h4>
+      <p>Ranking and selecting the most relevant information for responses, filtering out material that would otherwise dilute the model's attention.</p>
+    </div>
+    <div class="card">
+      <h4>Context Compression</h4>
+      <p>Summarizing and condensing large contexts efficiently, preserving meaning while reducing the volume of text the model has to process.</p>
+    </div>
+  </div>
+
+  <h3>Prompt Design</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Template Creation</h4>
+      <p>Reusable prompt structures for consistent responses, so the same category of question is handled the same way every time it's asked.</p>
+    </div>
+    <div class="card">
+      <h4>Variable Injection</h4>
+      <p>Dynamic content insertion based on user context, filling a template with the specific details of the request at hand.</p>
+    </div>
+    <div class="card">
+      <h4>Chain-of-Thought</h4>
+      <p>Structured reasoning processes for complex problem-solving, prompting the model to work through intermediate steps rather than jumping to a conclusion.</p>
+    </div>
+  </div>
+
+  <h3>Behavior Configuration</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Personality Traits</h4>
+      <p>Defining AI character, expertise level, and interaction preferences so the assistant feels consistent across every conversation.</p>
+    </div>
+    <div class="card">
+      <h4>Response Style</h4>
+      <p>Detailed vs. concise, technical vs. layman explanations — calibrated to who is asking and what they need from the answer.</p>
+    </div>
+    <div class="card">
+      <h4>Tone Settings</h4>
+      <p>Formal, casual, professional, or conversational styles, selected to match the context of the interaction.</p>
+    </div>
+  </div>
+
+  <h3>Instruction Sets</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Multi-step Instructions</h4>
+      <p>Complex workflows requiring sequential processing, where a request is broken into an ordered series of smaller instructions.</p>
+    </div>
+    <div class="card">
+      <h4>Conditional Logic</h4>
+      <p>If-then rules for dynamic response generation, letting the same instruction set adapt its output to the specifics of the input.</p>
+    </div>
+    <div class="card">
+      <h4>Task-specific Prompts</h4>
+      <p>Specialized instructions for different types of queries, tuned to the particular demands of a given task rather than a generic default.</p>
+    </div>
+  </div>
+
+  <h3>Features</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Functions</h4>
+      <p>Describes the combination of tools and data sets needed to complete a function, giving the model a map of what's available before it acts.</p>
+    </div>
+    <div class="card">
+      <h4>Context</h4>
+      <p>Provides context and insights for what to look for in a user prompt, helping the model recognize intent even when a request is loosely phrased.</p>
+    </div>
+    <div class="card">
+      <h4>Examples</h4>
+      <p>Provides samples of what the feature should deliver, giving the model a concrete reference point for the expected shape of a good answer.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="ai-models-hosting.html">← AI Models and Hosting</a>
+  <a href="sam-data-big-data.html">Next: SAM Data (Big Data) →</a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — System Architecture Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Models and Hosting — SAM-AI System Architecture</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ai-models-hosting.html" class="active">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pillar 1 &middot; Foundation Layer</div>
+    <h1>AI Models and Hosting</h1>
+    <p class="lede">Which large language models power SAM-AI, how the platform wraps every model in a consistent internal architecture, and the compliance rules that bind every model call.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Hosted vs. Direct Model</h2>
+  <p class="sub">The first decision the platform makes for any given workload: call a hosted third-party provider, or run a model directly under our own infrastructure.</p>
+  <p>SAM-AI is deliberately model-agnostic. Rather than binding the platform to a single foundation model, the architecture treats the model itself as a swappable component behind a stable internal interface. This gives the platform three practical advantages: it can route different tasks to whichever model performs them best, it can fail over to an alternate provider if one becomes unavailable or degrades, and it can negotiate cost and latency independently of any single vendor's pricing or roadmap.</p>
+  <p>"Hosted" access means calling a provider's managed API — the provider owns the infrastructure, the scaling, and the underlying weights, and SAM-AI simply sends requests and receives completions. "Direct" access means running or fine-tuning a model on infrastructure the platform controls, trading operational overhead for tighter control over data residency, latency, and customization. The current roster of third-party AI providers spans both modes:</p>
+  <table>
+    <tr><th>Provider</th><th>Typical Role</th><th>Access Mode</th></tr>
+    <tr>
+      <td><strong>Fireworks</strong></td>
+      <td>Fast, cost-efficient inference for open and fine-tuned models</td>
+      <td>Hosted API</td>
+    </tr>
+    <tr>
+      <td><strong>ChatGPT5</strong></td>
+      <td>General-purpose reasoning, drafting, and complex analysis</td>
+      <td>Hosted API</td>
+    </tr>
+    <tr>
+      <td><strong>Deepseek</strong></td>
+      <td>High-throughput reasoning and coding tasks at lower cost</td>
+      <td>Hosted or direct deployment</td>
+    </tr>
+    <tr>
+      <td><strong>et al.</strong></td>
+      <td>Additional providers evaluated and added as the model landscape evolves</td>
+      <td>Hosted or direct, case by case</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <p><strong>Why more than one provider?</strong> No single foundation model is best at everything, and pricing and availability shift constantly. Keeping the model layer pluggable means SAM-AI can adopt a better or cheaper model the day it becomes available, without redesigning anything above it.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Core Internal Architecture</h2>
+  <p class="sub">Whichever model answers a request, it answers inside the same internal scaffolding — this is what makes SAM-AI feel like one coherent system rather than a collection of raw model calls.</p>
+
+  <h3>FM System Prompts</h3>
+  <p>Every call to a foundation model is preceded by a system prompt layer that establishes who the AI is, how it should behave, what it should produce, and what it must never do. These four components are configured centrally and applied consistently, so switching the underlying model doesn't change the AI's identity or its guardrails.</p>
+  <div class="grid cols-2">
+    <div class="card">
+      <h4>Role Definition</h4>
+      <p>Establishes the AI's identity, expertise level, and purpose for the task at hand — telling the model whether it is acting as an analyst, a research assistant, a compliance checker, or another defined role before it processes a single word of the user's request.</p>
+    </div>
+    <div class="card">
+      <h4>Behavior Guidelines</h4>
+      <p>Rules for interaction style, response length, and engagement patterns. These guidelines keep tone and verbosity consistent across every conversation, regardless of which model or provider generates the underlying response.</p>
+    </div>
+    <div class="card">
+      <h4>Response Format</h4>
+      <p>Templates for structured outputs, formatting preferences, and data presentation — from tables and bullet structures to strict JSON schemas — so downstream systems can parse and display AI output reliably.</p>
+    </div>
+    <div class="card">
+      <h4>Constraints &amp; Rules</h4>
+      <p>Boundaries for acceptable responses, safety protocols, and ethical guidelines. This is the layer that stops the model from acting outside its authorized scope, regardless of how a request is phrased.</p>
+    </div>
+  </div>
+
+  <h3>Session Management</h3>
+  <p>A session is the container for an individual user's interaction with SAM-AI over time. Session management tracks that container from open to close, keeping conversations coherent and cleaning up after they end.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>User Sessions</h4>
+      <p>Tracking individual user interactions across multiple conversations, so context and preferences carry forward without the user having to repeat themselves.</p>
+    </div>
+    <div class="card">
+      <h4>Context Persistence</h4>
+      <p>Maintaining conversation state across sessions, so a user can pick up a thread of analysis or research where they left off.</p>
+    </div>
+    <div class="card">
+      <h4>Session Timeout</h4>
+      <p>Managing session lifecycle and cleanup — expiring inactive sessions and releasing resources to keep the platform responsive and secure.</p>
+    </div>
+  </div>
+
+  <h3>Memory Management</h3>
+  <p>Memory determines what the AI can recall, and for how long. SAM-AI layers three types of memory, each suited to a different time horizon.</p>
+  <div class="grid cols-3">
+    <div class="card">
+      <h4>Short-term Memory</h4>
+      <p>Context window management for the current conversation — what the model can "see" in the immediate exchange without retrieval.</p>
+    </div>
+    <div class="card">
+      <h4>Long-term Memory</h4>
+      <p>Persistent storage of user preferences and historical interactions, carried forward across sessions rather than lost when a conversation ends.</p>
+    </div>
+    <div class="card">
+      <h4>Episodic Memory</h4>
+      <p>Recall of specific past conversations and contexts — allowing the AI to reference a particular prior exchange rather than just a general summary of history.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Security &amp; Compliance</h2>
+  <p class="sub">Every model call, regardless of provider or hosting mode, is bound by the same regulatory floor.</p>
+  <h3>Regulatory Compliance</h3>
+  <div class="callout warn">
+    <p><strong>GDPR, CCPA, HIPAA, and industry-specific regulations</strong> govern what data can reach a model, how it must be handled once it does, and what must be logged, retained, or deleted afterward. This applies uniformly across hosted and direct providers — the compliance layer sits above the model choice, not inside any single vendor's terms of service.</p>
+  </div>
+</section>
+
+<div class="pager">
+  <a href="index.html">← Back to Overview</a>
+  <a href="fm-ai-instructions.html">Next: SAM-AI — FM Configured AI Instructions →</a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — System Architecture Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>

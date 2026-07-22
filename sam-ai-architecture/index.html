@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM-AI Architecture Considerations — Overview</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top-row">
+      <a class="brand" href="index.html">SAM-AI <span>ARCHITECTURE CONSIDERATIONS</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="ai-models-hosting.html">AI Models &amp; Hosting</a></li>
+      <li><a href="fm-ai-instructions.html">FM AI Instructions</a></li>
+      <li><a href="sam-data-big-data.html">SAM Data (Big Data)</a></li>
+      <li><a href="sam-team-data.html">SAM Team Data (Small Data)</a></li>
+      <li><a href="sam-analysis.html">Analysis &amp; Decision Monitoring</a></li>
+      <li><a href="mcp-integration.html">MCP Output &amp; Integration</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Technical Architecture &middot; Platform Reference</div>
+    <h1>SAM-AI Architecture Considerations</h1>
+    <p class="lede">How Sapphire for Asset Managers' AI layer is built: the models it runs on, the instructions that steer them, the data it reasons over, and the monitoring that keeps every decision accountable.</p>
+  </div>
+</div>
+
+<main>
+
+<section>
+  <h2>Architecture Considerations Map</h2>
+  <p class="sub">The full system diagram — click any of the five top-level sections below to open its page.</p>
+  <div class="diagram-wrap">
+    <img src="diagram.jpg" alt="SAM-AI Architecture Considerations Map, showing AI Models and Hosting, SAM-AI FM Configured AI Instructions, SAM Data, SAM Team Data, and SAM Analysis &amp; Decision Monitoring">
+    <a class="diagram-hotspot" style="left:2.4%;top:0.3%;width:9.2%;height:6.2%" href="ai-models-hosting.html" title="AI Models and Hosting"></a>
+    <a class="diagram-hotspot" style="left:32.8%;top:0.1%;width:16.9%;height:6.6%" href="fm-ai-instructions.html" title="SAM-AI — FM Configured AI Instructions"></a>
+    <a class="diagram-hotspot" style="left:58.2%;top:0.3%;width:7.8%;height:6.2%" href="sam-data-big-data.html" title="SAM Data (Big Data)"></a>
+    <a class="diagram-hotspot" style="left:73.2%;top:0.3%;width:10.3%;height:6.2%" href="sam-team-data.html" title="SAM Team Data (Small Data)"></a>
+    <a class="diagram-hotspot" style="left:87.9%;top:0.3%;width:12.1%;height:6.2%" href="sam-analysis.html" title="SAM Analysis &amp; Decision Monitoring"></a>
+    <div class="diagram-caption">Diagram reflects the original architecture plan. MCP Output &amp; Integration (Pillar 6) is not pictured — see the <a href="mcp-integration.html">MCP Output &amp; Integration</a> page directly.</div>
+  </div>
+</section>
+
+<section>
+  <h2>How the Platform Fits Together</h2>
+  <p>SAM-AI is not a single model — it is a stack. At the base sits a choice of foundation models, hosted or run directly, wrapped in an internal architecture that gives every model a consistent identity, memory, and rulebook. On top of that, a layer of FM-configured instructions runs <strong>across the entire system</strong>: tool integrations, agent coordination, and prompt engineering that shape how the AI reasons about any request, regardless of which model answers it.</p>
+  <p>Those instructions reach into two distinct data worlds. <strong>SAM Data</strong> is the firm's big data estate — permissioned databases, ingestion pipelines, and an orchestration layer that routes and sequences work across it. <strong>SAM Team Data</strong> is the smaller, higher-touch layer of team-specific knowledge — vectorized, embedded, and continuously measured for accuracy and performance. Everything the platform produces ultimately feeds the fifth pillar: <strong>Analysis &amp; Decision Monitoring</strong>, where outputs are scored, compared, and tracked back to the decisions they informed.</p>
+  <p>A sixth pillar, <strong>MCP Output and Integration</strong>, sits on top of all of it — the layer that exposes the platform's tools and outputs through the Model Context Protocol, so a Claude Cowork-style workflow can call SAM-AI's functions, pull its data, and deliver finished work back to the user.</p>
+  <p>The six pages below correspond to the six pillars of the architecture, each expanded into a full description of what it contains and why it exists.</p>
+</section>
+
+<section>
+  <h2>The Six Pillars</h2>
+  <p class="sub">Read them in order for the full data-and-instruction flow, or jump straight to the one you need.</p>
+  <div class="grid cols-2">
+    <a class="card pagecard" href="ai-models-hosting.html">
+      <span class="badge blue">Pillar 1</span>
+      <h4>AI Models and Hosting</h4>
+      <p>The foundation model layer — hosted vs. direct providers like Fireworks, ChatGPT5, and Deepseek — plus the internal architecture of system prompts, sessions, and memory that wraps every model, and the regulatory compliance rules that bind it.</p>
+      <span class="arrow">Read →</span>
+    </a>
+    <a class="card pagecard" href="fm-ai-instructions.html">
+      <span class="badge blue">Pillar 2</span>
+      <h4>SAM-AI — FM Configured AI Instructions</h4>
+      <p>The instruction layer that runs across the whole system: tool integration and agent coordination, plus the system prompt engineering — context, prompt design, behavior, and features — that gives the AI a consistent way of reasoning.</p>
+      <span class="arrow">Read →</span>
+    </a>
+    <a class="card pagecard" href="sam-data-big-data.html">
+      <span class="badge blue">Pillar 3</span>
+      <h4>SAM Data (Big Data)</h4>
+      <p>The firm's permissioned data estate: content moderation and privacy controls, SQL/NoSQL/vector database tools, data ingestion pipelines, and the orchestration layer that routes, sequences, and recovers from failure across it all.</p>
+      <span class="arrow">Read →</span>
+    </a>
+    <a class="card pagecard" href="sam-team-data.html">
+      <span class="badge blue">Pillar 4</span>
+      <h4>SAM Team Data (Small Data)</h4>
+      <p>The team-specific knowledge layer: custom fine-tuned models and embeddings, vectorization methods and vector databases, plus the performance and monitoring stack — feedback, metrics, analytics, and logging — that keeps it accurate.</p>
+      <span class="arrow">Read →</span>
+    </a>
+  </div>
+  <div class="grid cols-2" style="margin-top:0">
+    <a class="card pagecard" href="sam-analysis.html">
+      <span class="badge blue">Pillar 5</span>
+      <h4>SAM Analysis &amp; Decision Monitoring</h4>
+      <p>Where the platform closes the loop: comparative valuation scorecards, ongoing performance monitoring, decision tracking and analysis, and PMS comparative data — turning AI output into an auditable record.</p>
+      <span class="arrow">Read →</span>
+    </a>
+    <a class="card pagecard" href="mcp-integration.html">
+      <span class="badge blue">Pillar 6</span>
+      <h4>MCP Output and Integration</h4>
+      <p>The delivery layer for Claude Cowork-style workflows: MCP servers and tool exposure, connector integrations, agentic workflow patterns, output delivery as files and live artifacts, and the governance that scopes what a workflow can touch.</p>
+      <span class="arrow">Read →</span>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Platform at a Glance</h2>
+  <table>
+    <tr><th>Pillar</th><th>Primary Role</th><th>Key Components</th></tr>
+    <tr>
+      <td><strong>AI Models and Hosting</strong></td>
+      <td>Chooses and wraps the foundation model</td>
+      <td>3rd-party providers, FM system prompts, session &amp; memory management, regulatory compliance</td>
+    </tr>
+    <tr>
+      <td><strong>SAM-AI FM Configured Instructions</strong></td>
+      <td>Directs how the model reasons, system-wide</td>
+      <td>Tool integration, agent coordination, system prompt engineering</td>
+    </tr>
+    <tr>
+      <td><strong>SAM Data (Big Data)</strong></td>
+      <td>Supplies firm-wide structured &amp; unstructured data</td>
+      <td>Permissioned access, database tools, data ingestion, orchestration layer</td>
+    </tr>
+    <tr>
+      <td><strong>SAM Team Data (Small Data)</strong></td>
+      <td>Supplies team-specific knowledge, vectorized</td>
+      <td>Custom embeddings, vector databases, performance &amp; monitoring</td>
+    </tr>
+    <tr>
+      <td><strong>SAM Analysis &amp; Decision Monitoring</strong></td>
+      <td>Scores and audits the resulting decisions</td>
+      <td>Valuation scorecards, performance monitoring, decision tracking, PMS comparatives</td>
+    </tr>
+    <tr>
+      <td><strong>MCP Output and Integration</strong></td>
+      <td>Delivers the platform's output through Cowork-style workflows</td>
+      <td>MCP servers &amp; tool exposure, connectors, agentic workflow patterns, output delivery, governance</td>
+    </tr>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>SAM-AI</strong> — Architecture Considerations Reference</div>
+    <div>Internal Technical Documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>
