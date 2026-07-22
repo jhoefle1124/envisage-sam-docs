@@ -32,6 +32,8 @@ nav{position:sticky;top:0;z-index:50;background:var(--navy);box-shadow:0 2px 8px
 .nav-links a{color:#c7d4ea;text-decoration:none;font-size:.95rem;padding:12px 10px;display:block;border-bottom:3px solid transparent}
 .nav-links a:hover{color:#fff}
 .nav-links a.active{color:#fff;border-bottom-color:var(--sapphire);font-weight:600}
+.site-home-link{display:flex;align-items:center;height:34px;padding:0 12px;color:#c7d4ea;text-decoration:none;font-size:.78rem;font-weight:600;border:1px solid #2e466e;border-radius:6px;white-space:nowrap;box-sizing:border-box}
+.site-home-link:hover{color:#fff;border-color:#6ea8ff}
 
 /* HERO */
 .hero{background:linear-gradient(135deg,var(--navy-dark),var(--navy) 60%,#15366b);color:#fff;padding:56px 24px 48px}
